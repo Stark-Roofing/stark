@@ -54,7 +54,11 @@ jobs:
       run: npx puppeteer browsers install chrome
 
     - name: Prerender static HTML
-      continue-on-error: true
+      # Was continue-on-error: true (silent fail). Changed 2026-05-09 to fail-fast
+      # so prerender failures surface in CI logs instead of silently producing
+      # empty Vite shells. The fallback step below still fills any pages
+      # prerender missed.
+      continue-on-error: false
       run: node scripts/prerender.mjs
 
     # ── Step 4: Fill gaps for any pages prerender missed ──
