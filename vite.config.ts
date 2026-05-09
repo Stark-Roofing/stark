@@ -19,4 +19,19 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // Object-style manualChunks — only split deps that are strictly leaf
+        // (no React dependency) to avoid race conditions where a vendor chunk
+        // tries to use React.createContext before react-vendor resolves.
+        // Validated 2026-05-09 after function-style manualChunks broke prod.
+        manualChunks: {
+          'icons-vendor': ['lucide-react'],
+          'pdf-vendor': ['jspdf'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 700,
+  },
 }));

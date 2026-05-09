@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Image optimization originals backup (kept locally for rollback only)
+public/_originals_pre_*/
