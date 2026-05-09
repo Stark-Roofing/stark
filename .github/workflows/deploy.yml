@@ -54,11 +54,6 @@ jobs:
       run: npx puppeteer browsers install chrome
 
     - name: Prerender static HTML
-      # Reverted to continue-on-error: true on 2026-05-09 after CI run failed.
-      # The fallback (generate-all-fallbacks.mjs) now generates rich SEO content
-      # in <noscript> for every URL, so prerender failure no longer silently
-      # produces empty shells. Once Puppeteer prerender is debugged & fixed,
-      # this can flip back to false for fail-fast.
       continue-on-error: true
       run: node scripts/prerender.mjs
 
