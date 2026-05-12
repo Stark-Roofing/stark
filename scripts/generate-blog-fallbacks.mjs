@@ -37,6 +37,14 @@ const BLOG_META = {
     title: 'Kirkland, WA Roofing Guide: Lakeside Homes & Weather Protection',
     description: 'Kirkland roofing guide covering local weather, best materials for lakeside homes, maintenance tips, and choosing a qualified roofer.',
   },
+  'cedar-shake-conversion-kirkland': {
+    title: 'Cedar Shake Conversion in Kirkland: What Homeowners Need to Know',
+    description: 'Cedar shake roofs from the 80s and 90s are at end of life across Kirkland. Skip sheathing replacement, full deck rebuild, GAF architectural shingle conversion. Cost ranges $22,000 to $38,000.',
+  },
+  'gaf-master-elite-certification': {
+    title: 'GAF Master Elite Certification: What It Means and Why Only 2% of Roofers Have It',
+    description: 'Only about 2% of roofing contractors hold GAF Master Elite status. Requirements, what the Golden Pledge warranty covers (50 years materials, 25 years workmanship), and how to verify a contractor claim.',
+  },
   'roofing-guide-woodinville-wa': {
     title: 'Woodinville, WA Roofing Guide: Wine Country Home Protection',
     description: 'Woodinville roofing guide for homeowners. Local climate challenges, recommended materials, and tips for maintaining your roof in wine country.',
