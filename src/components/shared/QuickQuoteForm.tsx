@@ -826,13 +826,13 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
 
           {/* Trust strip */}
           <div className="flex items-center justify-center gap-3 text-[11px] text-charcoal/60 flex-wrap">
-            <span className="flex items-center gap-1"><Shield size={12} /> GAF Certified</span>
+            <span className="flex items-center gap-1"><Shield size={12} /> Licensed WA</span>
             <span>•</span>
             <span>30+ Years</span>
             <span>•</span>
             <span>2,000+ Roofs</span>
             <span>•</span>
-            <span>Licensed &amp; Bonded WA</span>
+            <span>20-Yr Warranty</span>
           </div>
         </div>
       </form>

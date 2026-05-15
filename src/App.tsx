@@ -52,6 +52,7 @@ const AdminHero = lazy(() => import('./pages/AdminHero'));
 const RoofReplacementAd = lazy(() => import('./pages/ads/RoofReplacementAd'));
 const RoofRepairAd = lazy(() => import('./pages/ads/RoofRepairAd'));
 const GuttersAd = lazy(() => import('./pages/ads/GuttersAd'));
+const QuoteAd = lazy(() => import('./pages/ads/QuoteAd'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 
 function App() {
@@ -131,6 +132,7 @@ function App() {
             <Route path="/thank-you" element={<ThankYou />} />
 
             {/* Ad landing pages — stripped-down, conversion-focused */}
+            <Route path="/ads" element={<QuoteAd />} />
             <Route path="/ads/roof-replacement" element={<RoofReplacementAd />} />
             <Route path="/ads/roof-repair" element={<RoofRepairAd />} />
             <Route path="/ads/gutters" element={<GuttersAd />} />
