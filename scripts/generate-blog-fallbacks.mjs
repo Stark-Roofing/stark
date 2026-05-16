@@ -45,6 +45,10 @@ const BLOG_META = {
     title: 'GAF Master Elite Certification: What It Means and Why Only 2% of Roofers Have It',
     description: 'Only about 2% of roofing contractors hold GAF Master Elite status. Requirements, what the Golden Pledge warranty covers (50 years materials, 25 years workmanship), and how to verify a contractor claim.',
   },
+  'roof-replacement-timeline-eastside-wa': {
+    title: 'How Long Does Roof Replacement Actually Take? Eastside WA Timeline',
+    description: 'Most Eastside homes complete roof replacement in 2 to 5 days of active work, with a 1 to 3 week total timeline from contract to final cleanup. Here is the day-by-day breakdown and what slows things down.',
+  },
   'roofing-guide-woodinville-wa': {
     title: 'Woodinville, WA Roofing Guide: Wine Country Home Protection',
     description: 'Woodinville roofing guide for homeowners. Local climate challenges, recommended materials, and tips for maintaining your roof in wine country.',
