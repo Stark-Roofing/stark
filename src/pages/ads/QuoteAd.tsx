@@ -60,47 +60,39 @@ const reviewsData = googleReviewsData as ReviewsJson;
 const REVIEW_COUNT = reviewsData.userRatingCount ?? 33;
 const GOOGLE_RATING = reviewsData.rating ?? 5;
 
-// Cleaned project data — no GAF mentions
+// Real before/after pairs supplied by Stark — vertical drone photos
 const BEFORE_AFTER_PROJECTS = [
   {
-    title: 'Full Shingle Roof Replacement — Drone View',
-    location: 'Seattle, WA',
+    title: 'Full Roof Replacement',
+    location: 'Eastside, WA',
     description:
-      'Complete tear-off and replacement with premium architectural shingles. Drone footage captures the full transformation from exposed decking to a clean, finished roof.',
-    beforeImage: '/gallery/drone-replacement-1-before.jpg',
-    afterImage: '/gallery/drone-replacement-1-after.jpg',
+      'Complete tear-off and replacement with premium architectural shingles. Aged, weathered roof transformed into a clean, watertight finish — built for Pacific Northwest weather.',
+    beforeImage: '/gallery/ad-before-1.png',
+    afterImage: '/gallery/ad-after-1.png',
+  },
+  {
+    title: 'Architectural Shingle Re-Roof',
+    location: 'Greater Seattle, WA',
+    description:
+      'Old shingles removed and new architectural shingles installed with proper flashing and underlayment. Restored curb appeal and decades of protection.',
+    beforeImage: '/gallery/ad-before-2.png',
+    afterImage: '/gallery/ad-after-2.png',
   },
   {
     title: 'Residential Roof Refresh',
     location: 'Puget Sound, WA',
     description:
-      'Aging, weathered shingles replaced across a complex multi-hip roof. Restored curb appeal and sealed against Pacific Northwest storms.',
-    beforeImage: '/gallery/drone-replacement-2-before.jpg',
-    afterImage: '/gallery/drone-replacement-2-after.jpg',
+      'Aging, moss-stained shingles replaced across a complex multi-hip roof. Sealed and ready for the wettest Eastside winters.',
+    beforeImage: '/gallery/ad-before-3.png',
+    afterImage: '/gallery/ad-after-3.png',
   },
   {
-    title: 'Steep-Slope Shingle Replacement',
-    location: 'Greater Seattle, WA',
+    title: 'Complete Tear-Off & Re-Roof',
+    location: 'King County, WA',
     description:
-      'Old shingles removed and new architectural shingles installed with proper flashing on a steep-slope roof with multiple dormers.',
-    beforeImage: '/gallery/drone-replacement-3-before.jpg',
-    afterImage: '/gallery/drone-replacement-3-after.jpg',
-  },
-  {
-    title: 'Complete Tear-Off & Re-Roof with Skylights',
-    location: 'Seattle Metro, WA',
-    description:
-      'Full tear-off down to the deck, new insulation, ice & water shield, and architectural shingles installed around existing skylights. A dramatic before-and-after.',
-    beforeImage: '/gallery/drone-replacement-4-before.jpg',
-    afterImage: '/gallery/drone-replacement-4-after.jpg',
-  },
-  {
-    title: 'Commercial Flat Roof — Full TPO Replacement',
-    location: 'Puget Sound, WA',
-    description:
-      'Complete tear-off of a failing built-up roof and installation of a new white TPO membrane system with proper insulation and drainage.',
-    beforeImage: '/gallery/commercial-before.webp',
-    afterImage: '/gallery/commercial-after.webp',
+      'Full tear-off down to the deck, new ice & water shield, and architectural shingles installed with proper ventilation. A dramatic before-and-after transformation.',
+    beforeImage: '/gallery/ad-before-4.png',
+    afterImage: '/gallery/ad-after-4.png',
   },
 ];
 
@@ -194,7 +186,7 @@ const BeforeAfterGallery: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
-          <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-xl border border-gray-200">
+          <div className="relative aspect-[3/4] max-w-md mx-auto lg:mx-0 rounded-xl overflow-hidden shadow-xl border border-gray-200">
             <BeforeAfterSlider
               beforeImage={project.beforeImage}
               afterImage={project.afterImage}
