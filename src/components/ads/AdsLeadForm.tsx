@@ -75,6 +75,17 @@ interface AdsLeadFormProps {
 const GHL_WEBHOOK_URL =
   'https://services.leadconnectorhq.com/hooks/Rc0vimjpYEKR7LCj48Qb/webhook-trigger/c03bd80e-513d-4215-b97a-ce820830ca67';
 
+// Vant tracking-edge Worker — Meta Conversions API server-side proxy.
+// Browser fires Pixel via GTM with the SAME event_id → Meta dedupes the two
+// signals. The "secret" header is rate-limit/sanity surface, not a real key.
+const CAPI_WORKER_URL = 'https://vant-dash-tracking-edge.agencia-vant-ads.workers.dev/capi/stark/lead';
+const CAPI_SHARED_SECRET = 'stark-capi-2026-05-changeme';
+
+function getCookie(name: string): string | undefined {
+  const m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&') + '=([^;]*)'));
+  return m ? decodeURIComponent(m[1]) : undefined;
+}
+
 async function postToGhlWebhook(payload: Record<string, string>) {
   try {
     await fetch(GHL_WEBHOOK_URL, {
@@ -86,6 +97,48 @@ async function postToGhlWebhook(payload: Record<string, string>) {
   } catch (err) {
     console.warn('GHL webhook post failed (non-blocking):', err);
   }
+}
+
+async function postToCapiWorker(payload: {
+  event_id: string;
+  email: string;
+  phone: string;
+  first_name?: string;
+  last_name?: string;
+  zip: string;
+  value: number;
+  content_name: string;
+}) {
+  try {
+    await fetch(CAPI_WORKER_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Capi-Secret': CAPI_SHARED_SECRET,
+      },
+      body: JSON.stringify({
+        ...payload,
+        event_source_url: window.location.href,
+        currency: 'USD',
+        content_category: 'paid_ads',
+        country: 'us',
+        fbp: getCookie('_fbp'),
+        fbc: getCookie('_fbc'),
+      }),
+    });
+  } catch (err) {
+    console.warn('CAPI worker post failed (non-blocking):', err);
+  }
+}
+
+/** Lead value for Smart Bidding — match values used in src/utils/tracking.ts. */
+function getLeadValue(service: string): number {
+  const s = service.toLowerCase();
+  if (s.includes('replacement')) return 150;
+  if (s.includes('repair') || s.includes('leak')) return 75;
+  if (s.includes('storm') || s.includes('commercial') || s.includes('tpo')) return 100;
+  if (s.includes('gutter') || s.includes('siding') || s.includes('skylight')) return 80;
+  return 100;
 }
 
 const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
@@ -108,6 +161,12 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
     setSubmitting(true);
     try {
       const serviceLabel = SERVICES.find((s) => s.value === values.service)?.label || values.service;
+      const leadValue = getLeadValue(serviceLabel);
+      // Same event_id used by the browser Pixel via dataLayer → Meta dedupes the
+      // server-side CAPI hit against the Pixel one.
+      const eventId = (crypto as Crypto).randomUUID();
+      const [firstName, ...rest] = values.name.trim().split(/\s+/);
+      const lastName = rest.join(' ');
 
       const payload = {
         name: values.name,
@@ -119,6 +178,30 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
         landing_page: '/ads',
         submitted_at: new Date().toISOString(),
       };
+
+      // Push event_id to dataLayer so GTM Meta Pixel tag picks it up for dedup
+      // with the CAPI hit below. (Pixel tag must reference dataLayer.event_id —
+      // configure in GTM if not already.)
+      (window as unknown as { dataLayer?: unknown[] }).dataLayer = (window as unknown as { dataLayer?: unknown[] }).dataLayer || [];
+      (window as unknown as { dataLayer: unknown[] }).dataLayer.push({
+        event: 'lead_form_submit',
+        event_id: eventId,
+        lead_value: leadValue,
+        currency: 'USD',
+        service: serviceLabel,
+      });
+
+      // Best-effort: Meta CAPI server-side via Vant worker. Same event_id as Pixel.
+      postToCapiWorker({
+        event_id: eventId,
+        email: values.email,
+        phone: values.phone,
+        first_name: firstName,
+        last_name: lastName,
+        zip: values.zip,
+        value: leadValue,
+        content_name: serviceLabel,
+      });
 
       // Best-effort GHL routing (Vant CRM + WhatsApp automation).
       postToGhlWebhook(payload);
@@ -143,6 +226,7 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
           phone: values.phone,
           service: serviceLabel,
           zip: values.zip,
+          event_id: eventId,
         },
       });
     } catch (err) {
