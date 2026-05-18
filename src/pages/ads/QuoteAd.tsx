@@ -22,7 +22,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import QuickQuoteForm from '@/components/shared/QuickQuoteForm';
+import AdsLeadForm from '@/components/ads/AdsLeadForm';
 import ServiceCard from '@/components/ServiceCard';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 import TrustBadgesSection from '@/components/home/TrustBadgesSection';
@@ -337,7 +337,7 @@ const QuoteAd: React.FC = () => {
             {/* Right: QuickQuoteForm (5 cols) — order-1 on mobile to appear above the fold */}
             <div className="lg:col-span-5 lg:mt-12 order-1 lg:order-2">
               <div className="bg-white rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.3)] border border-white/20 overflow-hidden">
-                <QuickQuoteForm defaultService="roof-replacement" />
+                <AdsLeadForm defaultService="roof-replacement" />
               </div>
               <p className="text-center text-xs text-white/70 mt-3">
                 Free estimate. No obligation. We confirm by text within minutes.
