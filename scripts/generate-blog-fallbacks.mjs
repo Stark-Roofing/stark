@@ -77,6 +77,10 @@ const BLOG_META = {
     title: 'North Bend, WA Roofing Guide: Gateway to the Cascades',
     description: 'North Bend roofing guide for homeowners near the mountains. Heavy snow, rain, and the toughest materials for Cascade foothills living.',
   },
+  'roof-replacement-eastside-wa-2026-complete-guide': {
+    title: 'Complete Guide: Roof Replacement in Eastside WA — 2026 Pillar',
+    description: 'Complete 2026 guide to roof replacement on the Eastside: cost by city (Sammamish, Bellevue, Kirkland, Redmond, Issaquah), timeline, materials, GAF Master Elite, and what to expect.',
+  },
 };
 
 // ---------------------------------------------------------------------------

@@ -1277,6 +1277,199 @@ Stark Roofing & Renovation provides free drone inspections across King County, S
 
 **Call (206) 739-8232 or [request a free drone inspection](/contact).**
     `
+  },
+  {
+    slug: "roof-replacement-eastside-wa-2026-complete-guide",
+    title: "Complete Guide: Roof Replacement in Eastside WA — 2026 Pillar",
+    excerpt: "Complete 2026 guide to roof replacement on the Eastside: cost by city (Sammamish, Bellevue, Kirkland, Redmond, Issaquah), timeline, materials, GAF Master Elite, and what to expect.",
+    date: "2026-05-18",
+    author: "Stark Roofing Team",
+    image: "/lovable-uploads/roof-replacement-eastside-wa-2026.webp",
+    keywords: "roof replacement eastside wa, eastside roof replacement cost, sammamish roofer, bellevue roof replacement, gaf master elite, golden pledge warranty, eastside king county roofing",
+    readTime: "13 min read",
+    content: `
+If you're a homeowner on the Eastside — Sammamish, Bellevue, Kirkland, Redmond, Issaquah — and your roof has started showing its age, you already know the question isn't really *if* you'll replace it. It's *when*, *with what*, and *who you trust* to put a new roof over the people sleeping inside.
+
+Stark Roofing & Renovation is headquartered right here in Sammamish at 24243 SE 43rd Ct. We've been replacing roofs across the Plateau and down through the rest of King County since the company started. This guide is the same thing we'd tell a neighbor over coffee: what a replacement actually costs in 2026 broken out by Eastside city, when to replace versus repair, what materials hold up best in PNW weather, what the GAF Master Elite certification really means, and the seven questions to ask before a single nail goes into your roof.
+
+By the end you'll know what to expect, what *not* to settle for, and how the numbers compare across the cities we serve.
+
+## Key Takeaways
+
+- Most asphalt shingle roofs in Eastside King County last 15 to 20 years — less than the manufacturer's 25 to 30 because Pacific Northwest moisture, moss pressure, and tree debris age them faster than dry climates.
+- A standard 25-square replacement runs **$14,000 to $28,000** depending on the city, roof pitch, and deck condition. Sammamish Plateau and Mercer Island lean higher; Issaquah and Renton lean lower.
+- Stark Roofing & Renovation is a **GAF Master Elite Certified Contractor** — top 2 percent of roofers in the United States. That unlocks the **Golden Pledge® warranty** (50 years on materials, 25 years on workmanship). Less than 1 in 50 contractors can offer this.
+- A full replacement takes **2 to 5 working days** on the roof, with a total timeline of **2 to 4 weeks** from signed contract to final inspection.
+- King County cities pull replacement permits when work alters structure, sheathing, or load. Even for in-kind replacements, pulling the permit protects the resale of your home.
+
+## Eastside Roof Replacement Cost in 2026 — by City
+
+Roofing cost varies more by Eastside city than most homeowners expect. The differences come from three things: average home size (Sammamish and Mercer Island lean toward larger, steeper roofs), permit fee structure, and elevation (Plateau and foothills get harder winter weather, which means more ice-and-water shield and tougher specs).
+
+Here's what a standard 25-square (2,500 sq ft of roof surface) replacement runs in 2026 for an architectural asphalt system installed correctly, before any rot replacement or skylight work.
+
+| Eastside City | Architectural Asphalt | Premium Asphalt | Standing Seam Metal |
+|---|---|---|---|
+| Sammamish (incl. Plateau) | $17,500 – $26,000 | $22,000 – $32,000 | $38,000 – $58,000 |
+| Bellevue | $16,500 – $25,000 | $21,000 – $31,000 | $36,000 – $55,000 |
+| Mercer Island | $19,000 – $30,000 | $24,000 – $36,000 | $42,000 – $62,000 |
+| Kirkland | $15,500 – $24,000 | $20,000 – $30,000 | $35,000 – $54,000 |
+| Redmond | $16,000 – $24,500 | $20,500 – $30,500 | $35,500 – $54,000 |
+| Issaquah | $14,500 – $22,000 | $18,500 – $28,000 | $33,000 – $50,000 |
+| Renton | $14,000 – $21,000 | $18,000 – $27,000 | $32,000 – $48,000 |
+| Newcastle | $15,000 – $23,000 | $19,500 – $29,000 | $34,000 – $52,000 |
+
+These are realistic ranges — not floor numbers from low-bid contractors. The variables that move you within the range: roof pitch (steeper means harder labor and more material), number of penetrations like chimneys and skylights (each one adds flashing and labor), deck condition (rot replacement at $4 to $7 per sq ft adds up), and material grade.
+
+Costs above the high end of the range usually mean one of three things: heavy structural work, a complex roof line with multiple dormers and valleys, or a premium architectural system like GAF Camelot or Grand Sequoia with full system components and the Golden Pledge warranty. None of those are unreasonable — they just need to be itemized so you know what you're paying for.
+
+Stark quotes are line-item by default: tear-off, underlayment system, shingles, flashing, ridge venting, gutters if needed, permits, dump fees, and labor. You see the math, not a rounded mystery number.
+
+## When to Replace vs. Repair Your Eastside Roof
+
+The most expensive mistake we see on the Plateau and down through Bellevue is putting off replacement one season too long. A roof that's actively failing doesn't just leak — it rots the sheathing underneath, soaks the insulation, drops mold into the attic, and ruins drywall ceilings on the floor below. By the time the brown stain appears upstairs, you've already paid for repairs that weren't in the budget.
+
+Here's how to read your roof honestly.
+
+**Start with age.** If your shingles are older than 15 years and you're seeing any of the signs below, replacement is almost always cheaper over the long run than chasing repairs. PNW asphalt shingles tend to underperform their spec by 25 to 40 percent because manufacturers test in dry climates.
+
+**Visual signs that mean replacement, not repair:**
+
+- **Granule loss.** Look in your gutters after the first hard rain of the season. If you're scooping out coarse black sand, your shingles are shedding their UV protection. Once that starts, the rate accelerates.
+- **Curling, cupping, or lifted shingles.** Edges turning up or surface waves mean the asphalt has dried out and lost its seal. Wind drives water under the lift.
+- **Mossy patches that won't stop coming back.** Moss isn't cosmetic in our climate. It lifts shingles, traps moisture against the underlayment, and accelerates rot. Two winters of moss usually means the layer underneath is already compromised.
+- **Multiple leak repairs in the same year.** One leak, one fix. Three leaks in twelve months means the roof wants to be replaced.
+- **Sagging rooflines.** Structural. Sheathing or rafters are wet. Call us today, don't wait.
+
+**Edge cases that go either way:** missing shingles after a windstorm (often repairable if the underlayment is intact), flashing failures at chimneys or skylights (almost always repairable), and isolated hail damage (insurance may cover a full replacement — document everything before anyone touches the roof). When in doubt, get a free inspection from a contractor that isn't auto-selling you a replacement. We'll tell you honestly if a $1,200 repair beats a $25,000 replacement.
+
+## The Best Roofing Materials for the Pacific Northwest
+
+Material choice is where most Eastside homeowners overpay or underbuy. The wrong material on a PNW roof can take 5 years off the warranty before the first leaf falls.
+
+### Architectural asphalt shingles (the practical default)
+
+Architectural asphalt — sometimes called dimensional or laminated — is what we install on roughly 8 out of 10 Eastside replacements. It's the best balance of cost, lifespan, look, and contractor familiarity. Stark installs almost exclusively **GAF** systems because our Master Elite certification makes their warranty significantly better for our customers.
+
+**GAF Timberline HDZ** is the workhorse: Class A fire rating, 130 mph wind warranty, and through our GAF Master Elite status we offer the manufacturer-backed system warranty covering underlayment, starter, and ridge cap together. **GAF Grand Sequoia** and **Camelot** are the premium tiers — heavier shingle, longer manufacturer warranty, distinctive profile.
+
+Expect 20 to 25 years from architectural asphalt installed correctly with proper ventilation. Don't believe the 30-year box claim — PNW shortens that.
+
+### Standing seam metal (the long game)
+
+If you're planning to be in your home longer than 10 years, standing seam metal is mathematically the better investment. Concealed fasteners, no exposed screw penetrations, 50-to-70-year lifespan, and moss can't grip the smooth Kynar finish. The trade-off is upfront cost — roughly 2 to 2.5 times the price of architectural asphalt. Over 50 years it's cheaper. Today, it's a different conversation.
+
+### Cedar shake (legacy only)
+
+Cedar shake is everywhere on older Eastside builds, especially in Kirkland's older neighborhoods. We rarely recommend installing new cedar in this climate. Cedar lasts 18 to 22 years here with aggressive maintenance, 12 to 15 without. Most cedar replacements today convert to architectural asphalt or metal. If you want the cedar look without the maintenance, metal shingle systems mimic the profile with steel longevity.
+
+### Flat roofing (TPO and modified bitumen)
+
+For flat-roof sections on Eastside Modern and mid-century homes, TPO membrane and modified bitumen are the standards. Lifespan 20 to 30 years. Don't skimp on the underlayment — flat sections fail first.
+
+## The Realistic Eastside Replacement Timeline
+
+Timeline expectations cause more frustration than the work itself. Here's the actual schedule.
+
+**Day 0 — Free inspection and quote.** A real Stark technician (not a salesperson with a tablet) climbs the roof, measures, photographs every elevation, and walks you through what they found. Same-day or next-day across the Eastside.
+
+**Days 3 to 10 — Contract, permits, materials.** Once you sign, we apply for the permit if required, order materials, and schedule the crew. King County cities turn around residential roof permits in 3 to 7 business days. Standard asphalt arrives in 5 to 10 days; special-order metal panels can take 3 to 4 weeks.
+
+**Days 10 to 14 — Pre-job walkthrough.** Final scope confirmed. Driveway and landscape protection planned. Crew lead assigned.
+
+**Day of work — Tear-off through dry-in.** Crews arrive 7 to 8 a.m., dumpster shows up, your existing roof comes off in 6 to 8 hours for a standard 25-square home. By end of day 1 the new underlayment is dry-in — the house is protected even if weather rolls in overnight.
+
+**Days 2 to 5 — Installation.** Underlayment, drip edge, valleys, starter strip, field shingles or panels, ridge cap, flashing, ventilation. A standard architectural asphalt job finishes in 2 to 3 working days. Metal runs 3 to 5 days because of panel cutting and clip placement.
+
+**Final day — Cleanup and inspection.** Yard swept with a magnet roller for nails, debris hauled, walkthrough with you on the finished work. Final city inspection in 5 to 10 days.
+
+**Total from signed contract to final inspection: 2 to 4 weeks for asphalt, 4 to 8 weeks for metal.** Weather slides things — we do not install in active rain.
+
+## GAF Master Elite & Golden Pledge: Why the Top 2% Matters
+
+This is where Stark is materially different from most roofers you'll get a quote from, and it's worth understanding because it directly affects what warranty *you* end up with.
+
+**GAF Master Elite Certified Contractor** is a designation that goes to roughly **2 percent of all roofing contractors in the United States.** It's not a badge you buy. GAF gates it on:
+
+- Active L&I licensing and full insurance coverage (general liability and workers' comp)
+- A clean complaint record across years of operation
+- Documented installation training on the full GAF system, not just shingles
+- Ongoing performance reviews
+
+Most "GAF Certified" contractors are at a lower tier called Certified or Authorized. Those have a baseline of training. Master Elite is the highest level — and it unlocks the warranty most homeowners actually want.
+
+**The GAF Golden Pledge® warranty** is the strongest residential roofing warranty on the market:
+
+- **50 years on materials** — the shingles themselves
+- **25 years on workmanship** — covers our installation, not just GAF's product
+- Transferable to a next buyer if you sell within the coverage period
+- GAF inspects the install before issuing the warranty (we don't get to certify ourselves)
+
+For comparison, most contractors offer a 1-to-10-year workmanship warranty on their own paper. That paper is only as good as the contractor being in business when you need it. Golden Pledge is backed by GAF directly — the manufacturer that's been around since 1886.
+
+When we hand you a quote, the Golden Pledge isn't a sales add-on. It's the default on every full system replacement we install with GAF materials.
+
+## Permits, Codes, and Insurance on the Eastside
+
+**When you need a permit:** Sammamish, Bellevue, Kirkland, Redmond, Issaquah, and unincorporated King County all require roof permits when the work alters structure, sheathing, or load — for example, switching from asphalt to tile. Permit fees typically run $150 to $400.
+
+**When you technically don't need a permit:** Pure shingle-to-shingle replacement on the same footprint, no sheathing replacement, no structural changes. Even in this case, *we recommend pulling the permit anyway.* It documents the work, a city inspector validates the install, and the paperwork protects the next sale of your home.
+
+**Insurance:** If a windstorm or hail event triggered your replacement, the claim process is half the project. Document everything before any contractor climbs the roof: photos of damage, dates, inspection reports. Reputable contractors will work directly with the adjuster, but should never sign on your behalf or promise to "eat" the deductible — that's insurance fraud and gets the contract voided.
+
+**Washington licensing:** Every contractor on your roof must be **L&I licensed, bonded, and carry both general liability and workers' compensation insurance.** Stark carries all three at active status.
+
+## 7 Questions to Ask Before Hiring a Roofer
+
+- **1. "Show me your active L&I license, bond, and current insurance certificates."** This is the floor.
+- **2. "Are you GAF Master Elite or Owens Corning Platinum?"** Manufacturer top-tier certifications unlock the strongest warranties. Stark is Master Elite. Less than 1 in 50 contractors can answer yes.
+- **3. "Who actually installs the roof — your in-house crew or subcontractors?"** Subcontractors aren't automatically bad, but the warranty travels with whoever's paper you signed.
+- **4. "What's your workmanship warranty, and what specifically does it cover?"** Anything under 10 years is light. Stark's Golden Pledge covers 25 years on workmanship.
+- **5. "What does cleanup look like on the final day?"** Magnetic roller for nails, yard swept, debris hauled, gutters cleared.
+- **6. "Can I see five recent local projects?"** Five real Eastside addresses, not stock photos.
+- **7. "What happens if I find a leak in year 4?"** A real answer, not vague reassurance. Stark's 25-year workmanship warranty means we send a crew on our dime.
+
+## The Stark Replacement Process, Step-by-Step
+
+We don't sub out our work. The crew that quotes your job, plans it, and installs it is the crew Stark trained.
+
+- **1. Free drone-assisted inspection.** Stark technician climbs your roof, photographs every elevation, documents flashing, ventilation, deck condition, and gutter status.
+- **2. Line-item quote.** Tear-off, underlayment, shingles, flashing, ridge venting, gutters if needed, permits, dump fees, labor — itemized.
+- **3. Material selection meeting.** We bring GAF shingle samples and color decks to your house.
+- **4. Permits and scheduling.** Pulled where applicable, materials ordered, start date locked against weather forecasts.
+- **5. Pre-job protection.** Driveway and landscaping protected with tarps and plywood. Magnetic mats under work zones.
+- **6. Tear-off and dry-in same day.** Old roof off, deck inspected for rot, underlayment goes on. House is dry-in before the crew leaves.
+- **7. Installation.** GAF shingles or metal panels, top to bottom, with flashing at every penetration.
+- **8. Cleanup and inspection.** Magnetic roller. Yard left cleaner than we found it.
+- **9. Warranty registration.** GAF Golden Pledge registered with the manufacturer, paperwork emailed to you. Our 25-year workmanship coverage starts the day we finish.
+- **10. Six-month check-in.** Quick follow-up inspection on the house — included free in every Stark replacement.
+
+## Frequently Asked Questions
+
+### How much does roof replacement cost on the Eastside in 2026?
+
+Most Eastside asphalt replacements run $14,000 to $28,000 for a standard 25-square home. Standing seam metal is $32,000 to $58,000 for the same footprint. The specific city matters — Sammamish Plateau and Mercer Island lean higher because of larger homes and steeper pitch; Issaquah and Renton lean lower.
+
+### How long does a roof replacement take in Sammamish, Bellevue, or Kirkland?
+
+Standard architectural asphalt takes 2 to 3 working days of crew time on the roof. Standing seam metal runs 3 to 5 days. Total elapsed timeline from signed contract to finished install is 2 to 4 weeks for asphalt and 4 to 8 weeks for metal.
+
+### Do I need a permit for roof replacement on the Eastside?
+
+Cities require permits when the work alters structure, sheathing, or load. Pure shingle-to-shingle replacement on the same footprint often doesn't strictly require one — but we recommend pulling the permit anyway. Fees typically run $150 to $400.
+
+### What's the difference between GAF Certified and GAF Master Elite?
+
+GAF Certified is a baseline training level — many roofers have it. GAF Master Elite is the top tier, held by roughly 2 percent of contractors nationwide. Master Elite is the only certification that unlocks the Golden Pledge warranty (50 years materials, 25 years workmanship). Stark is Master Elite.
+
+### Can I replace just part of my roof, or does it need to be the whole thing?
+
+Partial replacement is possible if the damage is genuinely isolated. But matching new shingles to a 12-year-old field rarely looks right, and the rest of the roof is usually closer to end-of-life. Most of the time, full replacement is cleaner, warrantied as one system, and cheaper per year of life delivered.
+
+---
+
+**Ready for a free Eastside roof inspection?** Stark Roofing & Renovation is headquartered at 24243 SE 43rd Ct, Sammamish, WA 98029. We serve Sammamish, Bellevue, Kirkland, Redmond, Issaquah, and the rest of Eastside King County. Licensed, bonded, insured. GAF Master Elite. Golden Pledge warranty on every full replacement. Call **(206) 739-8232** or [request a free inspection](/contact).
+    `
   }
 ];
 
