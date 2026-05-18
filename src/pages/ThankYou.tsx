@@ -94,13 +94,9 @@ const ThankYou: React.FC = () => {
           value,
         });
 
-        // 4) Meta Pixel Lead event
-        window.fbq?.('track', 'Lead', {
-          content_name: 'Thank You Page',
-          content_category: state.service || 'General',
-          value,
-          currency: 'USD',
-        });
+        // Meta Pixel Lead event is fired by GTM (Pixel Meta - Lead (Form Thank You))
+        // via historyChange trigger on /thank-you. Removed from here on 2026-05-18
+        // to avoid double-firing.
 
         sessionStorage.setItem('stark_ty_fired', '1');
       }

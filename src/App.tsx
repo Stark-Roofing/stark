@@ -1,5 +1,5 @@
 
-import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import './App.css';
@@ -8,7 +8,10 @@ import './App.css';
 import Index from './pages/Index';
 import PageTransition from './components/PageTransition';
 import { useEntranceAnimations } from './hooks/useEntranceAnimations';
-import { initPhoneTracking } from './utils/phoneTracking';
+// Phone-click tracking is now handled fully by GTM (Conv - Phone Click + GA4 -
+// Phone Click + Pixel Meta - Contact tags, all firing on the Phone Clicks
+// trigger). The previous initPhoneTracking() inline fbq Contact was removed
+// on 2026-05-18 to centralize tracking and avoid double-firing.
 
 // Everything else is code-split
 const Services = lazy(() => import('./pages/Services'));
@@ -57,10 +60,6 @@ const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 
 function App() {
   useEntranceAnimations();
-
-  useEffect(() => {
-    return initPhoneTracking();
-  }, []);
 
   return (
     <Router>
