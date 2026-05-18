@@ -241,6 +241,7 @@ function generatePageHtml(pathname, assets) {
   <title>${escapeHtml(meta.title)}</title>
   <meta name="description" content="${escapeHtml(meta.description)}" />
   <link rel="canonical" href="${canonical}" />
+  <meta name="facebook-domain-verification" content="5fg2daaf5j2x14pgsyffs82z8x7wku" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="${canonical}" />
   <meta property="og:title" content="${escapeHtml(meta.title)}" />
