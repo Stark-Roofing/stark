@@ -70,10 +70,12 @@ interface AdsLeadFormProps {
   defaultService?: string;
 }
 
-const GHL_WEBHOOK_URL = import.meta.env.VITE_GHL_LEAD_WEBHOOK_URL as string | undefined;
+// Vant GHL webhook — receives leads, fires workflow (create contact + WhatsApp to Brenda).
+// Public endpoint (anyone can POST) — dedup + spam mitigation lives in the GHL workflow.
+const GHL_WEBHOOK_URL =
+  'https://services.leadconnectorhq.com/hooks/Rc0vimjpYEKR7LCj48Qb/webhook-trigger/c03bd80e-513d-4215-b97a-ce820830ca67';
 
 async function postToGhlWebhook(payload: Record<string, string>) {
-  if (!GHL_WEBHOOK_URL) return;
   try {
     await fetch(GHL_WEBHOOK_URL, {
       method: 'POST',
