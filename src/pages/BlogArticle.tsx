@@ -50,17 +50,23 @@ const BlogArticle = () => {
   }
 
   // Simple markdown-like rendering for blog content
+  const renderInline = (text: string) =>
+    text
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-stark-red hover:underline">$1</a>');
+
   const renderContent = (content: string) => {
     const lines = content.trim().split('\n');
     const elements: React.ReactNode[] = [];
     let listItems: string[] = [];
+    let tableLines: string[] = [];
 
     const flushList = () => {
       if (listItems.length > 0) {
         elements.push(
           <ul key={`list-${elements.length}`} className="list-disc list-inside space-y-2 text-charcoal/80 mb-6 ml-4">
             {listItems.map((item, i) => (
-              <li key={i} dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+              <li key={i} dangerouslySetInnerHTML={{ __html: renderInline(item) }} />
             ))}
           </ul>
         );
@@ -68,12 +74,64 @@ const BlogArticle = () => {
       }
     };
 
+    const flushTable = () => {
+      if (tableLines.length === 0) return;
+      // Markdown table format:
+      //   tableLines[0] = header row "| col1 | col2 | ... |"
+      //   tableLines[1] = separator "|---|---|...|"
+      //   tableLines[2..] = body rows
+      const parseRow = (line: string) =>
+        line.split('|').slice(1, -1).map((c) => c.trim());
+
+      const headers = tableLines[0] ? parseRow(tableLines[0]) : [];
+      // Skip separator row if present (contains only `---` or `:---:` etc)
+      const sepIdx = tableLines[1] && /^\|[\s:|\-]+\|$/.test(tableLines[1].replace(/\s/g, '')) ? 1 : -1;
+      const bodyStart = sepIdx === 1 ? 2 : 1;
+      const bodyRows = tableLines.slice(bodyStart).map(parseRow);
+
+      elements.push(
+        <div key={`tbl-${elements.length}`} className="overflow-x-auto mb-6 -mx-4 md:mx-0">
+          <table className="min-w-full border-collapse text-sm md:text-base">
+            <thead>
+              <tr className="bg-navy text-white">
+                {headers.map((h, i) => (
+                  <th key={i} className="px-3 md:px-4 py-2 text-left font-semibold"
+                      dangerouslySetInnerHTML={{ __html: renderInline(h) }} />
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {bodyRows.map((row, ri) => (
+                <tr key={ri} className={ri % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                  {row.map((c, ci) => (
+                    <td key={ci}
+                        className="px-3 md:px-4 py-2 border-b border-gray-200 text-charcoal/80"
+                        dangerouslySetInnerHTML={{ __html: renderInline(c) }} />
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+      tableLines = [];
+    };
+
     lines.forEach((line, index) => {
       const trimmed = line.trim();
       if (!trimmed) {
         flushList();
+        flushTable();
         return;
       }
+
+      if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
+        flushList();
+        tableLines.push(trimmed);
+        return;
+      }
+      // Closing any open table when we hit non-table content
+      flushTable();
 
       if (trimmed.startsWith('## ')) {
         flushList();
@@ -99,16 +157,13 @@ const BlogArticle = () => {
           <p
             key={index}
             className="text-charcoal/80 mb-4 leading-relaxed"
-            dangerouslySetInnerHTML={{
-              __html: trimmed
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-stark-red hover:underline">$1</a>')
-            }}
+            dangerouslySetInnerHTML={{ __html: renderInline(trimmed) }}
           />
         );
       }
     });
     flushList();
+    flushTable();
     return elements;
   };
 
