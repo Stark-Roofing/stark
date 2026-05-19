@@ -86,6 +86,38 @@ function getCookie(name: string): string | undefined {
   return m ? decodeURIComponent(m[1]) : undefined;
 }
 
+/** Persistent UUID per user (Meta external_id) — same value across all sessions
+ *  of the same browser. Sent unhashed to Pixel (Meta hashes via Advanced Matching)
+ *  and hashed by the worker before CAPI. Same hashed value on both sides = Meta
+ *  cross-references the same user. Major EMQ boost (+1.0-1.5 typically). */
+function getOrCreateExternalId(): string {
+  const KEY = 'stark_ext_id';
+  try {
+    let id = localStorage.getItem(KEY);
+    if (!id) {
+      id = (crypto as Crypto).randomUUID();
+      localStorage.setItem(KEY, id);
+    }
+    return id;
+  } catch {
+    // Private-browsing fallback — UUID per session only
+    return (crypto as Crypto).randomUUID();
+  }
+}
+
+/** If user landed with ?fbclid=XXX from a Meta ad and the Pixel hasn't set
+ *  the _fbc cookie yet (timing race on SPAs), build it ourselves so CAPI gets
+ *  click-ID attribution. Format: fb.<subdomain_index>.<creation_time>.<fbclid>
+ *  See: https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/fbp-and-fbc */
+function deriveFbcFromUrlIfMissing(): string | undefined {
+  const existing = getCookie('_fbc');
+  if (existing) return existing;
+  const url = new URL(window.location.href);
+  const fbclid = url.searchParams.get('fbclid');
+  if (!fbclid) return undefined;
+  return `fb.1.${Date.now()}.${fbclid}`;
+}
+
 async function postToGhlWebhook(payload: Record<string, string>) {
   try {
     await fetch(GHL_WEBHOOK_URL, {
@@ -108,6 +140,7 @@ async function postToCapiWorker(payload: {
   zip: string;
   value: number;
   content_name: string;
+  external_id: string;
 }) {
   try {
     await fetch(CAPI_WORKER_URL, {
@@ -123,7 +156,7 @@ async function postToCapiWorker(payload: {
         content_category: 'paid_ads',
         country: 'us',
         fbp: getCookie('_fbp'),
-        fbc: getCookie('_fbc'),
+        fbc: getCookie('_fbc') || deriveFbcFromUrlIfMissing(),
       }),
     });
   } catch (err) {
@@ -165,6 +198,7 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
       // Same event_id used by the browser Pixel via dataLayer → Meta dedupes the
       // server-side CAPI hit against the Pixel one.
       const eventId = (crypto as Crypto).randomUUID();
+      const externalId = getOrCreateExternalId();
       const [firstName, ...rest] = values.name.trim().split(/\s+/);
       const lastName = rest.join(' ');
 
@@ -179,9 +213,10 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
         submitted_at: new Date().toISOString(),
       };
 
-      // Push event_id to dataLayer so GTM Meta Pixel tag picks it up for dedup
-      // with the CAPI hit below. (Pixel tag must reference dataLayer.event_id —
-      // configure in GTM if not already.)
+      // Push event_id + Advanced Matching user_data to dataLayer so GTM Meta
+      // Pixel tag fires fbq with the SAME user_data the CAPI worker sends.
+      // Meta uses Advanced Matching to improve EMQ — values are auto-hashed by
+      // the Pixel library, so we send plain-text here.
       (window as unknown as { dataLayer?: unknown[] }).dataLayer = (window as unknown as { dataLayer?: unknown[] }).dataLayer || [];
       (window as unknown as { dataLayer: unknown[] }).dataLayer.push({
         event: 'lead_form_submit',
@@ -189,9 +224,19 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
         lead_value: leadValue,
         currency: 'USD',
         service: serviceLabel,
+        // Advanced Matching params — Pixel hashes these automatically
+        am_em: values.email.trim().toLowerCase(),
+        am_ph: values.phone.replace(/\D/g, ''),
+        am_fn: firstName?.toLowerCase(),
+        am_ln: lastName?.toLowerCase(),
+        am_zp: values.zip,
+        am_country: 'us',
+        am_external_id: externalId,
       });
 
-      // Best-effort: Meta CAPI server-side via Vant worker. Same event_id as Pixel.
+      // Best-effort: Meta CAPI server-side via Vant worker. Same event_id +
+      // external_id + Advanced Matching params as Pixel = consistent identity
+      // across both sources → Meta cross-references = high EMQ.
       postToCapiWorker({
         event_id: eventId,
         email: values.email,
@@ -201,6 +246,7 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
         zip: values.zip,
         value: leadValue,
         content_name: serviceLabel,
+        external_id: externalId,
       });
 
       // Best-effort GHL routing (Vant CRM + WhatsApp automation).
