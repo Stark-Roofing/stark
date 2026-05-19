@@ -35,6 +35,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { sendLeadEmailAndSms, sendCustomerConfirmation } from '@/utils/emailjs';
+import { getOrCreateExternalId, getCookie, deriveFbcFromUrlIfMissing, postLeadToCapiWorker } from '@/utils/metaTracking';
 
 const SERVICES = [
   { value: 'roof-replacement', label: 'Roof Replacement' },
@@ -75,48 +76,9 @@ interface AdsLeadFormProps {
 const GHL_WEBHOOK_URL =
   'https://services.leadconnectorhq.com/hooks/Rc0vimjpYEKR7LCj48Qb/webhook-trigger/c03bd80e-513d-4215-b97a-ce820830ca67';
 
-// Vant tracking-edge Worker — Meta Conversions API server-side proxy.
-// Browser fires Pixel via GTM with the SAME event_id → Meta dedupes the two
-// signals. The "secret" header is rate-limit/sanity surface, not a real key.
-const CAPI_WORKER_URL = 'https://vant-dash-tracking-edge.agencia-vant-ads.workers.dev/capi/stark/lead';
-const CAPI_SHARED_SECRET = 'ff6ccf9f26d4319b2369058a1536d854';
-
-function getCookie(name: string): string | undefined {
-  const m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&') + '=([^;]*)'));
-  return m ? decodeURIComponent(m[1]) : undefined;
-}
-
-/** Persistent UUID per user (Meta external_id) — same value across all sessions
- *  of the same browser. Sent unhashed to Pixel (Meta hashes via Advanced Matching)
- *  and hashed by the worker before CAPI. Same hashed value on both sides = Meta
- *  cross-references the same user. Major EMQ boost (+1.0-1.5 typically). */
-function getOrCreateExternalId(): string {
-  const KEY = 'stark_ext_id';
-  try {
-    let id = localStorage.getItem(KEY);
-    if (!id) {
-      id = (crypto as Crypto).randomUUID();
-      localStorage.setItem(KEY, id);
-    }
-    return id;
-  } catch {
-    // Private-browsing fallback — UUID per session only
-    return (crypto as Crypto).randomUUID();
-  }
-}
-
-/** If user landed with ?fbclid=XXX from a Meta ad and the Pixel hasn't set
- *  the _fbc cookie yet (timing race on SPAs), build it ourselves so CAPI gets
- *  click-ID attribution. Format: fb.<subdomain_index>.<creation_time>.<fbclid>
- *  See: https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/fbp-and-fbc */
-function deriveFbcFromUrlIfMissing(): string | undefined {
-  const existing = getCookie('_fbc');
-  if (existing) return existing;
-  const url = new URL(window.location.href);
-  const fbclid = url.searchParams.get('fbclid');
-  if (!fbclid) return undefined;
-  return `fb.1.${Date.now()}.${fbclid}`;
-}
+// CAPI helpers + cookie/external_id utilities moved to @/utils/metaTracking
+// so they're reusable by ThankYou.tsx (central Lead trigger for all forms)
+// and phoneTracking.ts (CAPI Contact for tel: clicks).
 
 async function postToGhlWebhook(payload: Record<string, string>) {
   try {
@@ -131,38 +93,6 @@ async function postToGhlWebhook(payload: Record<string, string>) {
   }
 }
 
-async function postToCapiWorker(payload: {
-  event_id: string;
-  email: string;
-  phone: string;
-  first_name?: string;
-  last_name?: string;
-  zip: string;
-  value: number;
-  content_name: string;
-  external_id: string;
-}) {
-  try {
-    await fetch(CAPI_WORKER_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Capi-Secret': CAPI_SHARED_SECRET,
-      },
-      body: JSON.stringify({
-        ...payload,
-        event_source_url: window.location.href,
-        currency: 'USD',
-        content_category: 'paid_ads',
-        country: 'us',
-        fbp: getCookie('_fbp'),
-        fbc: getCookie('_fbc') || deriveFbcFromUrlIfMissing(),
-      }),
-    });
-  } catch (err) {
-    console.warn('CAPI worker post failed (non-blocking):', err);
-  }
-}
 
 /** Lead value for Smart Bidding — match values used in src/utils/tracking.ts. */
 function getLeadValue(service: string): number {
@@ -234,19 +164,27 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
         am_external_id: externalId,
       });
 
-      // Best-effort: Meta CAPI server-side via Vant worker. Same event_id +
-      // external_id + Advanced Matching params as Pixel = consistent identity
-      // across both sources → Meta cross-references = high EMQ.
-      postToCapiWorker({
+      // Best-effort: Meta CAPI server-side via Vant worker. Fires pre-navigate
+      // as a resilience play — if /thank-you fails to load for any reason,
+      // CAPI still hits. ThankYou.tsx will fire again (different event_id) if
+      // pre-navigate fire raced; harmless because Meta dedupes by event_id and
+      // ThankYou uses the SAME event_id (passed via state).
+      postLeadToCapiWorker({
         event_id: eventId,
+        event_source_url: window.location.href,
+        external_id: externalId,
         email: values.email,
         phone: values.phone,
         first_name: firstName,
         last_name: lastName,
         zip: values.zip,
         value: leadValue,
+        currency: 'USD',
         content_name: serviceLabel,
-        external_id: externalId,
+        content_category: 'paid_ads',
+        country: 'us',
+        fbp: getCookie('_fbp'),
+        fbc: getCookie('_fbc') || deriveFbcFromUrlIfMissing(),
       });
 
       // Best-effort GHL routing (Vant CRM + WhatsApp automation).

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { getOrCreateExternalId, getCookie, deriveFbcFromUrlIfMissing, postLeadToCapiWorker } from '@/utils/metaTracking';
 import {
   CheckCircle2,
   Calendar,
@@ -44,6 +45,14 @@ interface ThankYouState {
   zip?: string;
   email?: string;
   phone?: string;
+  /** AdsLeadForm passes this so /thank-you reuses same UUID for Pixel+CAPI dedup. */
+  event_id?: string;
+}
+
+declare global {
+  interface Window {
+    dataLayer?: Array<Record<string, unknown>>;
+  }
 }
 
 const ThankYou: React.FC = () => {
@@ -60,46 +69,86 @@ const ThankYou: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // Primary lead conversion firing — happens here (not on form submit).
+    // Central conversion firing — runs for EVERY form on the site that navigates
+    // to /thank-you (AdsLeadForm, QuickQuoteForm, ContactForm, etc).
     // Guarded by sessionStorage flag to prevent double-firing on reload.
     try {
       const alreadyFired = sessionStorage.getItem('stark_ty_fired');
-      if (!alreadyFired) {
-        const value = getLeadValue(state.service);
+      if (alreadyFired) return;
+      const value = getLeadValue(state.service);
+      const externalId = getOrCreateExternalId();
+      // Reuse event_id passed by AdsLeadForm if present (already pushed to
+      // dataLayer before navigate). Otherwise generate fresh one here so other
+      // forms also get Pixel + CAPI dedup.
+      const eventId = (state as { event_id?: string }).event_id || (crypto as Crypto).randomUUID();
+      const [firstName, ...rest] = (state.name || '').trim().split(/\s+/);
+      const lastName = rest.join(' ');
 
-        // 1) Enhanced Conversions: SET user_data BEFORE the conversion event
-        //    so Google can attach hashed PII to the conversion.
-        if (state.email || state.phone) {
-          window.gtag?.('set', 'user_data', {
-            email: state.email || undefined,
-            phone_number: state.phone || undefined,
-          });
-        }
+      // 1) Enhanced Conversions: SET user_data BEFORE the conversion event.
+      if (state.email || state.phone) {
+        window.gtag?.('set', 'user_data', {
+          email: state.email || undefined,
+          phone_number: state.phone || undefined,
+        });
+      }
 
-        // 2) Google Ads conversion (Submit lead form (1))
-        window.gtag?.('event', 'conversion', {
-          send_to: 'AW-17475363009/I9C_CKq9jpscEMHB84xB',
+      // 2) Google Ads conversion (Submit lead form)
+      window.gtag?.('event', 'conversion', {
+        send_to: 'AW-17475363009/I9C_CKq9jpscEMHB84xB',
+        value,
+        currency: 'USD',
+      });
+
+      // 3) GA4 generate_lead event
+      window.gtag?.('event', 'generate_lead', {
+        event_category: 'conversion',
+        event_label: state.service || 'thank_you_page',
+        form_type: 'thank_you',
+        value,
+      });
+
+      // 4) dataLayer push for GTM Custom HTML tag → fires Meta Pixel Lead with
+      // event_id + Advanced Matching params. AdsLeadForm may have pushed this
+      // already pre-navigate; pushing again is harmless (GTM Custom Event
+      // fires once per dataLayer push).
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'lead_form_submit',
+        event_id: eventId,
+        lead_value: value,
+        currency: 'USD',
+        service: state.service,
+        am_em: state.email?.trim().toLowerCase(),
+        am_ph: state.phone?.replace(/\D/g, ''),
+        am_fn: firstName?.toLowerCase(),
+        am_ln: lastName?.toLowerCase(),
+        am_zp: state.zip,
+        am_country: 'us',
+        am_external_id: externalId,
+      });
+
+      // 5) CAPI server-side via Vant Worker — best-effort, non-blocking.
+      if (state.email && state.phone) {
+        postLeadToCapiWorker({
+          event_id: eventId,
+          event_source_url: window.location.href,
+          external_id: externalId,
+          email: state.email,
+          phone: state.phone,
+          first_name: firstName,
+          last_name: lastName,
+          zip: state.zip || '',
           value,
           currency: 'USD',
+          content_name: state.service || 'Lead Form',
+          content_category: 'website_form',
+          country: 'us',
+          fbp: getCookie('_fbp'),
+          fbc: getCookie('_fbc') || deriveFbcFromUrlIfMissing(),
         });
-
-        // Note: "Enviar formulário de lead" conversion (vBxtCO6GqqccEMHB84xB)
-        // is fired by GTM via History Change trigger on /thank-you, not here.
-
-        // 3) GA4 generate_lead event (semantically a key event for funnel)
-        window.gtag?.('event', 'generate_lead', {
-          event_category: 'conversion',
-          event_label: state.service || 'thank_you_page',
-          form_type: 'thank_you',
-          value,
-        });
-
-        // Meta Pixel Lead event is fired by GTM (Pixel Meta - Lead (Form Thank You))
-        // via historyChange trigger on /thank-you. Removed from here on 2026-05-18
-        // to avoid double-firing.
-
-        sessionStorage.setItem('stark_ty_fired', '1');
       }
+
+      sessionStorage.setItem('stark_ty_fired', '1');
     } catch (e) {
       console.warn('ThankYou tracking error:', e);
     }

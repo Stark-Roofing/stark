@@ -1,5 +1,6 @@
 
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
+import { initPhoneTracking } from './utils/phoneTracking';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import './App.css';
@@ -8,10 +9,9 @@ import './App.css';
 import Index from './pages/Index';
 import PageTransition from './components/PageTransition';
 import { useEntranceAnimations } from './hooks/useEntranceAnimations';
-// Phone-click tracking is now handled fully by GTM (Conv - Phone Click + GA4 -
-// Phone Click + Pixel Meta - Contact tags, all firing on the Phone Clicks
-// trigger). The previous initPhoneTracking() inline fbq Contact was removed
-// on 2026-05-18 to centralize tracking and avoid double-firing.
+// Phone-click tracking — pushes to dataLayer (GTM picks up for Pixel browser)
+// AND fires Meta CAPI Contact server-side via the Vant tracking-edge Worker.
+// Both share the same event_id so Meta dedupes (Pixel + CAPI = same event).
 
 // Everything else is code-split
 const Services = lazy(() => import('./pages/Services'));
@@ -60,6 +60,10 @@ const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 
 function App() {
   useEntranceAnimations();
+
+  useEffect(() => {
+    return initPhoneTracking();
+  }, []);
 
   return (
     <Router>
