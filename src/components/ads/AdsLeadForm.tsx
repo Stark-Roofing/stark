@@ -79,7 +79,7 @@ const GHL_WEBHOOK_URL =
 // Browser fires Pixel via GTM with the SAME event_id → Meta dedupes the two
 // signals. The "secret" header is rate-limit/sanity surface, not a real key.
 const CAPI_WORKER_URL = 'https://vant-dash-tracking-edge.agencia-vant-ads.workers.dev/capi/stark/lead';
-const CAPI_SHARED_SECRET = 'stark-capi-2026-05-changeme';
+const CAPI_SHARED_SECRET = 'ff6ccf9f26d4319b2369058a1536d854';
 
 function getCookie(name: string): string | undefined {
   const m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&') + '=([^;]*)'));
