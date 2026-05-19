@@ -81,6 +81,10 @@ const BLOG_META = {
     title: 'Complete Guide: Roof Replacement in Eastside WA — 2026 Pillar',
     description: 'Complete 2026 guide to roof replacement on the Eastside: cost by city (Sammamish, Bellevue, Kirkland, Redmond, Issaquah), timeline, materials, GAF Master Elite, and what to expect.',
   },
+  'roof-replacement-cost-bellevue-wa-2026': {
+    title: 'Roof Replacement Cost in Bellevue, WA 2026: Real Numbers from Recent Projects',
+    description: 'Real 2026 roof replacement costs in Bellevue, WA from recent Stark projects. Cost drivers, material breakdowns, hidden risks, and what to budget. GAF Master Elite installer.',
+  },
 };
 
 // ---------------------------------------------------------------------------
