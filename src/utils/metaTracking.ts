@@ -91,6 +91,10 @@ async function postCapi(path: string, payload: Record<string, unknown>): Promise
         'X-Capi-Secret': CAPI_SHARED_SECRET,
       },
       body: JSON.stringify(payload),
+      // keepalive: critical for phone clicks (tel: links open the dialer app
+      // and kill the JS context before the request completes). With keepalive,
+      // the browser keeps the request in-flight even after the page unloads.
+      keepalive: true,
     });
   } catch (err) {
     console.warn(`CAPI ${path} post failed (non-blocking):`, err);
