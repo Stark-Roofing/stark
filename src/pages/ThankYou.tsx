@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { getOrCreateExternalId, getCookie, deriveFbcFromUrlIfMissing, postLeadToCapiWorker } from '@/utils/metaTracking';
+import {
+  getOrCreateExternalId,
+  getFbp,
+  getFbc,
+  savePIIForReuse,
+  postLeadToCapiWorker,
+} from '@/utils/metaTracking';
 import {
   CheckCircle2,
   Calendar,
@@ -129,6 +135,16 @@ const ThankYou: React.FC = () => {
 
       // 5) CAPI server-side via Vant Worker — best-effort, non-blocking.
       if (state.email && state.phone) {
+        // Persist PII so later tel: clicks from same visitor can attach it to
+        // Contact CAPI (lifts EMQ on otherwise-anonymous phone clicks).
+        savePIIForReuse({
+          email: state.email,
+          phone: state.phone,
+          first_name: firstName,
+          last_name: lastName,
+          zip: state.zip,
+        });
+
         postLeadToCapiWorker({
           event_id: eventId,
           event_source_url: window.location.href,
@@ -143,8 +159,8 @@ const ThankYou: React.FC = () => {
           content_name: state.service || 'Lead Form',
           content_category: 'website_form',
           country: 'us',
-          fbp: getCookie('_fbp'),
-          fbc: getCookie('_fbc') || deriveFbcFromUrlIfMissing(),
+          fbp: getFbp(),
+          fbc: getFbc(),
         });
       }
 

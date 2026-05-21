@@ -13,7 +13,13 @@
  *
  * Idempotent — calling initPhoneTracking() multiple times only attaches once.
  */
-import { getOrCreateExternalId, getCookie, deriveFbcFromUrlIfMissing, postContactToCapiWorker } from './metaTracking';
+import {
+  getOrCreateExternalId,
+  getFbp,
+  getFbc,
+  getStoredPII,
+  postContactToCapiWorker,
+} from './metaTracking';
 
 declare global {
   interface Window {
@@ -39,20 +45,30 @@ export function initPhoneTracking(): () => void {
     try {
       const eventId = (crypto as Crypto).randomUUID();
       const externalId = getOrCreateExternalId();
+      const fbp = getFbp();
+      const fbc = getFbc();
+      // If the visitor previously submitted a form, reuse that PII to lift EMQ
+      // on this Contact (otherwise it's fully anonymous beyond IP + UA + ext_id).
+      const pii = getStoredPII();
 
       // 1) Push to dataLayer — GTM Custom Event trigger ("phone_click") can
-      // fire fbq Contact with same event_id for Pixel/CAPI dedup.
+      // fire fbq Contact with same event_id for Pixel/CAPI dedup. Advanced
+      // Matching params (am_*) are auto-hashed by the Pixel.
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'phone_click',
         event_id: eventId,
         am_external_id: externalId,
+        am_em: pii.email,
+        am_ph: pii.phone,
+        am_fn: pii.first_name,
+        am_ln: pii.last_name,
+        am_zp: pii.zip,
+        am_country: 'us',
         phone_number: link.getAttribute('href'),
       });
 
       // 2) CAPI server-side Contact event — same event_id as Pixel.
-      // No PII (cold visitor on phone click). external_id + fbp/fbc carry
-      // the match signal.
       postContactToCapiWorker({
         event_id: eventId,
         event_source_url: window.location.href,
@@ -62,8 +78,13 @@ export function initPhoneTracking(): () => void {
         content_name: 'Phone Click',
         content_category: 'phone_call',
         country: 'us',
-        fbp: getCookie('_fbp'),
-        fbc: getCookie('_fbc') || deriveFbcFromUrlIfMissing(),
+        fbp,
+        fbc,
+        email: pii.email,
+        phone: pii.phone,
+        first_name: pii.first_name,
+        last_name: pii.last_name,
+        zip: pii.zip,
       });
     } catch (err) {
       console.warn('Phone tracking error:', err);

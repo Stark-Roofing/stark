@@ -35,7 +35,13 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { sendLeadEmailAndSms, sendCustomerConfirmation } from '@/utils/emailjs';
-import { getOrCreateExternalId, getCookie, deriveFbcFromUrlIfMissing, postLeadToCapiWorker } from '@/utils/metaTracking';
+import {
+  getOrCreateExternalId,
+  getFbp,
+  getFbc,
+  savePIIForReuse,
+  postLeadToCapiWorker,
+} from '@/utils/metaTracking';
 
 const SERVICES = [
   { value: 'roof-replacement', label: 'Roof Replacement' },
@@ -132,6 +138,16 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
       const [firstName, ...rest] = values.name.trim().split(/\s+/);
       const lastName = rest.join(' ');
 
+      // Persist PII so later tel: clicks from same visitor can attach it to the
+      // Contact CAPI event (lifts EMQ on otherwise-anonymous phone clicks).
+      savePIIForReuse({
+        email: values.email,
+        phone: values.phone,
+        first_name: firstName,
+        last_name: lastName,
+        zip: values.zip,
+      });
+
       const payload = {
         name: values.name,
         email: values.email,
@@ -183,8 +199,8 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
         content_name: serviceLabel,
         content_category: 'paid_ads',
         country: 'us',
-        fbp: getCookie('_fbp'),
-        fbc: getCookie('_fbc') || deriveFbcFromUrlIfMissing(),
+        fbp: getFbp(),
+        fbc: getFbc(),
       });
 
       // Best-effort GHL routing (Vant CRM + WhatsApp automation).
