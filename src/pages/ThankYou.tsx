@@ -78,6 +78,13 @@ const ThankYou: React.FC = () => {
     // Central conversion firing — runs for EVERY form on the site that navigates
     // to /thank-you (AdsLeadForm, QuickQuoteForm, ContactForm, etc).
     // Guarded by sessionStorage flag to prevent double-firing on reload.
+
+    // Only fire when we actually received form state. Direct visits, refreshes,
+    // and bookmarks land here without state — they MUST NOT count as a Lead.
+    // Without this gate, Pixel + Google Ads + GA4 fired phantom conversions
+    // while CAPI (correctly) skipped, killing the dedup coverage metric.
+    if (!state.email || !state.phone) return;
+
     try {
       const alreadyFired = sessionStorage.getItem('stark_ty_fired');
       if (alreadyFired) return;
@@ -134,35 +141,33 @@ const ThankYou: React.FC = () => {
       });
 
       // 5) CAPI server-side via Vant Worker — best-effort, non-blocking.
-      if (state.email && state.phone) {
-        // Persist PII so later tel: clicks from same visitor can attach it to
-        // Contact CAPI (lifts EMQ on otherwise-anonymous phone clicks).
-        savePIIForReuse({
-          email: state.email,
-          phone: state.phone,
-          first_name: firstName,
-          last_name: lastName,
-          zip: state.zip,
-        });
+      // Persist PII so later tel: clicks from same visitor can attach it to
+      // Contact CAPI (lifts EMQ on otherwise-anonymous phone clicks).
+      savePIIForReuse({
+        email: state.email,
+        phone: state.phone,
+        first_name: firstName,
+        last_name: lastName,
+        zip: state.zip,
+      });
 
-        postLeadToCapiWorker({
-          event_id: eventId,
-          event_source_url: window.location.href,
-          external_id: externalId,
-          email: state.email,
-          phone: state.phone,
-          first_name: firstName,
-          last_name: lastName,
-          zip: state.zip || '',
-          value,
-          currency: 'USD',
-          content_name: state.service || 'Lead Form',
-          content_category: 'website_form',
-          country: 'us',
-          fbp: getFbp(),
-          fbc: getFbc(),
-        });
-      }
+      postLeadToCapiWorker({
+        event_id: eventId,
+        event_source_url: window.location.href,
+        external_id: externalId,
+        email: state.email,
+        phone: state.phone,
+        first_name: firstName,
+        last_name: lastName,
+        zip: state.zip || '',
+        value,
+        currency: 'USD',
+        content_name: state.service || 'Lead Form',
+        content_category: 'website_form',
+        country: 'us',
+        fbp: getFbp(),
+        fbc: getFbc(),
+      });
 
       sessionStorage.setItem('stark_ty_fired', '1');
     } catch (e) {

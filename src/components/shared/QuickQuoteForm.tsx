@@ -293,6 +293,11 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
       setSubmitted(true);
       toast.success("Got it! We'll reach out shortly.");
 
+      // Same event_id flows to /thank-you so its Pixel push + CAPI fire share
+      // it (Meta dedupes by event_id). Without this, the two arms generated
+      // separate IDs and dedup coverage collapsed.
+      const eventId = (crypto as Crypto).randomUUID();
+
       // Close any parent modal first, then navigate to the dedicated
       // /thank-you landing page (with the appointment details in router state).
       onSuccess?.();
@@ -307,6 +312,7 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
           zip: values.zip,
           appointmentDate: appointmentDateStr,
           appointmentTime: values.appointmentTime,
+          event_id: eventId,
         },
       });
     } catch (err) {
