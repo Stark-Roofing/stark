@@ -27,8 +27,8 @@ interface QuickQuoteSectionProps {
  * HorizontalContactForm 5-field forms across the site.
  */
 const QuickQuoteSection: React.FC<QuickQuoteSectionProps> = ({
-  title = 'Book Your Free Roof Estimate',
-  subtitle = 'Pick a day & time that works — we confirm by text within minutes.',
+  title = 'Get Your Free Roof Estimate',
+  subtitle = 'Same-day reply. No pressure, no obligation — we confirm by text within minutes.',
   defaultService,
   background = 'gradient',
   padding = 'normal',
@@ -85,10 +85,8 @@ const QuickQuoteSection: React.FC<QuickQuoteSectionProps> = ({
             </div>
           </div>
 
-          {/* The form card — overflow-visible so the form's natural height is honored.
-              Min-height keeps the card visually grounded even when the form is on
-              its short step (step 1 is the smallest). */}
-          <div className="bg-white rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-gray-100 min-h-[480px]">
+          {/* The form card — single-step form, natural height. */}
+          <div className="bg-white rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-gray-100">
             <QuickQuoteForm defaultService={defaultService} />
           </div>
 
