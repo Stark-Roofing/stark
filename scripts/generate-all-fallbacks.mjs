@@ -214,12 +214,15 @@ function localBusinessSchema(canonical) {
 // CRITICAL: includes <link rel="modulepreload"> tags Vite injects when build
 // splits vendor chunks — without these, the entry script fails to resolve
 // imports and the React app shows a blank screen.
+// Also includes <link rel="preload"> (LCP hints for hero media) so perf wins
+// from index.html survive into fallback-templated pages.
 function getAssetTags() {
   const html = readFileSync(INDEX_HTML, 'utf8');
   const cssLinks = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]*>/g)].map(m => m[0]);
   const modulePreloads = [...html.matchAll(/<link[^>]+rel="modulepreload"[^>]*>/g)].map(m => m[0]);
+  const resourceHints = [...html.matchAll(/<link[^>]+rel="preload"[^>]*>/g)].map(m => m[0]);
   const scripts = [...html.matchAll(/<script[^>]+src="[^"]*"[^>]*><\/script>/g)].map(m => m[0]);
-  return { cssLinks: [...cssLinks, ...modulePreloads], scripts };
+  return { cssLinks: [...cssLinks, ...modulePreloads, ...resourceHints], scripts };
 }
 
 function generatePageHtml(pathname, assets) {
