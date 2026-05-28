@@ -291,7 +291,7 @@ const HeroSection: React.FC = () => {
                   autoPlay
                   muted
                   playsInline
-                  preload={i === 0 ? 'auto' : 'metadata'}
+                  preload="metadata"
                   onEnded={advance}
                 />
               ) : (
