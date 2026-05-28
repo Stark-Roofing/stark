@@ -276,17 +276,22 @@ const HeroSection: React.FC = () => {
             style={{ opacity: isActive ? 1 : 0, zIndex: isActive ? 2 : isPrevious ? 1 : 0 }}
           >
             {s.type === 'video' ? (
-              /* Only mount the <video> when this slide is active or fading out */
+              /* Only mount the <video> when this slide is active or fading out.
+                 Slide 0 (the drone MP4) gets the hero-custom-1.webp poster +
+                 eager preload so its FIRST FRAME paints LCP instantly while the
+                 591KB MP4 streams in. Without this, mobile LCP waits ~6s for the
+                 full MP4 download before the carousel has anything to show. */
               shouldMount ? (
                 <video
                   key={`video-${i}-${currentIndex === i ? 'on' : 'off'}`}
                   ref={i === 0 ? videoRef : undefined}
                   src={s.url}
+                  poster={i === 0 ? '/hero-custom-1.webp' : undefined}
                   className="w-full h-full object-cover"
                   autoPlay
                   muted
                   playsInline
-                  preload="metadata"
+                  preload={i === 0 ? 'auto' : 'metadata'}
                   onEnded={advance}
                 />
               ) : (

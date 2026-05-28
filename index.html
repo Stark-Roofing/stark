@@ -23,7 +23,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preload" as="image" href="/hero-custom-1.webp" type="image/webp" />
+    <!-- LCP optimization: hero-custom-1.webp doubles as the video poster for
+         /hero-drone-1.mp4 (first carousel slide), so it paints LCP before the
+         MP4 finishes downloading. The MP4 itself is preloaded too so it starts
+         streaming in parallel with the JS bundle instead of waiting for React
+         to mount the <video> element (~1.5s into the cinematic intro). -->
+    <link rel="preload" as="image" href="/hero-custom-1.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="video" href="/hero-drone-1.mp4" type="video/mp4" />
     <link rel="manifest" href="/manifest.json" />
 
     <!-- Google Tag Manager -->
