@@ -5,7 +5,6 @@ import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/shared/FloatingCTA';
 import { useSEOMeta } from '@/hooks/useSEOMeta';
 import GutterHero from '@/components/gutter-replacement/GutterHero';
-import HorizontalContactForm from '@/components/gutter-replacement/HorizontalContactForm';
 import WhyGuttersProtectionSection from '@/components/gutter-replacement/WhyGuttersProtectionSection';
 import PremiumSystemsSection from '@/components/gutter-replacement/PremiumSystemsSection';
 import BenefitsSection from '@/components/gutter-replacement/BenefitsSection';
@@ -44,13 +43,10 @@ const GutterReplacement = () => {
       <WhyGuttersProtectionSection />
       <PremiumSystemsSection />
       <BenefitsSection />
-      {/* Primary booking form — placed after Benefits so visitors are warmed up.
-          The hero CTA "Book My Free Quote" anchors to #book-gutters which lands here. */}
-      <div id="book-gutters">
-        <HorizontalContactForm />
-      </div>
       <InstallationProcess />
       <CTASection />
+      {/* Hero / mid-page CTAs anchor to #book-gutters → now lands on the single
+          contact section at the bottom (form duplication removed 2026-05-28). */}
       <ContactFormSection />
       <FloatingCTA label="Free Gutter Estimate" />
       <Footer />

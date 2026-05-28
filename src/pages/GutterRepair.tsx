@@ -9,7 +9,6 @@ import { useSEOMeta } from '@/hooks/useSEOMeta';
 
 // Import the refactored components
 import HeroSection from '@/components/gutter-repair/HeroSection';
-import HeroContactForm from '@/components/gutter-repair/HeroContactForm';
 import FilterDetailsSection from '@/components/gutter-repair/FilterDetailsSection';
 import FilterBenefitsSection from '@/components/gutter-repair/FilterBenefitsSection';
 import CommonProblems from '@/components/gutter-repair/CommonProblems';
@@ -17,8 +16,8 @@ import ProcessSection from '@/components/gutter-repair/ProcessSection';
 import CTASection from '@/components/gutter-repair/CTASection';
 import EmergencySection from '@/components/gutter-repair/EmergencySection';
 import FAQSection from '@/components/gutter-repair/FAQSection';
-import ContactSection from '@/components/gutter-repair/ContactSection';
 import FloatingContactBar from '@/components/gutter-repair/FloatingContactBar';
+import QuickQuoteSection from '@/components/shared/QuickQuoteSection';
 import ServiceSchema from '@/components/shared/ServiceSchema';
 
 const GutterRepair = () => {
@@ -48,40 +47,32 @@ const GutterRepair = () => {
 
         {/* Hero Section */}
         <HeroSection />
-        
-        {/* Contact section after hero */}
-        <ContactSection />
-        
-        {/* Hero contact form directly after hero section */}
-        <div className="container mx-auto px-4 relative">
-          <HeroContactForm />
-        </div>
-        <div className="py-6"></div>
+
+        {/* Single lead-capture section — replaces the old ContactSection +
+            HeroContactForm duplicate plus the bottom ContactSection (cleanup 2026-05-28). */}
+        <QuickQuoteSection defaultService="gutters" />
 
         {/* Filter Details Section */}
         <FilterDetailsSection />
-        
+
         {/* Filter Benefits Section */}
         <FilterBenefitsSection />
-        
+
         {/* Common Problems Section */}
         <CommonProblems />
-        
+
         {/* Process Section */}
         <ProcessSection />
-        
+
         {/* Emergency Section */}
         <EmergencySection />
-        
+
         {/* FAQ Section */}
         <FAQSection />
-        
+
         {/* CTA Section */}
         <CTASection />
-        
-        {/* Contact Section */}
-        <ContactSection />
-        
+
         {/* Floating Contact Bar */}
         <FloatingContactBar />
         
