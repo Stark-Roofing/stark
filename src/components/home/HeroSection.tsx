@@ -267,8 +267,13 @@ const HeroSection: React.FC = () => {
         {slides.map((s, i) => {
           const isActive   = i === currentIndex && introPhase === 'hero';
           const isPrevious = i === previousIndex;
-          // Mount media if active OR previous (so fade-out has something to fade from)
-          const shouldMount = isActive || isPrevious;
+          // Force-mount slide 0 during the cinematic intro so its <video> /
+          // <img> starts downloading (and the poster image paints LCP) BEHIND
+          // the black intro overlay. Without this, slide 0 only mounts after
+          // introPhase='hero' and LCP doesn't fire until ~1.5s + bundle parse +
+          // first frame decode — pushing mobile LCP past 11s.
+          const isPreloading = i === 0 && introPhase === 'cinematic';
+          const shouldMount = isActive || isPrevious || isPreloading;
           return (
           <div
             key={i}
