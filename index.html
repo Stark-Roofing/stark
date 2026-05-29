@@ -31,12 +31,21 @@
     <link rel="preload" as="image" href="/hero-custom-1.webp" type="image/webp" fetchpriority="high" />
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-W69Q5BP8');</script>
+    <!-- Google Tag Manager — DEFERRED.
+         The GTM container chain (GTM + gtag + fbevents + ads conversion) is
+         ~200KB of JS, and PSI flagged 950ms of TBT on mobile from it executing
+         during the critical render window. Wrapping the loader in
+         requestIdleCallback (fallback setTimeout 2.5s) holds GTM until after
+         FCP/LCP, dropping TBT and freeing bandwidth for the hero. Tradeoff:
+         pageview events fire ~2s later — acceptable for a roofing site where
+         users stay longer than bounce window. Conversion events (form submit
+         on /thank-you) are unaffected since GTM is loaded well before that. -->
+    <script>(function(){function gtmLoad(){var i='GTM-W69Q5BP8';window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+    var f=document.getElementsByTagName('script')[0],j=document.createElement('script');
+    j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;
+    f.parentNode.insertBefore(j,f);}if('requestIdleCallback' in window){
+    requestIdleCallback(gtmLoad,{timeout:3000});}else{setTimeout(gtmLoad,2500);}})();</script>
     <!-- End Google Tag Manager -->
 
     <!-- Favicons -->
