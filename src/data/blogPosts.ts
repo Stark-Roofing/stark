@@ -1586,6 +1586,127 @@ Yes, for almost every full replacement. Bellevue Building Permits requires a per
 
 **Ready for a free Bellevue roof inspection?** Stark Roofing & Renovation is headquartered in Sammamish, twenty minutes from most of Bellevue. We serve West Bellevue, Bridle Trails, Wilburton, Newport Hills, Lakemont, Somerset, Eastgate, and surrounding neighborhoods. Licensed, bonded, insured. GAF Master Elite Certified. Golden Pledge warranty on every full replacement. Call **(206) 739-8232** or [request a free inspection](/contact).
     `
+  },
+  {
+    slug: "roof-repair-cost-eastside-wa-2026",
+    title: "Roof Repair Cost in Eastside Washington: 2026 Numbers from Sammamish to Issaquah",
+    excerpt: "What roof repairs actually cost across the Eastside in 2026: leak repair, flashing replacement, pipe boot fix, deck rot, ridge cap, valley flashing. Real ranges by repair type plus what we charge in Sammamish, Bellevue, Redmond, Kirkland, and Issaquah.",
+    date: "2026-06-01",
+    author: "Stark Roofing Team",
+    image: "/lovable-uploads/roof-repair-cost-eastside-wa-2026.webp",
+    keywords: "roof repair cost eastside wa 2026,roof leak repair sammamish bellevue,pipe boot replacement cost,flashing repair eastside,deck rot repair cost king county",
+    readTime: "6 min read",
+    content: `
+# Roof Repair Cost in Eastside Washington: 2026 Numbers from Sammamish to Issaquah
+
+When a leak shows up on a Sammamish ceiling in November, the first question is always the same: what is this going to cost? The honest answer for Eastside repairs in 2026 ranges from $250 for a quick pipe boot replacement to $9,000 for a localized deck rebuild caught too late.
+
+This guide walks through what roof repairs actually cost across Sammamish, Bellevue, Redmond, Kirkland, and Issaquah in 2026, broken down by the specific repair type, what affects the price within each range, and what the cost looks like if the issue gets deferred through another wet season.
+
+## Roof repair cost ranges by issue (Eastside 2026)
+
+After hundreds of repair calls across the Eastside, the common repairs and current pricing:
+
+**Failed pipe boot replacement.** $250 to $450. The most common Eastside repair. Plastic pipe vent boots fail at year 12 to 16 in PNW UV exposure and let water in around the pipe.
+
+**Chimney flashing repair.** $600 to $1,400. Step flashing or counter flashing replacement at the chimney-to-roof junction. Often the original flashing got reused on a prior re-roof and is now failing.
+
+**Skylight reseal.** $400 to $900 (reseal) or $1,800 to $3,500 (full skylight replacement). Older Velux units past year 15 often need full replacement.
+
+**Lifted or missing shingles after wind events.** $200 to $500 for localized replacement on a small area. $800 to $1,800 if the affected area is larger and includes underlayment patching.
+
+**Valley flashing damage.** $700 to $1,400. Open the valley, replace the flashing metal, reinstall surrounding shingles.
+
+**Ridge cap replacement.** $400 to $900. Aged or wind-damaged ridge cap shingles replaced and ridge vent reseal.
+
+**Pipe boot bulk replacement (4+ boots).** $850 to $1,400. When multiple boots are reaching end of life, replacing them in one visit is more cost-effective than one at a time.
+
+**Gutter and downspout repair.** $300 to $700 for routine. $1,200 to $2,800 if fascia repair is also needed.
+
+**Deck rot repair.** $1,800 to $9,000 depending on the area affected. Localized rot near a pipe boot runs the low end. Valley or chimney deck rot from chronic leaks runs the high end.
+
+**Emergency tarping.** $250 to $500 same-day during active storms. Diagnosis follows once weather clears.
+
+## What changes the price within these ranges
+
+**Access and pitch.** A 4/12 ranch with simple geometry is fast. An 8/12 colonial with multiple dormers and steep slopes is slower. Steep pitch sites add 20 to 35 percent to labor cost because of fall protection requirements.
+
+**Material matching.** Older roofs often have discontinued shingle colors. Matching shingles either come from leftover stock the homeowner has, from salvage, or sometimes the repair scope expands to a larger area to use available current product.
+
+**Hidden damage.** A simple-looking flashing repair sometimes reveals underlying deck rot or insulation damage. Reputable contractors will photograph, document, and call the homeowner before continuing.
+
+**Permit requirements.** Most repairs under $1,000 do not require a permit in most Eastside cities. Larger repairs sometimes do, especially if the work touches structural elements.
+
+## What if you wait through another wet season?
+
+PNW conditions compress every repair timeline. The cost progression for a typical deferred leak:
+
+- **Now (Q2 2026):** $400 pipe boot replacement
+- **In 6 months (Q4 2026):** $1,200 pipe boot plus ceiling drywall repair
+- **In 18 months (Q4 2027):** $4,500 pipe boot plus deck replacement plus drywall plus insulation
+
+The math holds for every other repair type. The PNW does not let you defer indefinitely. The question is not whether the cost grows but how fast.
+
+## GAF Master Elite repairs vs uncertified contractor work
+
+Stark is one of the small percentage of contractors holding GAF Master Elite certification. For repair work, the practical difference is twofold:
+
+**Material matching.** Master Elite contractors have direct access to the full GAF color and product line, including discontinued colors held in distributor stock for warranty work. This means a repair on a 12-year-old GAF roof often matches better than a generic asphalt repair would.
+
+**Warranty preservation.** Repairs on a GAF system installed by a Master Elite contractor preserve the original warranty terms. Repairs done by uncertified contractors sometimes void warranty coverage on the surrounding undamaged shingles.
+
+Both factors matter most on roofs still under manufacturer warranty (typically the first 25 to 50 years depending on the system installed).
+
+## What we charge in each Eastside city
+
+Pricing is consistent across the Eastside service area for the same scope. Where it varies:
+
+**Sammamish, Issaquah, Newcastle.** Same baseline. Slightly higher access cost on Plateau hillside homes with steep driveways.
+
+**Bellevue, Bridle Trails.** Same baseline. Slightly higher cost on West Bellevue homes near Meydenbauer (Wilburton, Lakemont) because of complexity and architectural detail.
+
+**Redmond, Kirkland, Woodinville.** Same baseline. Standard residential geometry.
+
+**Mercer Island, North Bend, Snoqualmie.** Slight travel premium ($60 to $150) for crews based in Sammamish.
+
+The differences across the Eastside are small. The bigger swings come from the specific home (access, pitch, complexity) not from the city.
+
+## How to know if a repair is worth it vs replacement
+
+A roof under 15 years with a localized issue is almost always a repair. Repair extends life and the surrounding shingles are still in good condition.
+
+A roof 18 to 22 years with multiple issues over the past 12 months is usually replacement territory. Continued repair becomes throwing money at a roof that needs the next system within 2 to 3 years.
+
+A roof 22+ years with active leaks and granule loss across the field is replacement.
+
+If you are unsure, a free inspection gives the honest answer. We will tell you when repair makes sense and when it does not.
+
+## Frequently asked questions
+
+**How quickly can you respond to an Eastside roof repair call?**
+
+Standard non-emergency response is within 24 hours for inspection. Active leaks during storms get priority response, typically within 4 hours when weather allows. Same-day tarping is standard for interior leak situations.
+
+**Do you do emergency tarping at night?**
+
+We tarp during daylight hours for safety. Active leaks at night get a phone consultation on temporary interior protection (move belongings, place buckets, etc.) and same-morning tarping at first light.
+
+**Will my insurance cover this repair?**
+
+Storm damage, fallen tree damage, hail damage, and impact damage are usually covered. Age-related wear is not. We document all repair work to insurance carrier standards so claims for covered damage have the documentation they need.
+
+**Can I just patch this myself?**
+
+Some homeowners can do gutter cleaning, exposed nail head sealing, and visible debris removal safely from a window. Roof slope work, flashing repair, and pipe boot replacement require proper safety equipment and training. The cost of falling off a wet roof is much higher than the cost of professional repair.
+
+## Schedule an Eastside roof repair inspection
+
+If you have a leak, missing shingles, damaged flashing, or any other roof issue, the right next step is a no-cost inspection. We will walk the roof, document with photos, identify the actual cause (not just where the water shows), and provide a written estimate.
+
+Stark Roofing & Renovation is GAF Master Elite Certified, licensed and bonded in Washington, and based in Sammamish. We serve Sammamish, Bellevue, Redmond, Kirkland, Issaquah, and surrounding Eastside neighborhoods.
+
+Call **(206) 739-8232** for roof repair across the Eastside.
+    \`
   }
 ];
 
