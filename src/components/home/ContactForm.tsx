@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { formatPhoneInput } from "@/lib/phone";
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: "Please enter your name" }),
@@ -113,6 +114,7 @@ const ContactForm: React.FC = () => {
                     placeholder="(206) 000-0000"
                     className="bg-white border-gray-300 focus:border-navy"
                     {...field}
+                    onChange={(e) => field.onChange(formatPhoneInput(e.target.value))}
                   />
                 </FormControl>
                 <FormMessage />

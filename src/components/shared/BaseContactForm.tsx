@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { formatPhoneInput } from '@/lib/phone';
 
 // Define the base schema that all contact forms will share
 const baseSchema = {
@@ -137,7 +138,7 @@ const BaseContactForm: React.FC<BaseContactFormProps> = ({
           }) => <FormItem>
                   <FormLabel>Phone <span className="text-xs font-normal text-gray-500">(we text faster than email)</span></FormLabel>
                   <FormControl>
-                    <Input type="tel" inputMode="tel" autoComplete="tel" placeholder="(206) 000-0000" {...field} />
+                    <Input type="tel" inputMode="tel" autoComplete="tel" placeholder="(206) 000-0000" {...field} onChange={(e) => field.onChange(formatPhoneInput(e.target.value))} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>} />

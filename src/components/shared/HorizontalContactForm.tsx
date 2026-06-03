@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { ArrowRight, Clock, CheckCircle } from 'lucide-react';
+import { formatPhoneInput } from '@/lib/phone';
 
 // Schema for the horizontal form
 const formSchema = z.object({
@@ -36,6 +37,7 @@ const HorizontalContactForm: React.FC<HorizontalFormProps> = ({
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: {
       errors,
       isSubmitting
@@ -95,7 +97,18 @@ const HorizontalContactForm: React.FC<HorizontalFormProps> = ({
       <input type="email" placeholder="Email Address" className="form-input" {...register("email")} />
       {errors.email && <span className="text-red-500 text-xs absolute">{errors.email.message}</span>}
       
-      <input type="tel" placeholder="Phone Number" className="form-input" {...register("phone")} />
+      <input
+        type="tel"
+        inputMode="tel"
+        autoComplete="tel"
+        placeholder="Phone Number"
+        className="form-input"
+        {...register("phone", {
+          onChange: (e) => {
+            setValue("phone", formatPhoneInput(e.target.value), { shouldValidate: true });
+          },
+        })}
+      />
       {errors.phone && <span className="text-red-500 text-xs absolute">{errors.phone.message}</span>}
       
       <input type="text" placeholder="Zip Code" className="form-input" {...register("zipCode")} />
