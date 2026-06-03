@@ -1706,7 +1706,7 @@ If you have a leak, missing shingles, damaged flashing, or any other roof issue,
 Stark Roofing & Renovation is GAF Master Elite Certified, licensed and bonded in Washington, and based in Sammamish. We serve Sammamish, Bellevue, Redmond, Kirkland, Issaquah, and surrounding Eastside neighborhoods.
 
 Call **(206) 739-8232** for roof repair across the Eastside.
-    \`
+`
   }
 ];
 
