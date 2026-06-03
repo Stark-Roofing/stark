@@ -64,6 +64,7 @@ const schema = z.object({
   name: z.string().min(2, { message: 'Your full name' }),
   phone: z.string().regex(phoneRegex, { message: '10-digit phone number' }),
   email: z.string().email({ message: 'A valid email' }),
+  address: z.string().min(5, { message: 'Street address' }),
   zip: z.string().regex(/^\d{5}$/, { message: '5-digit ZIP code' }),
 });
 
@@ -114,6 +115,7 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
       name: '',
       phone: '',
       email: '',
+      address: '',
       zip: '',
     },
   });
@@ -141,6 +143,7 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
         email: values.email,
         phone: values.phone,
         service: serviceLabel,
+        address: values.address,
         zip: values.zip,
         source: window.location.pathname,
         landing_page: window.location.pathname,
@@ -201,6 +204,7 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
           email: values.email,
           phone: values.phone,
           service: serviceLabel,
+          address: values.address,
           zip: values.zip,
           event_id: eventId,
         },
@@ -300,6 +304,25 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
                     inputMode="email"
                     autoComplete="email"
                     placeholder="you@example.com"
+                    className="h-11"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="address"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-charcoal text-sm">Street Address</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    autoComplete="street-address"
+                    placeholder="123 Alder St"
                     className="h-11"
                   />
                 </FormControl>

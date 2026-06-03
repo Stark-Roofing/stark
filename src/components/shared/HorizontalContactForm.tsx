@@ -12,6 +12,7 @@ const formSchema = z.object({
   name: z.string().min(2, "Please enter your name"),
   email: z.string().email("Please enter a valid email"),
   phone: z.string().min(10, "Please enter a valid phone number"),
+  address: z.string().min(5, "Please enter your street address"),
   zipCode: z.string().min(5, "Please enter a valid zip code"),
   service: z.string().min(1, "Please select a service")
 });
@@ -48,6 +49,7 @@ const HorizontalContactForm: React.FC<HorizontalFormProps> = ({
       name: '',
       email: '',
       phone: '',
+      address: '',
       zipCode: '',
       service: ''
     }
@@ -111,6 +113,9 @@ const HorizontalContactForm: React.FC<HorizontalFormProps> = ({
       />
       {errors.phone && <span className="text-red-500 text-xs absolute">{errors.phone.message}</span>}
       
+      <input type="text" autoComplete="street-address" placeholder="Street Address" className="form-input" {...register("address")} />
+      {errors.address && <span className="text-red-500 text-xs absolute">{errors.address.message}</span>}
+
       <input type="text" placeholder="Zip Code" className="form-input" {...register("zipCode")} />
       {errors.zipCode && <span className="text-red-500 text-xs absolute">{errors.zipCode.message}</span>}
       

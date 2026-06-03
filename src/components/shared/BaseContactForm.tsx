@@ -33,6 +33,9 @@ export const createContactFormSchema = (additionalFields = {}) => {
 
 // Default schema with common fields
 export const defaultContactFormSchema = createContactFormSchema({
+  address: z.string().min(5, {
+    message: "Please enter your street address"
+  }),
   zip: z.string().min(5, {
     message: "Please enter a valid zip code"
   }),
@@ -44,6 +47,7 @@ export type BaseContactFormProps = {
   title?: string;
   subtitle?: string;
   buttonText?: string;
+  showAddress?: boolean;
   showZipCode?: boolean;
   showMessage?: boolean;
   showBestTimeToContact?: boolean;
@@ -60,6 +64,7 @@ const BaseContactForm: React.FC<BaseContactFormProps> = ({
   title,
   subtitle,
   buttonText = "Submit",
+  showAddress = true,
   showZipCode = true,
   showMessage = true,
   showBestTimeToContact = false,
@@ -78,6 +83,9 @@ const BaseContactForm: React.FC<BaseContactFormProps> = ({
       name: "",
       email: "",
       phone: "",
+      ...(showAddress ? {
+        address: ""
+      } : {}),
       ...(showZipCode ? {
         zip: ""
       } : {}),
@@ -143,6 +151,18 @@ const BaseContactForm: React.FC<BaseContactFormProps> = ({
                   <FormMessage />
                 </FormItem>} />
           </div>
+
+          {showAddress && <FormField control={form.control} name="address" render={({
+          field
+        }) => (
+            <FormItem>
+              <FormLabel>Street Address</FormLabel>
+              <FormControl>
+                <Input type="text" autoComplete="street-address" placeholder="123 Alder St" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )} />}
 
           {showZipCode && <FormField control={form.control} name="zip" render={({
           field
