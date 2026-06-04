@@ -23,6 +23,7 @@ import { useEntranceAnimations } from './hooks/useEntranceAnimations';
 // Everything else is code-split
 const Services = lazy(() => import('./pages/Services'));
 const RoofReplacement = lazy(() => import('./pages/RoofReplacement'));
+const RoofReplacementEastside = lazy(() => import('./pages/RoofReplacementEastside'));
 const RoofRepair = lazy(() => import('./pages/RoofRepair'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
@@ -84,6 +85,7 @@ function App() {
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
             <Route path="/roof-replacement" element={<RoofReplacement />} />
+            <Route path="/roof-replacement-eastside" element={<RoofReplacementEastside />} />
             <Route path="/roof-repair" element={<RoofRepair />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
