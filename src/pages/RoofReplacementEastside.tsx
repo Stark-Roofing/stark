@@ -87,8 +87,8 @@ const RoofReplacementEastside = () => {
       <ServicePageHero
         title="Roof Replacement Across the Eastside"
         subtitle="Sammamish · Bellevue · Redmond · Kirkland · Issaquah — GAF Master Elite installs with Golden Pledge warranty"
-        backgroundImage={heroImage}
-        ctaText="Get My Free Eastside Quote"
+        bgImage={heroImage}
+        ctaLabel="Get My Free Eastside Quote"
       />
 
       <section className="py-12 md:py-16 bg-white">
@@ -195,11 +195,7 @@ const RoofReplacementEastside = () => {
             </div>
 
             <div className="bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-100">
-              <HorizontalContactForm
-                title="Get Your Free Eastside Roof Quote"
-                buttonText="Schedule My Inspection"
-                formColor="red"
-              />
+              <HorizontalContactForm />
             </div>
           </div>
         </div>

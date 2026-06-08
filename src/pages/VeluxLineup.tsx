@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import {
   Sun, Zap, Hand, Square, CircleDot, Shield, Star, Check,
   Smartphone, Ruler, Award, ArrowRight, ChevronRight,
+  type LucideIcon,
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -24,7 +25,7 @@ type Model = {
   name: string;
   modelCode: string;
   fullName: string;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: LucideIcon;
   tagline: string;
   description: string;
   highlights: string[];

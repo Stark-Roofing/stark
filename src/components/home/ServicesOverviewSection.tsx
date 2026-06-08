@@ -61,7 +61,7 @@ const ServicesOverviewSection: React.FC = () => {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 12
       }
@@ -70,7 +70,7 @@ const ServicesOverviewSection: React.FC = () => {
       y: -5,
       boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 400,
         damping: 10
       }

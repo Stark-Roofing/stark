@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Zap, Hand, Square, CircleDot, Star, ChevronDown, ChevronUp } from 'lucide-react';
+import { Sun, Zap, Hand, Square, CircleDot, Star, ChevronDown, ChevronUp, type LucideIcon } from 'lucide-react';
 
 type ProductCard = {
   badge?: string;
   title: string;
   model: string;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: LucideIcon;
   bullets: string[];
   bestFor: string;
   image: string;

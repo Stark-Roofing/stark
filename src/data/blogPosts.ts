@@ -4,6 +4,8 @@ export interface BlogPost {
   excerpt: string;
   content: string;
   date: string;
+  /** ISO date for last meaningful update — drives Schema.org dateModified. */
+  dateModified?: string;
   author: string;
   image: string;
   keywords: string;

@@ -44,7 +44,7 @@ const ShowcaseSection = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: "easeOut" as const
       }
     }
   };
@@ -56,14 +56,14 @@ const ShowcaseSection = () => {
       opacity: 1,
       transition: {
         duration: 1,
-        ease: "easeOut"
+        ease: "easeOut" as const
       }
     },
     hover: {
       scale: 1.05,
       transition: {
         duration: 0.5,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     }
   };
