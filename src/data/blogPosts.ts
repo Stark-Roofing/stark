@@ -1707,6 +1707,129 @@ Stark Roofing & Renovation is GAF Master Elite Certified, licensed and bonded in
 
 Call **(206) 739-8232** for roof repair across the Eastside.
 `
+  },
+  {
+    slug: "wind-damage-vs-hail-damage-roof-washington-insurance",
+    title: "Wind Damage vs Hail Damage on Your Roof: How Washington Insurance Treats Each",
+    excerpt: "Wind and hail are the two storm types that put Washington roofs into insurance claims, and the carriers treat them very differently. What counts as each, what evidence you need, why timing matters under the 60-day proof of loss statute, and where claims get denied.",
+    date: "2026-06-08",
+    author: "Stark Roofing Team",
+    image: "/lovable-uploads/wind-damage-vs-hail-damage-roof-washington-insurance.webp",
+    keywords: "wind damage vs hail damage roof wa,hail damage roof claim washington,wind damage roof insurance eastside,roof storm claim king county,washington roof insurance claim process",
+    readTime: "6 min read",
+    content: `
+# Wind Damage vs Hail Damage on Your Roof: How Washington Insurance Treats Each
+
+Wind and hail are the two storm types that put Washington roofs into insurance claims. They look similar from the curb (missing shingles, dented metal flashing, debris in the gutters), but Washington insurance carriers treat them as two very different events. Knowing which one caused the damage on your Sammamish, Bellevue, Redmond, Kirkland, or Issaquah home changes the documentation you need, the deductible that applies, and whether the claim gets approved or denied.
+
+After working hundreds of post-storm inspections across the Eastside, the patterns are clear. This guide walks through how Washington insurance defines each type of damage, what evidence carriers actually want to see, why the 60-day proof of loss deadline matters, and where most denials happen.
+
+## What Washington insurance considers wind damage
+
+Wind damage is the dominant storm claim type in the Pacific Northwest. The PNW averages 12 to 18 events per year that exceed the 35 mph sustained wind threshold most carriers use as a baseline, and bomb cyclones (sustained winds 50 to 70 mph with gusts 80+ mph) hit the region every 2 to 4 years.
+
+Wind damage covered by most Washington homeowners policies includes:
+
+- **Lifted, creased, or missing shingles** on the windward side of the roof
+- **Tab seal failures** where the asphalt seal strip released under uplift
+- **Ridge cap displacement** at the highest exposure point
+- **Tree limb impacts** from branches falling onto the roof surface
+- **Fence and outbuilding damage** from the same event
+- **Gutter detachment** from sudden uplift or impact
+
+Wind damage is usually obvious within hours of the event. Shingles end up in the yard, the neighbor calls about a branch on the deck, the ceiling shows a fresh water stain. The clock starts ticking on documentation the moment the storm passes.
+
+## What Washington insurance considers hail damage
+
+Hail in Washington is much rarer than wind. Western Washington averages 1 to 3 measurable hail events per year, and most of those produce hail under 0.5 inch diameter (too small to damage standard asphalt shingles). Damaging hail (0.75 inch or larger) hits the Eastside roughly every 4 to 7 years.
+
+When it does hit, hail damage looks very different from wind damage:
+
+- **Soft, dark, circular bruises** on the shingle surface (not always visible from the ground)
+- **Granule loss** in patterns matching the impact strike rather than weathering
+- **Splatter marks** on metal flashing, gutters, vents, and skylights
+- **Cracked or punctured plastic vents** and pipe boots
+- **Dented gutter aprons and downspouts** with circular impact dimples
+
+The key insurance distinction is that hail damage often is not visible from the driveway. A roof can have legitimate hail damage that only shows up when a trained inspector walks the surface. This is why hail claims require more documentation than wind claims, and why some insurance adjusters initially deny hail claims that an independent inspection later confirms.
+
+## How carriers process each claim differently
+
+Washington carriers treat wind and hail through different internal processes:
+
+**Wind claims.** Standard deductible applies (typically $1,000 to $2,500 for Eastside homes). Adjuster visits within 5 to 14 days. Documentation focuses on visible damage and weather data (NOAA wind reports for the date). Claim approval rate is high when documentation is clean.
+
+**Hail claims.** Some carriers apply a separate hail or wind/hail deductible (often 1 to 2 percent of dwelling coverage, which on a $700K Sammamish home means a $7,000 to $14,000 deductible instead of the standard amount). Adjuster visits within 7 to 21 days. Documentation requires physical evidence of hail strikes plus NOAA hail reports. Claim approval rate is lower because age-related wear can look like hail to an untrained eye, and carriers push back when the evidence is borderline.
+
+Read the declaration page of your policy before assuming wind and hail are treated identically. The separate deductible language is increasingly common after the major hail losses carriers absorbed in the Midwest and now hedge against here.
+
+## Why the 60-day proof of loss deadline matters
+
+Washington Administrative Code requires insurers to acknowledge a claim within 10 working days and to make a decision within a reasonable time. On the homeowner side, most Washington policies require a sworn proof of loss within 60 days of the loss event. This is the deadline that catches homeowners off guard.
+
+What this means in practice:
+
+- Document the damage with photos and video within 48 to 72 hours
+- File the claim within 7 to 14 days of the event
+- Get a contractor inspection and written estimate within 14 to 21 days
+- Submit the proof of loss documentation well inside the 60-day window
+
+Waiting longer than 60 days gives the carrier grounds to deny the claim or to argue that damage is pre-existing.
+
+## Where claims get denied
+
+The most common reasons Washington wind and hail claims get denied:
+
+**Pre-existing wear.** A roof at year 18 with widespread granule loss and curling shingles will trigger an adjuster to argue the damage is age-related wear, not storm-related. This is the single biggest denial reason. The fix is having pre-storm photos (real estate listing photos, prior inspection reports) that show roof condition before the event.
+
+**No clear storm correlation.** If the claim is filed weeks or months after the supposed event, the carrier will challenge that the damage came from the named storm. NOAA wind and hail data for the specific date is the anchor that connects damage to event.
+
+**Repair work already performed.** Doing emergency tarping or quick repairs before the adjuster sees the original damage compromises the claim. Tarp to prevent further interior damage, but photograph everything first.
+
+**Cosmetic vs functional damage.** Some carriers in Washington now exclude cosmetic damage (dented metal flashing, gutter dimples) while covering functional damage (water intrusion, structural compromise). Read the policy.
+
+**Wrong contractor on the estimate.** Insurance carriers scrutinize unlicensed or unbonded contractor estimates. Estimates from licensed Washington L&I contractors carry more weight.
+
+## Why GAF Master Elite matters for warranty claims after storms
+
+Stark is one of the small percentage of Washington contractors holding GAF Master Elite certification. After a storm claim, this matters in two specific ways:
+
+**Warranty preservation during the repair.** Repairs on a GAF system installed by a Master Elite contractor preserve the underlying warranty. Carriers that pay for a repair using a non-certified contractor sometimes inadvertently void the original manufacturer warranty on the surrounding undamaged shingles, leaving the homeowner exposed to the next failure.
+
+**Material matching from current and discontinued stock.** Master Elite contractors have direct access to GAF distributor stock including discontinued colors held for warranty work. This makes a 12-year-old roof repair look right rather than patched.
+
+Neither is a reason on its own to choose a certified contractor, but in a claim situation where the carrier is pushing for the cheapest bid, these factors protect the homeowner long after the claim closes.
+
+## Frequently asked questions
+
+**How do I know if the damage is wind or hail?**
+
+Wind damage typically appears on one exposure (windward side) with creased, lifted, or missing shingles. Hail damage typically appears across multiple exposures with circular impact marks that need close inspection. A free inspection by a licensed contractor will identify which it is and document accordingly.
+
+**Will my deductible be different for hail vs wind?**
+
+Read your declaration page. Many Washington policies now apply a separate percentage deductible for wind/hail (1 to 2 percent of dwelling coverage) instead of a flat dollar amount. The difference can be $5,000 or more for higher-value Eastside homes.
+
+**Do I need to file the claim before getting an inspection?**
+
+It depends on the carrier. Some prefer the homeowner files first, then sends the adjuster. Others want a contractor estimate first to size the loss. Call the claim line, explain the situation, and ask what order they prefer.
+
+**What if the adjuster says my damage is pre-existing wear?**
+
+Ask for the denial in writing with the specific evidence the adjuster used. Get a second opinion from a licensed roofing contractor and consider a public adjuster (Washington allows public adjusters who charge a percentage of the recovered claim, typically 10 percent). Most pre-existing wear denials get reversed when challenged with clean documentation.
+
+**Can I just repair the roof and let the insurance reimburse me later?**
+
+Not safely. Repair work before the adjuster sees the damage compromises the claim. Tarp to prevent further interior damage, photograph everything, and wait for the adjuster decision before doing any roof work beyond emergency stabilization.
+
+## Schedule a post-storm Eastside roof inspection
+
+If a recent windstorm or hail event hit your Sammamish, Bellevue, Redmond, Kirkland, or Issaquah home, the right next step is a no-cost inspection. We will walk the roof, document with photos to insurance carrier standards, identify whether the damage profile matches wind or hail (or both), and provide a written estimate.
+
+Stark Roofing & Renovation is GAF Master Elite Certified, licensed and bonded in Washington, and based in Sammamish. We work with every major Washington insurance carrier on storm claims.
+
+Call **(206) 739-8232** for a post-storm roof inspection across the Eastside.
+`
   }
 ];
 
