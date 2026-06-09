@@ -81,6 +81,45 @@ function startServer() {
 }
 
 // ---------------------------------------------------------------------------
+// 2b. Extract head tags from source dist/index.html that Chromium strips
+//     when serializing via page.content() (preconnects after execution,
+//     icons/manifest sometimes deduped, etc). These tags are perf-critical
+//     (DNS/TLS handshake hints, PWA hooks, favicons for SERP/social) and
+//     must be present in every prerendered file.
+// ---------------------------------------------------------------------------
+function extractHeadPreservationTags(distIndexPath) {
+  const html = readFileSync(distIndexPath, 'utf8');
+  const headMatch = html.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
+  if (!headMatch) return '';
+  const head = headMatch[1];
+  // Patterns to preserve: preconnect / dns-prefetch / icon / apple-touch-icon
+  // / manifest / mask-icon. We intentionally do NOT preserve <link rel="preload">
+  // and <link rel="modulepreload"> because Vite-built versions are already in
+  // the prerendered HTML (and they reference hashed asset filenames that change
+  // per build — re-injecting stale ones would 404).
+  const tagPattern = /<link\b[^>]*\brel\s*=\s*["'](?:preconnect|dns-prefetch|icon|apple-touch-icon|manifest|mask-icon)["'][^>]*>/gi;
+  return [...head.matchAll(tagPattern)].map((m) => m[0]).join('\n    ');
+}
+
+// Idempotent injection: only adds tags whose `href` is not already present in
+// the served HTML. This prevents duplicates if Chromium happens to retain a
+// subset of the tags on some routes.
+function reinjectMissingHeadTags(html, preservationBlock) {
+  if (!preservationBlock) return html;
+  const tagsToInject = [];
+  const tagMatches = preservationBlock.matchAll(/<link[^>]*href=["']([^"']+)["'][^>]*>/gi);
+  for (const m of tagMatches) {
+    const href = m[1];
+    // Escape href for regex use in the duplicate check
+    const escaped = href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const alreadyPresent = new RegExp(`href=["']${escaped}["']`, 'i').test(html);
+    if (!alreadyPresent) tagsToInject.push(m[0]);
+  }
+  if (tagsToInject.length === 0) return html;
+  return html.replace(/<\/head>/i, `    ${tagsToInject.join('\n    ')}\n  </head>`);
+}
+
+// ---------------------------------------------------------------------------
 // 3. Render a single path with puppeteer
 // ---------------------------------------------------------------------------
 async function renderPath(browser, pathname) {
@@ -173,12 +212,21 @@ try {
   server.kill('SIGTERM');
 }
 
+// Extract perf-critical head tags that Chromium strips during page.content()
+// (preconnects after execution, manifest/icons sometimes deduped). We re-inject
+// them into every prerendered file so the served HTML matches dist/index.html
+// for these signals.
+const preservationBlock = extractHeadPreservationTags(resolve(DIST, 'index.html'));
+if (preservationBlock) {
+  log(`will re-inject ${preservationBlock.split('\n').length} head tag(s) preserved from dist/index.html`);
+}
+
 // Flush captured HTML to disk only after the crawl is complete, so that a
 // freshly written /foo/index.html cannot affect a later render.
 for (const [pathname, html] of renders) {
   const file = pathToFile(pathname);
   mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(file, html);
+  writeFileSync(file, reinjectMissingHeadTags(html, preservationBlock));
 }
 
 log(`wrote ${renders.size} files; ${failed} failed`);

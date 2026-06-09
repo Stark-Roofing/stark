@@ -23,6 +23,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <!-- dns-prefetch as defensive redundancy: Chromium may strip preconnects
+         after executing them during prerender. dns-prefetch survives the
+         page.content() serialization more reliably and is a cheaper fallback. -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <!-- LCP optimization: hero-custom-1.webp doubles as the video poster for
          /hero-drone-1.mp4 (first carousel slide), so it paints LCP before the
          MP4 finishes downloading. We DO NOT preload the MP4 itself — on slow
@@ -30,6 +36,27 @@
          and ends up DELAYING LCP. The poster alone is enough to paint LCP. -->
     <link rel="preload" as="image" href="/hero-custom-1.webp" type="image/webp" fetchpriority="high" />
     <link rel="manifest" href="/manifest.json" />
+
+    <!-- Speculation Rules: prerender the next likely same-origin navigation
+         in the background after ~200ms hover. Restricted to informational
+         routes (no /ads, no rel=nofollow links). Chromium-only feature; other
+         browsers silently ignore the script tag — safe progressive enhancement.
+         Pairs with the GTM-deferred + LCP preload setup so the second page in
+         a session feels instant. -->
+    <script type="speculationrules">
+    {
+      "prerender": [{
+        "where": {
+          "and": [
+            { "href_matches": "/*" },
+            { "not": { "href_matches": "/ads*" } },
+            { "not": { "selector_matches": "[rel~=nofollow]" } }
+          ]
+        },
+        "eagerness": "moderate"
+      }]
+    }
+    </script>
 
     <!-- Google Tag Manager — DEFERRED.
          The GTM container chain (GTM + gtag + fbevents + ads conversion) is
