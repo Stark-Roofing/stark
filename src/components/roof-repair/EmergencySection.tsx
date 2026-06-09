@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Clock, Calendar, Phone } from 'lucide-react';
+import { Clock, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const EmergencySection = () => {
   return <section className="py-12 md:py-16 bg-stark-red text-white">
@@ -20,10 +21,9 @@ const EmergencySection = () => {
             <Calendar className="mr-3" size={24} />
             <span className="font-medium">Available nights, weekends, and holidays</span>
           </div>
-          <a href="tel:+12067398232" className="inline-flex items-center bg-white text-stark-red font-bold px-6 py-3 rounded-md hover:bg-navy hover:text-white transition-colors">
-            <Phone size={18} className="mr-2" />
-            Call our emergency line
-          </a>
+          <Link to="/contact" className="inline-flex items-center bg-white text-stark-red font-bold px-6 py-3 rounded-md hover:bg-navy hover:text-white transition-colors">
+            Request Emergency Service
+          </Link>
         </div>
       </div>
     </section>;

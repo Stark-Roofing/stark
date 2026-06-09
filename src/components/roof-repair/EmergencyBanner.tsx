@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Phone, AlertTriangle } from 'lucide-react';
+import { AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 const EmergencyBanner = () => {
   return <motion.div id="emergency-bar" initial={{
     opacity: 0
@@ -16,12 +17,11 @@ const EmergencyBanner = () => {
             <AlertTriangle className="mr-2 animate-pulse" size={20} />
             <p className="font-bold">Emergency Roof Repair Available 24/7</p>
           </div>
-          
+
           <Button size="sm" className="bg-white text-[#CC0000] hover:bg-white/90 hover:text-[#990000] font-medium animate-pulse-glow" asChild>
-            <a href="tel:+12067398232" className="inline-flex items-center">
-              <Phone size={16} className="mr-2" />
-              Call Now: (206) 739-8232
-            </a>
+            <Link to="/contact" className="inline-flex items-center">
+              Request Service
+            </Link>
           </Button>
         </div>
       </div>

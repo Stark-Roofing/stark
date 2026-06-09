@@ -16,7 +16,6 @@ import FAQSchema from '@/components/shared/FAQSchema';
 import ServiceSchema from '@/components/shared/ServiceSchema';
 import {
   ChevronRight,
-  Phone,
   Award,
   Shield,
   Clock,
@@ -281,7 +280,7 @@ const CommercialRoofing = () => {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-3 mb-8 justify-center"
+              className="flex justify-center mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.85, duration: 0.55 }}
@@ -292,13 +291,6 @@ const CommercialRoofing = () => {
               >
                 Request Commercial Bid
                 <ChevronRight className="w-5 h-5" />
-              </a>
-              <a
-                href="tel:+12067398232"
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full border border-white/25 backdrop-blur-sm transition-colors"
-              >
-                <Phone className="w-5 h-5" />
-                (206) 739-8232
               </a>
             </motion.div>
 

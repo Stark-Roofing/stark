@@ -142,12 +142,6 @@ const OBeePartnerSection = () => {
                     Apply at O Bee
                     <ExternalLink size={16} />
                   </a>
-                  <a
-                    href="tel:+12067398232"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold text-stark-red border-2 border-stark-red hover:bg-stark-red/5 transition-colors"
-                  >
-                    Talk to Stark First
-                  </a>
                 </div>
               </div>
             </div>

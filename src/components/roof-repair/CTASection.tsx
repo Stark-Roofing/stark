@@ -53,16 +53,6 @@ const CTASection = () => {
                 <Button asChild className="w-full bg-stark-red hover:bg-navy text-white font-medium py-3 mb-4">
                   <Link to="/contact">Schedule Free Inspection</Link>
                 </Button>
-                
-                <div className="text-center">
-                  <p className="text-charcoal/80 mb-2">Or call us directly:</p>
-                  <a 
-                    href="tel:+12067398232" 
-                    className="text-xl font-bold text-navy hover:text-stark-red transition-colors"
-                  >
-                    (206) 739-8232
-                  </a>
-                </div>
               </div>
             </div>
           </div>

@@ -68,7 +68,7 @@ const RentonLocation = () => {
       <div className="bg-gray-100 p-6 rounded-lg text-center md:text-left">
         <h3 className="text-2xl font-semibold mb-3">Free Renton Roof Estimate</h3>
         <p className="text-gray-700 mb-4">
-          Call Stark Roofing at <a href="tel:+12067398232" className="font-bold text-red-600 hover:underline">206-739-8232</a> for a free roof inspection and written estimate in Renton. We'll tell you what's going on up there and put a price on paper.
+          <a href="/contact" className="font-bold text-red-600 hover:underline">Request a free Renton roof inspection and written estimate online</a>. We'll tell you what's going on up there and put a price on paper.
         </p>
       </div>
     </div>

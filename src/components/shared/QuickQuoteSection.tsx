@@ -89,14 +89,6 @@ const QuickQuoteSection: React.FC<QuickQuoteSectionProps> = ({
           <div className="bg-white rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-gray-100">
             <QuickQuoteForm defaultService={defaultService} />
           </div>
-
-          {/* Below-form reassurance */}
-          <p className="text-center text-xs text-charcoal/60 mt-4">
-            Prefer to talk? Call{' '}
-            <a href="tel:+12067398232" className="text-stark-red font-semibold">
-              (206) 739-8232
-            </a>
-          </p>
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Phone, Mail } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import QuickQuoteForm from '@/components/shared/QuickQuoteForm';
 
 const OurStory = () => {
@@ -30,9 +30,8 @@ const OurStory = () => {
               Today, Stark Roofing &amp; Renovation is a family-owned, GAF Certified contractor
               based in Sammamish, Washington, proudly serving homeowners across <strong>King,
               Snohomish, and Pierce counties</strong> — from Bellevue and Issaquah to Lynnwood,
-              Everett, Seattle, and Tacoma. Brenda is bilingual in English and Portuguese,
-              personally involved in every project, and reachable by the same number she's
-              always answered: <strong>(206) 739-8232</strong>.
+              Everett, Seattle, and Tacoma. Brenda is bilingual in English and Portuguese, and
+              personally involved in every project.
             </p>
 
             <h3 className="text-2xl font-heading font-bold text-navy mb-3 text-center md:text-left">
@@ -89,15 +88,6 @@ const OurStory = () => {
                   <QuickQuoteForm defaultService="inspection" />
                 </div>
               </div>
-              <p className="text-center text-xs text-charcoal/70 mt-4">
-                Prefer to talk? Call{' '}
-                <a
-                  href="tel:+12067398232"
-                  className="text-stark-red font-semibold underline underline-offset-2"
-                >
-                  (206) 739-8232
-                </a>
-              </p>
             </div>
 
             {/* Home photo below the form */}
@@ -124,12 +114,6 @@ const OurStory = () => {
               straight answer from a neighbor who cares.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="tel:+12067398232"
-                className="inline-flex items-center justify-center gap-2 bg-stark-red hover:bg-stark-red/90 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-              >
-                <Phone size={18} /> Call or Text (206) 739-8232
-              </a>
               <a
                 href="mailto:office@starkroofingrenovation.com"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-lg transition-colors border border-white/20"

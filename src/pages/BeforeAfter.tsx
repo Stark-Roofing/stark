@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import { useSEOMeta } from '@/hooks/useSEOMeta';
 import VirtualAssistant from '@/components/finance/VirtualAssistant';
 import ScrollToTop from '@/components/ScrollToTop';
-import { Phone, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface Project {
@@ -142,19 +142,12 @@ const BeforeAfter = () => {
           <p className="text-white/80 mb-8 max-w-xl mx-auto">
             Schedule a free drone inspection and see exactly what your roof needs — no pressure, no obligation.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <a
               href="/contact"
               className="inline-flex items-center justify-center gap-2 bg-stark-red hover:bg-stark-red/90 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
             >
               Get Free Inspection
-            </a>
-            <a
-              href="tel:+12067398232"
-              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-lg transition-colors border border-white/20"
-            >
-              <Phone size={18} />
-              (206) 739-8232
             </a>
           </div>
         </div>

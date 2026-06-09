@@ -96,7 +96,7 @@ const SammamishLocation = () => {
           </div>
           <div>
             <h4 className="font-semibold text-gray-900">Can you do emergency repairs the same day?</h4>
-            <p className="text-gray-700">For Sammamish, yes. Our shop is in town, our crews live in the area, and we carry common repair materials on the truck. If you have an active leak or storm damage, call us at <a href="tel:+12067398232" className="font-bold text-red-600 hover:underline">206-739-8232</a> and we'll get someone out the same day when conditions allow safe work.</p>
+            <p className="text-gray-700">For Sammamish, yes. Our shop is in town, our crews live in the area, and we carry common repair materials on the truck. If you have an active leak or storm damage, <a href="/contact" className="font-bold text-red-600 hover:underline">request service online</a> and we'll get someone out the same day when conditions allow safe work.</p>
           </div>
         </div>
       </div>
@@ -110,7 +110,7 @@ const SammamishLocation = () => {
         <p className="text-gray-700 mb-4">
           <strong>Stark Roofing & Renovation</strong><br />
           24243 SE 43rd Ct, Sammamish, WA 98029<br />
-          Call <a href="tel:+12067398232" className="font-bold text-red-600 hover:underline">206-739-8232</a> for a free drone inspection and written estimate. Or <a href="/contact" className="font-bold text-red-600 hover:underline">request online here</a>.
+          <a href="/contact" className="font-bold text-red-600 hover:underline">Request a free drone inspection and written estimate online</a>.
         </p>
       </div>
     </div>

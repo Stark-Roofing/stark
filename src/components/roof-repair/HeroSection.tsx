@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, Phone, ShieldCheck, Clock, Star, Award } from 'lucide-react';
+import { ChevronRight, ShieldCheck, Clock, Star, Award } from 'lucide-react';
 
 /**
  * Roof Repair — purpose-built hero.
@@ -112,12 +112,12 @@ const HeroSection = () => {
               ))}
             </motion.ul>
 
-            {/* CTAs */}
+            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.75, duration: 0.5 }}
-              className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start"
+              className="flex justify-center md:justify-start"
             >
               <motion.a
                 href="#schedule-form"
@@ -127,16 +127,6 @@ const HeroSection = () => {
               >
                 Get My Free Inspection
                 <ChevronRight size={18} />
-              </motion.a>
-
-              <motion.a
-                href="tel:+12067398232"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold rounded-full border border-white/25 transition-colors"
-              >
-                <Phone size={18} />
-                (206) 739-8232
               </motion.a>
             </motion.div>
           </div>

@@ -1,10 +1,11 @@
 import React from 'react';
-import { AlertCircle, Phone } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 /**
  * Thin emergency strip rendered between the hero and the booking form.
- * One job: catch the homeowner with an active leak who needs to call NOW
- * instead of filling out a form.
+ * One job: catch the homeowner with an active leak who needs same-day
+ * emergency tarping.
  */
 const EmergencyNotice = () => {
   return (
@@ -14,16 +15,15 @@ const EmergencyNotice = () => {
           <div className="flex items-center text-center">
             <AlertCircle className="mr-3 flex-shrink-0" size={22} />
             <p className="font-medium text-sm md:text-base">
-              <strong>Active leak right now?</strong> Don't wait — call us for same-day emergency tarping.
+              <strong>Active leak right now?</strong> Don't wait — request same-day emergency tarping.
             </p>
           </div>
-          <a
-            href="tel:+12067398232"
+          <Link
+            to="/contact"
             className="inline-flex items-center gap-2 bg-white text-stark-red font-bold py-2.5 px-5 rounded-full hover:bg-gray-100 transition-colors whitespace-nowrap shadow-md"
           >
-            <Phone size={18} />
-            (206) 739-8232
-          </a>
+            Request Service
+          </Link>
         </div>
       </div>
     </section>

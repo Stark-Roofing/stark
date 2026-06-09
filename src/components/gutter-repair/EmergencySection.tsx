@@ -1,8 +1,9 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Phone, Clock } from 'lucide-react';
+import { Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const EmergencySection = () => {
   return (
@@ -31,10 +32,9 @@ const EmergencySection = () => {
               className="bg-stark-red hover:bg-stark-red/90 text-white"
               asChild
             >
-              <a href="tel:+12067398232" className="inline-flex items-center">
-                <Phone size={18} className="mr-2" />
-                Call our emergency line
-              </a>
+              <Link to="/contact" className="inline-flex items-center">
+                Request Emergency Service
+              </Link>
             </Button>
           </motion.div>
 

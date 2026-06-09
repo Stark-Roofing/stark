@@ -133,7 +133,7 @@ const KirklandLocation = () => {
         <p className="text-gray-700 mb-4">
           <strong>Stark Roofing & Renovation</strong><br />
           Sammamish HQ — 15 minutes from Kirkland<br />
-          Call <a href="tel:+12067398232" className="font-bold text-red-600 hover:underline">206-739-8232</a> for a free drone inspection and written estimate. Or <a href="/contact" className="font-bold text-red-600 hover:underline">request online here</a>.
+          <a href="/contact" className="font-bold text-red-600 hover:underline">Request a free drone inspection and written estimate online</a>.
         </p>
       </div>
     </div>

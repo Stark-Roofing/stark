@@ -13,7 +13,6 @@ import {
   Calendar,
   Clock,
   MapPin,
-  Phone,
   MessageSquare,
   Mail,
   Shield,
@@ -452,17 +451,10 @@ const ThankYou: React.FC = () => {
                 Reschedule, ask a question, or just say hi — we're here.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <a
-                  href="tel:+12067398232"
-                  className="inline-flex items-center justify-center gap-2 bg-stark-red hover:bg-stark-red/90 text-white font-semibold px-6 py-4 rounded-xl transition-colors shadow-lg"
-                >
-                  <Phone size={18} />
-                  (206) 739-8232
-                </a>
+              <div className="flex justify-center">
                 <a
                   href="mailto:office@starkroofingrenovation.com"
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-semibold px-6 py-4 rounded-xl transition-colors border border-white/20"
+                  className="inline-flex items-center justify-center gap-2 bg-stark-red hover:bg-stark-red/90 text-white font-semibold px-6 py-4 rounded-xl transition-colors shadow-lg"
                 >
                   <Mail size={18} />
                   Email us
