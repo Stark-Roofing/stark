@@ -29,6 +29,13 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <!-- Google Fonts — loaded from <head> instead of @import in base.css.
+         The @import would force the browser to wait for the main CSS bundle
+         to parse before discovering the font CSS, adding 200-500ms LCP delay
+         on mobile 4G. Loaded here in parallel. font-display: swap (in the
+         &display=swap param) ensures fallback text paints instantly while
+         the woff2 streams in. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" />
     <!-- LCP optimization: hero-custom-1.webp doubles as the video poster for
          /hero-drone-1.mp4 (first carousel slide), so it paints LCP before the
          MP4 finishes downloading. We DO NOT preload the MP4 itself — on slow

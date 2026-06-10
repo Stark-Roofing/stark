@@ -1,5 +1,9 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+/* Google Fonts moved to index.html <link> tag — keeps the @import out of the
+ * CSS bundle parse path. The @import here would force the browser to wait
+ * until the main CSS bundle is parsed before discovering the external font
+ * CSS, adding 200-500ms of LCP delay on mobile 4G. Loaded in parallel from
+ * the <head> instead. */
 
 @tailwind base;
 @tailwind components;
