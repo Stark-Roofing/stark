@@ -218,11 +218,31 @@ function localBusinessSchema(canonical) {
 // from index.html survive into fallback-templated pages.
 function getAssetTags() {
   const html = readFileSync(INDEX_HTML, 'utf8');
+  // Perf hints we want to preserve regardless of whether Puppeteer prerender
+  // succeeded. The original prerender.mjs has its own re-injection logic that
+  // covers tags Chromium strips during page.content() serialization (mainly
+  // preconnects executed at page load), but when prerender fails entirely we
+  // come here instead and rebuild dist/index.html from scratch. Without these
+  // matchers the fallback output would lose every perf hint the source carries.
+  const preconnects = [...html.matchAll(/<link[^>]+rel="preconnect"[^>]*>/g)].map(m => m[0]);
+  const dnsPrefetch = [...html.matchAll(/<link[^>]+rel="dns-prefetch"[^>]*>/g)].map(m => m[0]);
+  const manifest = [...html.matchAll(/<link[^>]+rel="manifest"[^>]*>/g)].map(m => m[0]);
+  const icons = [...html.matchAll(/<link[^>]+rel="(?:icon|apple-touch-icon|mask-icon)"[^>]*>/g)].map(m => m[0]);
   const cssLinks = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]*>/g)].map(m => m[0]);
   const modulePreloads = [...html.matchAll(/<link[^>]+rel="modulepreload"[^>]*>/g)].map(m => m[0]);
   const resourceHints = [...html.matchAll(/<link[^>]+rel="preload"[^>]*>/g)].map(m => m[0]);
   const scripts = [...html.matchAll(/<script[^>]+src="[^"]*"[^>]*><\/script>/g)].map(m => m[0]);
-  return { cssLinks: [...cssLinks, ...modulePreloads, ...resourceHints], scripts };
+  // Speculation Rules: <script type="speculationrules"> ... </script>. Multiline
+  // body — match non-greedy across newlines.
+  const speculationRules = [...html.matchAll(/<script[^>]+type="speculationrules"[^>]*>[\s\S]*?<\/script>/g)].map(m => m[0]);
+  // Order matters for perf: preconnect/dns-prefetch FIRST (browser fires them
+  // immediately during head parse), then icons/manifest (PWA + SERP), then the
+  // build-hashed asset links last.
+  return {
+    headHints: [...preconnects, ...dnsPrefetch, ...manifest, ...icons, ...speculationRules],
+    cssLinks: [...cssLinks, ...modulePreloads, ...resourceHints],
+    scripts,
+  };
 }
 
 function generatePageHtml(pathname, assets) {
@@ -263,6 +283,7 @@ function generatePageHtml(pathname, assets) {
   f.parentNode.insertBefore(j,f);}if('requestIdleCallback' in window){
   requestIdleCallback(gtmLoad,{timeout:3000});}else{setTimeout(gtmLoad,2500);}})();</script>
   <!-- End Google Tag Manager -->
+  ${(assets.headHints || []).join('\n  ')}
   ${assets.cssLinks.join('\n  ')}
 </head>
 <body>

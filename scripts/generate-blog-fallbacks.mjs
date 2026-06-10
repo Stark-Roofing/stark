@@ -92,10 +92,24 @@ const BLOG_META = {
 // ---------------------------------------------------------------------------
 function getAssetTags() {
   const html = readFileSync(INDEX_HTML, 'utf8');
-  // Extract all <link rel="stylesheet" ...> and <script ...> from <head>
+  // Preserve perf hints from the source <head> so they survive when Puppeteer
+  // prerender fails and we generate the static blog HTML from scratch here.
+  // Without this the fallback HTML loses every preconnect, dns-prefetch,
+  // manifest, favicon, and speculation-rules script the index carries.
+  const preconnects = [...html.matchAll(/<link[^>]+rel="preconnect"[^>]*>/g)].map(m => m[0]);
+  const dnsPrefetch = [...html.matchAll(/<link[^>]+rel="dns-prefetch"[^>]*>/g)].map(m => m[0]);
+  const manifest = [...html.matchAll(/<link[^>]+rel="manifest"[^>]*>/g)].map(m => m[0]);
+  const icons = [...html.matchAll(/<link[^>]+rel="(?:icon|apple-touch-icon|mask-icon)"[^>]*>/g)].map(m => m[0]);
   const cssLinks = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]*>/g)].map(m => m[0]);
+  const modulePreloads = [...html.matchAll(/<link[^>]+rel="modulepreload"[^>]*>/g)].map(m => m[0]);
+  const resourceHints = [...html.matchAll(/<link[^>]+rel="preload"[^>]*>/g)].map(m => m[0]);
   const scripts = [...html.matchAll(/<script[^>]+src="[^"]*"[^>]*><\/script>/g)].map(m => m[0]);
-  return { cssLinks, scripts };
+  const speculationRules = [...html.matchAll(/<script[^>]+type="speculationrules"[^>]*>[\s\S]*?<\/script>/g)].map(m => m[0]);
+  return {
+    headHints: [...preconnects, ...dnsPrefetch, ...manifest, ...icons, ...speculationRules],
+    cssLinks: [...cssLinks, ...modulePreloads, ...resourceHints],
+    scripts,
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -116,6 +130,7 @@ function generatePage(slug, meta, assets) {
   <meta property="og:description" content="${meta.description}" />
   <meta property="og:url" content="${canonical}" />
   <meta property="og:type" content="article" />
+  ${(assets.headHints || []).join('\n  ')}
   ${assets.cssLinks.join('\n  ')}
 </head>
 <body>
