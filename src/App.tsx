@@ -56,6 +56,7 @@ const Issaquah = lazy(() => import('./pages/Issaquah'));
 const Woodinville = lazy(() => import('./pages/Woodinville'));
 const Renton = lazy(() => import('./pages/Renton'));
 const MapleValley = lazy(() => import('./pages/MapleValley'));
+const Snoqualmie = lazy(() => import('./pages/Snoqualmie'));
 const BeforeAfter = lazy(() => import('./pages/BeforeAfter'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogArticle = lazy(() => import('./pages/BlogArticle'));
@@ -111,6 +112,7 @@ function App() {
             <Route path="/service-area/woodinville" element={<Woodinville />} />
             <Route path="/service-area/renton" element={<Renton />} />
             <Route path="/service-area/maple-valley" element={<MapleValley />} />
+            <Route path="/service-area/snoqualmie" element={<Snoqualmie />} />
 
             {/* Short city URLs — redirect to canonical /service-area/ paths */}
             <Route path="/seattle" element={<Navigate to="/service-area/seattle" replace />} />
@@ -126,6 +128,7 @@ function App() {
             <Route path="/bothell" element={<Navigate to="/service-area/bothell" replace />} />
             <Route path="/tacoma" element={<Navigate to="/service-area/tacoma" replace />} />
             <Route path="/maple-valley" element={<Navigate to="/service-area/maple-valley" replace />} />
+            <Route path="/snoqualmie" element={<Navigate to="/service-area/snoqualmie" replace />} />
 
             <Route path="/roof-cleaning" element={<RoofCleaning />} />
             <Route path="/storm-damage" element={<StormDamage />} />
