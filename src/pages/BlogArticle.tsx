@@ -7,7 +7,7 @@ import VirtualAssistant from '@/components/finance/VirtualAssistant';
 import { useSEOMeta } from '@/hooks/useSEOMeta';
 import BreadcrumbSchema from '@/components/shared/BreadcrumbSchema';
 import { blogPosts } from '@/data/blogPosts';
-import { Calendar, Clock, ArrowLeft } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft, Phone } from 'lucide-react';
 
 const BlogArticle = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -224,13 +224,20 @@ const BlogArticle = () => {
               <p className="text-charcoal/70 mb-4">
                 Our GAF certified team provides free, no-obligation inspections across Seattle, Sammamish, Bellevue, and the entire Puget Sound area.
               </p>
-              <div className="flex justify-center md:justify-start">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Link
                   to="/contact"
                   className="bg-stark-red hover:bg-stark-red/90 text-white font-semibold py-3 px-6 rounded-md transition-all duration-300 text-center"
                 >
                   Get Free Estimate
                 </Link>
+                <a
+                  href="tel:+12067398232"
+                  className="border-2 border-navy text-navy font-semibold py-3 px-6 rounded-md hover:bg-navy hover:text-white transition-all duration-300 flex items-center justify-center"
+                >
+                  <Phone size={16} className="mr-2" />
+                  (206) 739-8232
+                </a>
               </div>
             </div>
           </div>

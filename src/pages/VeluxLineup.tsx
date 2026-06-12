@@ -724,6 +724,12 @@ const VeluxLineup = () => {
             >
               Get a Free Skylight Estimate <ArrowRight size={18} />
             </Link>
+            <a
+              href="tel:2067398232"
+              className="inline-flex items-center gap-2 px-7 py-4 bg-white/10 hover:bg-white/20 backdrop-blur border border-white/25 text-white font-semibold rounded-full transition-colors"
+            >
+              📞 (206) 739-8232
+            </a>
             <Link
               to="/skylights"
               className="inline-flex items-center gap-2 px-7 py-4 bg-white/10 hover:bg-white/20 backdrop-blur border border-white/25 text-white font-semibold rounded-full transition-colors"

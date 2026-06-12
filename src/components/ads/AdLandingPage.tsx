@@ -6,6 +6,7 @@ import {
   Star,
   Award,
   CheckCircle2,
+  Phone,
   ArrowRight,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -76,8 +77,8 @@ const StickyPhoneBar: React.FC = () => {
           <div className="flex items-center justify-between">
             <p className="text-white font-semibold text-sm">Free Estimate</p>
             <Button className="bg-stark-red hover:bg-stark-red/90 text-white" asChild>
-              <a href="#top" className="flex items-center gap-2">
-                Book Online <ArrowRight size={16} />
+              <a href="tel:+12067398232" className="flex items-center gap-2">
+                <Phone size={16} /> (206) 739-8232
               </a>
             </Button>
           </div>
@@ -112,7 +113,7 @@ const AdLandingPage: React.FC<AdLandingPageProps> = ({
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Minimal header: logo only */}
+      {/* Minimal header: logo + phone only */}
       <header className="bg-white border-b border-gray-100 py-3 px-4">
         <div className="container mx-auto flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
@@ -121,6 +122,13 @@ const AdLandingPage: React.FC<AdLandingPageProps> = ({
               alt="Stark Roofing & Renovation"
               className="h-10"
             />
+          </a>
+          <a
+            href="tel:+12067398232"
+            className="flex items-center gap-2 text-navy font-bold text-sm md:text-base hover:text-stark-red transition-colors"
+          >
+            <Phone size={18} className="text-stark-red" />
+            (206) 739-8232
           </a>
         </div>
       </header>
@@ -156,6 +164,17 @@ const AdLandingPage: React.FC<AdLandingPageProps> = ({
                 </div>
               </div>
 
+              {/* Phone CTA for desktop */}
+              <div className="hidden lg:block">
+                <p className="text-sm text-charcoal/60 mb-2">Prefer to talk?</p>
+                <a
+                  href="tel:+12067398232"
+                  className="inline-flex items-center gap-2 bg-navy text-white font-semibold px-6 py-3 rounded-xl hover:bg-navy/90 transition-colors"
+                >
+                  <Phone size={18} />
+                  (206) 739-8232
+                </a>
+              </div>
             </div>
 
             {/* Right: QuickQuoteForm */}
@@ -234,12 +253,17 @@ const AdLandingPage: React.FC<AdLandingPageProps> = ({
             Ready for your free estimate?
           </h2>
           <p className="text-white/75 mb-6 max-w-lg mx-auto">
-            Book online above. No pressure, no obligation.
+            Book online above or call us now. No pressure, no obligation.
           </p>
-          <div className="flex justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button className="bg-stark-red hover:bg-stark-red/90 text-white px-8 py-6 text-base" asChild>
               <a href="#top" className="flex items-center gap-2">
                 Book Online <ArrowRight size={18} />
+              </a>
+            </Button>
+            <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-6 text-base" asChild>
+              <a href="tel:+12067398232" className="flex items-center gap-2">
+                <Phone size={18} /> (206) 739-8232
               </a>
             </Button>
           </div>

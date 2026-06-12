@@ -71,7 +71,7 @@ const MapleValleyLocation = () => {
         <p className="text-gray-700 mb-4">
           <strong>Stark Roofing & Renovation</strong><br />
           Serving Maple Valley from our Sammamish HQ at 24243 SE 43rd Ct, Sammamish, WA 98029<br />
-          <a href="/contact" className="font-bold text-red-600 hover:underline">Request a free roof inspection and written estimate online</a>.
+          Call <a href="tel:+12067398232" className="font-bold text-red-600 hover:underline">206-739-8232</a> for a free roof inspection and written estimate.
         </p>
       </div>
     </div>

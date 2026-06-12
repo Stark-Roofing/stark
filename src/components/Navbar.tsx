@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import Logo from './Logo';
 import EmergencyServiceBar from './navigation/EmergencyServiceBar';
 import DesktopNavigation from './navigation/DesktopNavigation';
 import MobileNavigation from './navigation/MobileNavigation';
+import PhoneButton from './navigation/PhoneButton';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -36,7 +36,7 @@ const Navbar = () => {
 
       <header className="scrolled py-2 bg-white/95 shadow-md backdrop-blur-sm w-full transition-all duration-300 ease-in-out">
         <div className="container mx-auto px-4 md:px-6">
-          {/* Desktop layout: [Logo] ← [Menu centered] → [Free Quote CTA] */}
+          {/* Desktop layout: [Logo] ← [Menu centered] → [Call Now] */}
           <div className="hidden md:grid grid-cols-3 items-center">
             <Link to="/" className="justify-self-start flex items-center">
               <Logo textClassName="text-stark-red" withTagline={false} />
@@ -45,13 +45,7 @@ const Navbar = () => {
               <DesktopNavigation isScrolled={isScrolled} />
             </div>
             <div className="justify-self-end">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-stark-red px-5 py-2.5 font-semibold text-white shadow-sm hover:bg-stark-redHover transition-all hover:shadow-md hover:scale-[1.03]"
-              >
-                Free Quote
-                <ArrowRight size={16} />
-              </Link>
+              <PhoneButton isScrolled={isScrolled} />
             </div>
           </div>
 

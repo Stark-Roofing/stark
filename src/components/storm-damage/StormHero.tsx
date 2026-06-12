@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, Clock, Shield } from 'lucide-react';
+import { ChevronRight, Clock, Shield, Phone } from 'lucide-react';
 
 /**
  * Storm Damage page hero.
@@ -103,9 +103,9 @@ const StormHero = () => {
               no out-of-pocket on most claims.
             </motion.p>
 
-            {/* CTA */}
+            {/* CTAs — ONE primary, ONE phone. No triple-call clutter. */}
             <motion.div
-              className="flex justify-center md:justify-start mb-7"
+              className="flex flex-col sm:flex-row gap-3 mb-7 justify-center md:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.85, duration: 0.55 }}
@@ -118,6 +118,15 @@ const StormHero = () => {
               >
                 Book My Free Inspection
                 <ChevronRight className="w-5 h-5" />
+              </motion.a>
+              <motion.a
+                href="tel:+12067398232"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold text-base rounded-full border border-white/25 backdrop-blur-sm transition-colors"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <Phone className="w-5 h-5" />
+                (206) 739-8232
               </motion.a>
             </motion.div>
 

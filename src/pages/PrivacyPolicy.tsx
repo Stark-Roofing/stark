@@ -141,6 +141,11 @@ const PrivacyPolicy = () => {
                 <br />
                 Sammamish, WA
                 <br />
+                Phone:{' '}
+                <a href="tel:12067398232" className="text-[#C8102E] hover:underline">
+                  (206) 739-8232
+                </a>
+                <br />
                 Email:{' '}
                 <a
                   href="mailto:info@starkroofingrenovation.com"

@@ -187,6 +187,15 @@ const ServicePageHero: React.FC<ServicePageHeroProps> = ({
               {secondaryCta.label}
             </motion.a>
           )}
+
+          <motion.a
+            href="tel:2067398232"
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold text-sm md:text-base rounded-full border border-white/25 transition-colors duration-300"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            📞 (206) 739-8232
+          </motion.a>
         </motion.div>
       </div>
 

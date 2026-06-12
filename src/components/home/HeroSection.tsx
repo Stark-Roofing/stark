@@ -411,7 +411,7 @@ const HeroSection: React.FC = () => {
 
               {/* CTA */}
               <motion.div
-                className="flex justify-center items-center"
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -423,6 +423,14 @@ const HeroSection: React.FC = () => {
                   whileTap={{ scale: 0.97 }}
                 >
                   🏠 Get a Free Estimate
+                </motion.a>
+                <motion.a
+                  href="tel:2067398232"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold text-base md:text-lg rounded-full border border-white/30 transition-colors duration-300"
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  📞 (206) 739-8232
                 </motion.a>
               </motion.div>
             </div>

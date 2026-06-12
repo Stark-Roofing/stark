@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CalendarCheck } from 'lucide-react';
+import { Phone, CalendarCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const StormCTA = () => {
@@ -34,13 +34,17 @@ const StormCTA = () => {
           >
             Schedule your free storm damage assessment today. Our experts will thoroughly inspect your property and provide honest recommendations.
           </motion.p>
-          <motion.div
-            className="flex justify-center"
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
-            <Link to="/services" className="btn-primary flex items-center justify-center">
+            <a href="tel:+12067398232" className="btn-primary flex items-center justify-center">
+              <Phone className="mr-2 h-5 w-5" />
+              Call for Emergency Service
+            </a>
+            <Link to="/services" className="btn-secondary bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/20 flex items-center justify-center">
               <CalendarCheck className="mr-2 h-5 w-5" />
               Schedule Free Inspection
             </Link>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Phone } from 'lucide-react';
 
 const CTASection = () => {
   return (
@@ -51,6 +51,13 @@ const CTASection = () => {
             >
               Book My Free Quote
               <ChevronRight className="w-5 h-5" />
+            </a>
+            <a
+              href="tel:+12067398232"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full border border-white/25 backdrop-blur-sm transition-colors"
+            >
+              <Phone className="w-5 h-5" />
+              (206) 739-8232
             </a>
           </motion.div>
         </div>

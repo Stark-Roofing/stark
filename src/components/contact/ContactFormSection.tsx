@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Clock, MapPin } from 'lucide-react';
+import { Phone, Mail, Clock, MapPin } from 'lucide-react';
 import ContactForm from './ContactForm';
 
 const ContactFormSection = () => {
@@ -103,7 +103,17 @@ const ContactFormSection = () => {
               </div>
 
               {/* Compact contact details strip */}
-              <div className="mt-10 pt-8 border-t border-gray-200 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="mt-10 pt-8 border-t border-gray-200 grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <a
+                  href="tel:+12067398232"
+                  className="flex flex-col items-center text-center gap-2 hover:text-stark-red transition-colors"
+                >
+                  <Phone className="w-6 h-6 text-stark-red flex-shrink-0" />
+                  <div className="text-sm">
+                    <div className="font-semibold text-navy">Call or Text</div>
+                    <div className="text-charcoal/70">(206) 739-8232</div>
+                  </div>
+                </a>
                 <div className="flex flex-col items-center text-center gap-2">
                   <Clock className="w-6 h-6 text-stark-red flex-shrink-0" />
                   <div className="text-sm">

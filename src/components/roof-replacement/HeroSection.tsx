@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, Shield, Award, Star } from 'lucide-react';
+import { ChevronRight, Phone, Shield, Award, Star } from 'lucide-react';
 
 /**
  * Roof Replacement page hero.
@@ -88,9 +88,9 @@ const HeroSection = () => {
             Sound. One trip up the ladder, decades of peace of mind.
           </motion.p>
 
-          {/* CTA */}
+          {/* CTAs */}
           <motion.div
-            className="flex justify-center mb-10"
+            className="flex flex-col sm:flex-row gap-3 mb-10 justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.85, duration: 0.55 }}
@@ -103,6 +103,15 @@ const HeroSection = () => {
             >
               Book My Free Estimate
               <ChevronRight className="w-5 h-5" />
+            </motion.a>
+            <motion.a
+              href="tel:+12067398232"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold text-base rounded-full border border-white/25 backdrop-blur-sm transition-colors"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Phone className="w-5 h-5" />
+              (206) 739-8232
             </motion.a>
           </motion.div>
 

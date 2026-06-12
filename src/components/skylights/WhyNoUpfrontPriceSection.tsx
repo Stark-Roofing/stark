@@ -74,6 +74,9 @@ const WhyNoUpfrontPriceSection = () => {
               size="lg"
               className="shadow-xl"
             />
+            <p className="text-xs text-white/60 mt-4">
+              Or call <a href="tel:+12067398232" className="text-amber-300 font-semibold">(206) 739-8232</a>
+            </p>
           </div>
         </div>
       </div>

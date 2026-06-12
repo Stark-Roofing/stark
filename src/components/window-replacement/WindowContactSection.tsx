@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ContactForm from '@/components/services/ContactForm';
-import { MessageSquare } from 'lucide-react';
+import { MessageSquare, Phone } from 'lucide-react';
 
 const WindowContactSection = () => {
   return (
@@ -39,8 +39,18 @@ const WindowContactSection = () => {
             <div className="bg-navy text-white p-6 rounded-xl shadow-lg text-center md:text-left">
               <h3 className="text-xl font-bold mb-4">Need Immediate Assistance?</h3>
               <p className="mb-6 text-white/80">Our window experts are ready to answer your questions and provide guidance.</p>
-
+              
               <div className="space-y-4">
+                <a href="tel:206-739-8232" className="flex items-center gap-3 p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-all text-left">
+                  <div className="bg-stark-red p-2 rounded-full">
+                    <Phone className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-white/80">Call Now</p>
+                    <p className="font-bold">206-739-8232</p>
+                  </div>
+                </a>
+
                 <a href="mailto:office@starkroofingrenovation.com" className="flex items-center gap-3 p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-all text-left">
                   <div className="bg-stark-red p-2 rounded-full">
                     <MessageSquare className="h-5 w-5 text-white" />

@@ -151,6 +151,11 @@ const StickyPhoneBar: React.FC = () => {
             <Button className="bg-stark-red hover:bg-stark-red/90 text-white flex-1 font-bold" asChild>
               <a href="#top">Get Free Quote</a>
             </Button>
+            <Button variant="outline" className="bg-white text-navy border-white hover:bg-white/90 px-4" asChild>
+              <a href="tel:+12067398232" aria-label="Call (206) 739-8232">
+                <Phone size={18} />
+              </a>
+            </Button>
           </div>
         </motion.div>
       )}
@@ -317,6 +322,16 @@ const QuoteAd: React.FC = () => {
                 </span>
               </div>
 
+              <div className="hidden lg:block">
+                <p className="text-sm text-white/70 mb-2">Or just call us:</p>
+                <a
+                  href="tel:+12067398232"
+                  className="inline-flex items-center gap-2 bg-white text-navy font-bold px-6 py-3 rounded-xl hover:bg-white/95 transition-colors shadow-lg"
+                >
+                  <Phone size={18} className="text-stark-red" />
+                  (206) 739-8232
+                </a>
+              </div>
             </div>
 
             {/* Right: QuickQuoteForm (5 cols) — order-1 on mobile to appear above the fold */}
@@ -471,6 +486,15 @@ const QuoteAd: React.FC = () => {
                   Book Free Inspection <ArrowRight size={18} />
                 </a>
               </Button>
+              <Button
+                variant="outline"
+                className="border-white/40 bg-white/10 hover:bg-white/20 text-white px-8 py-6 text-base font-bold"
+                asChild
+              >
+                <a href="tel:+12067398232" className="flex items-center gap-2">
+                  <Phone size={18} /> (206) 739-8232
+                </a>
+              </Button>
             </div>
           </div>
         </div>
@@ -617,10 +641,10 @@ const QuoteAd: React.FC = () => {
           <div className="mt-10 text-center">
             <p className="text-charcoal/65 mb-4 text-sm">Still have questions?</p>
             <a
-              href="#top"
+              href="tel:+12067398232"
               className="inline-flex items-center gap-2 bg-stark-red hover:bg-stark-red/90 text-white font-semibold py-3 px-8 rounded-md transition-colors"
             >
-              Request a Free Quote <ArrowRight size={16} />
+              <Phone size={16} /> (206) 739-8232
             </a>
           </div>
         </div>
@@ -644,6 +668,15 @@ const QuoteAd: React.FC = () => {
                 Book Free Inspection <ArrowRight size={18} />
               </a>
             </Button>
+            <Button
+              variant="outline"
+              className="border-white/40 bg-white/10 hover:bg-white/20 text-white px-8 py-6 text-base font-bold"
+              asChild
+            >
+              <a href="tel:+12067398232" className="flex items-center gap-2">
+                <Phone size={18} /> (206) 739-8232
+              </a>
+            </Button>
           </div>
         </div>
       </section>
@@ -654,7 +687,7 @@ const QuoteAd: React.FC = () => {
           <p>
             &copy; {new Date().getFullYear()} Stark Roofing &amp; Renovation LLC. Licensed, Bonded &amp; Insured in WA.
           </p>
-          <p>24243 SE 43rd Ct, Sammamish, WA 98029</p>
+          <p>24243 SE 43rd Ct, Sammamish, WA 98029 · (206) 739-8232</p>
           <p>
             <a href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
