@@ -73,7 +73,7 @@ interface AdsLeadFormProps {
 // Vant GHL webhook — receives leads, fires workflow (create contact + WhatsApp to Brenda).
 // Public endpoint (anyone can POST) — dedup + spam mitigation lives in the GHL workflow.
 const GHL_WEBHOOK_URL =
-  'https://services.leadconnectorhq.com/hooks/Rc0vimjpYEKR7LCj48Qb/webhook-trigger/c03bd80e-513d-4215-b97a-ce820830ca67';
+  'https://services.leadconnectorhq.com/hooks/Rc0vimjpYEKR7LCj48Qb/webhook-trigger/0b5885e6-4734-4d2b-8484-4f0e6ff3d4ff';
 
 // CAPI helpers + cookie/external_id utilities moved to @/utils/metaTracking
 // so they're reusable by ThankYou.tsx (central Lead trigger for all forms)
@@ -144,6 +144,8 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
 
       const payload = {
         name: values.name,
+        first_name: firstName,
+        last_name: lastName,
         email: values.email,
         phone: values.phone,
         service: serviceLabel,

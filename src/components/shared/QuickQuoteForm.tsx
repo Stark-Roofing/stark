@@ -78,7 +78,7 @@ interface QuickQuoteFormProps {
 
 // Vant GHL webhook — receives leads, fires workflow (create contact + WhatsApp to Brenda).
 const GHL_WEBHOOK_URL =
-  'https://services.leadconnectorhq.com/hooks/Rc0vimjpYEKR7LCj48Qb/webhook-trigger/c03bd80e-513d-4215-b97a-ce820830ca67';
+  'https://services.leadconnectorhq.com/hooks/Rc0vimjpYEKR7LCj48Qb/webhook-trigger/0b5885e6-4734-4d2b-8484-4f0e6ff3d4ff';
 
 async function postToGhlWebhook(payload: Record<string, string>) {
   try {
@@ -140,6 +140,8 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
 
       const payload = {
         name: values.name,
+        first_name: firstName,
+        last_name: lastName,
         email: values.email,
         phone: values.phone,
         service: serviceLabel,
