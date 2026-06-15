@@ -81,9 +81,14 @@ const GHL_WEBHOOK_URL =
 
 async function postToGhlWebhook(payload: Record<string, string>) {
   try {
+    // GHL inbound webhook responds with CORS (Access-Control-Allow-Origin: *),
+    // so we use the default 'cors' mode — NOT 'no-cors'. Under no-cors the
+    // browser silently downgrades Content-Type to text/plain, and GHL then
+    // fails to parse the JSON body, so the contact is never created. That was
+    // the root cause of browser-submitted leads never landing in GHL while
+    // server-side (curl) tests with real application/json worked fine.
     await fetch(GHL_WEBHOOK_URL, {
       method: 'POST',
-      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
