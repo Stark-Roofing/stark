@@ -1832,6 +1832,106 @@ Stark Roofing & Renovation is GAF Master Elite Certified, licensed and bonded in
 
 Call **(206) 739-8232** for a post-storm roof inspection across the Eastside.
 `
+  },
+  {
+    slug: "velux-skylight-installation-king-county",
+    title: "Velux Skylight Installation in King County: A Homeowner's Guide",
+    excerpt: "What it takes to add or replace a Velux skylight on a King County home: the deck-mounted vs curb-mounted choice, solar-powered Fresh Air models that qualify for a 30% federal tax credit, real installed costs, and why proper flashing is everything in a climate this wet.",
+    date: "2026-06-15",
+    author: "Stark Roofing Team",
+    image: "/lovable-uploads/velux-skylight-installation-king-county.webp",
+    keywords: "velux skylight installation king county,skylight installation eastside wa,velux fresh air skylight,skylight replacement bellevue sammamish,solar skylight tax credit washington",
+    readTime: "6 min read",
+    content: `
+# Velux Skylight Installation in King County: A Homeowner's Guide
+
+A skylight is the fastest way to bring daylight into a dark King County home, and in a region where the sky is gray half the year, that daylight matters more than it does almost anywhere else. But a skylight is also a hole cut in your roof, and in a climate this wet, the difference between a skylight that brings in light for 25 years and one that leaks in three comes down entirely to how it is installed and flashed. This guide walks through what a Velux skylight installation actually involves on an Eastside home, the choices you will make, what it costs, and why we install Velux specifically.
+
+## Why Velux, and why it matters here
+
+Velux is the skylight brand we install because it is engineered for exactly the problem King County roofs have: keeping water out. The factory-engineered flashing kits, the gasket systems, and the no-leak warranty are built around the assumption that the skylight will face real rain, which on the Eastside it will, 150-plus days a year of it.
+
+The skylight unit itself is only half the install. The other half is the flashing kit that ties the skylight into the surrounding roof. Velux flashing kits are matched to the roof type and the skylight model, and when installed correctly they are what make the no-leak warranty real. A generic skylight flashed by hand does not get you that, and in this climate that is the whole ballgame.
+
+## Deck-mounted vs curb-mounted: the first choice
+
+Velux skylights come in two mounting styles, and the right one depends on your roof.
+
+**Deck-mounted (low-profile).** The skylight sits low against the roofline for a sleek, modern look. This is the most common choice for residential King County homes with standard asphalt shingle roofs and a typical pitch. The low profile sheds water well and looks clean from the street.
+
+**Curb-mounted.** The skylight sits on a raised wood frame (a curb) built up from the roof deck. This is the right call for low-slope roofs, flat sections, and some commercial applications where the extra height helps water and debris clear the unit. Many older Eastside homes with low-pitch additions need curb-mounted units.
+
+On a standard-pitch Eastside home, deck-mounted is usually the answer. We confirm which your roof needs during the inspection.
+
+## Fixed, manual, or solar: the second choice
+
+Velux skylights come in three operating types, and this is where the daylight-versus-ventilation decision happens:
+
+**Fixed skylights.** They do not open. Pure daylight, the lowest cost, and the fewest things that can ever go wrong. Right for stairwells, hallways, and any room where you want light but not airflow.
+
+**Manual venting (Fresh Air).** They open by hand with a crank or pole to let hot air and moisture out. Good for bathrooms and kitchens where ventilation matters, as long as the skylight is reachable.
+
+**Solar-powered Fresh Air.** They open and close on a solar-charged battery with a remote, and they have a rain sensor that closes the skylight automatically when it starts to rain, which in King County is a genuinely useful feature. These are the models we recommend most for venting applications, and they carry a significant tax advantage covered below.
+
+## The federal tax credit most homeowners miss
+
+Velux solar-powered Fresh Air skylights, along with their solar blinds, qualify for the federal Residential Clean Energy Credit, currently 30% of the product and installation cost. Because the credit applies to the installed cost, not just the unit, it meaningfully narrows the gap between a solar skylight and a cheaper manual one. For many Eastside homeowners the solar model ends up costing close to what a manual one would after the credit, while adding the rain sensor and remote operation. We provide the documentation you need for the credit at completion.
+
+## What a Velux installation costs in King County
+
+Installed costs for a typical Eastside home in 2026, including the unit, the Velux flashing kit, labor, and interior finishing:
+
+- **Fixed deck-mounted skylight:** $1,500 to $3,000 per unit installed
+- **Manual venting (Fresh Air):** $2,000 to $3,800 per unit installed
+- **Solar-powered Fresh Air:** $2,800 to $4,800 per unit installed (before the 30% tax credit)
+- **Curb-mounted units:** add $300 to $800 for the curb construction
+
+What moves the price within those ranges: roof pitch and access, whether it is a new cut or a replacement of an existing skylight, the interior drywall and tunnel finishing, and any blinds or accessories. Replacing an existing skylight in the same opening is generally cheaper than cutting a brand-new one, since the framing is already there.
+
+## Why flashing is the whole game in a wet climate
+
+The single most important thing about a King County skylight is the flashing, and it is where cheap installations fail. We see the same pattern over and over: a skylight installed by a general handyman or a low-bid crew that hand-sealed the perimeter with caulk instead of installing the engineered flashing kit. Caulk fails. Within a few wet seasons it cracks, water gets in, and now there is a leak around the skylight and rot in the surrounding deck.
+
+The right install uses the Velux flashing kit matched to your roof, integrated with the underlayment and shingles so water is directed around and away from the skylight the same way it is directed off the rest of the roof. Done right, the skylight is no more likely to leak than any other part of the roof. Done wrong, it is the first thing to fail.
+
+This is also why skylight work is best done by a roofing contractor rather than a window installer. The skylight is a roof penetration, and it has to be integrated into the roof system, not just dropped into a hole.
+
+## The right time to install or replace a skylight
+
+The best time to add or replace skylights is during a roof replacement. The shingles are already off, the flashing is being replaced everywhere anyway, and integrating the skylight into the new roof system costs far less than cutting into a finished roof later. If you are planning a re-roof and have ever wanted more daylight, that is the moment to do it.
+
+If your existing skylights are older Velux units past 15 to 20 years, replacing them during a re-roof is almost always the right call. Reinstalling aging skylights under a new roof means the oldest, most leak-prone component is now buried under your newest roof, and it will be the first thing to fail.
+
+## Frequently asked questions
+
+**Do skylights leak in the Pacific Northwest?**
+
+Properly installed ones do not. Leaks come from improper flashing, hand-caulked perimeters, and aging units, not from skylights as a category. A Velux unit installed with the engineered flashing kit and integrated into the roof system handles King County rain the same as the rest of your roof.
+
+**How long does a Velux skylight installation take?**
+
+A single skylight replacement in an existing opening is usually a one-day job. A new cut, including interior drywall and tunnel finishing, can run two to three days depending on the ceiling and how far the light tunnel travels. We give an exact timeline in the estimate.
+
+**Is the solar skylight worth it over the manual one?**
+
+For most King County homeowners, yes. The 30% federal tax credit narrows the price gap significantly, and the rain sensor that closes the skylight automatically when rain starts is genuinely valuable in this climate. The remote operation also makes high or hard-to-reach skylights practical to vent.
+
+**Can you add a skylight to my existing roof without replacing it?**
+
+Yes, we cut and install skylights into existing roofs. It costs more than doing it during a re-roof because we are integrating into a finished roof, but it is a standard job. If your roof is within a few years of replacement, though, it is worth weighing whether to wait and do both together.
+
+**What size skylight should I get?**
+
+A general guideline is that the skylight should be no more than about 5% of the floor area in a room with many windows, or up to 15% in a room with few windows. We help size it during the inspection based on the room, the roof, and the daylight you are after.
+
+## Bring more daylight into your King County home
+
+If you are thinking about adding skylights, replacing aging ones, or including them in an upcoming roof replacement, the right next step is a free inspection and estimate. We will look at your roof, talk through deck-mounted versus curb-mounted and fixed versus solar, and give you a written quote, including the tax-credit documentation for solar models.
+
+Stark Roofing & Renovation is GAF Master Elite Certified and installs Velux skylights across Sammamish, Bellevue, Redmond, Kirkland, Issaquah, and the surrounding Eastside. Licensed and bonded in Washington.
+
+Call **(206) 739-8232** for a free skylight consultation.
+`
   }
 ];
 
