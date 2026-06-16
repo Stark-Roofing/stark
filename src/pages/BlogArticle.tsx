@@ -9,6 +9,61 @@ import BreadcrumbSchema from '@/components/shared/BreadcrumbSchema';
 import { blogPosts } from '@/data/blogPosts';
 import { Calendar, Clock, ArrowLeft, Phone } from 'lucide-react';
 
+// Strip inline markdown (bold + links) down to plain text for JSON-LD.
+const stripMd = (s: string): string =>
+  s
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .trim();
+
+// Parse the "Frequently asked questions" section of a post into Q/A pairs so we
+// can emit FAQPage schema for AEO (AI Overviews, ChatGPT, Perplexity, rich
+// results). A question is a line that is entirely bold and ends with "?".
+// Returns [] when a post has no FAQ section — callers fall back to BlogPosting
+// schema only, so this can never break rendering.
+const parseFAQs = (content: string): { q: string; a: string }[] => {
+  const faqs: { q: string; a: string }[] = [];
+  let inFAQ = false;
+  let curQ: string | null = null;
+  let curA: string[] = [];
+  const flush = () => {
+    if (curQ && curA.length) faqs.push({ q: curQ, a: curA.join(' ').trim() });
+    curQ = null;
+    curA = [];
+  };
+  for (const raw of content.split('\n')) {
+    const line = raw.trim();
+    if (/^##\s/.test(line)) {
+      if (/frequently asked questions/i.test(line)) {
+        inFAQ = true;
+        continue;
+      }
+      if (inFAQ) {
+        flush();
+        inFAQ = false;
+      }
+      continue;
+    }
+    if (!inFAQ || !line) continue;
+    // A question is either a fully-bold line ("**...?**") or an h3 heading
+    // ("### ...?"). Both styles appear across the post archive. We only look
+    // for these inside the FAQ section, so any "?" line here is a real question.
+    const boldMatch = line.match(/^\*\*(.+?)\*\*$/);
+    const h3Match = line.match(/^###\s+(.+)$/);
+    let q: string | null = null;
+    if (boldMatch && boldMatch[1].trim().endsWith('?')) q = stripMd(boldMatch[1]);
+    else if (h3Match && h3Match[1].trim().endsWith('?')) q = stripMd(h3Match[1]);
+    if (q) {
+      flush();
+      curQ = q;
+    } else if (curQ) {
+      curA.push(stripMd(line));
+    }
+  }
+  flush();
+  return faqs;
+};
+
 const BlogArticle = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = blogPosts.find((p) => p.slug === slug);
@@ -27,21 +82,40 @@ const BlogArticle = () => {
     ogImage: post ? `https://starkroofingrenovation.com${post.image}` : '',
     schemaMarkup: post ? {
       '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      headline: post.title,
-      description: post.excerpt,
-      image: `https://starkroofingrenovation.com${post.image}`,
-      datePublished: post.date,
-      dateModified: post.dateModified || post.date,
-      author: {
-        '@type': 'Organization',
-        name: 'Stark Roofing & Renovation',
-        url: 'https://www.starkroofingrenovation.com',
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'Stark Roofing & Renovation',
-      },
+      '@graph': [
+        {
+          '@type': 'BlogPosting',
+          headline: post.title,
+          description: post.excerpt,
+          image: `https://starkroofingrenovation.com${post.image}`,
+          datePublished: post.date,
+          dateModified: post.dateModified || post.date,
+          mainEntityOfPage: `https://starkroofingrenovation.com/blog/${post.slug}`,
+          author: {
+            '@type': 'Organization',
+            name: 'Stark Roofing & Renovation',
+            url: 'https://www.starkroofingrenovation.com',
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'Stark Roofing & Renovation',
+          },
+        },
+        // FAQPage schema for AEO — only emitted when the post has an FAQ section.
+        ...(() => {
+          const faqs = parseFAQs(post.content);
+          return faqs.length
+            ? [{
+                '@type': 'FAQPage',
+                mainEntity: faqs.map((f) => ({
+                  '@type': 'Question',
+                  name: f.q,
+                  acceptedAnswer: { '@type': 'Answer', text: f.a },
+                })),
+              }]
+            : [];
+        })(),
+      ],
     } : undefined,
   });
 
