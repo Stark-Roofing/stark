@@ -146,9 +146,30 @@ function generatePage(post, assets) {
   <meta property="og:type" content="article" />
   ${(assets.headHints || []).join('\n  ')}
   ${assets.cssLinks.join('\n  ')}
+  <script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date || undefined,
+    mainEntityOfPage: canonical,
+    author: { '@type': 'Organization', name: 'Stark Roofing & Renovation', url: ORIGIN },
+    publisher: { '@type': 'Organization', name: 'Stark Roofing & Renovation' },
+  })}</script>
 </head>
 <body>
   <div id="root"></div>
+  <noscript>
+    <article>
+      <h1>${esc(post.title)}</h1>
+      <p>${esc(post.description)}</p>
+      <p>
+        <a href="/blog">All articles</a> ·
+        <a href="/contact">Free roof inspection</a> ·
+        <a href="tel:+12067398232">(206) 739-8232</a>
+      </p>
+    </article>
+  </noscript>
   ${assets.scripts.join('\n  ')}
 </body>
 </html>`;
