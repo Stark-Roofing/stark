@@ -1,13 +1,22 @@
 #!/usr/bin/env node
 /**
- * Fallback: generate basic static HTML for any blog pages that the
- * Puppeteer prerender missed. Runs AFTER prerender so it only fills gaps.
+ * Blog SEO safety net — single source of truth is src/data/*.ts.
  *
- * Reads public/sitemap.xml for blog URLs, checks if dist/<path>/index.html
- * already exists, and generates a minimal SEO-friendly HTML page for any
- * that are missing. The page loads the SPA bundle so the full React app
- * hydrates on the client — but Googlebot gets a 200 with real content
- * instead of a 404.
+ * For EVERY blog post defined in blogPosts.ts / cityBlogPosts.ts this script:
+ *   1. Ensures the post URL is present in public/sitemap.xml (so Google can
+ *      discover it). Adds any missing /blog/<slug> entries.
+ *   2. Generates a static dist/blog/<slug>/index.html fallback if the
+ *      Puppeteer prerender didn't already produce one — so Googlebot gets a
+ *      200 with real <title>/<meta>/canonical instead of a 404, while the SPA
+ *      still hydrates for users.
+ *
+ * Why this exists: previously slugs + metadata were hardcoded in this file AND
+ * had to be hand-added to sitemap.xml. New posts that skipped either step were
+ * served as 404 to Google. Now both are derived automatically from the post
+ * data, so publishing a post (adding it to the .ts file) is enough.
+ *
+ * Runs AFTER `vite build` (needs dist/index.html for asset tags) and is safe
+ * to run locally too — re-running only fills gaps (idempotent).
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
@@ -17,94 +26,95 @@ import { fileURLToPath } from 'node:url';
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(SCRIPT_DIR, '..');
 const DIST = resolve(ROOT, 'dist');
-const SITEMAP = resolve(ROOT, 'public', 'sitemap.xml');
+const SITEMAP_SRC = resolve(ROOT, 'public', 'sitemap.xml');
+const SITEMAP_DIST = resolve(DIST, 'sitemap.xml');
 const INDEX_HTML = resolve(DIST, 'index.html');
+const ORIGIN = 'https://starkroofingrenovation.com';
 
 const log = (msg) => console.log(`[blog-fallback] ${msg}`);
 
-// Blog metadata — slug → { title, description }
-// Kept here so this script has zero TS/build dependencies.
-const BLOG_META = {
-  'roofing-guide-bellevue-wa': {
-    title: 'Complete Roofing Guide for Bellevue, WA Homeowners',
-    description: 'Everything Bellevue homeowners need to know about roof replacement, repair, and maintenance. Local weather challenges, material recommendations, and what to expect.',
-  },
-  'roofing-guide-redmond-wa': {
-    title: 'Redmond, WA Roofing Guide: Protecting Your Home in Tech City',
-    description: 'Redmond homeowners face unique roofing challenges from PNW weather. Learn about the best materials, maintenance tips, and when to replace your roof.',
-  },
-  'roofing-guide-kirkland-wa': {
-    title: 'Kirkland, WA Roofing Guide: Lakeside Homes & Weather Protection',
-    description: 'Kirkland roofing guide covering local weather, best materials for lakeside homes, maintenance tips, and choosing a qualified roofer.',
-  },
-  'cedar-shake-conversion-kirkland': {
-    title: 'Cedar Shake Conversion in Kirkland: What Homeowners Need to Know',
-    description: 'Cedar shake roofs from the 80s and 90s are at end of life across Kirkland. Skip sheathing replacement, full deck rebuild, GAF architectural shingle conversion. Cost ranges $22,000 to $38,000.',
-  },
-  'gaf-master-elite-certification': {
-    title: 'GAF Master Elite Certification: What It Means and Why Only 2% of Roofers Have It',
-    description: 'Only about 2% of roofing contractors hold GAF Master Elite status. Requirements, what the Golden Pledge warranty covers (50 years materials, 25 years workmanship), and how to verify a contractor claim.',
-  },
-  'roof-replacement-timeline-eastside-wa': {
-    title: 'How Long Does Roof Replacement Actually Take? Eastside WA Timeline',
-    description: 'Most Eastside homes complete roof replacement in 2 to 5 days of active work, with a 1 to 3 week total timeline from contract to final cleanup. Here is the day-by-day breakdown and what slows things down.',
-  },
-  'roofing-guide-woodinville-wa': {
-    title: 'Woodinville, WA Roofing Guide: Wine Country Home Protection',
-    description: 'Woodinville roofing guide for homeowners. Local climate challenges, recommended materials, and tips for maintaining your roof in wine country.',
-  },
-  'roofing-guide-renton-wa': {
-    title: 'Renton, WA Roofing Guide: Protecting Your Home in the Valley',
-    description: 'Complete roofing guide for Renton homeowners covering local weather challenges, best materials, costs, and maintenance tips.',
-  },
-  'roofing-guide-maple-valley-wa': {
-    title: 'Maple Valley, WA Roofing Guide: Rural & Suburban Home Protection',
-    description: 'Maple Valley roofing guide covering unique challenges of foothills living, recommended materials, and maintenance schedules.',
-  },
-  'roofing-guide-snoqualmie-wa': {
-    title: 'Snoqualmie, WA Roofing Guide: Mountain-Adjacent Home Protection',
-    description: 'Snoqualmie roofing guide for homeowners near the Cascades. Snow loads, heavy rain, and the best materials for mountain-adjacent living.',
-  },
-  'roofing-guide-mercer-island-wa': {
-    title: 'Mercer Island, WA Roofing Guide: Island Living & Roof Protection',
-    description: 'Mercer Island roofing guide for premium island homes. Lake-effect weather, premium material options, and maintaining your investment.',
-  },
-  'roofing-guide-newcastle-wa': {
-    title: 'Newcastle, WA Roofing Guide: Hillside Homes & Weather Challenges',
-    description: 'Newcastle roofing guide covering hillside home challenges, wind exposure, material recommendations, and maintenance tips.',
-  },
-  'roofing-guide-north-bend-wa': {
-    title: 'North Bend, WA Roofing Guide: Gateway to the Cascades',
-    description: 'North Bend roofing guide for homeowners near the mountains. Heavy snow, rain, and the toughest materials for Cascade foothills living.',
-  },
-  'roof-replacement-eastside-wa-2026-complete-guide': {
-    title: 'Complete Guide: Roof Replacement in Eastside WA — 2026 Pillar',
-    description: 'Complete 2026 guide to roof replacement on the Eastside: cost by city (Sammamish, Bellevue, Kirkland, Redmond, Issaquah), timeline, materials, GAF Master Elite, and what to expect.',
-  },
-  'roof-replacement-cost-bellevue-wa-2026': {
-    title: 'Roof Replacement Cost in Bellevue, WA 2026: Real Numbers from Recent Projects',
-    description: 'Real 2026 roof replacement costs in Bellevue, WA from recent Stark projects. Cost drivers, material breakdowns, hidden risks, and what to budget. GAF Master Elite installer.',
-  },
-};
+// ---------------------------------------------------------------------------
+// Single source of truth: extract every blog post (slug, title, excerpt, date)
+// from the TS data files. slug/title/excerpt/date are plain double-quoted
+// strings; only `content` is a template literal, which we ignore here.
+// ---------------------------------------------------------------------------
+function extractPosts() {
+  const files = [
+    resolve(ROOT, 'src', 'data', 'blogPosts.ts'),
+    resolve(ROOT, 'src', 'data', 'cityBlogPosts.ts'),
+  ];
+  const posts = [];
+  const seen = new Set();
+  for (const f of files) {
+    if (!existsSync(f)) continue;
+    const src = readFileSync(f, 'utf8');
+    const slugMatches = [...src.matchAll(/slug:\s*"((?:[^"\\]|\\.)*)"/g)];
+    for (let i = 0; i < slugMatches.length; i++) {
+      const slug = slugMatches[i][1];
+      if (seen.has(slug)) continue;
+      const start = slugMatches[i].index;
+      const end = i + 1 < slugMatches.length ? slugMatches[i + 1].index : src.length;
+      const chunk = src.slice(start, end);
+      const t = chunk.match(/title:\s*"((?:[^"\\]|\\.)*)"/);
+      const e = chunk.match(/excerpt:\s*"((?:[^"\\]|\\.)*)"/);
+      const d = chunk.match(/date:\s*"([^"]+)"/);
+      if (!t) continue; // not a real post object
+      seen.add(slug);
+      posts.push({
+        slug,
+        title: t[1].replace(/\\"/g, '"'),
+        description: (e ? e[1] : '').replace(/\\"/g, '"'),
+        date: d ? d[1] : '',
+      });
+    }
+  }
+  return posts;
+}
 
 // ---------------------------------------------------------------------------
-// Parse the SPA shell to extract CSS/JS asset references
+// Ensure every post is in the sitemap. Writes both the source (so git stays in
+// sync when run locally) and the dist copy (so this build serves it).
+// ---------------------------------------------------------------------------
+function syncSitemap(posts) {
+  if (!existsSync(SITEMAP_SRC)) {
+    log(`⚠ ${SITEMAP_SRC} not found — skipping sitemap sync`);
+    return;
+  }
+  let xml = readFileSync(SITEMAP_SRC, 'utf8');
+  const present = new Set([...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim()));
+  const additions = [];
+  for (const p of posts) {
+    const loc = `${ORIGIN}/blog/${p.slug}`;
+    if (present.has(loc)) continue;
+    const lastmod = p.date || new Date().toISOString().slice(0, 10);
+    additions.push(`  <url><loc>${loc}</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`);
+  }
+  if (additions.length === 0) {
+    log('sitemap already covers all posts');
+    return;
+  }
+  xml = xml.replace(/\s*<\/urlset>/, '\n' + additions.join('\n') + '\n</urlset>');
+  writeFileSync(SITEMAP_SRC, xml);
+  if (existsSync(DIST)) writeFileSync(SITEMAP_DIST, xml);
+  log(`sitemap: added ${additions.length} missing blog URL(s)`);
+  additions.forEach((a) => log(`  + ${a.match(/<loc>([^<]+)</)[1]}`));
+}
+
+// ---------------------------------------------------------------------------
+// Parse the SPA shell to extract CSS/JS asset references + perf hints, so the
+// fallback HTML matches dist/index.html (preconnects, manifest, favicons...).
 // ---------------------------------------------------------------------------
 function getAssetTags() {
   const html = readFileSync(INDEX_HTML, 'utf8');
-  // Preserve perf hints from the source <head> so they survive when Puppeteer
-  // prerender fails and we generate the static blog HTML from scratch here.
-  // Without this the fallback HTML loses every preconnect, dns-prefetch,
-  // manifest, favicon, and speculation-rules script the index carries.
-  const preconnects = [...html.matchAll(/<link[^>]+rel="preconnect"[^>]*>/g)].map(m => m[0]);
-  const dnsPrefetch = [...html.matchAll(/<link[^>]+rel="dns-prefetch"[^>]*>/g)].map(m => m[0]);
-  const manifest = [...html.matchAll(/<link[^>]+rel="manifest"[^>]*>/g)].map(m => m[0]);
-  const icons = [...html.matchAll(/<link[^>]+rel="(?:icon|apple-touch-icon|mask-icon)"[^>]*>/g)].map(m => m[0]);
-  const cssLinks = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]*>/g)].map(m => m[0]);
-  const modulePreloads = [...html.matchAll(/<link[^>]+rel="modulepreload"[^>]*>/g)].map(m => m[0]);
-  const resourceHints = [...html.matchAll(/<link[^>]+rel="preload"[^>]*>/g)].map(m => m[0]);
-  const scripts = [...html.matchAll(/<script[^>]+src="[^"]*"[^>]*><\/script>/g)].map(m => m[0]);
-  const speculationRules = [...html.matchAll(/<script[^>]+type="speculationrules"[^>]*>[\s\S]*?<\/script>/g)].map(m => m[0]);
+  const preconnects = [...html.matchAll(/<link[^>]+rel="preconnect"[^>]*>/g)].map((m) => m[0]);
+  const dnsPrefetch = [...html.matchAll(/<link[^>]+rel="dns-prefetch"[^>]*>/g)].map((m) => m[0]);
+  const manifest = [...html.matchAll(/<link[^>]+rel="manifest"[^>]*>/g)].map((m) => m[0]);
+  const icons = [...html.matchAll(/<link[^>]+rel="(?:icon|apple-touch-icon|mask-icon)"[^>]*>/g)].map((m) => m[0]);
+  const cssLinks = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]*>/g)].map((m) => m[0]);
+  const modulePreloads = [...html.matchAll(/<link[^>]+rel="modulepreload"[^>]*>/g)].map((m) => m[0]);
+  const resourceHints = [...html.matchAll(/<link[^>]+rel="preload"[^>]*>/g)].map((m) => m[0]);
+  const scripts = [...html.matchAll(/<script[^>]+src="[^"]*"[^>]*><\/script>/g)].map((m) => m[0]);
+  const speculationRules = [...html.matchAll(/<script[^>]+type="speculationrules"[^>]*>[\s\S]*?<\/script>/g)].map((m) => m[0]);
   return {
     headHints: [...preconnects, ...dnsPrefetch, ...manifest, ...icons, ...speculationRules],
     cssLinks: [...cssLinks, ...modulePreloads, ...resourceHints],
@@ -115,19 +125,23 @@ function getAssetTags() {
 // ---------------------------------------------------------------------------
 // Generate a minimal SEO page that also boots the SPA
 // ---------------------------------------------------------------------------
-function generatePage(slug, meta, assets) {
-  const canonical = `https://starkroofingrenovation.com/blog/${slug}`;
+function esc(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function generatePage(post, assets) {
+  const canonical = `${ORIGIN}/blog/${post.slug}`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${meta.title} | Stark Roofing & Renovation</title>
-  <meta name="description" content="${meta.description}" />
+  <title>${esc(post.title)} | Stark Roofing &amp; Renovation</title>
+  <meta name="description" content="${esc(post.description)}" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="${canonical}" />
-  <meta property="og:title" content="${meta.title}" />
-  <meta property="og:description" content="${meta.description}" />
+  <meta property="og:title" content="${esc(post.title)}" />
+  <meta property="og:description" content="${esc(post.description)}" />
   <meta property="og:url" content="${canonical}" />
   <meta property="og:type" content="article" />
   ${(assets.headHints || []).join('\n  ')}
@@ -143,43 +157,29 @@ function generatePage(slug, meta, assets) {
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
-const blogPaths = [];
-const xml = readFileSync(SITEMAP, 'utf8');
-const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1].trim());
-for (const loc of locs) {
-  const pathname = new URL(loc).pathname;
-  if (pathname.startsWith('/blog/') && pathname !== '/blog/') {
-    blogPaths.push(pathname);
-  }
+const posts = extractPosts();
+log(`${posts.length} posts in blogPosts.ts / cityBlogPosts.ts`);
+
+syncSitemap(posts);
+
+if (!existsSync(INDEX_HTML)) {
+  log('⚠ dist/index.html not found — run after `vite build`. Skipping fallback HTML.');
+  process.exit(0);
 }
 
-log(`${blogPaths.length} blog paths in sitemap`);
-
+const assets = getAssetTags();
 let created = 0;
 let skipped = 0;
-const assets = getAssetTags();
-
-for (const pathname of blogPaths) {
-  const trimmed = pathname.replace(/^\/+/, '').replace(/\/+$/, '');
-  const file = resolve(DIST, trimmed, 'index.html');
-
+for (const post of posts) {
+  const file = resolve(DIST, 'blog', post.slug, 'index.html');
   if (existsSync(file)) {
     skipped++;
     continue;
   }
-
-  const slug = trimmed.replace('blog/', '');
-  const meta = BLOG_META[slug];
-  if (!meta) {
-    log(`⚠ no metadata for ${slug} — skipping fallback`);
-    continue;
-  }
-
-  const html = generatePage(slug, meta, assets);
   mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(file, html);
+  writeFileSync(file, generatePage(post, assets));
   created++;
-  log(`✓ created fallback: ${pathname}`);
+  log(`✓ created fallback: /blog/${post.slug}`);
 }
 
 log(`done: ${created} fallbacks created, ${skipped} already existed`);
