@@ -415,7 +415,7 @@ const QuoteAd: React.FC = () => {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-[1200px]">
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-stark-red text-center mb-3">
-            Our Premium Services
+            Our Services
           </h2>
           <p className="text-center text-charcoal/75 mb-12 max-w-2xl mx-auto">
             Roofing and exterior protection trusted by Pacific Northwest homeowners for over 30 years.
@@ -423,13 +423,13 @@ const QuoteAd: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ServiceCard
-              title="Premium Roofing"
-              description="Premium architectural shingles installed by trained pros. Lifetime warranty available, financing in minutes, built for Seattle weather."
+              title="Roofing"
+              description="Architectural shingles installed by trained pros. Lifetime warranty available, financing in minutes, built for Seattle weather."
               imageUrl="/lovable-uploads/home-premium-roofing.jpg"
               link="/roof-replacement"
             />
             <ServiceCard
-              title="Premium Gutter Systems"
+              title="Gutter Systems"
               description={'Seamless 5" gutters with leaf-guard protection and our exclusive lifetime clog-free guarantee. Never climb a ladder again.'}
               imageUrl="/lovable-uploads/home-premium-gutters.jpg"
               link="/gutter-replacement"
