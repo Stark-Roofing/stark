@@ -290,8 +290,8 @@ const QuoteAd: React.FC = () => {
 
         <div className="container mx-auto px-4 md:px-6 relative z-10 pt-10 md:pt-14 lg:pt-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            {/* Left: headline + trust pills (7 cols) — order-2 on mobile so form is above the fold */}
-            <div className="lg:col-span-7 text-center lg:text-left order-2 lg:order-1">
+            {/* Left: headline + trust pills (7 cols) — order-1 on mobile so headline reads first, form below */}
+            <div className="lg:col-span-7 text-center lg:text-left order-1 lg:order-1">
               <span className="inline-flex items-center gap-2 bg-stark-red/20 text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full mb-5 border border-stark-red/40 backdrop-blur-sm">
                 <Shield size={12} /> Family-Owned in Sammamish
               </span>
@@ -334,8 +334,8 @@ const QuoteAd: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: QuickQuoteForm (5 cols) — order-1 on mobile to appear above the fold */}
-            <div className="lg:col-span-5 lg:mt-12 order-1 lg:order-2">
+            {/* Right: QuickQuoteForm (5 cols) — order-2 on mobile so it sits below the headline */}
+            <div className="lg:col-span-5 lg:mt-12 order-2 lg:order-2">
               <div className="bg-white rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.3)] border border-white/20 overflow-hidden">
                 <AdsLeadForm defaultService="roof-replacement" />
               </div>
