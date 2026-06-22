@@ -67,6 +67,7 @@ const RoofRepairAd = lazy(() => import('./pages/ads/RoofRepairAd'));
 const GuttersAd = lazy(() => import('./pages/ads/GuttersAd'));
 const QuoteAd = lazy(() => import('./pages/ads/QuoteAd'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 
 function App() {
   useEntranceAnimations();
@@ -137,6 +138,7 @@ function App() {
             <Route path="/storm-damage" element={<StormDamage />} />
             <Route path="/warranty" element={<Warranty />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/window-replacement" element={<WindowReplacement />} />
 
             <Route path="/tpo-roofing" element={<TPORoofing />} />
