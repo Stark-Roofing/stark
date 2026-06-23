@@ -16,6 +16,103 @@ import { cityBlogPosts } from './cityBlogPosts';
 
 const corePosts: BlogPost[] = [
   {
+    slug: "siding-replacement-eastside-hardie-vinyl-lp-smartside",
+    title: "Siding Replacement on the Eastside: James Hardie vs Vinyl vs LP SmartSide",
+    excerpt: "Picking siding for a Pacific Northwest home is really a moisture decision. Here is how James Hardie fiber cement, vinyl, and LP SmartSide engineered wood actually hold up on the Eastside, what each costs installed in 2026, and why the contractor matters more than the brand.",
+    date: "2026-06-22",
+    author: "Stark Roofing Team",
+    image: "/lovable-uploads/siding-replacement-eastside-2026.webp",
+    keywords: "siding replacement eastside wa,james hardie vs vinyl siding,lp smartside pacific northwest,fiber cement siding sammamish,siding contractor bellevue",
+    readTime: "6 min read",
+    content: `
+# Siding Replacement on the Eastside: James Hardie vs Vinyl vs LP SmartSide
+
+If your siding is cupping, swelling at the bottom edges, or showing soft spots when you press on it, the Eastside climate is the reason. Siding here does not fail from sun the way it does in Arizona. It fails from water. Wind-driven rain, north walls that never fully dry, and the same moss and algae that go after roofs all work on siding too.
+
+That changes how you should choose a replacement. The brochure talk about colors and curb appeal matters, but the real question is which material survives a wet climate and a contractor who installs it so water actually drains. Here is how the three materials homeowners on the Eastside compare in practice, what they cost installed in 2026, and where people go wrong.
+
+## The three materials homeowners actually compare
+
+Almost every Eastside siding project comes down to three choices: James Hardie fiber cement, vinyl, or LP SmartSide engineered wood. Cedar and real wood still exist, but few homeowners take on that maintenance load anymore in this climate.
+
+### James Hardie fiber cement
+
+Fiber cement is the default premium choice on the Eastside for a reason. It does not rot, it does not feed moss, insects ignore it, and it holds paint for 12 to 15 years. James Hardie also engineers a specific product line for wet, variable climates, which is what you want west of the Cascades.
+
+The tradeoffs are weight and install skill. Fiber cement is heavy and brittle until it is fastened. A crew that rushes the fastening, skips the back-flashing at windows, or butts boards tight without proper gaps will get callbacks. Installed correctly, it is the longest lasting of the three.
+
+### Vinyl
+
+Vinyl is the budget option, and on a sheltered rambler it can be a reasonable one. It does not rot and it never needs paint. The honest downsides on the Eastside: it can crack in a cold snap, it fades unevenly on sun-exposed walls, and lower-grade panels look like what they cost. It also hides moisture problems rather than solving them, because water that gets behind it has nowhere to dry.
+
+### LP SmartSide
+
+Engineered wood splits the difference. LP SmartSide is treated wood strand product that takes paint beautifully, handles impact better than fiber cement, and weighs less so labor runs lower. The catch is that it is still a wood product. It depends entirely on the coating and the cut ends being sealed. On the Eastside, an unsealed field cut at a gable is exactly where engineered wood starts to swell years later.
+
+## What the Eastside climate does to siding
+
+Three local forces decide how long siding lasts here, and none of them are on the sample board.
+
+**Constant moisture.** With well over 150 wet days a year, siding rarely gets a long dry stretch. Materials that absorb water or trap it behind the panel are living on borrowed time. This is why flashing and drainage planes matter more than the panel itself.
+
+**North and tree-shaded walls.** The north side of a Sammamish or Bridle Trails home under mature Douglas fir canopy can stay damp for weeks. That is where moss, algae, and the green film show up first, and where cheap siding fails first.
+
+**Wind-driven rain.** Storms here push water sideways into seams, window edges, and any gap a fast install left behind. Good siding is only as waterproof as its weakest joint.
+
+## What siding replacement costs on the Eastside in 2026
+
+Real installed ranges for a typical Eastside home, including tear-off, house wrap, trim, and paint where needed:
+
+- **Vinyl:** $9,000 to $18,000 for an average home. Simple, single-story homes land at the low end.
+- **LP SmartSide:** $14,000 to $28,000. Pre-finished options and complex trim push the top of the range.
+- **James Hardie fiber cement:** $16,000 to $34,000. Two-story homes, lots of corners, and ColorPlus factory finish sit at the high end.
+
+The spread inside each range is driven by the same things that move a roofing quote: house size and number of stories, how many corners and windows need trim and flashing, whether there is rot to repair behind the old siding, and site access. A quote that does not mention the house wrap, the flashing, or what happens if rot is found underneath is a quote hiding its weak points.
+
+## Signs your siding is past repair
+
+You do not always need full replacement, but these signs usually mean the wall, not just the paint, is the problem:
+
+- Soft or spongy spots when you press, especially low on the wall or under windows
+- Swelling, cupping, or peeling that keeps coming back after repainting
+- Moss or dark staining that returns within a season of cleaning
+- Visible gaps at seams and around windows where water can drive in
+- Interior signs: bubbling paint, musty smells, or staining on the inside of exterior walls
+
+That last one matters most. By the time moisture shows up inside, the issue is the wall assembly, and a coat of paint will not fix it.
+
+## Why a roofing contractor should handle your siding
+
+Siding and roofing fail at the same places: flashing, transitions, and anywhere two materials meet. The crew that understands how water moves off a roof is the crew that knows how to keep it out of a wall. At Stark, siding is not a side gig bolted onto roofing. It is the same licensed, bonded, and insured crew, the same attention to flashing and drainage, and the same family-owned shop here in Sammamish that homeowners already trust for their roofs.
+
+Doing siding and roof work together also saves money when the timing lines up, because the same scaffolding, the same flashing details at the roofline, and the same crew cover both.
+
+## Frequently Asked Questions
+
+### Which siding lasts longest in the Pacific Northwest?
+
+Properly installed James Hardie fiber cement is the longest lasting of the common options here because it does not rot, feed moss, or attract insects, and it holds paint 12 to 15 years. LP SmartSide is close when every cut end is sealed. Vinyl lasts a long time physically but tends to look worn sooner on sun and weather exposed walls.
+
+### Is James Hardie worth the extra cost over vinyl?
+
+For most Eastside homeowners staying in the house, yes. The higher upfront cost buys a material that resists our biggest problem, moisture, and looks better at resale. For a rental or a sheltered home you plan to sell soon, mid-grade vinyl can be the practical call.
+
+### How long does a siding replacement take?
+
+A typical single-family home runs about one to two weeks depending on size, weather, and whether rot is found behind the old siding once it comes off. We give you a timeline in the written estimate.
+
+### Can you replace siding and roofing at the same time?
+
+Yes, and it often saves money. The same crew, scaffolding, and flashing details at the roofline cover both, and you only disrupt the property once.
+
+### Will new siding fix my moisture or mold problem?
+
+Only if the install includes a proper house wrap, drainage plane, and flashing. Siding is the outer layer. The system behind it is what keeps the wall dry, which is why install quality matters more than the brand on the box.
+
+**Ready for a free Eastside siding assessment?** Stark Roofing & Renovation is family-owned in Sammamish and serves Sammamish, Bellevue, Kirkland, Redmond, Issaquah, and the rest of Eastside King County. Licensed, bonded, and insured. Call **(206) 739-8232** or [request a free inspection](/contact).
+`
+  },
+  {
     slug: "gaf-master-elite-certification",
     title: "GAF Master Elite Certification: What It Means and Why Only 2% of Roofers Have It",
     excerpt: "Only about 2% of roofing contractors hold GAF Master Elite status. Here is what the certification actually requires (audited insurance, installation track record, annual recommitment) and what homeowners get from hiring one: access to the Golden Pledge warranty with 50 years on materials and 25 years on workmanship.",
