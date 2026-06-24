@@ -93,9 +93,31 @@ const PrivacyPolicy = () => {
               <p>
                 By submitting a form or providing your phone number, you consent to
                 be contacted by Stark Roofing &amp; Renovation about your request.
-                Message and data rates may apply. You can opt out of future
-                communication at any time by replying STOP to a text, asking us to
-                remove you from our list, or contacting us at the email below.
+                Message frequency varies and message and data rates may apply. You
+                can opt out of future communication at any time by replying STOP to a
+                text, replying HELP for help, asking us to remove you from our list,
+                or contacting us at the email below.
+              </p>
+              <p className="mt-3 font-semibold">
+                We do not sell, rent, or share your mobile phone number or your SMS
+                opt-in and consent information with any third parties or affiliates
+                for their own marketing or promotional purposes. Text messaging
+                originator opt-in data and consent are never shared with anyone.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-[#0F2542] mb-2">
+                Data Security
+              </h2>
+              <p>
+                We take reasonable administrative, technical, and physical safeguards
+                to protect the information you share with us. Data is transmitted over
+                encrypted (HTTPS) connections, stored within reputable
+                customer-management and communication platforms, and access is limited
+                to authorized team members who need it to serve you. While no method of
+                transmission or storage is completely secure, we work to protect your
+                information against unauthorized access, loss, or misuse.
               </p>
             </section>
 

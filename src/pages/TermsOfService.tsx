@@ -79,12 +79,25 @@ const TermsOfService = () => {
                 inspection or service. Message and data rates may apply, and message
                 frequency varies. Consent to receive messages is not a condition of
                 purchase. You can opt out of text messages at any time by replying
-                STOP, and reply HELP for help. Our handling of your information is
-                described in our{' '}
+                STOP, and reply HELP for help. Carriers (including AT&amp;T, T-Mobile,
+                Verizon, and others) are not liable for delayed or undelivered
+                messages. Our handling of your information is described in our{' '}
                 <a href="/privacy-policy" className="text-[#C8102E] hover:underline">
                   Privacy Policy
                 </a>
                 .
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-[#0F2542] mb-2">
+                Eligibility
+              </h2>
+              <p>
+                You must be at least 18 years old to use this website, request our
+                services, or opt in to receive text messages from us. By using our
+                website or providing your phone number, you confirm that you are 18
+                years of age or older.
               </p>
             </section>
 
