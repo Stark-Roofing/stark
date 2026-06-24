@@ -16,11 +16,16 @@
     h1 { color: #0F2542; font-size: 1.7rem; margin-bottom: 8px; }
     .sub { color: #C8102E; font-weight: 600; margin-bottom: 20px; }
     p { color: #444; margin-bottom: 16px; }
-    .consent {
-      font-size: .8rem; color: #666; background: #f5f6f8; border-radius: 10px;
-      padding: 14px 16px; margin-top: 24px;
+    .optin { margin-top: 26px; text-align: left; }
+    .optin h2 { color: #0F2542; font-size: 1.05rem; margin-bottom: 6px; }
+    .optin-intro { font-size: .85rem; color: #444; margin-bottom: 14px; }
+    .consent-row { display: flex; gap: 10px; align-items: flex-start; font-size: .82rem; color: #444; margin-bottom: 12px; }
+    .consent-row input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; width: 17px; height: 17px; }
+    .optin-disclosure {
+      font-size: .78rem; color: #666; background: #f5f6f8; border-radius: 10px;
+      padding: 12px 14px; margin-top: 6px;
     }
-    .consent a { color: #C8102E; }
+    .optin-disclosure a { color: #C8102E; }
     .brand { text-align: center; color: #cfd8e6; font-size: .8rem; margin-top: 28px; }
   </style>
 </head>
@@ -39,14 +44,39 @@
         <a href="tel:12067398232" style="color:#C8102E;font-weight:600;">(206)&nbsp;739-8232</a>.
       </p>
 
-      <div class="consent">
-        By submitting your phone number through the chat on this page, you agree to
-        receive text messages from Stark Roofing &amp; Renovation (operated by Prime
-        Finds LLC) about your inquiry, scheduling, and — if you opt in — promotions.
-        Message frequency varies. Message and data rates may apply. Consent is not a
-        condition of purchase. Reply STOP to unsubscribe, HELP for help. See our
-        <a href="/privacy-policy">Privacy Policy</a> and
-        <a href="/terms-of-service">Terms of Service</a>.
+      <div class="optin">
+        <h2>Text message opt-in</h2>
+        <p class="optin-intro">
+          Enter your phone number in the chat above, then choose what you'd like to
+          receive. These checkboxes are <strong>optional</strong> and are
+          <strong>not pre-selected</strong> — opting in to texts is not a condition
+          of purchase.
+        </p>
+
+        <label class="consent-row">
+          <input type="checkbox" name="consent_care" />
+          <span>
+            I agree to receive customer-care text messages from Stark Roofing &amp;
+            Renovation (operated by Prime Finds LLC) about my inquiry, appointment
+            scheduling, and inspection reminders.
+          </span>
+        </label>
+
+        <label class="consent-row">
+          <input type="checkbox" name="consent_promo" />
+          <span>
+            I also agree to receive occasional promotional text messages (special
+            offers and seasonal discounts on roofing, gutters, and siding) from Stark
+            Roofing &amp; Renovation (operated by Prime Finds LLC). This is optional.
+          </span>
+        </label>
+
+        <p class="optin-disclosure">
+          Message frequency varies. Message and data rates may apply. Reply STOP to
+          unsubscribe, HELP for help. We do not share your opt-in data with third
+          parties. See our <a href="/privacy-policy">Privacy Policy</a> and
+          <a href="/terms-of-service">Terms of Service</a>.
+        </p>
       </div>
     </div>
     <p class="brand">Stark Roofing &amp; Renovation &middot; Sammamish, WA</p>
