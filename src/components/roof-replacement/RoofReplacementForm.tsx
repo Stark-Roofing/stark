@@ -34,8 +34,8 @@ const RoofReplacementForm = () => {
         source: 'Roof Replacement Form'
       };
 
-      const { sendLeadEmail } = await import('@/utils/emailjs');
-      await sendLeadEmail({
+      const { submitLead } = await import('@/utils/submitLead');
+      await submitLead({
         name,
         phone: phoneNumber,
         email,

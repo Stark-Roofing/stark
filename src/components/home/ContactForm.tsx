@@ -42,8 +42,8 @@ const ContactForm: React.FC = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const { sendLeadEmailAndSms } = await import('@/utils/emailjs');
-      await sendLeadEmailAndSms(values as Record<string, string>);
+      const { submitLead } = await import('@/utils/submitLead');
+      await submitLead(values as Record<string, unknown>);
       toast.success("Got it! Brenda or someone from her team will reach out within 2 business hours.", {
         duration: 6000,
       });

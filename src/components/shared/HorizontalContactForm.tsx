@@ -77,8 +77,8 @@ const HorizontalContactForm: React.FC<HorizontalFormProps> = ({
   
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
-      const { sendLeadEmail } = await import('@/utils/emailjs');
-      await sendLeadEmail(data as Record<string, string>);
+      const { submitLead } = await import('@/utils/submitLead');
+      await submitLead(data as Record<string, unknown>);
       toast.success(onSuccessMessage);
       reset();
     } catch (error) {

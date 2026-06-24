@@ -29,8 +29,8 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({
 
   const onSubmit = async (data: any) => {
     try {
-      const { sendLeadEmailAndSms } = await import('@/utils/emailjs');
-      await sendLeadEmailAndSms({
+      const { submitLead } = await import('@/utils/submitLead');
+      await submitLead({
         name: data.name,
         email: data.email,
         phone: data.phone,

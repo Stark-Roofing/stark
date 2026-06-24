@@ -63,8 +63,8 @@ export const useContactFormState = (): [ContactFormState, ContactFormActions] =>
     
     setIsSubmitting(true);
     try {
-      const { sendLeadEmail } = await import('@/utils/emailjs');
-      await sendLeadEmail({ name, email, phone, zip, source: window.location.pathname });
+      const { submitLead } = await import('@/utils/submitLead');
+      await submitLead({ name, email, phone, zip, service, message: comment, refer_source: referSource, source: window.location.pathname });
       toast.success("Thank you for your request!", {
         description: "We'll be in touch with you shortly."
       });

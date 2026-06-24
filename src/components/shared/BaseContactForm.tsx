@@ -102,8 +102,8 @@ const BaseContactForm: React.FC<BaseContactFormProps> = ({
   });
   const onSubmit = async (values: z.infer<typeof schema>) => {
     try {
-      const { sendLeadEmailAndSms } = await import('@/utils/emailjs');
-      await sendLeadEmailAndSms(values as Record<string, string>);
+      const { submitLead } = await import('@/utils/submitLead');
+      await submitLead(values as Record<string, unknown>);
       toast.success(successMessage, { duration: 6000 });
       if (onSubmitSuccess) {
         onSubmitSuccess();

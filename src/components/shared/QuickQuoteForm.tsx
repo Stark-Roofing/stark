@@ -193,7 +193,14 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
 
       postToGhlWebhook(payload);
 
-      await sendLeadEmailAndSms(payload);
+      // Email + SMS to Brenda — best-effort only. The lead already reached GHL
+      // (source of truth) via postToGhlWebhook above, so a legacy-EmailJS outage
+      // must NOT surface an error to the visitor.
+      try {
+        await sendLeadEmailAndSms(payload);
+      } catch (emailErr) {
+        console.warn('EmailJS lead alert failed (lead already in GHL):', emailErr);
+      }
 
       try {
         await sendCustomerConfirmation(payload);

@@ -208,8 +208,14 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
       // Best-effort GHL routing (Vant CRM + WhatsApp automation).
       postToGhlWebhook(payload);
 
-      // Instant email + SMS to Brenda — must succeed for lead to land.
-      await sendLeadEmailAndSms(payload);
+      // Email + SMS to Brenda — best-effort only. The lead already reached GHL
+      // (source of truth) via postToGhlWebhook above, so a legacy-EmailJS outage
+      // must NOT surface an error to the visitor.
+      try {
+        await sendLeadEmailAndSms(payload);
+      } catch (emailErr) {
+        console.warn('EmailJS lead alert failed (lead already in GHL):', emailErr);
+      }
 
       // Best-effort customer confirmation email.
       try {
