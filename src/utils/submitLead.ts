@@ -13,6 +13,13 @@
  */
 import { sendLeadEmailAndSms } from './emailjs';
 
+/** Human-readable lead source from a page path: "/" -> "Home Page", else the path. */
+export function readableSource(path: string = window.location.pathname): string {
+  const p = (path || '').trim();
+  if (!p || p === '/') return 'Home Page';
+  return p;
+}
+
 // Stark GHL inbound webhook — same trigger used by AdsLeadForm / QuickQuoteForm.
 // Public endpoint; dedup + routing live in the GHL workflow.
 const GHL_WEBHOOK_URL =
@@ -60,7 +67,7 @@ export async function submitLead(raw: Record<string, unknown>): Promise<void> {
     email: s(raw.email),
     phone: s(raw.phone ?? raw.phoneNumber),
     zip: s(raw.zip ?? raw.zipCode),
-    source: s(raw.source) || window.location.pathname,
+    source: readableSource(s(raw.source) || window.location.pathname),
     landing_page: s(raw.landing_page) || window.location.pathname,
     submitted_at: s(raw.submitted_at) || new Date().toISOString(),
   };

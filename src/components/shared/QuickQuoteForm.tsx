@@ -39,6 +39,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { sendLeadEmailAndSms, sendCustomerConfirmation } from '@/utils/emailjs';
+import { readableSource } from '@/utils/submitLead';
 import {
   getOrCreateExternalId,
   getFbp,
@@ -152,7 +153,7 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
         service: serviceLabel,
         address: values.address,
         zip: values.zip,
-        source: window.location.pathname,
+        source: readableSource(),
         landing_page: window.location.pathname,
         submitted_at: new Date().toISOString(),
       };
