@@ -5,135 +5,261 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, follow" />
   <title>Text Stark Roofing &amp; Renovation | Sammamish, WA Roofing Contractor</title>
-  <meta name="description" content="Text or message Stark Roofing & Renovation — a family-owned, GAF-certified roofing contractor in Sammamish, WA. Free inspections, written quotes, no pressure." />
+  <meta name="description" content="Text Stark Roofing & Renovation — a family-owned, GAF-certified roofing contractor in Sammamish, WA. Free inspections, written quotes, no pressure. Serving the Seattle Eastside for 30 years." />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: #f4f6f9; color: #1f2733; line-height: 1.6;
-    }
-    a { color: #C8102E; }
-    .topbar { background: #0F2542; color: #fff; }
-    .topbar .inner { max-width: 920px; margin: 0 auto; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-    .brand { font-size: 1.25rem; font-weight: 800; letter-spacing: .3px; }
+    :root { --navy:#0F2542; --red:#C8102E; --ink:#1f2733; --muted:#5b6675; --bg:#f4f6f9; }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; }
+    a { color: var(--red); }
+    .container { max-width: 1040px; margin: 0 auto; padding: 0 22px; }
+
+    /* Top bar */
+    .topbar { background: var(--navy); color: #fff; position: sticky; top: 0; z-index: 10; }
+    .topbar .container { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; padding-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+    .brand { font-size: 1.2rem; font-weight: 800; letter-spacing: .3px; }
     .brand span { color: #ff5a5f; }
-    .topbar a { color: #fff; font-weight: 600; text-decoration: none; }
-    .wrap { max-width: 920px; margin: 0 auto; padding: 32px 20px 64px; }
-    .hero { background: #fff; border-radius: 14px; padding: 32px 28px; box-shadow: 0 8px 30px rgba(15,37,66,.10); }
-    h1 { color: #0F2542; font-size: 1.8rem; margin-bottom: 8px; }
-    .sub { color: #C8102E; font-weight: 600; margin-bottom: 16px; }
-    p { color: #3d4756; margin-bottom: 14px; }
-    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 4px; }
-    .badge { background: #eef1f6; color: #0F2542; font-size: .8rem; font-weight: 600; padding: 6px 12px; border-radius: 20px; }
-    .grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 24px; }
-    @media (min-width: 720px) { .grid { grid-template-columns: 1fr 1fr; } }
-    .card { background: #fff; border-radius: 14px; padding: 24px; box-shadow: 0 8px 30px rgba(15,37,66,.08); }
-    .card h2 { color: #0F2542; font-size: 1.15rem; margin-bottom: 10px; }
-    .card ul { list-style: none; }
-    .card li { padding: 4px 0 4px 20px; position: relative; color: #3d4756; font-size: .95rem; }
-    .card li::before { content: "✓"; color: #C8102E; position: absolute; left: 0; font-weight: 700; }
-    .optin { background: #fff; border-radius: 14px; padding: 28px; box-shadow: 0 8px 30px rgba(15,37,66,.10); margin-top: 24px; }
-    .optin h2 { color: #0F2542; font-size: 1.25rem; margin-bottom: 6px; }
-    .optin-intro { font-size: .92rem; color: #3d4756; margin-bottom: 16px; }
-    .optin-disclosure { font-size: .8rem; color: #5b6675; background: #f5f6f8; border-radius: 10px; padding: 12px 14px; margin-top: 8px; }
-    .contact { margin-top: 24px; font-size: .92rem; color: #3d4756; }
-    .contact strong { color: #0F2542; }
-    footer { text-align: center; color: #8a96a6; font-size: .82rem; margin-top: 32px; }
-    footer a { color: #5b6675; }
+    .topbar nav a { color: #cfd8e6; font-weight: 600; text-decoration: none; margin-left: 18px; font-size: .92rem; }
+    .topbar nav a:hover { color: #fff; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #0F2542 0%, #16335c 60%, #1f4178 100%); color: #fff; padding: 64px 0 72px; }
+    .hero h1 { font-size: 2.4rem; line-height: 1.15; margin-bottom: 14px; }
+    .hero h1 .accent { color: #ff7a7e; }
+    .hero .lead { font-size: 1.12rem; color: #d7e0ee; max-width: 640px; margin-bottom: 26px; }
+    .cta { display: inline-flex; align-items: center; gap: 10px; background: var(--red); color: #fff; text-decoration: none; font-weight: 700; padding: 14px 26px; border-radius: 999px; font-size: 1rem; box-shadow: 0 10px 28px rgba(200,16,46,.35); }
+    .cta:hover { background: #a50d26; }
+    .cta-note { color: #aebdd4; font-size: .9rem; margin-top: 14px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .badge { background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.18); color: #eaf0f8; font-size: .82rem; font-weight: 600; padding: 7px 14px; border-radius: 999px; }
+
+    /* Sections */
+    section { padding: 56px 0; }
+    .section-head { text-align: center; max-width: 680px; margin: 0 auto 36px; }
+    .eyebrow { color: var(--red); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: .8rem; margin-bottom: 8px; }
+    h2 { color: var(--navy); font-size: 1.8rem; line-height: 1.2; }
+    .section-head p { color: var(--muted); margin-top: 12px; font-size: 1.02rem; }
+
+    .grid { display: grid; gap: 20px; grid-template-columns: 1fr; }
+    @media (min-width: 680px) { .grid-2 { grid-template-columns: 1fr 1fr; } .grid-3 { grid-template-columns: repeat(3,1fr); } }
+    .card { background: #fff; border-radius: 16px; padding: 26px; box-shadow: 0 10px 34px rgba(15,37,66,.08); }
+    .card h3 { color: var(--navy); font-size: 1.15rem; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: .95rem; }
+    .icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(200,16,46,.10); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 800; margin-bottom: 14px; }
+
+    .alt { background: #fff; }
+    .about-grid { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: center; }
+    @media (min-width: 820px) { .about-grid { grid-template-columns: 1.2fr .8fr; } }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat { background: var(--bg); border-radius: 14px; padding: 20px; text-align: center; }
+    .stat .num { color: var(--red); font-size: 1.7rem; font-weight: 800; }
+    .stat .lbl { color: var(--navy); font-size: .85rem; font-weight: 600; }
+
+    .area-list { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .chip { background: #fff; border: 1px solid #e3e8f0; border-radius: 999px; padding: 8px 16px; color: var(--navy); font-weight: 600; font-size: .9rem; }
+
+    /* Opt-in */
+    .optin { background: linear-gradient(135deg,#0F2542,#1c3a68); color:#fff; border-radius: 20px; padding: 40px 32px; text-align: center; }
+    .optin h2 { color: #fff; }
+    .optin p { color: #d7e0ee; max-width: 680px; margin: 14px auto 0; }
+    .optin .cta { margin-top: 22px; }
+    .disclosure { font-size: .82rem; color: #aebdd4; background: rgba(255,255,255,.06); border-radius: 12px; padding: 16px 18px; margin-top: 24px; text-align: left; }
+    .disclosure a { color: #ff9fa2; }
+
+    /* Contact */
+    .contact-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media (min-width: 680px) { .contact-grid { grid-template-columns: repeat(3,1fr); } }
+    .contact-card { background:#fff; border-radius:14px; padding:22px; text-align:center; box-shadow: 0 8px 24px rgba(15,37,66,.06); }
+    .contact-card .t { color: var(--navy); font-weight: 700; margin-bottom: 4px; }
+    .contact-card .v { color: var(--muted); font-size: .92rem; }
+
+    footer { background: var(--navy); color: #9fb0c8; text-align: center; padding: 28px 0; font-size: .85rem; }
+    footer a { color: #cfd8e6; }
   </style>
 </head>
 <body>
   <header class="topbar">
-    <div class="inner">
+    <div class="container">
       <div class="brand">STARK <span>ROOFING</span> &amp; RENOVATION</div>
-      <a href="https://starkroofingrenovation.com">← Back to main site</a>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#area">Service Area</a>
+        <a href="https://starkroofingrenovation.com">Main site →</a>
+      </nav>
     </div>
   </header>
 
-  <div class="wrap">
-    <div class="hero">
-      <h1>Text Stark Roofing &amp; Renovation</h1>
-      <p class="sub">Family-owned roofing &amp; exterior contractor in Sammamish, WA.</p>
-      <p>
-        For 30 years our family-owned team has installed and repaired more than
-        <strong>2,000 roofs</strong> across the Seattle Eastside. We're
-        <strong>GAF-certified</strong>, fully licensed, and known for honest written
-        quotes and no high-pressure sales. Use the chat in the corner to send us your
-        name, number, and what's going on with your roof — a real team member texts
-        you back to set up a free, no-obligation inspection.
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>Text the roofer the Eastside<br /><span class="accent">actually trusts.</span></h1>
+      <p class="lead">
+        Stark Roofing &amp; Renovation is a family-owned, GAF-certified roofing and
+        exterior contractor in Sammamish, WA. Start a quick chat, send us your number,
+        and a real team member texts you back to set up a free, no-pressure inspection.
       </p>
-      <p>Prefer to talk now? Call or text
-        <a href="tel:+12067398232" style="font-weight:600;">(206)&nbsp;739-8232</a>.</p>
+      <a class="cta" href="#text-us">💬 Start the chat &amp; get a reply →</a>
+      <p class="cta-note">Open the chat in the corner of this page. No call center — you text a local human.</p>
       <div class="badges">
-        <span class="badge">GAF Certified</span>
-        <span class="badge">30+ Years</span>
-        <span class="badge">2,000+ Roofs</span>
-        <span class="badge">Family-Owned</span>
-        <span class="badge">Bilingual EN · PT · ES</span>
-        <span class="badge">Free Inspection</span>
+        <span class="badge">✓ GAF Certified</span>
+        <span class="badge">✓ 30+ Years</span>
+        <span class="badge">✓ 2,000+ Roofs Installed</span>
+        <span class="badge">✓ Family-Owned</span>
+        <span class="badge">✓ Bilingual EN · PT · ES</span>
+        <span class="badge">✓ Free Inspection</span>
       </div>
     </div>
+  </section>
 
-    <div class="grid">
-      <div class="card">
-        <h2>What we do</h2>
-        <ul>
-          <li>Roof Replacement</li>
-          <li>Roof Repair &amp; Leak Repair</li>
-          <li>Gutters &amp; Gutter Guards</li>
-          <li>Siding Installation</li>
-          <li>Skylights</li>
-          <li>Storm &amp; Hail Damage Repair</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>Where we work</h2>
-        <ul>
-          <li>Sammamish &amp; Issaquah</li>
-          <li>Bellevue &amp; Redmond</li>
-          <li>Kirkland &amp; Woodinville</li>
-          <li>Newcastle &amp; Mercer Island</li>
-          <li>North Bend &amp; Snoqualmie</li>
-          <li>All of the Seattle Eastside</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="optin">
-      <h2>Text message opt-in</h2>
-      <p class="optin-intro">
-        To opt in, start a chat in the widget on this page and submit your phone
-        number. Inside the chat you can choose to receive customer-care messages
-        (about your inquiry, appointment scheduling, and inspection reminders) and/or
-        occasional promotional offers (seasonal discounts on roofing, gutters, and
-        siding) from Stark Roofing &amp; Renovation (operated by Prime Finds LLC).
-        Opting in is optional and is not a condition of purchase.
-      </p>
-
-      <p class="optin-disclosure">
-        Message frequency varies. Message and data rates may apply. Reply STOP to
-        unsubscribe, HELP for help. We do not share your opt-in data with third
-        parties. See our <a href="/privacy-policy">Privacy Policy</a> and
-        <a href="/terms-of-service">Terms of Service</a>.
-      </p>
-
-      <div class="contact">
-        <strong>Stark Roofing &amp; Renovation</strong> (operated by Prime Finds LLC)<br />
-        24243 SE 43rd Ct, Sammamish, WA 98029<br />
-        Phone: <a href="tel:+12067398232">(206) 739-8232</a> ·
-        Email: <a href="mailto:office@starkroofingrenovation.com">office@starkroofingrenovation.com</a><br />
-        Office hours: Mon–Fri 7a–7p · Sat 8a–4p · Emergency line 24/7
+  <!-- ABOUT -->
+  <section id="about" class="alt">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="eyebrow">Who we are</div>
+          <h2>A small Sammamish crew — not a national franchise.</h2>
+          <p style="color:var(--muted);margin-top:14px;">
+            For three decades our family-owned team has installed and repaired more than
+            2,000 roofs across the Seattle Eastside. We're GAF-certified, fully licensed
+            and insured, and known for honest written quotes and zero high-pressure
+            sales tactics. Every text, call, and form is read by a real person on our
+            team — usually within minutes during office hours.
+          </p>
+          <p style="color:var(--muted);margin-top:12px;">
+            From a single missing shingle to a full tear-off after a windstorm, we treat
+            your home like it's on our own street — because it usually is.
+          </p>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="num">30+</div><div class="lbl">Years on the Eastside</div></div>
+          <div class="stat"><div class="num">2,000+</div><div class="lbl">Roofs completed</div></div>
+          <div class="stat"><div class="num">GAF</div><div class="lbl">Certified installer</div></div>
+          <div class="stat"><div class="num">24/7</div><div class="lbl">Emergency line</div></div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <footer>
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">What we do</div>
+        <h2>Roofing &amp; exterior work, done right</h2>
+        <p>Whatever's going on up top, we handle it — and tell you straight what it actually needs.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card"><div class="icon">🏠</div><h3>Roof Replacement</h3><p>Full tear-offs and new installs with premium GAF shingles and a written workmanship warranty.</p></div>
+        <div class="card"><div class="icon">🔧</div><h3>Roof &amp; Leak Repair</h3><p>Fast fixes for leaks, missing shingles, flashing, and storm damage — before they get worse.</p></div>
+        <div class="card"><div class="icon">🌧️</div><h3>Gutters &amp; Guards</h3><p>Seamless gutters and gutter guards that keep Pacific Northwest rain where it belongs.</p></div>
+        <div class="card"><div class="icon">🧱</div><h3>Siding</h3><p>Siding installation and replacement to protect and refresh your home's exterior.</p></div>
+        <div class="card"><div class="icon">☀️</div><h3>Skylights</h3><p>Skylight installation and replacement, sealed right to stay leak-free for years.</p></div>
+        <div class="card"><div class="icon">⛈️</div><h3>Storm &amp; Hail Damage</h3><p>Inspections and repairs after wind, hail, and storms — with help documenting claims.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Why homeowners pick us</div>
+        <h2>Honest, fast, and local</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card"><div class="icon">⚡</div><h3>We reply in minutes</h3><p>During office hours we text back faster than email — usually under 15 minutes.</p></div>
+        <div class="card"><div class="icon">📝</div><h3>Free written quotes</h3><p>We measure, photograph, and email you a clear written estimate — often the same day.</p></div>
+        <div class="card"><div class="icon">🤝</div><h3>No pressure, ever</h3><p>No door-to-door tactics, no "today-only" deals. You decide on your own timeline.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA -->
+  <section id="area">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Where we work</div>
+        <h2>Proudly serving the Seattle Eastside</h2>
+      </div>
+      <div class="area-list">
+        <span class="chip">Sammamish</span>
+        <span class="chip">Issaquah</span>
+        <span class="chip">Bellevue</span>
+        <span class="chip">Redmond</span>
+        <span class="chip">Kirkland</span>
+        <span class="chip">Woodinville</span>
+        <span class="chip">Newcastle</span>
+        <span class="chip">Mercer Island</span>
+        <span class="chip">North Bend</span>
+        <span class="chip">Snoqualmie</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPT-IN / TEXT US -->
+  <section id="text-us" class="alt">
+    <div class="container">
+      <div class="optin">
+        <div class="eyebrow" style="color:#ff9fa2;">Text us</div>
+        <h2>Get a fast reply about your roof</h2>
+        <p>
+          Open the chat in the corner of this page and submit your name and phone
+          number. Inside the chat you can choose to receive customer-care messages
+          (about your inquiry, appointment scheduling, and inspection reminders)
+          and/or occasional promotional offers from Stark Roofing &amp; Renovation
+          (operated by Prime Finds LLC). Opting in is optional and is not a condition
+          of purchase.
+        </p>
+        <a class="cta" href="javascript:void(0)" onclick="document.querySelector('[data-chat-widget]')?.scrollIntoView();return false;">💬 Open the chat</a>
+        <p class="disclosure">
+          By submitting your number through the chat, you agree to receive text
+          messages from Stark Roofing &amp; Renovation (operated by Prime Finds LLC) at
+          the number provided. Message frequency varies. Message and data rates may
+          apply. Reply STOP to unsubscribe, HELP for help. We do not share your opt-in
+          data with third parties. See our
+          <a href="/privacy-policy">Privacy Policy</a> and
+          <a href="/terms-of-service">Terms of Service</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Reach us</div>
+        <h2>Stark Roofing &amp; Renovation</h2>
+        <p>Operated by Prime Finds LLC · Family-owned in Sammamish, WA</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="t">📍 Headquarters</div>
+          <div class="v">24243 SE 43rd Ct<br />Sammamish, WA 98029</div>
+        </div>
+        <div class="contact-card">
+          <div class="t">📞 Call or Text</div>
+          <div class="v"><a href="tel:+12067398232">(206) 739-8232</a><br />Mon–Fri 7a–7p · Sat 8a–4p</div>
+        </div>
+        <div class="contact-card">
+          <div class="t">✉️ Email</div>
+          <div class="v"><a href="mailto:office@starkroofingrenovation.com">office@starkroofingrenovation.com</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
       © Stark Roofing &amp; Renovation · Sammamish, WA ·
       <a href="https://starkroofingrenovation.com">starkroofingrenovation.com</a> ·
-      <a href="/privacy-policy">Privacy</a> · <a href="/terms-of-service">Terms</a>
-    </footer>
-  </div>
+      <a href="/privacy-policy">Privacy Policy</a> ·
+      <a href="/terms-of-service">Terms of Service</a>
+    </div>
+  </footer>
 
-  <!-- GHL LeadConnector chat widget — SMS opt-in (10DLC). Static "Por código" install on a form-free, business-context page. -->
+  <!-- GHL LeadConnector chat widget — SMS opt-in (10DLC). Static "Por codigo" install on a form-free, business-context page. Single opt-in source. -->
   <div data-chat-widget data-widget-id="6a3e71228ac627665427ad7a" data-location-id="Rc0vimjpYEKR7LCj48Qb"></div>
   <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a3e71228ac627665427ad7a" data-source="WEB_USER"></script>
 </body>
