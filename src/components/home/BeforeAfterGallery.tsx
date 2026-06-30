@@ -186,6 +186,8 @@ const BeforeAfterGallery: React.FC = () => {
                 src={p.afterImage}
                 alt={p.title}
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </button>
           ))}

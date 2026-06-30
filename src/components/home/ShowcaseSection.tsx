@@ -106,7 +106,7 @@ const ShowcaseSection = () => {
             variants={imageVariants}
             whileHover="hover"
           >
-            <img src="/lovable-uploads/18624d89-3e82-4389-8d1d-52760eee1b6f.webp" alt="Modern home with metal roof overlooking mountain vista" className="w-full h-full object-cover" />
+            <img src="/lovable-uploads/18624d89-3e82-4389-8d1d-52760eee1b6f.webp" alt="Modern home with metal roof overlooking mountain vista" className="w-full h-full object-cover" loading="lazy" decoding="async" />
             <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-6">
               <motion.span 
                 className="text-white font-medium text-sm uppercase tracking-wider"

@@ -60,6 +60,8 @@ const HappinessSection: React.FC = () => {
                     alt="Brenda Scarllet, Owner of Stark Roofing & Renovation"
                     className="w-full h-full object-cover"
                     style={{ objectPosition: "center 30%" }}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               ) : (
@@ -69,6 +71,8 @@ const HappinessSection: React.FC = () => {
                     alt="Brenda Scarllet, Owner of Stark Roofing & Renovation"
                     className="absolute w-full h-full object-cover"
                     style={{ objectPosition: "center 32%" }}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               )}

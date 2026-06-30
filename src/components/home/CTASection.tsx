@@ -11,6 +11,8 @@ const CTASection: React.FC = () => {
           src="/lovable-uploads/ea006abb-9eda-4581-bc18-f64c4bf9d2c0.webp"
           alt="Luxury lakefront home with stone accents and premium black shingle roof"
           className="w-full h-full object-cover object-center"
+          loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-navy/50"></div>
       </div>

@@ -29,6 +29,14 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <!-- Preconnect to the font origins so the TLS handshake to gstatic (where
+         the woff2 files live) and googleapis (the CSS) completes BEFORE the
+         stylesheet below is parsed. dns-prefetch only resolves DNS; preconnect
+         also opens the TCP+TLS connection, shaving ~300-600ms off the render-
+         blocking font CSS on mobile 4G. gstatic needs crossorigin (font fetch
+         is CORS); the CSS origin does not. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Google Fonts — loaded from <head> instead of @import in base.css.
          The @import would force the browser to wait for the main CSS bundle
          to parse before discovering the font CSS, adding 200-500ms LCP delay

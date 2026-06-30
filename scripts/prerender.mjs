@@ -40,8 +40,13 @@ function getPathsFromSitemap() {
   const xml = readFileSync(SITEMAP, 'utf8');
   const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim());
   const paths = locs.map((loc) => new URL(loc).pathname || '/');
+  // Skip static .html files (e.g. /quiz.html) — they are real files shipped in
+  // dist/ and served as-is, NOT React routes. Driving puppeteer at them fails
+  // the "#root has content" sanity check and aborts the whole build (exit 1),
+  // which silently froze the live deploy on an old CSR shell.
+  const renderable = paths.filter((p) => !p.toLowerCase().endsWith('.html'));
   // Deduplicate while preserving order
-  return [...new Set(paths)];
+  return [...new Set(renderable)];
 }
 
 // ---------------------------------------------------------------------------
@@ -49,17 +54,24 @@ function getPathsFromSitemap() {
 // ---------------------------------------------------------------------------
 function startServer() {
   return new Promise((resolvePromise, rejectPromise) => {
+    // Cross-platform: on Windows `npx` is a .cmd shim — bare spawn() throws
+    // ENOENT/EINVAL. Running through the shell resolves it. POSIX (Linux CI)
+    // keeps the plain, shell-less spawn.
+    const isWin = process.platform === 'win32';
     const proc = spawn(
       'npx',
       ['vite', 'preview', '--host', HOST, '--port', String(PORT), '--strictPort'],
-      { cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'] }
+      { cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'], shell: isWin }
     );
 
     let resolved = false;
     const onData = (chunk) => {
       const text = chunk.toString();
       process.stdout.write(text);
-      if (!resolved && (text.includes('Local:') || text.includes(`${HOST}:${PORT}`))) {
+      // Strip ANSI color codes before matching — vite preview emits colored
+      // output (e.g. "Local\x1b[22m:") which breaks a naive substring check.
+      const clean = text.replace(/\x1b\[[0-9;]*m/g, '');
+      if (!resolved && (clean.includes('Local:') || clean.includes(`${HOST}:${PORT}`))) {
         resolved = true;
         resolvePromise(proc);
       }

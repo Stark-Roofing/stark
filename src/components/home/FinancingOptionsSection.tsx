@@ -42,8 +42,10 @@ const FinancingOptionsSection: React.FC = () => {
             <div className="rounded-xl overflow-hidden shadow-lg">
               <img 
                 src="/lovable-uploads/9169ba8d-6805-4020-bba5-be0113bfc881.webp" 
-                alt="Mother and child applying for home financing online" 
+                alt="Mother and child applying for home financing online"
                 className="w-full h-auto object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </motion.div>
