@@ -256,4 +256,8 @@ for (const [pathname, html] of renders) {
 }
 
 log(`wrote ${renders.size} files; ${failed} failed`);
-if (failed > 0) process.exit(1);
+// Force exit. On Linux CI the spawned `vite preview` child keeps the event loop
+// alive (server.kill('SIGTERM') doesn't always reap it), so node hangs forever
+// AFTER the work is done — the prerender finished in ~57s but the step never
+// ended. Windows reaps it fine locally. Explicit exit ends the step immediately.
+process.exit(failed > 0 ? 1 : 0);
