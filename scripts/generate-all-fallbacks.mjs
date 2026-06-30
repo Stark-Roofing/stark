@@ -338,11 +338,15 @@ for (const pathname of unique) {
     continue;
   }
 
-  // Homepage: only replace if dist/index.html lacks an <h1> (came from bare
-  // `vite build` rather than Puppeteer prerender)
+  // Homepage: only replace if dist/index.html still has an EMPTY #root (the bare
+  // `vite build` shell — prerender didn't fill it). The old check looked for an
+  // <h1>, but the home renders its hero heading as styled <div>s, so a good
+  // ~190KB prerender (full #root, no literal <h1>) was being discarded and
+  // overwritten with this empty-root fallback shell — that's why the live home
+  // was a 6KB shell while every sub-page had full content.
   if (pathname === '/' || pathname === '') {
     const indexHtml = readFileSync(INDEX_HTML, 'utf8');
-    if (!/<h1[\s>]/i.test(indexHtml)) {
+    if (/<div id="root">\s*<\/div>/i.test(indexHtml)) {
       const html = generatePageHtml('/', assets);
       writeFileSync(INDEX_HTML, html);
       homepageReplaced = true;
