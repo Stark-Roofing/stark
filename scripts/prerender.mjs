@@ -138,12 +138,16 @@ async function renderPath(browser, pathname) {
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800 });
 
-  // Block analytics + tracking pixels — no need to fire them during the
-  // build crawl, and they slow networkidle down significantly.
+  // Block heavy media + 3rd-party trackers during the crawl. We only need the
+  // rendered HTML (not visuals), and a streaming hero <video> never lets
+  // networkidle settle — that was making each page hang ~60s. Images/fonts stay
+  // in the DOM with their src/href, so the static HTML is unaffected.
   await page.setRequestInterception(true);
   page.on('request', (req) => {
+    const type = req.resourceType();
     const url = req.url();
     const blocked =
+      type === 'image' || type === 'media' || type === 'font' ||
       url.includes('googletagmanager.com') ||
       url.includes('google-analytics.com') ||
       url.includes('connect.facebook.net') ||
@@ -158,9 +162,19 @@ async function renderPath(browser, pathname) {
   const errors = [];
   page.on('pageerror', (err) => errors.push(err.message));
 
-  await page.goto(ORIGIN + pathname, { waitUntil: 'networkidle2', timeout: 60_000 });
-  // useEffect-driven meta tags need a microtask to settle after networkidle
-  await new Promise((r) => setTimeout(r, 400));
+  // Load the DOM, then wait for React to actually mount content into #root.
+  // This replaces the fragile networkidle2 wait (which never settled with the
+  // streaming hero video) — robust and ~2s/page instead of a 60s timeout.
+  await page.goto(ORIGIN + pathname, { waitUntil: 'domcontentloaded', timeout: 30_000 });
+  await page.waitForFunction(
+    () => {
+      const r = document.getElementById('root');
+      return !!r && r.children.length > 0;
+    },
+    { timeout: 20_000 }
+  );
+  // useEffect-driven meta tags need a moment to settle after mount
+  await new Promise((r) => setTimeout(r, 600));
 
   const html = await page.content();
   await page.close();
