@@ -97,3 +97,31 @@ jobs:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
+
+    # ── Notify IndexNow (Bing + AI search engines) of the current URL set ──
+    # Non-fatal: a failed ping must never affect the deploy. Ownership is proven
+    # by public/d0f2a7c14b9e4a3f8c6b5d0e1a2f3b4c.txt shipped at the site root.
+    - name: Ping IndexNow
+      continue-on-error: true
+      run: |
+        node --input-type=module <<'EOF'
+        import { readFileSync } from 'node:fs';
+        const KEY = 'd0f2a7c14b9e4a3f8c6b5d0e1a2f3b4c';
+        const HOST = 'starkroofingrenovation.com';
+        const xml = readFileSync('public/sitemap.xml', 'utf8');
+        const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
+          .map(m => m[1].trim())
+          .filter(u => !u.toLowerCase().endsWith('.xml'));
+        const body = {
+          host: HOST,
+          key: KEY,
+          keyLocation: `https://${HOST}/${KEY}.txt`,
+          urlList: urls.slice(0, 10000),
+        };
+        const res = await fetch('https://api.indexnow.org/indexnow', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
+          body: JSON.stringify(body),
+        });
+        console.log(`IndexNow: HTTP ${res.status} for ${urls.length} URLs`);
+        EOF
