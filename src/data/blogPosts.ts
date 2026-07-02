@@ -16,6 +16,126 @@ import { cityBlogPosts } from './cityBlogPosts';
 
 const corePosts: BlogPost[] = [
   {
+    slug: "roof-replacement-cost-sammamish-wa-2026",
+    title: "Roof Replacement Cost in Sammamish, WA: 2026 Guide",
+    excerpt: "What a roof replacement actually costs on the Sammamish Plateau in 2026: real ranges by home type and material, the factors that move the number, what a trustworthy line-item quote looks like, and where homeowners overpay.",
+    date: "2026-07-02",
+    author: "Stark Roofing Team",
+    image: "/lovable-uploads/roof-replacement-cost-sammamish-wa-2026.webp",
+    keywords: "roof replacement cost sammamish wa 2026,roof replacement sammamish,new roof cost sammamish plateau,roofing contractor sammamish,roof cost eastside",
+    readTime: "6 min read",
+    content: `
+# Roof Replacement Cost in Sammamish, WA: 2026 Guide
+
+Here is the short answer: most full roof replacements in Sammamish land in the high teens to low thirties of thousands of dollars in 2026, with architectural asphalt shingle on an average Plateau home typically quoting in the low-to-mid twenties. Larger homes, steep pitches, premium materials, and cedar shake conversions push the number up from there. The honest caveat: no two Sammamish roofs price the same, which is exactly why a real quote is written, itemized, and free.
+
+This guide breaks down where those numbers come from, what moves them, and how to read a quote so you know what you are actually buying.
+
+## What does a roof replacement cost by home type?
+
+Typical 2026 installed ranges we see on the Plateau, including tear-off, disposal, permits, and a full GAF system:
+
+**Single-story rambler, walkable pitch.** The simplest case in Sammamish, and the least common. Usually the low end of the range.
+
+**Two-story 1990s Plateau home, moderate pitch.** The classic Sammamish profile: Klahanie, Sahalee, and the neighborhoods off 228th. Most of these land in the middle of the range, in the twenties.
+
+**Large or complex roof: steep pitch, multiple valleys, skylights.** Custom homes around Pine Lake and Beaver Lake with cut-up rooflines carry more labor, more flashing detail, and more waste factor. Upper end of the range.
+
+**Cedar shake conversion.** Removing shake, re-decking with plywood, and installing an asphalt system is its own project with its own math. It costs more than a standard re-roof and is worth it; we wrote a full guide on [cedar shake conversion](/blog/cedar-shake-conversion-kirkland).
+
+## What actually moves the price in Sammamish?
+
+Six factors, in rough order of impact:
+
+**1. Roof size and complexity.** Priced per square (100 sq ft). A cut-up roofline with valleys, dormers, and hips takes more material and much more labor than the same footprint under a simple gable.
+
+**2. Pitch and access.** Steep roofs need more safety equipment and slow the crew down. Homes with tight lot access, common on wooded Plateau lots, add staging time.
+
+**3. Material.** Architectural asphalt is the Sammamish default. Designer shingles, metal, and DaVinci-style composites each step the price up meaningfully.
+
+**4. Decking condition.** The number nobody can promise upfront. If tear-off reveals rotted plywood, it gets replaced at a per-sheet price that should be in the quote before the project starts. Homes that carried moss for years tend to need more.
+
+**5. What is on the roof.** Skylights, chimneys, and solar mounts all mean flashing work. Reusing old flashing on a new roof is the classic corner-cut that causes leaks in year five.
+
+**6. The warranty behind it.** A roof installed by a GAF Master Elite contractor can register the [Golden Pledge warranty](/blog/gaf-golden-pledge-warranty-explained), with coverage up to 50 years on materials and 25 on workmanship. Two otherwise identical quotes are not identical if only one carries that paper.
+
+## What should be in the quote?
+
+A trustworthy Sammamish roofing quote is written and itemized. Line by line, you want to see: tear-off and disposal, underlayment and ice-and-water shield, the exact shingle product, starter and ridge components, ventilation work, flashing (new, not reused), the per-sheet price for deck repair, permit costs, and the warranty being registered. A single lump-sum number on a business card is not a quote; it is a guess you cannot compare.
+
+We keep a full guide on [how to choose a roofing contractor](/blog/how-to-choose-roofing-contractor-washington) if you want the longer checklist.
+
+## Where Sammamish homeowners overpay
+
+Three patterns we see again and again:
+
+**Paying storm-chaser prices after a windstorm.** Out-of-area crews canvas the Plateau after every event. The work is fast, the flashing is reused, and the company is gone by the time it leaks.
+
+**Replacing when a repair would do.** A 12-year-old roof with one failed pipe boot needs a $500 fix, not a $25,000 roof. An honest inspection tells you which side of that line you are on; our [repair vs replacement guide](/blog/roof-replacement-vs-repair-seattle-guide) covers the decision.
+
+**Waiting past the point of no return.** The opposite failure. Moss and small leaks compound quietly, and rotted decking bills on top of the replacement you already needed. If the roof is past 20 years on the Plateau's tree-shaded lots, get eyes on it.
+
+## Get your real number
+
+The only cost that matters is the one for your specific roof. Stark Roofing & Renovation is a GAF Master Elite contractor based right here in Sammamish. Every estimate is free, written, line-itemed, includes a drone inspection, and is signed off by [Brenda](/about), who runs the company. Call **(206) 739-8232** or [request your estimate online](/contact). We serve Sammamish, Bellevue, Redmond, Kirkland, Issaquah, and the entire Eastside.
+`,
+  },
+  {
+    slug: "cedar-shake-roof-replacement-signs",
+    title: "Signs Your Cedar Shake Roof Needs Replacement (Not Another Repair)",
+    excerpt: "Cedar shake roofs on the Eastside rarely fail all at once. Here are the signs that yours is past the repair stage: cupping and splitting, moss in the keyways, felt showing through, and interior clues most homeowners miss.",
+    date: "2026-07-02",
+    author: "Stark Roofing Team",
+    image: "/lovable-uploads/cedar-shake-roof-replacement-signs.webp",
+    keywords: "cedar shake roof replacement signs,cedar shake roof life expectancy washington,cedar roof repair or replace,shake roof eastside,cedar shake conversion",
+    readTime: "6 min read",
+    content: `
+# Signs Your Cedar Shake Roof Needs Replacement (Not Another Repair)
+
+Here is the short answer: a cedar shake roof is past the repair stage when the failures stop being local. One cracked shake is a repair. Widespread cupping, splitting across multiple slopes, moss packed into the keyways, and daylight or felt showing through are a system failing all at once, and repairs at that point are paying rent on a roof that has already given notice. On the Eastside, most shake roofs reach that point somewhere between 20 and 30 years, and the tree-heavy lots get there first.
+
+This guide covers the specific signs, in the order they usually appear, and what your options actually are.
+
+## The outside signs, in order of severity
+
+**1. Cupping and curling.** Shakes are split wood. After decades of Pacific Northwest wet-dry cycles, the edges curl upward and the shake cups. Scattered cupping on the sun-exposed south slope is age. Cupping across every slope means the wood itself is done.
+
+**2. Splitting.** Hairline checks are normal in cedar. Wide splits that run the full length of a shake are open channels for water, and when you can see them from the driveway on ten different shakes, there are hundreds you cannot see.
+
+**3. Moss in the keyways.** The vertical gaps between shakes are the roof's drainage. On shaded Eastside lots, moss colonizes those keyways, holds water against the wood, and rots the shakes and the felt underneath simultaneously. A moss-carpeted shake roof is almost always further gone than it looks.
+
+**4. Missing and slipped shakes after every windstorm.** Fasteners rust and wood softens. When each November storm takes a few more shakes with it, the roof is telling you the attachment layer is failing everywhere at once.
+
+**5. Felt or daylight in the gaps.** Look up the roof from a low angle. If you can see black felt paper, or worse, sunlight from inside the attic, the shakes have eroded past their working thickness. This is the last exterior warning before interior damage starts.
+
+## The inside signs most homeowners miss
+
+Check the attic with a flashlight twice a year. Water stains on the underside of the sheathing, dark streaks running down rafters, a musty smell after a storm, or compressed and damp insulation all mean water is already getting through the shake layer. By the time a stain reaches a bedroom ceiling, the water has usually been working inside the roof for a season or more.
+
+## Repair or replace: the honest math
+
+**Repair makes sense when** the roof is under 20 years, the damage is localized to one area (a fallen branch, one wind-damaged slope), and the rest of the shakes still lie flat and thick.
+
+**Replacement makes sense when** failures show on multiple slopes, you are calling for repairs more than once a year, moss keeps returning after treatment, or shakes have visibly thinned. Cedar repairs are expensive per-visit because matching and weaving new shakes into old is skilled work; at some point you are paying craftsman prices to patch a system with no runway left.
+
+There is also the insurance angle: many Washington carriers now surcharge or decline older shake roofs, and a failing one can complicate renewals and home sales. A replacement resets that conversation.
+
+## What to replace it with
+
+Most Eastside homeowners converting off shake choose one of two paths:
+
+**Architectural asphalt.** The practical choice: dimensional shingles carry a fraction of cedar's maintenance, install with a full modern system (new decking where needed, ice-and-water shield, proper ventilation), and qualify for the strongest warranties. Done by a GAF Master Elite contractor, the roof can register the [Golden Pledge warranty](/blog/gaf-golden-pledge-warranty-explained): up to 50 years on materials, 25 on workmanship.
+
+**Composite shake.** Synthetic products keep the shake look with modern performance, at a premium price.
+
+Either way, a shake conversion is more than a re-roof: shakes usually sit on skip sheathing (spaced boards), so the roof gets solid plywood decking before the new system goes on. We wrote a full walkthrough in our [cedar shake conversion guide](/blog/cedar-shake-conversion-kirkland).
+
+## Get an honest read on your shake roof
+
+Stark Roofing & Renovation has converted cedar shake roofs across Sammamish, Kirkland, Bellevue, and the Eastside for years, and we will tell you plainly which side of the repair-or-replace line yours is on. The inspection is free, includes drone photos you keep, and comes back as a written, line-item estimate signed off by [Brenda](/about). Call **(206) 739-8232** or [request an inspection online](/contact).
+`,
+  },
+  {
     slug: "gaf-golden-pledge-warranty-explained",
     title: "GAF Golden Pledge Warranty Explained: 50 Years of Coverage",
     excerpt: "The Golden Pledge is the strongest roof warranty GAF offers: up to 50 years on materials, 25 years on workmanship, backed by GAF itself rather than the contractor. Here is what it covers, what can void it, how the transfer works when you sell, and why only Master Elite contractors can register one.",

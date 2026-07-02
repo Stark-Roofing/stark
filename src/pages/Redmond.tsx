@@ -39,6 +39,16 @@ const RedmondLocation = () => {
       </div>
 
       <div className="text-center md:text-left">
+        <h3 className="text-2xl font-semibold mb-3">Roofing for Redmond's Tech Corridor Homes</h3>
+        <p className="text-gray-700 mb-4">
+          Redmond's housing stock tells the story of its growth: 1980s and 90s planned developments on Education Hill and Grass Lawn, newer construction around Overlake and Marymoor, and established homes in Bear Creek and the Sammamish Valley. Each generation fails differently. The 90s roofs are hitting the end of their first shingle cycle right now, while newer builds often hide fast-tracked flashing work that shows up as leaks around year ten.
+        </p>
+        <p className="text-gray-700 mb-4">
+          We also know how Redmond homeowners like to work: a scheduled inspection window, photo documentation you can review from your desk, a written line-item estimate, and a transferable warranty that holds its value in a market where homes change hands fast. No pressure visits, no vague quotes.
+        </p>
+      </div>
+
+      <div className="text-center md:text-left">
         <h3 className="text-2xl font-semibold mb-3">Puget Sound Weather Protection</h3>
         <p className="text-gray-700 mb-4">
           Redmond's location in the Puget Sound region requires roofing systems built to withstand rain, wind, and occasional storms. Our GAF-certified installers have decades of combined experience protecting Redmond homes and businesses from the elements.

@@ -40,6 +40,14 @@ const StormFAQSection = () => {
     {
       question: "What areas do you serve for emergency storm damage repair?",
       answer: "We provide emergency storm damage roof repair across the entire Puget Sound region, including Seattle, Bellevue, Redmond, Kirkland, Sammamish, Issaquah, Tacoma, Everett, Bothell, Lynnwood, and surrounding communities throughout King, Snohomish, and Pierce counties."
+    },
+    {
+      question: "How do I prepare my roof for fall storm season?",
+      answer: "Four things before the October storms arrive: clean the gutters and downspouts so water has somewhere to go, trim branches hanging within 10 feet of the roof (that's where most tree damage starts), get moss treated before it lifts shingle edges, and have any 'small' issues from last winter — a lifted shingle, a stained ceiling corner — actually fixed. A pre-season inspection in August or September costs nothing with us and beats a November emergency call every time."
+    },
+    {
+      question: "When is the best time to schedule a storm-readiness inspection?",
+      answer: "Late summer, ideally August through early October, before the first big windstorm of the season. The roof is dry, repairs can be scheduled without weather delays, and anything we find gets fixed while contractors still have open calendars. After the first bomb cyclone of the year, every roofer in King County is booked on emergencies — and you'll be in line behind the active leaks."
     }
   ];
 
