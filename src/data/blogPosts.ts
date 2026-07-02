@@ -16,6 +16,79 @@ import { cityBlogPosts } from './cityBlogPosts';
 
 const corePosts: BlogPost[] = [
   {
+    slug: "gaf-golden-pledge-warranty-explained",
+    title: "GAF Golden Pledge Warranty Explained: 50 Years of Coverage",
+    excerpt: "The Golden Pledge is the strongest roof warranty GAF offers: up to 50 years on materials, 25 years on workmanship, backed by GAF itself rather than the contractor. Here is what it covers, what can void it, how the transfer works when you sell, and why only Master Elite contractors can register one.",
+    date: "2026-07-02",
+    author: "Stark Roofing Team",
+    image: "/lovable-uploads/gaf-golden-pledge-warranty-explained.webp",
+    keywords: "gaf golden pledge warranty,golden pledge warranty explained,gaf roof warranty washington,50 year roof warranty,transferable roof warranty eastside",
+    readTime: "6 min read",
+    content: `
+# GAF Golden Pledge Warranty Explained: 50 Years of Coverage
+
+Here is the short answer: the Golden Pledge is the strongest warranty GAF offers, and it is fundamentally different from the paper most roofers hand you. It covers materials for up to 50 years and workmanship for up to 25, it is backed by GAF directly rather than by the contractor who installed the roof, and it transfers to the next owner when you sell. The catch is access: GAF only lets Master Elite contractors register it, which is roughly the top 2% of roofers.
+
+This guide walks through what the coverage actually means, what can void it, and the questions worth asking before you sign a contract that promises it.
+
+## What makes Golden Pledge different from a normal roof warranty?
+
+Most roof warranties are two separate promises that fail in different ways. The manufacturer covers factory defects in the shingles, which are rare. The contractor covers the installation, which is where most real-world problems start, and that promise is only as good as the company still existing when the leak shows up.
+
+Golden Pledge closes that gap. GAF itself stands behind both the materials and the workmanship. If an installation error causes a leak in year 14 and the company that installed it has retired, GAF still owns the repair. That is the single most important line in the whole document, and it is the reason this warranty has real resale value.
+
+## How the GAF warranty tiers compare
+
+GAF publishes several warranty levels. The exact terms live in the registered document, so treat this as the map, not the contract:
+
+**Standard limited warranty.** Comes with the shingles themselves, from any installer. Covers manufacturing defects only, with full coverage limited to an initial period before it prorates. No workmanship coverage at all.
+
+**System Plus.** Available through GAF certified contractors when a full GAF system is installed and registered. Stronger, longer material coverage than the standard paper, but little to no workmanship coverage.
+
+**Golden Pledge.** Master Elite contractors only. Up to 50 years of non-prorated material coverage, up to 25 years of workmanship coverage, misapplication covered, and tear-off plus disposal labor included when a covered repair requires it. GAF also runs its own inspection program on Golden Pledge roofs after installation, which means a second set of trained eyes signs off on the work.
+
+## What the coverage includes
+
+The parts that matter to a homeowner, in plain terms:
+
+**Materials, up to 50 years.** If a covered GAF component fails, replacement materials are covered without proration for the full period. On the standard warranty, the payout shrinks every year after the initial window closes.
+
+**Workmanship, up to 25 years.** If the crew installed something wrong and it causes a problem, the repair is covered, labor included. This is the coverage almost no standard warranty offers and the one that matters most, because installation error is the leading cause of premature roof failure.
+
+**Tear-off and disposal.** When a covered failure requires removing material to fix it, the labor to tear off and haul away is part of the claim, not a surprise bill.
+
+**Transferability.** The warranty can transfer to the next owner of the home, subject to GAF's notification rules and window. On the Eastside, where homes in Sammamish, Bellevue, and Kirkland turn over fast, a transferable 50-year warranty is a genuine line item in a listing.
+
+## What can void or limit it
+
+A warranty this long comes with rules. The common ways homeowners lose coverage:
+
+- **Pressure washing the roof.** High pressure strips granules and voids coverage. Moss treatment on the Eastside should always be low-pressure soft washing.
+- **Unauthorized repairs.** A handyman patch with non-GAF materials in the middle of the roof can compromise the system coverage. Call the installing contractor or GAF first.
+- **Ventilation changes.** Additions like a bathroom fan vented into the attic, or blocked intake vents, create moisture conditions the warranty excludes.
+- **Skipping registration.** Golden Pledge exists only if the contractor registers it with GAF after installation. Ask for the registration confirmation, not just a promise on the invoice.
+- **Storm damage.** Wind and hail are insurance events, not warranty events. The two systems work together, but they are different contracts.
+
+## How a claim actually works
+
+You contact GAF with the registration number, describe the problem, and GAF handles it from there, including dispatching an authorized contractor if the original installer is unavailable. Keep three things in a folder: the registration confirmation, the itemized contract from the installation, and photos of the finished roof. Claims move fast when the paperwork exists.
+
+## Questions to ask any roofer promising a Golden Pledge
+
+1. **Are you currently GAF Master Elite?** Verify it yourself in the contractor lookup at gaf.com. The status renews annually, so a certificate from three years ago proves nothing.
+2. **Will this exact scope qualify for Golden Pledge?** The warranty requires a full GAF system. A quote that swaps in off-brand underlayment or vents may not qualify.
+3. **Who registers the warranty, and when do I get confirmation?** The answer should be the contractor, within weeks of completion, with the confirmation sent to you.
+
+We wrote a full guide on [what Master Elite certification requires](/blog/gaf-master-elite-certification) if you want the background on why so few contractors can offer this warranty.
+
+## The bottom line
+
+A roof is a 20 to 50 year purchase, and the warranty is the only part of the project that outlives the crew that built it. Golden Pledge is the strongest paper in the industry because GAF, not the contractor, carries the long-term risk, and because the workmanship coverage attacks the real failure mode of most roofs.
+
+Stark Roofing & Renovation is a GAF Master Elite contractor, and every roof we install qualifies for the Golden Pledge warranty. Every quote is written, line-itemed, and signed off by [Brenda](/about), who runs the company. Call **(206) 739-8232** for a free roof assessment, or [request one online](/contact). We serve [Sammamish](/service-area/sammamish), Bellevue, Redmond, Kirkland, Issaquah, and the entire Eastside. Details on all our coverage options live on the [warranty page](/warranty).
+`,
+  },
+  {
     slug: "siding-replacement-eastside-hardie-vinyl-lp-smartside",
     title: "Siding Replacement on the Eastside: James Hardie vs Vinyl vs LP SmartSide",
     excerpt: "Picking siding for a Pacific Northwest home is really a moisture decision. Here is how James Hardie fiber cement, vinyl, and LP SmartSide engineered wood actually hold up on the Eastside, what each costs installed in 2026, and why the contractor matters more than the brand.",
