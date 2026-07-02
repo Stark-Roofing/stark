@@ -364,7 +364,12 @@ for (const pathname of unique) {
 
   if (existsSync(file)) {
     const existing = readFileSync(file, 'utf8');
-    if (/<h1[\s>]/i.test(existing)) {
+    // Same fix as the homepage above: a prerendered page is one whose #root has
+    // content. The old `<h1>` check overwrote every prerendered page that renders
+    // its heading as styled <div>s (all 15 /service-area/* city pages) with the
+    // empty-root fallback shell, while blog posts (literal <h1> from markdown)
+    // survived. Keep any file whose #root is non-empty.
+    if (!/<div id="root">\s*<\/div>/i.test(existing)) {
       skipped++;
       continue;
     }
