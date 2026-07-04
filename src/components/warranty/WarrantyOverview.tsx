@@ -19,8 +19,14 @@ const WarrantyOverview = () => {
             25-Year Labor Warranty
           </h2>
           
+          <p className="text-charcoal/80 max-w-3xl mx-auto mb-4">
+            Here is the short answer: every roof Stark Roofing & Renovation installs comes with a 25-year labor
+            warranty — fully transferable, with no proration. And because we are a GAF Master Elite contractor
+            (top 2% of roofers nationwide), we can register your roof for the GAF Golden Pledge warranty, which
+            covers materials for up to 50 years.
+          </p>
           <p className="text-charcoal/80 max-w-3xl mx-auto">
-            At Stark Roofing & Renovation, we stand behind our work with one of the strongest warranties in the industry. 
+            At Stark Roofing & Renovation, we stand behind our work with one of the strongest warranties in the industry.
             Our 25-year labor warranty covers all aspects of our workmanship, giving you complete peace of mind.
           </p>
         </div>

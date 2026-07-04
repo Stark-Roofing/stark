@@ -9,7 +9,9 @@ const PremiumServicesSection: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6 max-w-[1200px]">
         <h2 className="section-title text-center text-stark-red">Our Services</h2>
         <p className="section-subtitle text-center">
-          GAF-certified roofing and exterior protection trusted by Pacific Northwest homeowners for over 30 years.
+          Stark Roofing & Renovation is a family-owned, GAF Master Elite certified roofing contractor (top 2% nationwide)
+          based in Sammamish, WA. For over 30 years we have installed and repaired more than 2,000 roofs across Seattle,
+          the Eastside, and Puget Sound — every one backed by our 25-year labor warranty.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">

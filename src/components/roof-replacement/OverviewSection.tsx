@@ -11,7 +11,10 @@ const OverviewSection = () => {
           <div className="text-center md:text-left">
             <h2 className="text-3xl font-heading font-bold text-navy mb-6 text-center md:text-left">When Is It Time for a Roof Replacement?</h2>
             <p className="text-charcoal/80 mb-4 text-center md:text-left leading-relaxed">
-              Most roofs are designed to protect your home for about 20 years. However, factors like severe weather conditions, poor maintenance, and the quality of the original installation can shorten this lifespan.
+              Here is the short answer: an asphalt roof in Western Washington protects your home for roughly 20 years, and most full replacements take 1 to 3 days on the roof once materials arrive. Stark Roofing & Renovation is a GAF Master Elite contractor (top 2% nationwide) with 30+ years of experience and 2,000+ roofs completed across the Eastside, and every replacement we install qualifies for the GAF Golden Pledge warranty: up to 50 years on materials, 25 on workmanship.
+            </p>
+            <p className="text-charcoal/80 mb-4 text-center md:text-left leading-relaxed">
+              Severe weather, poor maintenance, and the quality of the original installation can shorten a roof's lifespan well below that 20-year mark.
             </p>
             <p className="text-charcoal/80 mb-4 text-center md:text-left">
               Common signs that indicate your roof needs replacement include:
