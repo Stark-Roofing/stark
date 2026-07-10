@@ -16,6 +16,115 @@ import { cityBlogPosts } from './cityBlogPosts';
 
 const corePosts: BlogPost[] = [
   {
+    slug: "roof-inspection-cost-seattle",
+    title: "How Much Does a Roof Inspection Cost in the Seattle Area? (2026)",
+    excerpt: "A roof inspection in the Seattle area runs $0 to $600 in 2026. Here is when it is free, when you pay for a standalone report, and exactly what a real inspection checks before you decide on repair or replacement.",
+    date: "2026-07-07",
+    dateModified: "2026-07-07",
+    author: "Stark Roofing Team",
+    image: "/lovable-uploads/roof-inspection-cost-seattle.webp",
+    keywords: "roof inspection cost seattle,roof inspection cost eastside,free roof inspection seattle,pre-purchase roof inspection,roof inspection sammamish",
+    readTime: "6 min read",
+    content: `
+# How Much Does a Roof Inspection Cost in the Seattle Area? (2026)
+
+The short answer: a roof inspection in the Seattle area typically costs between $0 and $600 in 2026. A basic visual inspection from a local roofing contractor is usually free because it doubles as an estimate. A paid inspection, the kind you order for a home purchase or an insurance claim, generally runs $150 to $600 depending on roof size, pitch, and whether the inspector uses a drone or moisture meter. On the Eastside, most homeowners never pay a dime, because a reputable roofer inspects for free and hands you a written report.
+
+This guide breaks down the difference between the free and the paid inspection, when each one makes sense, and exactly what should be on the report you get back.
+
+## What does a roof inspection cost in Seattle in 2026?
+
+Here is the practical range King County homeowners see this year, sorted by who is doing the inspection and why.
+
+| Inspection type | Typical 2026 cost | Who orders it | What you get |
+|---|---|---|---|
+| Contractor inspection (with estimate) | Free | Homeowner considering repair or replacement | Visual assessment, photos, written estimate |
+| Drone / detailed roof-only inspection | Free to $250 | Homeowner wanting documentation, no ladder access | Aerial photos, condition report |
+| Pre-purchase roof inspection | $200 to $500 | Home buyer or seller | Standalone written report on remaining life |
+| Post-storm damage inspection | Free to $300 | Homeowner after wind or hail event | Damage documentation for insurance |
+| Insurance / adjuster-grade report | $300 to $600 | Homeowner filing a claim | Detailed report, moisture readings, measurements |
+
+The number you actually pay depends on why you need the inspection. That is the real fork in the road, so let us walk through it.
+
+## When is a roof inspection free?
+
+Most roof inspections in the Seattle area are free, and here is why. When a local contractor climbs your roof, they are also writing you an estimate. The inspection is the sales step, not a billable service. A homeowner in Sammamish, Bellevue, or Issaquah who calls a roofer and says "my roof looks tired, can you take a look" is almost never charged for that visit.
+
+Stark Roofing & Renovation inspects for free across the Eastside, including a drone flyover so the crew can document valleys, flashing, and moss buildup without walking a wet 37-inch-a-year roof. You get photos and an honest read on whether you are looking at a repair, a replacement, or nothing at all yet.
+
+Free does not mean rushed. A real inspection still checks the same points a paid one does. The difference is who is footing the bill, and for a homeowner deciding what to do next, free is the right starting point.
+
+## When should you pay for a roof inspection?
+
+There are three situations where paying for a standalone inspection is worth it.
+
+### Are you buying or selling a home?
+
+A pre-purchase roof inspection is the classic paid job. When you are under contract on a house near Klahanie or on the Sammamish Plateau, a standalone written report on the roof's remaining life protects your offer. It runs $200 to $500 and it is independent of any repair sale, which is exactly the point. The inspector has no stake in finding work. Buyers use it to negotiate. Sellers order it up front to prove the roof is sound before listing.
+
+### Are you filing an insurance claim?
+
+After a windstorm rolls through the Eastside, insurance carriers want documentation. An adjuster-grade report, with moisture readings, measurements, and dated photos, gives your claim teeth. This is the $300 to $600 tier because it is detailed, written to a standard, and defensible. Many contractors will still do the initial damage walk for free and only charge if you need the formal report package.
+
+### Do you need documentation with no repair in mind?
+
+Some homeowners just want a paper trail. Maybe the roof is 15 years old and you want a baseline before you decide anything. A detailed drone-and-report inspection with no estimate attached is a reasonable thing to pay a small fee for, in the free-to-$250 range.
+
+## What is included in a roof inspection?
+
+Whether it is free or paid, a real Seattle-area inspection covers the same core checklist. If an inspector skips these, you are not getting the full picture:
+
+- **Shingles or roofing material.** Cupping, curling, granule loss, missing pieces, and moss growth in the keyways. Moss is the Eastside's signature problem on tree-shaded lots.
+- **Flashing.** Around chimneys, skylights, valleys, and wall junctions. Reused or lifting flashing is the number-one hidden leak source.
+- **Ventilation.** Ridge vents and soffit intake, because bad ventilation cooks a roof from underneath.
+- **Gutters and drainage.** How water actually leaves the roof, which matters a lot at 37 inches of annual rain.
+- **Decking and soft spots.** Signs of rot or sag that hint at moisture under the surface.
+- **Penetrations.** Pipe boots, vents, and solar mounts, which are common failure points around year five to eight.
+
+A written report with photos should follow. If all you get is a verbal "looks fine," that is not an inspection, it is an opinion.
+
+## How often should Seattle-area roofs be inspected?
+
+Once a year is the honest answer for most Eastside homes, plus a check after any major windstorm. The Pacific Northwest is hard on roofs. Constant moisture, moss, and the tree canopy over neighborhoods from Bridle Trails to Maple Valley all work against your shingles year-round. A roof that would last 25 years in a dry climate ages faster here, and small problems compound quietly. Catching a failed pipe boot in fall is a $400 fix. Finding it in spring after it fed a leak all winter is a decking bill.
+
+## Free inspection vs paid: which do you actually need?
+
+For most homeowners, start with the free contractor inspection. It costs nothing, it gives you photos and a written estimate, and it tells you which side of the repair-versus-replace line you are on. Only step up to a paid inspection when you need an independent report: a home purchase, a home sale, or an insurance claim where a neutral, documented assessment carries weight.
+
+If you are on the Eastside and just want to know where your roof stands, there is no reason to pay first. Get eyes on it, get the report, then decide.
+
+## Frequently Asked Questions
+
+**How much does a roof inspection cost in Seattle?**
+A roof inspection in the Seattle area typically costs $0 to $600 in 2026. Contractor inspections that come with an estimate are usually free, while standalone pre-purchase or insurance reports run $150 to $600.
+
+**Are roof inspections free in the Seattle area?**
+Yes, most contractor inspections are free because they double as a repair or replacement estimate. Stark Roofing & Renovation offers a free roof inspection across the Eastside, including a drone flyover.
+
+**How much is a pre-purchase roof inspection?**
+A standalone pre-purchase roof inspection generally costs $200 to $500 in the Seattle area. It is independent of any repair sale, so the inspector has no stake in finding work, which is exactly why buyers and sellers order it.
+
+**Do I need to pay for a roof inspection after a storm?**
+Often no. Many local contractors do the initial post-storm damage walk for free. You typically only pay, in the $300 to $600 range, if you need a formal adjuster-grade report package for an insurance claim.
+
+**How long does a roof inspection take?**
+A standard residential roof inspection takes about 45 minutes to an hour. Drone-assisted inspections can be faster because the crew documents the roof from the air instead of walking every slope.
+
+**How often should I get my roof inspected in Washington?**
+Once a year is the right cadence for most Eastside homes, plus an extra check after any major windstorm. The constant moisture, moss, and tree canopy in the Seattle area age roofs faster than drier climates.
+
+**What is included in a free roof inspection?**
+A proper free inspection still checks shingles, flashing, ventilation, gutters, decking, and roof penetrations, then delivers a written report with photos. Free refers to who pays, not to how thorough the work is.
+
+**Is a drone roof inspection as good as walking the roof?**
+For documentation and condition assessment, yes. A drone captures valleys, flashing, and moss buildup in detail without risking a wet Pacific Northwest roof, and Stark uses one on every inspection.
+
+## Get eyes on your roof for free
+
+The only inspection cost that matters is the one for your actual roof, and for most Eastside homeowners that cost is nothing. Stark Roofing & Renovation is a GAF Master Elite contractor based in Sammamish, and every inspection is free, includes a drone flyover, and comes with a written report and honest recommendation. Call (206) 739-8232 or [request your free roof inspection online](/contact). Stark serves Sammamish, Bellevue, Redmond, Kirkland, Issaquah, and the entire Eastside.
+\`
+  },
+  {
     slug: "roof-replacement-cost-sammamish-wa-2026",
     title: "Roof Replacement Cost in Sammamish, WA: 2026 Guide",
     excerpt: "What a roof replacement actually costs on the Sammamish Plateau in 2026: real ranges by home type and material, the factors that move the number, what a trustworthy line-item quote looks like, and where homeowners overpay.",
