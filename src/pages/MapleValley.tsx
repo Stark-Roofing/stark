@@ -7,6 +7,9 @@ const MapleValleyLocation = () => {
       <div className="text-center md:text-left">
         <h2 className="text-3xl font-bold mb-4">Roofing Services in Maple Valley, WA</h2>
         <p className="text-lg text-gray-700 mb-4">
+          Here is the short answer: Stark Roofing & Renovation handles roof replacement, roof repair, moss removal, and storm damage across Maple Valley, WA. We are a GAF Master Elite contractor (top 2 percent of roofers nationwide) based 25 minutes north in Sammamish, with 30-plus years in business and more than 2,000 roofs completed. Every Maple Valley job starts with a free drone inspection and a written, line-item estimate. Call (206) 739-8232.
+        </p>
+        <p className="text-lg text-gray-700 mb-4">
           Maple Valley sits in the foothills southeast of Seattle, with the Cedar River cutting through, dense forest cover almost everywhere you look, and elevation that brings real snow events most winters. The same trees that make Maple Valley beautiful are what make moss grow faster here than in any other King County city we serve. Stark Roofing & Renovation has been replacing and repairing roofs across Maple Valley from our Sammamish HQ — about 25 minutes north — for years, and we've built our specs around what this rural foothill climate actually does to a roof.
         </p>
       </div>
