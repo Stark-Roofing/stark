@@ -36,6 +36,18 @@ export interface Attribution {
 
 const SEARCH_ENGINES = /(^|\.)(google|bing|duckduckgo|yahoo|ecosia|brave)\./i;
 
+/** classify() slug -> exact option label of the GHL "Origem do Lead" dropdown. */
+const SOURCE_LABELS: Record<string, string> = {
+  'google-ads': 'Google',
+  'meta-ads': 'Meta',
+  'bing-ads': 'Bing',
+  gbp: 'GBP',
+  seo: 'SEO',
+  referral: 'Referral',
+  direct: 'Direto',
+  'utm-other': 'Outro',
+};
+
 function classify(p: URLSearchParams, referrer: string): string {
   const source = (p.get('utm_source') || '').toLowerCase();
   const medium = (p.get('utm_medium') || '').toLowerCase();
@@ -129,6 +141,10 @@ export function getAttributionPayload(): Record<string, string> {
   }
   return {
     attr_source: attr.source,
+    // Same classification, but as the exact option labels of GHL's
+    // "Origem do Lead" dropdown — lets the workflow map the field directly
+    // in "Criar contato" with no If/Else branching.
+    attr_source_label: SOURCE_LABELS[attr.source] || 'Outro',
     attr_utm_source: attr.utm_source,
     attr_utm_medium: attr.utm_medium,
     attr_utm_campaign: attr.utm_campaign,
