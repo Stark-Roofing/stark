@@ -40,6 +40,7 @@ import {
 } from '@/components/ui/select';
 import { sendLeadEmailAndSms, sendCustomerConfirmation } from '@/utils/emailjs';
 import { readableSource } from '@/utils/submitLead';
+import { getAttributionPayload } from '@/utils/attribution';
 import {
   getOrCreateExternalId,
   getFbp,
@@ -92,7 +93,8 @@ async function postToGhlWebhook(payload: Record<string, string>) {
     await fetch(GHL_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      // attr_* first so an explicit form field can never be overwritten by it
+      body: JSON.stringify({ ...getAttributionPayload(), ...payload }),
     });
   } catch (err) {
     console.warn('GHL webhook post failed (non-blocking):', err);

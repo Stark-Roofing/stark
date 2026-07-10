@@ -12,6 +12,7 @@
  * lead and decouples the UX from EmailJS.
  */
 import { sendLeadEmailAndSms } from './emailjs';
+import { getAttributionPayload } from './attribution';
 
 /** Human-readable lead source from a page path: "/" -> "Home Page", else the path. */
 export function readableSource(path: string = window.location.pathname): string {
@@ -60,6 +61,9 @@ export async function submitLead(raw: Record<string, unknown>): Promise<void> {
   const s = (v: unknown) => (v == null ? '' : String(v));
 
   const payload: Record<string, string> = {
+    // origin snapshot (SEO vs Ads vs GBP) — the GHL workflow maps attr_source
+    // to the contact's "Origem do Lead" field
+    ...getAttributionPayload(),
     // pass through anything the form already provided (stringified)
     ...Object.fromEntries(Object.entries(raw).map(([k, v]) => [k, s(v)])),
     // normalize the canonical fields the GHL workflow maps on

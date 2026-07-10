@@ -2,12 +2,16 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { initMetaTracking } from './utils/metaTracking';
 import { initPhoneTracking } from './utils/phoneTracking';
+import { captureAttribution } from './utils/attribution';
 
 // Run BEFORE React mounts: writes _fbp/_fbc cookies ourselves (and persists to
 // localStorage) so the Meta Pixel — when it later inits via GTM — adopts our
 // values instead of generating fresh ones. This closes the SPA timing race
 // that left ~45% of Contact CAPI events without fbp and 100% without fbc.
 initMetaTracking();
+// Also before mount: snapshot UTMs/gclid/referrer into localStorage so a form
+// submitted days later still reports the visit's true origin (SEO vs Ads) to GHL.
+captureAttribution();
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import './App.css';
