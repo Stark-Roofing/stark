@@ -122,7 +122,7 @@ For documentation and condition assessment, yes. A drone captures valleys, flash
 ## Get eyes on your roof for free
 
 The only inspection cost that matters is the one for your actual roof, and for most Eastside homeowners that cost is nothing. Stark Roofing & Renovation is a GAF Master Elite contractor based in Sammamish, and every inspection is free, includes a drone flyover, and comes with a written report and honest recommendation. Call (206) 739-8232 or [request your free roof inspection online](/contact). Stark serves Sammamish, Bellevue, Redmond, Kirkland, Issaquah, and the entire Eastside.
-\`
+`
   },
   {
     slug: "roof-replacement-cost-sammamish-wa-2026",
