@@ -361,27 +361,25 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="text-center max-w-5xl mt-16">
-              {/* Brand name */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="overflow-hidden"
-              >
-                <h1 className="text-[clamp(2.8rem,9vw,7.5rem)] font-extrabold text-white leading-none font-heading tracking-tight drop-shadow-2xl">
+              {/* Brand name — single h1, two animated lines */}
+              <h1 className="text-[clamp(2.8rem,9vw,7.5rem)] font-extrabold text-white leading-none font-heading tracking-tight drop-shadow-2xl">
+                <motion.span
+                  className="block overflow-hidden"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                >
                   <span className="text-red-500">STARK</span> ROOFING
-                </h1>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <h1 className="text-[clamp(2.8rem,9vw,7.5rem)] font-extrabold text-white leading-none font-heading tracking-tight drop-shadow-2xl">
+                </motion.span>
+                <motion.span
+                  className="block"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                >
                   & RENOVATION
-                </h1>
-              </motion.div>
+                </motion.span>
+              </h1>
 
               {/* Divider */}
               <motion.div

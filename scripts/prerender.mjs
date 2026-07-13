@@ -176,6 +176,11 @@ async function renderPath(browser, pathname) {
   // useEffect-driven meta tags need a moment to settle after mount
   await new Promise((r) => setTimeout(r, 600));
 
+  // The home hero only mounts its <h1> after the 1.5s cinematic intro ends,
+  // so wait for an h1 before snapshotting — crawlers must see the main
+  // heading. Soft-fail for pages that legitimately have none.
+  await page.waitForSelector('h1', { timeout: 8_000 }).catch(() => {});
+
   const html = await page.content();
   await page.close();
 

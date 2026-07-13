@@ -1,7 +1,6 @@
 import React from 'react';
 import { Star, Quote, ExternalLink } from 'lucide-react';
 import googleReviewsData from '@/data/googleReviews.json';
-import GoogleReviewSchema from '@/components/shared/GoogleReviewSchema';
 
 interface GoogleReview {
   author: string;
@@ -39,7 +38,6 @@ const TestimonialsSection: React.FC = () => {
 
   return (
     <section className="section-padding bg-gray-100">
-      <GoogleReviewSchema data={data} />
       <div className="container mx-auto px-4 md:px-6">
         <h2 className="section-title text-center">What Our Neighbors Say on Google</h2>
         <p className="section-subtitle text-center">
