@@ -18,6 +18,7 @@ import SectionEmergencyBanner from '@/components/roof-repair/SectionEmergencyBan
 import FloatingContactBar from '@/components/roof-repair/FloatingContactBar';
 import ScrollToTop from '@/components/ScrollToTop';
 import ServiceSchema from '@/components/shared/ServiceSchema';
+import AnswerFirstBlock from '@/components/shared/AnswerFirstBlock';
 
 const RoofRepair = () => {
   useEffect(() => {
@@ -46,6 +47,11 @@ const RoofRepair = () => {
 
       {/* Repair-specific Hero (split layout, urgency-forward) */}
       <HeroSection />
+
+      <AnswerFirstBlock
+        heading="Roof Repair in Seattle & the Eastside"
+        answer="Stark Roofing & Renovation handles roof leaks, missing or wind-lifted shingles, flashing failures, and storm damage across Seattle and the Eastside, with same-week service on most repairs and same-day emergency tarping for active leaks. Minor repairs typically run a few hundred dollars, while complex leaks or storm damage cost more; every job starts with a free drone inspection and a written, line-item estimate. We are a GAF Master Elite contractor with 30-plus years in business and 2,000-plus roofs completed. Call (206) 739-8232."
+      />
 
       {/* Overview Section */}
       <OverviewSection />

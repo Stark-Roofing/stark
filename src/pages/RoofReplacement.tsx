@@ -21,6 +21,7 @@ import AnimatedSection from '@/components/AnimatedSection';
 import EmergencyServiceBar from '@/components/navigation/EmergencyServiceBar';
 import FAQSection from '@/components/roof-replacement/FAQSection';
 import ServiceSchema from '@/components/shared/ServiceSchema';
+import AnswerFirstBlock from '@/components/shared/AnswerFirstBlock';
 
 const RoofReplacement = () => {
   useEffect(() => {
@@ -57,6 +58,11 @@ const RoofReplacement = () => {
       </div>
 
       <HeroSection />
+
+      <AnswerFirstBlock
+        heading="Roof Replacement in Greater Seattle & Puget Sound"
+        answer="Stark Roofing & Renovation installs full GAF Timberline HDZ roof replacements across Greater Seattle and Puget Sound, typically completed in one to two days for a standard home after a free drone inspection and a written, line-item estimate. A replacement is the right call when your roof is near the end of its life, has leaks in more than one spot, or shows widespread curling, granule loss, or a soft deck. We are a GAF Master Elite contractor (top 2 percent nationwide) with a lifetime limited warranty, 30-plus years in business, and 2,000-plus roofs completed. Call (206) 739-8232."
+      />
 
       <AnimatedSection
         animation="slide-up"
