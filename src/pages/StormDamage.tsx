@@ -20,6 +20,7 @@ import StormServiceAreas from '@/components/storm-damage/StormServiceAreas';
 import VirtualAssistant from '@/components/finance/VirtualAssistant';
 import ScrollToTop from '@/components/ScrollToTop';
 import ServiceSchema from '@/components/shared/ServiceSchema';
+import AnswerFirstBlock from '@/components/shared/AnswerFirstBlock';
 
 const StormDamage = () => {
   useEffect(() => {
@@ -49,6 +50,10 @@ const StormDamage = () => {
       />
       <Navbar />
       <StormHero />
+      <AnswerFirstBlock
+        heading="Storm Damage Roof Repair Across Greater Seattle"
+        answer="After a windstorm or atmospheric river drops a tree or tears shingles off your roof, Stark Roofing & Renovation responds fast with same-day emergency tarping to stop the water, then documents the damage for your insurance and rebuilds it right. Storm, wind, and tree-strike damage is usually covered by homeowners insurance; we work directly with your adjuster. GAF Master Elite, 24/7 emergency response. Call (206) 739-8232."
+      />
       <EmergencyNotice />
       {/* Booking form anchored right under the hero/emergency strip so the
           hero CTA "Book My Free Inspection" actually scrolls to a form. */}

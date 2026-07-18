@@ -7,6 +7,9 @@ const SammamishLocation = () => {
       <div className="text-center md:text-left">
         <h2 className="text-3xl font-bold mb-4">Roofing Services in Sammamish, WA</h2>
         <p className="text-lg text-gray-700 mb-4">
+          <span className="font-semibold">Here is the short answer:</span> Stark Roofing & Renovation is a GAF Master Elite contractor headquartered in Sammamish at 24243 SE 43rd Ct, handling roof replacement, roof repair, storm damage, gutters, and moss removal across the Plateau. We offer same-day emergency response, a free drone inspection with a written line-item estimate, and the Golden Pledge warranty (50-year material, 25-year labor). Call (206) 739-8232.
+        </p>
+        <p className="text-lg text-gray-700 mb-4">
           Stark Roofing & Renovation is headquartered right here in Sammamish at 24243 SE 43rd Ct — across the street from Pine Lake Elementary, ten minutes from Beaver Lake, fifteen minutes from the Trossachs trails. We're not a Seattle company driving out to do an estimate. We live here. The roofs we replace are on the same streets we drive every day, and the kids in our crews go to the same schools as yours. Sammamish gets more rain than downtown Seattle, more tree cover, and colder winter nights that cause freeze-thaw damage to aging shingles. We built this business around solving those problems — Plateau specifically.
         </p>
       </div>

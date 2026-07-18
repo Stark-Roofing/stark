@@ -7,6 +7,9 @@ const BellevueLocation = () => {
       <div className="text-center md:text-left">
         <h2 className="text-3xl font-bold mb-4">Roofing Services in Bellevue, WA</h2>
         <p className="text-lg text-gray-700 mb-4">
+          <span className="font-semibold">Here is the short answer:</span> Stark Roofing & Renovation is a GAF Master Elite contractor serving Bellevue, WA with roof replacement, roof repair, storm damage, gutters, siding, and skylights. Based 20 minutes away in Sammamish, we offer same-day emergency response, a free drone inspection with a written line-item estimate, and the Golden Pledge warranty (50-year material, 25-year labor). Call (206) 739-8232.
+        </p>
+        <p className="text-lg text-gray-700 mb-4">
           Stark Roofing & Renovation provides expert roofing, gutter, siding, and renovation services for Bellevue homeowners and businesses. As a GAF Master Elite Certified Contractor (top 2% nationally) backed by the Golden Pledge Warranty (50 years material, 25 years workmanship), we deliver Eastside roofing built to handle every Puget Sound season.
         </p>
       </div>
