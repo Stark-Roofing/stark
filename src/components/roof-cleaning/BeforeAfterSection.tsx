@@ -49,11 +49,11 @@ const BeforeAfterSection = () => {
                 {beforeAfterItems.map((item) => (
                   <CarouselItem key={item.id}>
                     <div className="flex flex-col items-center">
-                      <div className="relative w-full rounded-xl overflow-hidden shadow-lg">
-                        <img 
-                          src={item.image} 
+                      <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden shadow-lg">
+                        <img
+                          src={item.image}
                           alt={item.description}
-                          className="w-full h-auto object-cover" 
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       <p className="mt-4 text-center text-charcoal/80 max-w-3xl mx-auto">
@@ -67,16 +67,6 @@ const BeforeAfterSection = () => {
               <CarouselPrevious className="absolute -left-4 lg:-left-12" />
               <CarouselNext className="absolute -right-4 lg:-right-12" />
             </Carousel>
-
-            <div className="flex justify-center mt-6 gap-2">
-              {beforeAfterItems.map((_, index) => (
-                <button
-                  key={index}
-                  className="w-3 h-3 rounded-full bg-gray-300 focus:outline-none mx-1"
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
           </div>
         </motion.div>
       </div>

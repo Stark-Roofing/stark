@@ -12,7 +12,9 @@ const ContactFormSection = () => {
       title="Schedule Your Roof Cleaning"
       subtitle="Free inspection first — we'll show you exactly what needs cleaning."
       defaultService="inspection"
-      background="white"
+      background="gray"
+      padding="section"
+      id="schedule-form"
     />
   );
 };

@@ -64,7 +64,7 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section id="process" className="py-16 md:py-28 bg-gray-50">
+    <section id="process" className="section-padding bg-gray-50">
       <div className="container mx-auto px-4 md:px-6" ref={containerRef}>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
