@@ -44,7 +44,7 @@ const StormCTA = () => {
               <Phone className="mr-2 h-5 w-5" />
               Call for Emergency Service
             </a>
-            <Link to="/services" className="btn-secondary bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/20 flex items-center justify-center">
+            <Link to="/contact" className="btn-secondary bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/20 flex items-center justify-center">
               <CalendarCheck className="mr-2 h-5 w-5" />
               Schedule Free Inspection
             </Link>

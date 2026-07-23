@@ -21,7 +21,7 @@ export const scrollPrompts = [{
   id: 'storm',
   threshold: 50,
   message: "Washington storm season is here. Get a free damage inspection →",
-  link: "#contact",
+  link: "/contact",
   actionText: "Schedule Now"
 }, {
   id: 'testimonials',

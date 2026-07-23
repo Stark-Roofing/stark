@@ -40,7 +40,7 @@ const QuickQuestionButtons = ({ onQuickQuestionClick, faqResponses }: QuickQuest
         onClick={() => {
           onQuickQuestionClick(
             "I'd like a free estimate", 
-            "We'd be happy to provide a free estimate. <a href='#contact' class='text-stark-red font-semibold'>Click here</a> to fill out our quick form, or provide your address for a precise quote."
+            "We'd be happy to provide a free estimate. <a href='/contact' class='text-stark-red font-semibold'>Click here</a> to fill out our quick form, or provide your address for a precise quote."
           );
         }}
       >

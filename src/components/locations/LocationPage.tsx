@@ -88,8 +88,8 @@ const LocationPage: React.FC<LocationPageProps> = ({
         bgImage={heroImage}
         breadcrumb={city}
         ctaLabel="Get Free Estimate"
-        ctaHref="#contact"
-        accentColor="#dc2626"
+        ctaHref="/contact"
+        accentColor="#CC0000"
         align="center"
       />
       <div className="w-full py-12 lg:py-16 px-4">

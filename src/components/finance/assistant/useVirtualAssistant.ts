@@ -68,7 +68,7 @@ export const useVirtualAssistant = (scrollPrompts: ScrollPrompt[], faqResponses:
     setTimeout(() => {
       setChatMessages(prev => [...prev, {
         type: 'bot',
-        content: "Would you like to get started with a free estimate now? <a href='#contact' class='text-stark-red font-semibold'>Click here</a> to fill out our quick form and we'll be in touch shortly!"
+        content: "Would you like to get started with a free estimate now? <a href='/contact' class='text-stark-red font-semibold'>Click here</a> to fill out our quick form and we'll be in touch shortly!"
       }]);
     }, 1500);
   };

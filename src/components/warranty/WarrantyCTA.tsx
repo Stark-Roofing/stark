@@ -32,7 +32,7 @@ const WarrantyCTA = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <Link to="/services" className="btn-primary inline-flex items-center justify-center h-12">
+              <Link to="/contact" className="btn-primary inline-flex items-center justify-center h-12">
                 Get Free Inspection
               </Link>
             </motion.div>

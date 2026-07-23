@@ -21,7 +21,7 @@ const ServiceHero = () => {
             Premium roofing solutions including asphalt, metal, TPO, slate, clay tile, and cedar shake options, all installed by certified professionals for lasting protection.
           </p>
           <div className="animate-fade-in flex justify-center" style={{ animationDelay: '400ms' }}>
-            <a href="#contact" className="btn-primary">
+            <a href="/contact" className="btn-primary">
               Get a Free Estimate →
             </a>
           </div>
