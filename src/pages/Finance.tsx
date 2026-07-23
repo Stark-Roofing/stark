@@ -6,6 +6,7 @@ import { useSEOMeta } from '@/hooks/useSEOMeta';
 import HeroSection from '@/components/finance/HeroSection';
 import OBeePartnerSection from '@/components/finance/OBeePartnerSection';
 import BenefitsSection from '@/components/finance/BenefitsSection';
+import PaymentOptionsSection from '@/components/finance/PaymentOptionsSection';
 import CalculatorSection from '@/components/finance/CalculatorSection';
 import FAQSection from '@/components/finance/FAQSection';
 import HowToApplySection from '@/components/finance/HowToApplySection';
@@ -37,6 +38,7 @@ const Finance = () => {
       <HeroSection />
       <OBeePartnerSection />
       <BenefitsSection />
+      <PaymentOptionsSection />
       <CalculatorSection />
       <FAQSection />
       <HowToApplySection />

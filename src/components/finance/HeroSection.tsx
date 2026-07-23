@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { OBEE_APPLY_URL } from './obeeConfig';
 
 const HeroSection = () => {
   return (
@@ -25,7 +26,12 @@ const HeroSection = () => {
             <a href="#payment-options" className="btn-primary">
               View Payment Options
             </a>
-            <a href="#apply-now" className="btn-secondary bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/20">
+            <a
+              href={OBEE_APPLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/20"
+            >
               Apply Now
             </a>
           </div>

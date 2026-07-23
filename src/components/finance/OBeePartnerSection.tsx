@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, ExternalLink, MapPin, Clock, ShieldCheck } from 'lucide-react';
+import { OBEE_APPLY_URL } from './obeeConfig';
 
 /**
  * O Bee Credit Union — Stark Roofing contractor-channel financing.
@@ -11,13 +12,9 @@ import { CheckCircle2, ExternalLink, MapPin, Clock, ShieldCheck } from 'lucide-r
  *  - Loans up to $75,000
  *  - No payments for 3 months available on all loans if requested prior to funding
  *
- * The application URL below is the Stark-specific O Bee Link portal that routes
- * all applications to our business. Do not swap in the public obee.com consumer
- * loan URL — that product is not available through this channel.
+ * The application URL lives in ./obeeConfig (OBEE_APPLY_URL) so it can be shared
+ * with PaymentOptionsSection without duplicating the tracked link.
  */
-
-const OBEE_APPLY_URL =
-  'https://obee.merchantlinq.com/customer?t=anRPeVpHdU5lZzdNdHFrZ0FkWUI3cFdVbk5ZWkVvSmRmMGpjbzQ1ZW93bXNnbXYxb2l4MEhWKjF4OEdMN3JvY0k1Y2ljRTJjMXNlWVRBTGZXMUQ5c05Sb05Jb1dMa1h4UURDMUtJa2g4WVhOVzV4OUJBOU1HRXVWREF6TEJ3dXBkUkIxNypTQ2dNSEhENUVyR3FIZGptTkgqUzkqUzUqMWNUTEJ4dWZSVTRlQWVhRURxbGM4ME53UmxWeWV4azBaeGg5UU9zNWRzb2RnRGlIUSpTMm1MQllJN3Y4Z3hGdHQ4SmJtN1FEOXFNVklBYW5OND0=';
 
 const OBeePartnerSection = () => {
   return (

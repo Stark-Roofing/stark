@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
+import { OBEE_APPLY_URL } from './obeeConfig';
 
 const PaymentOptionsSection = () => {
   return (
@@ -36,7 +37,12 @@ const PaymentOptionsSection = () => {
                   <span>Fixed monthly payments</span>
                 </li>
               </ul>
-              <a href="#apply-now" className="mt-6 block text-center py-3 px-4 bg-navy text-white rounded-md hover:bg-navy/90 transition-colors font-medium">
+              <a
+                href={OBEE_APPLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 block text-center py-3 px-4 bg-navy text-white rounded-md hover:bg-navy/90 transition-colors font-medium"
+              >
                 Apply Now
               </a>
             </div>
@@ -69,7 +75,12 @@ const PaymentOptionsSection = () => {
                   <span>Flexible payment options</span>
                 </li>
               </ul>
-              <a href="#apply-now" className="mt-6 block text-center py-3 px-4 bg-stark-red text-white rounded-md hover:bg-stark-redHover transition-colors font-medium">
+              <a
+                href={OBEE_APPLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 block text-center py-3 px-4 bg-stark-red text-white rounded-md hover:bg-stark-redHover transition-colors font-medium"
+              >
                 Apply Now
               </a>
             </div>
@@ -99,7 +110,12 @@ const PaymentOptionsSection = () => {
                   <span>Fixed interest rates</span>
                 </li>
               </ul>
-              <a href="#apply-now" className="mt-6 block text-center py-3 px-4 bg-navy text-white rounded-md hover:bg-navy/90 transition-colors font-medium">
+              <a
+                href={OBEE_APPLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 block text-center py-3 px-4 bg-navy text-white rounded-md hover:bg-navy/90 transition-colors font-medium"
+              >
                 Apply Now
               </a>
             </div>
