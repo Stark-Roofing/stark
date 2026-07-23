@@ -7,7 +7,6 @@ import ContactForm from '@/components/services/ContactForm';
 import { useSEOMeta } from '@/hooks/useSEOMeta';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Link } from 'react-router-dom';
 import ServiceSchema from '@/components/shared/ServiceSchema';
 
 const SidingInstallation = () => {
@@ -245,9 +244,6 @@ const SidingInstallation = () => {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button size="lg" className="bg-stark-red hover:bg-stark-red/90 text-white">
                 <a href="#contact">Get a Free Estimate</a>
-              </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 bg-stark-red hover:bg-stark-red/90 hover:border-stark-red">
-                <Link to="/services">Explore Other Services</Link>
               </Button>
             </div>
           </div>

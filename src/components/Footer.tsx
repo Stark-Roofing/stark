@@ -45,21 +45,21 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-300 hover:text-white transition-colors flex items-center justify-center md:justify-start">
+                <Link to="/#services" className="text-gray-300 hover:text-white transition-colors flex items-center justify-center md:justify-start">
                   <ChevronRight size={isMobile ? 14 : 16} className="mr-1 md:mr-2" />
                   Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/warranty" className="text-gray-300 hover:text-white transition-colors flex items-center justify-center md:justify-start">
-                  <ChevronRight size={isMobile ? 14 : 16} className="mr-1 md:mr-2" />
-                  Warranty
                 </Link>
               </li>
               <li>
                 <Link to="/storm-damage" className="text-gray-300 hover:text-white transition-colors flex items-center justify-center md:justify-start">
                   <ChevronRight size={isMobile ? 14 : 16} className="mr-1 md:mr-2" />
                   Storm Damage
+                </Link>
+              </li>
+              <li>
+                <Link to="/warranty" className="text-gray-300 hover:text-white transition-colors flex items-center justify-center md:justify-start">
+                  <ChevronRight size={isMobile ? 14 : 16} className="mr-1 md:mr-2" />
+                  Warranty
                 </Link>
               </li>
               <li>
@@ -88,21 +88,15 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/gutter-replacement" className="text-gray-300 hover:text-white transition-colors flex items-center justify-center md:justify-start">
-                  <ChevronRight size={isMobile ? 14 : 16} className="mr-1 md:mr-2" />
-                  Gutter Replacement
-                </Link>
-              </li>
-              <li>
                 <Link to="/roof-repair" className="text-gray-300 hover:text-white transition-colors flex items-center justify-center md:justify-start">
                   <ChevronRight size={isMobile ? 14 : 16} className="mr-1 md:mr-2" />
                   Roof Repair
                 </Link>
               </li>
               <li>
-                <Link to="/storm-damage" className="text-gray-300 hover:text-white transition-colors flex items-center justify-center md:justify-start">
+                <Link to="/gutter-replacement" className="text-gray-300 hover:text-white transition-colors flex items-center justify-center md:justify-start">
                   <ChevronRight size={isMobile ? 14 : 16} className="mr-1 md:mr-2" />
-                  Storm Damage Repair
+                  Gutter Installation
                 </Link>
               </li>
               <li>
@@ -112,8 +106,14 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/window-replacement" className="text-gray-300 hover:text-primary-purple transition-colors flex items-center justify-center md:justify-start group">
-                  <ChevronRight size={isMobile ? 14 : 16} className="mr-1 md:mr-2 group-hover:text-primary-purple" />
+                <Link to="/skylights" className="text-gray-300 hover:text-white transition-colors flex items-center justify-center md:justify-start">
+                  <ChevronRight size={isMobile ? 14 : 16} className="mr-1 md:mr-2" />
+                  Skylight Installation
+                </Link>
+              </li>
+              <li>
+                <Link to="/window-replacement" className="text-gray-300 hover:text-white transition-colors flex items-center justify-center md:justify-start">
+                  <ChevronRight size={isMobile ? 14 : 16} className="mr-1 md:mr-2" />
                   Window Replacement
                 </Link>
               </li>
@@ -168,9 +168,6 @@ const Footer = () => {
             </Link>
             <Link to="/terms-of-service" className="text-gray-400 hover:text-white text-xs md:text-sm transition-colors">
               Terms of Service
-            </Link>
-            <Link to="/services" className="text-gray-400 hover:text-white text-xs md:text-sm transition-colors">
-              Sitemap
             </Link>
           </div>
         </div>
