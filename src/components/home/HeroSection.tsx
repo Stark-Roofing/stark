@@ -23,11 +23,11 @@ const YT_ID = 'GnZgvVnHnA8'; // Lake Washington & Seattle Skyline drone film
 const SLIDE_DURATION_MS = 3500; // every slide advances after 3.5s
 
 const DEFAULT_SLIDES: Slide[] = [
+  // OPENER – instant-paint image (also the LCP preload in index.html)
+  { url: '/hero-custom-1.webp', type: 'image', caption: 'Aerial Precision. Every Time.',     alt: 'Stark roofing aerial' },
+
   // YouTube – Lake Washington aerial (short clip)
   { type: 'youtube', ytId: YT_ID, ytStart: 5, ytEnd: 10, caption: 'Serving Greater Seattle & Beyond', alt: 'Aerial Lake Washington Seattle' },
-
-  // Custom uploaded photos & video (Brenda's edits — Apr 2026)
-  { url: '/hero-custom-1.webp', type: 'image', caption: 'Aerial Precision. Every Time.',     alt: 'Stark roofing aerial' },
   { url: '/hero-custom-2.m4v',  type: 'video', caption: 'Stark Crew in Action',              alt: 'Stark roofing video', playDuration: 4 },
   { url: '/hero-custom-3.webp', type: 'image', caption: 'Safety-First. Results-Always.',    alt: 'Stark crew on roof' },
   { url: '/hero-custom-4.jpg',  type: 'image', caption: 'Serving Greater Seattle & Beyond', alt: 'Stark roofing project' },
