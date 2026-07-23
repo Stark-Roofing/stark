@@ -98,7 +98,7 @@ const HeroSection = () => {
             <motion.a
               href="#contact"
               className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-stark-red text-white font-bold text-base rounded-full shadow-2xl"
-              whileHover={{ scale: 1.04, boxShadow: '0 0 35px rgba(220,38,38,0.5)' }}
+              whileHover={{ scale: 1.04, boxShadow: '0 0 35px rgba(204,0,0,0.5)' }}
               whileTap={{ scale: 0.97 }}
             >
               Book My Free Estimate

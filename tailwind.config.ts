@@ -43,6 +43,15 @@ export default {
 					red: '#CC0000',
 					redHover: '#AA0000',
 				},
+				// Remap Tailwind's default red scale to the brand red (#CC0000) so
+				// every `red-*` utility across the site matches. 700 stays darker
+				// (#AA0000, = stark-redHover) so `hover:bg-red-700` still darkens.
+				red: {
+					400: '#CC0000',
+					500: '#CC0000',
+					600: '#CC0000',
+					700: '#AA0000',
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'

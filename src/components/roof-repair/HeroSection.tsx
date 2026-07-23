@@ -30,7 +30,7 @@ const HeroSection = () => {
         {/* Subtle red accent glow bottom-left */}
         <div
           className="absolute -bottom-32 -left-32 w-[480px] h-[480px] rounded-full blur-3xl opacity-20"
-          style={{ background: 'radial-gradient(circle, #dc2626 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, #CC0000 0%, transparent 70%)' }}
         />
       </div>
 
@@ -195,7 +195,7 @@ const HeroSection = () => {
       {/* Bottom accent line */}
       <div
         className="absolute bottom-0 left-0 right-0 h-[3px]"
-        style={{ background: 'linear-gradient(90deg, transparent, #dc2626, transparent)' }}
+        style={{ background: 'linear-gradient(90deg, transparent, #CC0000, transparent)' }}
       />
     </section>
   );

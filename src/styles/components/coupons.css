@@ -10,7 +10,7 @@
 .coupon-luxury-red {
   --coupon-color: #8B0000;
   --coupon-bg: #FFF1F0;
-  --coupon-border: rgba(139, 0, 0, 0.2);
+  --coupon-border: rgba(204, 0, 0, 0.2);
   --coupon-hover: #6B0000;
 }
 

@@ -33,7 +33,7 @@ const StormHero = () => {
       <div
         className="absolute right-0 top-0 bottom-0 w-1/3 opacity-20"
         style={{
-          background: 'linear-gradient(135deg, transparent 0%, #dc2626 100%)',
+          background: 'linear-gradient(135deg, transparent 0%, #CC0000 100%)',
         }}
         aria-hidden="true"
       />
@@ -113,7 +113,7 @@ const StormHero = () => {
               <motion.a
                 href="#book-inspection"
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-stark-red text-white font-bold text-base rounded-full shadow-2xl"
-                whileHover={{ scale: 1.04, boxShadow: '0 0 35px rgba(220,38,38,0.5)' }}
+                whileHover={{ scale: 1.04, boxShadow: '0 0 35px rgba(204,0,0,0.5)' }}
                 whileTap={{ scale: 0.97 }}
               >
                 Book My Free Inspection

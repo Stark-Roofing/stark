@@ -28,7 +28,7 @@ const CHAPTERS = [
     sub: 'On time. In full gear. Every single job.',
     body: 'Every Stark crew member arrives with the right safety equipment and the experience to back it up. No shortcuts. No excuses.',
     image: '/hero2-1.webp',
-    accent: '#ef4444', // red
+    accent: '#CC0000', // red
   },
   {
     number: '02',
@@ -60,7 +60,7 @@ const CHAPTERS = [
     sub: 'Takes 60 seconds. Saves you thousands.',
     body: 'Join 500+ Washington homeowners who chose Stark. Call (206) 739-8232 or fill out our estimate form — we\'ll respond within the hour.',
     image: '/hero2-5.webp',
-    accent: '#ef4444',
+    accent: '#CC0000',
     cta: true,
   },
 ];
@@ -156,7 +156,7 @@ const ChapterSlide: React.FC<ChapterSlideProps> = ({ chapter, index, progress, t
             <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full text-sm tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(220,38,38,0.5)]"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full text-sm tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(204,0,0,0.5)]"
               >
                 Free Estimate
               </a>
@@ -268,7 +268,7 @@ const CinematicScrollSection: React.FC = () => {
         {/* ── Progress bar ── */}
         <motion.div
           className="absolute top-0 left-0 h-[3px] z-50"
-          style={{ width: progressBarWidth, background: 'linear-gradient(90deg, #ef4444, #f97316)' }}
+          style={{ width: progressBarWidth, background: 'linear-gradient(90deg, #CC0000, #f97316)' }}
         />
 
         {/* ── Chapter label (top-left) ── */}
