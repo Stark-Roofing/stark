@@ -50,7 +50,7 @@ const GutterRepair = () => {
 
         {/* Single lead-capture section — replaces the old ContactSection +
             HeroContactForm duplicate plus the bottom ContactSection (cleanup 2026-05-28). */}
-        <QuickQuoteSection defaultService="gutters" />
+        <QuickQuoteSection defaultService="gutters" title="Get Your Free Estimate" />
 
         {/* Filter Details Section */}
         <FilterDetailsSection />
