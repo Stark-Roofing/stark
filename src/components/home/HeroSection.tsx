@@ -23,9 +23,6 @@ const YT_ID = 'GnZgvVnHnA8'; // Lake Washington & Seattle Skyline drone film
 const SLIDE_DURATION_MS = 3500; // every slide advances after 3.5s
 
 const DEFAULT_SLIDES: Slide[] = [
-  // INTRO – local MP4 drone clip (hero opener)
-  { url: '/hero-drone-1.mp4', type: 'video', caption: "Your #1 Roofing Crew", alt: 'Drone aerial of Stark roofing crew' },
-
   // YouTube – Lake Washington aerial (short clip)
   { type: 'youtube', ytId: YT_ID, ytStart: 5, ytEnd: 10, caption: 'Serving Greater Seattle & Beyond', alt: 'Aerial Lake Washington Seattle' },
 

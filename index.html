@@ -44,11 +44,9 @@
          &display=swap param) ensures fallback text paints instantly while
          the woff2 streams in. -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" />
-    <!-- LCP optimization: hero-custom-1.webp doubles as the video poster for
-         /hero-drone-1.mp4 (first carousel slide), so it paints LCP before the
-         MP4 finishes downloading. We DO NOT preload the MP4 itself — on slow
-         mobile (4G), the 591KB MP4 competes with the JS bundle for bandwidth
-         and ends up DELAYING LCP. The poster alone is enough to paint LCP. -->
+    <!-- LCP optimization: hero-custom-1.webp is the first image slide of the
+         hero carousel (and the fallback paint while the YouTube opener loads),
+         so preloading it lets LCP paint without waiting for the JS bundle. -->
     <link rel="preload" as="image" href="/hero-custom-1.webp" type="image/webp" fetchpriority="high" />
     <link rel="manifest" href="/manifest.json" />
 
