@@ -82,6 +82,41 @@ jobs:
         fi
         echo "All critical pages verified."
 
+        # Existence is not enough: "Prerender static HTML" above runs with
+        # continue-on-error, so a Puppeteer failure on any single route does
+        # NOT fail this job — it silently drops that route, and
+        # generate-all-fallbacks.mjs then fills the gap with generic
+        # boilerplate (real title/meta, but NOT the actual page content).
+        # Every dist/<route>/index.html therefore always exists, so a plain
+        # file-existence check can never catch this failure mode.
+        #
+        # Detect it using the exact same signal generate-all-fallbacks.mjs
+        # itself already uses to decide whether a file needs the fallback:
+        # an empty <div id="root"></div> means Puppeteer never rendered real
+        # content into it. python3 (not grep -P) so this behaves identically
+        # on macOS dev machines and this Ubuntu runner.
+        echo ""
+        echo "Checking for generic-fallback content on known-flaky routes..."
+        GENERIC=0
+        for page in roof-replacement skylights tpo-roofing roof-cleaning; do
+          file="dist/$page/index.html"
+          if python3 -c "
+import re, sys
+content = open('$file', encoding='utf-8').read()
+sys.exit(0 if re.search(r'<div id=\"root\">\s*</div>', content) else 1)
+"; then
+            echo "::warning::dist/$page/index.html is GENERIC FALLBACK content — Puppeteer prerender failed for this route. Check the 'Prerender static HTML' step log above for the real ✗ error and stack trace."
+            GENERIC=$((GENERIC + 1))
+          else
+            echo "OK (real prerendered content): dist/$page/index.html"
+          fi
+        done
+        if [ "$GENERIC" -gt 0 ]; then
+          echo "::error::$GENERIC page(s) shipped generic fallback content instead of real prerendered HTML. Deployment blocked — fix the prerender failure logged above before merging."
+          exit 1
+        fi
+        echo "All 4 tracked pages verified as real prerendered content."
+
     # ── Deploy ──
     - name: Create 404.html fallback for unknown URLs
       run: cp dist/index.html dist/404.html
