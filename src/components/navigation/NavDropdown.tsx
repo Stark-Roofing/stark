@@ -38,15 +38,12 @@ const NavDropdown = ({
         onMouseLeave={() => setIsOpen(false)}
       >
         {label}
-        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
         <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-stark-red transition-all duration-300 group-hover:w-full"></span>
       </button>
       
       <div 
         className={cn(
-          "absolute left-0 mt-1 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 transition-all duration-150 ease-in-out",
+          "absolute left-0 mt-1 w-max min-w-[12rem] whitespace-nowrap rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 transition-all duration-150 ease-in-out",
           isOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 invisible"
         )}
         onMouseEnter={() => setIsOpen(true)}

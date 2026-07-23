@@ -61,11 +61,6 @@ const MobileNavigation = ({ isScrolled, isMobileMenuOpen, toggleMobileMenu }: Mo
 
   const serviceItems = [
     {
-      to: "/services",
-      label: "All Services",
-      icon: <Wrench size={iconSize} className="mr-2" />
-    },
-    {
       to: "/about",
       label: "About Us",
       icon: <Info size={iconSize} className="mr-2" />
@@ -80,6 +75,60 @@ const MobileNavigation = ({ isScrolled, isMobileMenuOpen, toggleMobileMenu }: Mo
       label: "Warranty",
       icon: null
     }
+  ];
+
+  const menuItems = [
+    {
+      to: "/#services",
+      label: "Services",
+      icon: <Wrench size={iconSize} className="mr-2" />
+    },
+    {
+      to: "/storm-damage",
+      label: "Storm Damage",
+      icon: <Cloud size={iconSize} className="mr-2" />
+    },
+    {
+      to: "/our-projects",
+      label: "Our Projects",
+      icon: <Camera size={iconSize} className="mr-2" />
+    },
+    {
+      to: "/about",
+      label: "About Us",
+      icon: <Info size={iconSize} className="mr-2" />
+    },
+    {
+      to: "/warranty",
+      label: "Warranty Info",
+      icon: null
+    },
+    {
+      to: "/finance",
+      label: "Financing Help",
+      icon: <Wallet size={iconSize} className="mr-2" />
+    },
+    {
+      to: "/blog",
+      label: "Blog",
+      icon: null
+    }
+  ];
+
+  const serviceAreaItems = [
+    { to: "/service-area/seattle", label: "Seattle" },
+    { to: "/service-area/bellevue", label: "Bellevue" },
+    { to: "/service-area/sammamish", label: "Sammamish" },
+    { to: "/service-area/redmond", label: "Redmond" },
+    { to: "/service-area/kirkland", label: "Kirkland" },
+    { to: "/service-area/issaquah", label: "Issaquah" },
+    { to: "/service-area/woodinville", label: "Woodinville" },
+    { to: "/service-area/renton", label: "Renton" },
+    { to: "/service-area/everett", label: "Everett" },
+    { to: "/service-area/lynnwood", label: "Lynnwood" },
+    { to: "/service-area/bothell", label: "Bothell" },
+    { to: "/service-area/tacoma", label: "Tacoma" },
+    { to: "/service-area/maple-valley", label: "Maple Valley" }
   ];
 
   const toggleSubmenu = (menu: string) => {
@@ -172,9 +221,21 @@ const MobileNavigation = ({ isScrolled, isMobileMenuOpen, toggleMobileMenu }: Mo
               Contact Us
             </MobileMenuItem>
             
-            <MobileSubmenu 
-              title="Services" 
-              items={serviceItems} 
+            <MobileSubmenu
+              title="Services"
+              items={serviceItems}
+              onItemClick={toggleMobileMenu}
+            />
+
+            <MobileSubmenu
+              title="More Info"
+              items={menuItems}
+              onItemClick={toggleMobileMenu}
+            />
+
+            <MobileSubmenu
+              title="Service Areas"
+              items={serviceAreaItems} 
               onItemClick={toggleMobileMenu} 
             />
             

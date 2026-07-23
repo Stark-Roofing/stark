@@ -1,13 +1,11 @@
 
 import React from 'react';
-import { Wallet } from 'lucide-react';
 import NavItem from './NavItem';
 import NavMenuSection from './NavMenuSection';
 import {
-  getRoofingItems,
-  getGutterItems,
-  getSkylightItems,
-  getServicesItems
+  getAllServicesDropdownItems,
+  getMenuItems,
+  getServiceAreasItems
 } from './NavigationMenuData';
 
 interface DesktopNavigationProps {
@@ -18,40 +16,31 @@ const DesktopNavigation = ({ isScrolled }: DesktopNavigationProps) => {
   return (
     <nav className="hidden md:flex items-center space-x-4">
       <NavMenuSection
-        label="Roofing"
-        items={getRoofingItems()}
+        label="Our Services"
+        items={getAllServicesDropdownItems()}
         isScrolled={isScrolled}
-      />
-
-      <NavMenuSection
-        label="Gutters"
-        items={getGutterItems()}
-        isScrolled={isScrolled}
-      />
-
-      <NavMenuSection
-        label="Skylights"
-        items={getSkylightItems()}
-        isScrolled={isScrolled}
-        highlightPath="/skylight"
       />
 
       <NavItem to="/storm-damage" isScrolled={isScrolled}>
         Storm Damage
       </NavItem>
 
-      <NavItem to="/finance" isScrolled={isScrolled}>
-        <span className="flex items-center">
-          <Wallet size={16} className="mr-1" />
-          Finance
-        </span>
-      </NavItem>
-
       <NavMenuSection
-        label="Services"
-        items={getServicesItems()}
+        label="Resources"
+        items={getMenuItems()}
         isScrolled={isScrolled}
       />
+
+      <NavMenuSection
+        label="Service Areas"
+        items={getServiceAreasItems()}
+        isScrolled={isScrolled}
+        highlightPath="/service-area"
+      />
+
+      <NavItem to="/contact" isScrolled={isScrolled}>
+        Contact Us
+      </NavItem>
     </nav>
   );
 };
