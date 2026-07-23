@@ -2,10 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Core pages -->
   <url><loc>https://starkroofingrenovation.com/</loc><lastmod>2026-04-16</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://starkroofingrenovation.com/services</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://starkroofingrenovation.com/about</loc><lastmod>2026-04-16</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://starkroofingrenovation.com/contact</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://starkroofingrenovation.com/finance</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- Project gallery. Canonical URL is /our-projects; the /before-after route is a
+       duplicate that self-canonicalizes here, so it is intentionally NOT listed. -->
+  <url><loc>https://starkroofingrenovation.com/our-projects</loc><lastmod>2026-07-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://starkroofingrenovation.com/warranty</loc><lastmod>2026-04-16</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://starkroofingrenovation.com/quiz.html</loc><lastmod>2026-04-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 

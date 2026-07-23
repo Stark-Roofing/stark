@@ -46,7 +46,7 @@ const ServicePageHero: React.FC<ServicePageHeroProps> = ({
   breadcrumb,
   secondaryCta,
   overlayOpacity = 0.55,
-  accentColor = '#dc2626',
+  accentColor = '#CC0000',
   align = 'left',
 }) => {
   const isCenter = align === 'center';
@@ -123,10 +123,10 @@ const ServicePageHero: React.FC<ServicePageHeroProps> = ({
           </motion.div>
         )}
 
-        {/* Title — word-by-word reveal */}
-        <div className={`flex flex-wrap gap-x-4 gap-y-1 mb-4 max-w-4xl ${isCenter ? 'justify-center' : ''}`}>
+        {/* Title — word-by-word reveal (semantic h1 for SEO) */}
+        <h1 className={`flex flex-wrap gap-x-4 gap-y-1 mb-4 max-w-4xl ${isCenter ? 'justify-center' : ''}`}>
           {words.map((word, i) => (
-            <div key={i} className="overflow-hidden">
+            <span key={i} className="block overflow-hidden">
               <motion.span
                 className="block text-[clamp(2rem,5.5vw,4.5rem)] font-extrabold text-white leading-none tracking-tight font-heading"
                 initial={{ y: '110%' }}
@@ -135,9 +135,9 @@ const ServicePageHero: React.FC<ServicePageHeroProps> = ({
               >
                 {word}
               </motion.span>
-            </div>
+            </span>
           ))}
-        </div>
+        </h1>
 
         {/* Accent line */}
         <motion.div

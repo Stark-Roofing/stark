@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { saveMedia, getMedia, deleteMedia, resolveMediaUrl, isIdbRef } from '../lib/heroStorage';
+import { useSEOMeta } from '@/hooks/useSEOMeta';
 
 /* ── Types (must match HeroSection.tsx) ────────────────────────────────────── */
 interface Slide {
@@ -279,6 +280,13 @@ function isLocalhost(): boolean {
 
 /* ── Main admin page ──────────────────────────────────────────────────────── */
 const AdminHero: React.FC = () => {
+  // Internal admin tool — never index or follow.
+  useSEOMeta({
+    title: 'Hero Editor | Stark Roofing (internal)',
+    description: 'Internal admin tool.',
+    robots: 'noindex, nofollow',
+  });
+
   const [slides, setSlides] = useState<Slide[]>([]);
   const [hasChanges, setHasChanges] = useState(false);
 

@@ -10,6 +10,9 @@ interface SEOMetaProps {
   description: string;
   canonical?: string;
   keywords?: string;
+  /** Robots directive, e.g. "noindex, nofollow". Omit to keep the site
+   *  default ("index, follow" from index.html). */
+  robots?: string;
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
@@ -24,6 +27,7 @@ export const useSEOMeta = ({
   description,
   canonical,
   keywords,
+  robots,
   ogTitle,
   ogDescription,
   ogImage,
@@ -60,6 +64,12 @@ export const useSEOMeta = ({
     // Update keywords if provided
     if (keywords) {
       setMetaTag('keywords', keywords);
+    }
+
+    // Update robots directive if provided (e.g. "noindex, nofollow" for
+    // admin/ads pages). Overwrites the "index, follow" default set in index.html.
+    if (robots) {
+      setMetaTag('robots', robots);
     }
 
     // Update canonical URL
@@ -101,6 +111,15 @@ export const useSEOMeta = ({
       if (pageSchema) {
         pageSchema.remove();
       }
+
+      // If this page overrode robots (e.g. noindex), restore the site default
+      // when navigating away — otherwise the whole SPA would stay noindexed.
+      if (robots) {
+        const robotsMeta = document.querySelector('meta[name="robots"]');
+        if (robotsMeta) {
+          robotsMeta.setAttribute('content', 'index, follow');
+        }
+      }
     };
-  }, [title, description, canonical, keywords, ogTitle, ogDescription, ogImage, twitterTitle, twitterDescription, twitterImage, schemaMarkup]);
+  }, [title, description, canonical, keywords, robots, ogTitle, ogDescription, ogImage, twitterTitle, twitterDescription, twitterImage, schemaMarkup]);
 };
