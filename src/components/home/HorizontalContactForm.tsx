@@ -10,6 +10,9 @@ const HorizontalContactForm = () => {
     <QuickQuoteSection
       title="Book Your Free Roof Estimate"
       subtitle="Pick a day & time that works — we confirm by text within minutes."
+      background="white"
+      padding="section"
+      id="quote-form"
     />
   );
 };

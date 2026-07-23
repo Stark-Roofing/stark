@@ -10,7 +10,7 @@ const HappinessSection: React.FC = () => {
   const isMobile = useIsMobile();
   
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+    <section className="section-padding bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12 lg:gap-16">
           <motion.div

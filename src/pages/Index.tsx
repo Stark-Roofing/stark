@@ -1,21 +1,17 @@
 
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useSEOMeta } from '@/hooks/useSEOMeta';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ContactForm from '@/components/services/ContactForm';
 import HeroSection from '@/components/home/HeroSection';
-import CinematicScrollSection from '@/components/home/CinematicScrollSection';
 import HorizontalContactForm from '@/components/home/HorizontalContactForm';
-import TrustBadgesSection from '@/components/home/TrustBadgesSection';
-import ServicesOverviewSection from '@/components/home/ServicesOverviewSection';
 import PremiumServicesSection from '@/components/home/PremiumServicesSection';
-import ShowcaseSection from '@/components/home/ShowcaseSection';
+import StormDamageSection from '@/components/home/StormDamageSection';
 import ComparisonSection from '@/components/home/ComparisonSection';
 import CTASection from '@/components/home/CTASection';
 import ProcessSection from '@/components/home/ProcessSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
-import FinancingOptionsSection from '@/components/home/FinancingOptionsSection';
 import ServiceAreaSection from '@/components/home/ServiceAreaSection';
 import HappinessSection from '@/components/home/HappinessSection';
 import VirtualAssistant from '@/components/finance/VirtualAssistant';
@@ -25,6 +21,8 @@ import HomeFAQSection from '@/components/home/FAQSection';
 import { motion } from 'framer-motion';
 
 const Index = () => {
+  const { hash, key } = useLocation();
+
   useSEOMeta({
     title: 'Stark Roofing & Renovation | GAF Roofer Seattle & Eastside WA',
     description: 'GAF Master Elite roofer with 5-star reviews across Seattle and the Eastside. Free estimates on roofing, gutters, siding, and more. (206) 739-8232.',
@@ -34,9 +32,43 @@ const Index = () => {
     ogImage: 'https://starkroofingrenovation.com/og-share.png',
   });
 
+  // Hash links (e.g. "/#services") need manual handling — React Router does not
+  // scroll to anchors on its own.
+  //
+  // Keyed on `key` as well as `hash`: clicking the same hash link again does not
+  // change `hash`, so keying on it alone left the link dead after the first use.
+  // `key` is unique per navigation, so every click re-fires this.
+  //
+  // Retries briefly because the target can render after this first runs when
+  // arriving from another page, and offsets by the fixed navbar so the section
+  // heading doesn't land hidden underneath it.
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    const id = hash.slice(1);
+    let attempts = 0;
+    let timer: ReturnType<typeof setTimeout>;
+
+    const scrollToTarget = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        const navbar = document.querySelector('.fixed.top-0.z-50');
+        const offset = navbar ? navbar.getBoundingClientRect().height : 0;
+        window.scrollTo({
+          top: el.getBoundingClientRect().top + window.scrollY - offset,
+          behavior: 'smooth',
+        });
+      } else if (attempts++ < 20) {
+        timer = setTimeout(scrollToTarget, 100);
+      }
+    };
+
+    timer = setTimeout(scrollToTarget, 100);
+    return () => clearTimeout(timer);
+  }, [hash, key]);
 
   return (
     <motion.div
@@ -50,19 +82,14 @@ const Index = () => {
       {/* ── Cinematic hero (drone video + 3-second slides + music) ── */}
       <HeroSection />
 
-      {/* ── Apple/Instagram-reel scroll storytelling ── */}
-      <CinematicScrollSection />
-
       <AnimatedSection animation="slide-up">
         <PremiumServicesSection />
       </AnimatedSection>
 
-      <AnimatedSection animation="slide-up">
-        <ShowcaseSection />
-      </AnimatedSection>
+      <StormDamageSection />
 
       <AnimatedSection animation="fade">
-        <ServicesOverviewSection />
+        <ProcessSection />
       </AnimatedSection>
 
       {/* Lead-capture form — placed AFTER the cinematic story + services overview
@@ -75,37 +102,23 @@ const Index = () => {
       >
         <HorizontalContactForm />
       </motion.div>
-      
+
       <AnimatedSection animation="slide-up">
         <ComparisonSection />
       </AnimatedSection>
-      
-      <AnimatedSection animation="fade">
-        <div className="availability-section">
-          <TrustBadgesSection />
-        </div>
-      </AnimatedSection>
-      
+
       <AnimatedSection animation="slide-up">
         <CTASection />
-      </AnimatedSection>
-      
-      <AnimatedSection animation="fade">
-        <ProcessSection />
-      </AnimatedSection>
-      
-      <AnimatedSection animation="slide-up">
-        <TestimonialsSection />
-      </AnimatedSection>
-      
-      <AnimatedSection animation="fade">
-        <FinancingOptionsSection />
       </AnimatedSection>
 
       <AnimatedSection animation="slide-up">
         <ServiceAreaSection />
       </AnimatedSection>
-      
+
+      <AnimatedSection animation="slide-up">
+        <TestimonialsSection />
+      </AnimatedSection>
+
       <AnimatedSection animation="fade">
         <HappinessSection />
       </AnimatedSection>
@@ -113,46 +126,10 @@ const Index = () => {
       <AnimatedSection animation="slide-up">
         <HomeFAQSection />
       </AnimatedSection>
-      
-      <AnimatedSection animation="slide-up">
-        <section id="contact" className="section-padding bg-navy">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="max-w-4xl mx-auto">
-              <motion.h2 
-                className="text-3xl font-heading font-bold mb-6 text-center text-slate-50 md:text-6xl"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
-                Get a Free Estimate
-              </motion.h2>
-              <motion.p 
-                className="text-white/80 mb-8 text-center font-semibold text-base"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-              >
-                Fill out the form below and one of our roofing experts will contact you to schedule your free inspection and estimate
-              </motion.p>
-              
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-              >
-                <ContactForm />
-              </motion.div>
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
-      
+
       <VirtualAssistant />
       <ScrollToTop />
-      
+
       <Footer />
     </motion.div>
   );

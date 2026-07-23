@@ -4,8 +4,18 @@ import { motion } from 'framer-motion';
 import { Phone } from 'lucide-react';
 
 const CTASection: React.FC = () => {
+  // Smooth-scroll to the on-page quote form, offset by the fixed navbar.
+  const scrollToQuoteForm = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const el = document.getElementById('quote-form');
+    if (!el) return;
+    const navbar = document.querySelector('.fixed.top-0.z-50');
+    const offset = navbar ? navbar.getBoundingClientRect().height : 0;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+  };
+
   return (
-    <section className="py-16 relative overflow-hidden">
+    <section className="section-padding relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img 
           src="/lovable-uploads/ea006abb-9eda-4581-bc18-f64c4bf9d2c0.webp"
@@ -34,7 +44,7 @@ const CTASection: React.FC = () => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               className="animate-pulse-glow"
             >
-              <a href="#contact" className="btn-primary inline-flex items-center justify-center h-12">
+              <a href="#quote-form" onClick={scrollToQuoteForm} className="btn-primary inline-flex items-center justify-center h-12">
                 Get a Free Estimate
               </a>
             </motion.div>

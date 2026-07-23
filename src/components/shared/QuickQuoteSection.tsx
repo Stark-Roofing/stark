@@ -12,8 +12,10 @@ interface QuickQuoteSectionProps {
   defaultService?: string;
   /** Section background. */
   background?: 'white' | 'gray' | 'gradient';
-  /** Vertical padding. Defaults to a comfortable section size. */
-  padding?: 'compact' | 'normal' | 'large';
+  /** Vertical padding. Defaults to a comfortable section size.
+   *  'section' opts into the site-wide .section-padding scale so this
+   *  section matches surrounding homepage sections exactly. */
+  padding?: 'compact' | 'normal' | 'large' | 'section';
   /** Optional id so anchor links (#schedule-form) keep working. */
   id?: string;
 }
@@ -46,6 +48,8 @@ const QuickQuoteSection: React.FC<QuickQuoteSectionProps> = ({
       ? 'py-8 md:py-10'
       : padding === 'large'
       ? 'py-16 md:py-24'
+      : padding === 'section'
+      ? 'section-padding'
       : 'py-12 md:py-16';
 
   return (

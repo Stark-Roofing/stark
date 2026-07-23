@@ -7,13 +7,13 @@ const ComparisonSection: React.FC = () => {
   const isMobile = useIsMobile();
 
   return (
-    <section className="section-padding bg-gray-100 overflow-hidden">
+    <section className="section-padding bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <h2 className="section-title text-center">How We Compare</h2>
         <p className="section-subtitle text-center mb-8 md:mb-12">
           See how Stark Roofing & Renovation stands out from the competition with our commitment to quality and service.
         </p>
-        
+
         <div className="max-w-5xl mx-auto">
           <div className="bg-white rounded-xl shadow-md overflow-hidden">
             <div className="overflow-x-auto pb-2">

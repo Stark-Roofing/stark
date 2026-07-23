@@ -92,7 +92,7 @@ const ShowcaseSection = () => {
   };
 
   return (
-    <section ref={ref} className="py-16 md:py-20 bg-white relative overflow-hidden">
+    <section ref={ref} className="section-padding bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div 
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center"

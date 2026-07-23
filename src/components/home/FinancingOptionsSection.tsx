@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const FinancingOptionsSection: React.FC = () => {
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
+    <section className="section-padding bg-gray-50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-16">
           <motion.div

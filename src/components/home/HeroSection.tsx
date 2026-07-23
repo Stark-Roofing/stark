@@ -56,6 +56,19 @@ const INTRO_LINES = [
 
 // ─── Component ──────────────────────────────────────────────────────────────────
 const HeroSection: React.FC = () => {
+  // Smooth-scroll to the on-page quote form, offset by the fixed navbar so the
+  // form heading isn't hidden underneath it. preventDefault avoids the native
+  // anchor jump (which lands under the navbar and isn't picked up by the
+  // homepage's Link-based hash-scroll effect).
+  const scrollToQuoteForm = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const el = document.getElementById('quote-form');
+    if (!el) return;
+    const navbar = document.querySelector('.fixed.top-0.z-50');
+    const offset = navbar ? navbar.getBoundingClientRect().height : 0;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+  };
+
   const [slides, setSlides] = useState<Slide[]>(loadSlides);
   const [currentIndex, setCurrentIndex]   = useState(0);
   // Track which slide we just left so its media stays mounted during fade-out
@@ -99,8 +112,6 @@ const HeroSection: React.FC = () => {
   // Parallax on scroll
   const { scrollY } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] });
   const bgY    = useTransform(scrollY, [0, 600], ['0%', '25%']);
-  const textY  = useTransform(scrollY, [0, 600], ['0%', '40%']);
-  const textOp = useTransform(scrollY, [0, 300], [1, 0]);
 
   // ── Intro → hero transition ──────────────────────────────────────────────────
   useEffect(() => {
@@ -177,7 +188,7 @@ const HeroSection: React.FC = () => {
             {/* Red scanline sweep */}
             <motion.div
               className="absolute inset-0 pointer-events-none"
-              style={{ background: 'linear-gradient(180deg, transparent 40%, rgba(220,38,38,0.08) 100%)' }}
+              style={{ background: 'linear-gradient(180deg, transparent 40%, rgba(204,0,0,0.08) 100%)' }}
               initial={{ scaleY: 0, originY: 0 }}
               animate={{ scaleY: 1 }}
               transition={{ duration: 1.2, ease: 'easeOut' }}
@@ -216,7 +227,7 @@ const HeroSection: React.FC = () => {
               <img
                 src="/stark-logo-rebrand.png"
                 alt="Stark Roofing"
-                className="w-32 md:w-44 mx-auto object-contain drop-shadow-[0_0_40px_rgba(220,38,38,0.4)]"
+                className="w-32 md:w-44 mx-auto object-contain drop-shadow-[0_0_40px_rgba(204,0,0,0.4)]"
               />
             </motion.div>
 
@@ -355,69 +366,41 @@ const HeroSection: React.FC = () => {
           <motion.div
             key="hero-content"
             className="absolute inset-0 z-20 flex flex-col justify-center items-center px-4"
-            style={{ y: textY, opacity: textOp }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
           >
             <div className="text-center max-w-5xl mt-16">
-              {/* Brand name — single h1, two animated lines */}
+              {/* Brand name — single h1, two lines */}
               <h1 className="text-[clamp(2.8rem,9vw,7.5rem)] font-extrabold text-white leading-none font-heading tracking-tight drop-shadow-2xl">
-                <motion.span
-                  className="block overflow-hidden"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                >
+                <span className="block overflow-hidden">
                   <span className="text-red-500">STARK</span> ROOFING
-                </motion.span>
-                <motion.span
-                  className="block"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                >
+                </span>
+                <span className="block">
                   & RENOVATION
-                </motion.span>
+                </span>
               </h1>
 
               {/* Divider */}
-              <motion.div
-                className="flex items-center justify-center gap-4 my-5"
-                initial={{ opacity: 0, scaleX: 0 }}
-                animate={{ opacity: 1, scaleX: 1 }}
-                transition={{ duration: 0.7, delay: 0.45 }}
-              >
+              <div className="flex items-center justify-center gap-4 my-5">
                 <div className="h-px w-24 bg-red-500/60" />
                 <div className="h-px w-24 bg-red-500/60" />
-              </motion.div>
+              </div>
 
               {/* Subtitle badges */}
-              <motion.div
-                className="flex flex-wrap justify-center gap-3 mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.55 }}
-              >
-                {['GAF Certified', 'Licensed & Bonded', 'Free Estimates'].map((badge) => (
+              <div className="flex flex-wrap justify-center gap-3 mb-8">
+                {['GAF Certified', 'Licensed & Bonded', 'Free Estimates', 'Affordable Financing'].map((badge) => (
                   <span key={badge}
                     className="px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wider text-white border border-white/30 bg-white/10 backdrop-blur-sm">
                     {badge}
                   </span>
                 ))}
-              </motion.div>
+              </div>
 
               {/* CTA */}
-              <motion.div
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              >
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <motion.a
-                  href="#contact"
+                  href="#quote-form"
+                  onClick={scrollToQuoteForm}
                   className="inline-flex items-center gap-2 px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold text-base md:text-lg rounded-full shadow-2xl tracking-wide transition-colors duration-300"
-                  whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(220,38,38,0.5)' }}
+                  whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(204,0,0,0.5)' }}
                   whileTap={{ scale: 0.97 }}
                 >
                   🏠 Get a Free Estimate
@@ -430,26 +413,8 @@ const HeroSection: React.FC = () => {
                 >
                   📞 (206) 739-8232
                 </motion.a>
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ── Slide caption ──────────────────────────────────────── */}
-      <AnimatePresence mode="wait">
-        {introPhase === 'hero' && (
-          <motion.div
-            key={currentIndex}
-            className="absolute bottom-24 left-0 right-0 z-30 text-center pointer-events-none"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="text-white/70 text-xs md:text-sm tracking-[0.3em] uppercase font-light">
-              {slide.caption}
-            </span>
           </motion.div>
         )}
       </AnimatePresence>

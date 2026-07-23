@@ -5,9 +5,27 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 
+const cities = [
+  { name: 'Seattle', slug: 'seattle' },
+  { name: 'Bellevue', slug: 'bellevue' },
+  { name: 'Sammamish', slug: 'sammamish' },
+  { name: 'Kirkland', slug: 'kirkland' },
+  { name: 'Redmond', slug: 'redmond' },
+  { name: 'Issaquah', slug: 'issaquah' },
+  { name: 'Renton', slug: 'renton' },
+  { name: 'Woodinville', slug: 'woodinville' },
+  { name: 'Bothell', slug: 'bothell' },
+  { name: 'Everett', slug: 'everett' },
+  { name: 'Lynnwood', slug: 'lynnwood' },
+  { name: 'Tacoma', slug: 'tacoma' },
+  { name: 'Maple Valley', slug: 'maple-valley' },
+  { name: 'Snoqualmie', slug: 'snoqualmie' },
+  { name: 'Mercer Island', slug: 'mercer-island' },
+];
+
 const ServiceAreaSection: React.FC = () => {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="section-padding bg-white">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-16">
           <motion.div 
@@ -44,6 +62,18 @@ const ServiceAreaSection: React.FC = () => {
             <p className="text-lg text-charcoal/80 mb-6 text-center md:text-left leading-relaxed">
               We've built our reputation on trust, reliability, and delivering exceptional results for homeowners throughout the region. Whether you're in Seattle, Tacoma, Bellevue, or anywhere in between — we're just a call away and ready to help with roofing, gutters, and remodeling services.
             </p>
+
+            <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-8">
+              {cities.map((city) => (
+                <Link
+                  key={city.slug}
+                  to={`/service-area/${city.slug}`}
+                  className="rounded-full border border-stark-red/30 text-sm font-medium text-navy px-4 py-2 hover:bg-stark-red hover:text-white hover:border-stark-red transition-colors"
+                >
+                  {city.name}
+                </Link>
+              ))}
+            </div>
 
             <div className="mt-6">
               <Link to="/contact" className="inline-block">
