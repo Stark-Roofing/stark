@@ -88,34 +88,66 @@ jobs:
         # generate-all-fallbacks.mjs then fills the gap with generic
         # boilerplate (real title/meta, but NOT the actual page content).
         # Every dist/<route>/index.html therefore always exists, so a plain
-        # file-existence check can never catch this failure mode.
+        # file-existence check can never catch this failure mode — this is
+        # exactly how the roof-replacement/skylights/tpo-roofing/roof-cleaning
+        # pages shipped generic content undetected.
         #
-        # Detect it using the exact same signal generate-all-fallbacks.mjs
-        # itself already uses to decide whether a file needs the fallback:
-        # an empty <div id="root"></div> means Puppeteer never rendered real
-        # content into it. python3 (not grep -P) so this behaves identically
-        # on macOS dev machines and this Ubuntu runner.
+        # For each page below, fail if ANY of:
+        #  - <div id="root"></div> is empty (Puppeteer never rendered into it —
+        #    the same signal generate-all-fallbacks.mjs itself uses to decide
+        #    whether a file needs replacing)
+        #  - the page contains that OTHER pages' fallback template sentence,
+        #    i.e. "<Service> for Seattle, Bellevue & the Eastside" — the exact,
+        #    verified string generate-all-fallbacks.mjs's own
+        #    makeServicePageMeta()/URL_METADATA produce for this route when
+        #    Puppeteer fails on it
+        #  - the page is missing its own distinctive title keyword (sanity
+        #    check that real content, if present, is actually about this page)
+        #  - the page contains generic boilerplate copy reported live in
+        #    production ("Licensed & Insured Experts in Residential &
+        #    Commercial Roofing") — not currently reproducible from this
+        #    repo's templates, kept as a defense-in-depth string match
+        #
+        # python3 (not grep -P) so this behaves identically on macOS dev
+        # machines and this Ubuntu runner.
         echo ""
         echo "Checking for generic-fallback content on known-flaky routes..."
         GENERIC=0
         for page in roof-replacement skylights tpo-roofing roof-cleaning; do
           file="dist/$page/index.html"
-          if python3 -c "
-import re, sys
+          case "$page" in
+            roof-replacement) POSITIVE="Roof Replacement"; FALLBACK_H1="Roof Replacement for Seattle, Bellevue & the Eastside" ;;
+            skylights)        POSITIVE="Skylight";         FALLBACK_H1="Skylight Installation for Seattle, Bellevue & the Eastside" ;;
+            tpo-roofing)      POSITIVE="TPO";               FALLBACK_H1="TPO Commercial Roofing for Seattle, Bellevue & the Eastside" ;;
+            roof-cleaning)    POSITIVE="Roof Cleaning";     FALLBACK_H1="Roof Cleaning for Seattle, Bellevue & the Eastside" ;;
+          esac
+          REASON=$(POSITIVE="$POSITIVE" FALLBACK_H1="$FALLBACK_H1" python3 -c "
+import os, re, sys
 content = open('$file', encoding='utf-8').read()
-sys.exit(0 if re.search(r'<div id=\"root\">\s*</div>', content) else 1)
-"; then
-            echo "::warning::dist/$page/index.html is GENERIC FALLBACK content — Puppeteer prerender failed for this route. Check the 'Prerender static HTML' step log above for the real ✗ error and stack trace."
+positive = os.environ['POSITIVE']
+fallback_h1 = os.environ['FALLBACK_H1']
+generic_phrase = 'Licensed & Insured Experts in Residential & Commercial Roofing'
+if re.search(r'<div id=\"root\">\s*</div>', content):
+    print('empty #root — Puppeteer never rendered into it')
+elif fallback_h1 in content:
+    print(f'contains the fallback template h1 \"{fallback_h1}\"')
+elif generic_phrase in content:
+    print(f'contains generic boilerplate copy \"{generic_phrase}\"')
+elif positive not in content:
+    print(f'missing expected page-specific keyword \"{positive}\"')
+")
+          if [ -n "$REASON" ]; then
+            echo "::warning::dist/$page/index.html is GENERIC FALLBACK content ($REASON). Puppeteer prerender failed for this route — check the 'Prerender static HTML' step log above for the real ✗ error and stack trace."
             GENERIC=$((GENERIC + 1))
           else
-            echo "OK (real prerendered content): dist/$page/index.html"
+            echo "OK (real, page-specific content): dist/$page/index.html"
           fi
         done
         if [ "$GENERIC" -gt 0 ]; then
           echo "::error::$GENERIC page(s) shipped generic fallback content instead of real prerendered HTML. Deployment blocked — fix the prerender failure logged above before merging."
           exit 1
         fi
-        echo "All 4 tracked pages verified as real prerendered content."
+        echo "All 4 tracked pages verified as real, page-specific prerendered content."
 
     # ── Deploy ──
     - name: Create 404.html fallback for unknown URLs
