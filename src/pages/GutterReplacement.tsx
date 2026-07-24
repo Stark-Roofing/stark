@@ -12,6 +12,7 @@ import InstallationProcess from '@/components/gutter-replacement/InstallationPro
 import CTASection from '@/components/gutter-replacement/CTASection';
 import ContactFormSection from '@/components/gutter-replacement/ContactFormSection';
 import ServiceSchema from '@/components/shared/ServiceSchema';
+import AnswerFirstBlock from '@/components/shared/AnswerFirstBlock';
 
 const GutterReplacement = () => {
   useEffect(() => {
@@ -40,6 +41,10 @@ const GutterReplacement = () => {
       />
       <Navbar />
       <GutterHero />
+      <AnswerFirstBlock
+        heading="Seamless Gutter Replacement in Greater Seattle"
+        answer="Stark Roofing & Renovation installs custom seamless aluminum gutters formed on site to fit your home, built for Western Washington's pine-needle load, atmospheric-river rain, and ice dams. Every install includes proper sizing, downspout routing, and a lifetime no-clog workmanship warranty. We are a GAF Master Elite contractor with 30-plus years serving the Eastside. Free quote at (206) 739-8232."
+      />
       <WhyGuttersProtectionSection />
       <PremiumSystemsSection />
       <BenefitsSection />

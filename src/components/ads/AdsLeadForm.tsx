@@ -243,7 +243,7 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
       });
     } catch (err) {
       console.error('Lead submission error:', err);
-      toast.error('Something went wrong. Please call (425) 600-3680 — we answer right away.');
+      toast.error('Something went wrong. Please call (206) 739-8232 — we answer right away.');
     } finally {
       setSubmitting(false);
     }
