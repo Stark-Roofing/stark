@@ -24,15 +24,15 @@ const MobileSubmenu = ({ title, items, onItemClick }: MobileSubmenuProps) => {
   };
   
   return (
-    <div className="border-l-4 border-stark-red pl-4 py-1">
-      <button 
+    <div className="py-1">
+      <button
         onClick={toggleSubmenu}
-        className="w-full text-left text-xl font-medium text-white hover:text-stark-red transition-colors flex items-center justify-between py-2"
+        className="w-full text-left text-xl font-medium text-white hover:text-stark-red transition-colors flex items-center justify-between py-2 border-l-4 border-stark-red pl-4"
       >
         <span>{title}</span>
         {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
       </button>
-      
+
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
@@ -42,13 +42,12 @@ const MobileSubmenu = ({ title, items, onItemClick }: MobileSubmenuProps) => {
           className="mt-2 space-y-3"
         >
           {items.map((item, index) => (
-            <Link 
+            <Link
               key={index}
-              to={item.to} 
-              className="text-lg font-medium text-white/80 hover:text-stark-red transition-colors flex items-center py-2 pl-2"
+              to={item.to}
+              className="text-lg font-medium text-white/80 hover:text-stark-red transition-colors flex items-center py-2 border-l-4 border-stark-red pl-4"
               onClick={onItemClick}
             >
-              {item.icon}
               {item.label}
             </Link>
           ))}

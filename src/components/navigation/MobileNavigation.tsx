@@ -2,12 +2,10 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
-import { Mail, Cloud } from 'lucide-react';
 import MobileMenuTrigger from './MobileMenuTrigger';
 import MobileMenuItem from './MobileMenuItem';
 import MobileSubmenu from './MobileSubmenu';
 import MobileCallButton from './MobileCallButton';
-import { useIsMobile } from '@/hooks/use-mobile';
 import {
   getAllServicesDropdownItems,
   getMenuItems,
@@ -21,8 +19,6 @@ interface MobileNavigationProps {
 }
 
 const MobileNavigation = ({ isScrolled, isMobileMenuOpen, toggleMobileMenu }: MobileNavigationProps) => {
-  const isMobile = useIsMobile();
-  const iconSize = isMobile ? 18 : 20;
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
   const toggleSubmenu = (menu: string) => {
@@ -46,7 +42,7 @@ const MobileNavigation = ({ isScrolled, isMobileMenuOpen, toggleMobileMenu }: Mo
         <nav className="container mx-auto px-6 flex flex-col space-y-6">
             <MobileMenuItem
               to="/"
-              className="text-xl font-medium text-white hover:text-stark-red transition-colors py-2"
+              className="text-xl font-medium text-white hover:text-stark-red transition-colors py-2 border-l-4 border-stark-red pl-4"
               onClick={toggleMobileMenu}
             >
               Home
@@ -60,10 +56,9 @@ const MobileNavigation = ({ isScrolled, isMobileMenuOpen, toggleMobileMenu }: Mo
 
             <MobileMenuItem
               to="/storm-damage"
-              className="text-xl font-medium text-white hover:text-stark-red transition-colors py-2"
+              className="text-xl font-medium text-white hover:text-stark-red transition-colors py-2 border-l-4 border-stark-red pl-4"
               onClick={toggleMobileMenu}
             >
-              <Cloud size={iconSize} className="inline mr-2" />
               Storm Damage
             </MobileMenuItem>
 
@@ -81,10 +76,9 @@ const MobileNavigation = ({ isScrolled, isMobileMenuOpen, toggleMobileMenu }: Mo
 
             <MobileMenuItem
               to="/contact"
-              className="text-xl font-medium text-white hover:text-stark-red transition-colors py-2"
+              className="text-xl font-medium text-white hover:text-stark-red transition-colors py-2 border-l-4 border-stark-red pl-4"
               onClick={toggleMobileMenu}
             >
-              <Mail size={iconSize} className="inline mr-2" />
               Contact Us
             </MobileMenuItem>
 
