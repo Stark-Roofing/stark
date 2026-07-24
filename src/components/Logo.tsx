@@ -25,7 +25,7 @@ const Logo = ({
     <div className={cn("flex items-center", className)}>
       <img
         src="/stark_logo_badge.png"
-        alt="Stark Roofing & Renovation"
+        alt="Stark Roofing & Renovation logo"
         className={cn("w-auto", heightClasses[textSize])}
         loading="eager"
         decoding="async"

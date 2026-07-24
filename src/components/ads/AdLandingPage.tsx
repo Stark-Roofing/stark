@@ -122,7 +122,7 @@ const AdLandingPage: React.FC<AdLandingPageProps> = ({
           <a href="/" className="flex items-center gap-2">
             <img
               src="/stark-logo-rebrand.png"
-              alt="Stark Roofing & Renovation"
+              alt="Stark Roofing & Renovation logo"
               className="h-10"
             />
           </a>

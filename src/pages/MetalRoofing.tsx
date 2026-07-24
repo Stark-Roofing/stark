@@ -74,7 +74,7 @@ const MetalRoofing = () => {
             <div className="rounded-xl overflow-hidden shadow-xl">
               <img 
                 src="/lovable-uploads/5ea5b3b8-72f3-4e18-b9c5-0ce95d7896c9.webp" 
-                alt="Standing Seam Metal Roof" 
+                alt="Standing seam metal roof installation on a home near Seattle, WA"
                 className="w-full h-auto"
               />
             </div>

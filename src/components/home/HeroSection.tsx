@@ -24,15 +24,15 @@ const SLIDE_DURATION_MS = 3500; // every slide advances after 3.5s
 
 const DEFAULT_SLIDES: Slide[] = [
   // OPENER – instant-paint image (also the LCP preload in index.html)
-  { url: '/hero-custom-1.webp', type: 'image', caption: 'Aerial Precision. Every Time.',     alt: 'Stark roofing aerial' },
+  { url: '/hero-custom-1.webp', type: 'image', caption: 'Aerial Precision. Every Time.',     alt: 'Aerial drone view of a precision roof installation in Seattle, WA' },
 
   // YouTube – Lake Washington aerial (short clip)
-  { type: 'youtube', ytId: YT_ID, ytStart: 5, ytEnd: 10, caption: 'Serving Greater Seattle & Beyond', alt: 'Aerial Lake Washington Seattle' },
-  { url: '/hero-custom-2.m4v',  type: 'video', caption: 'Stark Crew in Action',              alt: 'Stark roofing video', playDuration: 4 },
-  { url: '/hero-custom-3.webp', type: 'image', caption: 'Safety-First. Results-Always.',    alt: 'Stark crew on roof' },
-  { url: '/hero-custom-4.jpg',  type: 'image', caption: 'Serving Greater Seattle & Beyond', alt: 'Stark roofing project' },
-  { url: '/hero-custom-6.webp', type: 'image', caption: 'Built to Outlast Pacific NW Weather', alt: 'Stark roofing crew' },
-  { url: '/hero-custom-5.jpg',  type: 'image', caption: 'Licensed · Bonded · Insured',      alt: 'Stark crew on roof' },
+  { type: 'youtube', ytId: YT_ID, ytStart: 5, ytEnd: 10, caption: 'Serving Greater Seattle & Beyond', alt: 'Aerial drone footage of Lake Washington and the Seattle skyline' },
+  { url: '/hero-custom-2.m4v',  type: 'video', caption: 'Stark Crew in Action',              alt: 'Stark Roofing & Renovation crew actively installing a roof', playDuration: 4 },
+  { url: '/hero-custom-3.webp', type: 'image', caption: 'Safety-First. Results-Always.',    alt: 'Roofing crew wearing safety harnesses while installing a residential roof' },
+  { url: '/hero-custom-4.jpg',  type: 'image', caption: 'Serving Greater Seattle & Beyond', alt: 'Completed roof replacement project serving the Greater Seattle area' },
+  { url: '/hero-custom-6.webp', type: 'image', caption: 'Built to Outlast Pacific NW Weather', alt: 'New roof installation built to withstand Pacific Northwest weather' },
+  { url: '/hero-custom-5.jpg',  type: 'image', caption: 'Licensed · Bonded · Insured',      alt: 'Licensed and bonded roofing crew completing a residential roof installation' },
 ];
 
 // Load slides from localStorage (set via /admin/hero) or use defaults
@@ -208,7 +208,7 @@ const HeroSection: React.FC = () => {
             >
               <img
                 src="/stark-logo-rebrand.png"
-                alt="Stark Roofing"
+                alt="Stark Roofing & Renovation logo"
                 className="w-[60vw] max-w-lg object-contain"
                 style={{ filter: 'brightness(0.9) saturate(0.6)' }}
               />
@@ -223,7 +223,7 @@ const HeroSection: React.FC = () => {
             >
               <img
                 src="/stark-logo-rebrand.png"
-                alt="Stark Roofing"
+                alt="Stark Roofing & Renovation logo"
                 className="w-32 md:w-44 mx-auto object-contain drop-shadow-[0_0_40px_rgba(204,0,0,0.4)]"
               />
             </motion.div>

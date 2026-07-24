@@ -40,7 +40,7 @@ const TPORoofing = () => {
       <section className="hero-overlay relative pt-32 pb-20 md:py-32">
         <img 
           src="/lovable-uploads/4e22b510-288f-4fd5-934c-4d533af06eec.webp" 
-          alt="TPO Commercial Roofing" 
+          alt="TPO flat roof membrane installation on a commercial building near Seattle, WA"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-navy/60"></div>
@@ -83,7 +83,7 @@ const TPORoofing = () => {
             <div className="rounded-xl overflow-hidden shadow-xl">
               <img 
                 src="/lovable-uploads/4e22b510-288f-4fd5-934c-4d533af06eec.webp" 
-                alt="TPO Roofing Installation" 
+                alt="Close-up of a TPO thermoplastic roofing membrane installed by Stark Roofing & Renovation"
                 className="w-full h-auto"
               />
             </div>

@@ -37,7 +37,7 @@ const SidingInstallation = () => {
       <section className="hero-overlay relative pt-32 pb-20 md:py-32">
         <img 
           src="/lovable-uploads/18812f3e-7163-4286-8680-afe230724e99.webp" 
-          alt="Professional siding installation" 
+          alt="James Hardie fiber-cement siding installation on a home in Seattle, WA"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-navy/50"></div>
