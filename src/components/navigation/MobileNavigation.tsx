@@ -40,14 +40,6 @@ const MobileNavigation = ({ isScrolled, isMobileMenuOpen, toggleMobileMenu }: Mo
     >
       <div className="pt-20 pb-24 min-h-screen">
         <nav className="container mx-auto px-6 flex flex-col space-y-6">
-            <MobileMenuItem
-              to="/"
-              className="text-xl font-medium text-white hover:text-stark-red transition-colors py-2 border-l-4 border-stark-red pl-4"
-              onClick={toggleMobileMenu}
-            >
-              Home
-            </MobileMenuItem>
-
             <MobileSubmenu
               title="Our Services"
               items={getAllServicesDropdownItems()}
