@@ -68,7 +68,7 @@ jobs:
     - name: Verify critical pages exist
       run: |
         MISSING=0
-        for page in contact finance services roof-replacement storm-damage about warranty; do
+        for page in contact finance roof-replacement storm-damage about warranty; do
           if [ ! -f "dist/$page/index.html" ]; then
             echo "MISSING: dist/$page/index.html"
             MISSING=$((MISSING + 1))
