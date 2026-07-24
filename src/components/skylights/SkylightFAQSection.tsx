@@ -1,5 +1,6 @@
 import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import FAQSchema from '@/components/shared/FAQSchema';
 
 const FAQS = [
   {
@@ -39,6 +40,9 @@ const FAQS = [
 const SkylightFAQSection = () => {
   return (
     <section className="section-padding bg-white">
+      {/* FAQS uses q/a keys for the accordion; FAQSchema expects question/answer —
+          remap keys only, the text itself is untouched. */}
+      <FAQSchema faqs={FAQS.map((faq) => ({ question: faq.q, answer: faq.a }))} />
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-10">
