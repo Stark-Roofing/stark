@@ -38,7 +38,7 @@ const MobileNavigation = ({ isScrolled, isMobileMenuOpen, toggleMobileMenu }: Mo
       }}
       aria-hidden={!isMobileMenuOpen}
     >
-      <div className="pt-20 pb-24 min-h-screen">
+      <div className="pt-32 pb-24 min-h-screen">
         <nav className="container mx-auto px-6 flex flex-col space-y-6">
             <MobileSubmenu
               title="Our Services"
