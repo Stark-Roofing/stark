@@ -11,6 +11,7 @@ import Footer from '@/components/Footer';
 import ServicePageHero from '@/components/shared/ServicePageHero';
 import QuickQuoteButton from '@/components/shared/QuickQuoteButton';
 import ScrollToTop from '@/components/ScrollToTop';
+import ProductGroupSchema from '@/components/shared/ProductGroupSchema';
 import { useSEOMeta } from '@/hooks/useSEOMeta';
 
 /* ───────────────────────────────────────────────────────
@@ -285,6 +286,19 @@ const VeluxLineup = () => {
 
   return (
     <div className="min-h-screen">
+      <ProductGroupSchema
+        name="VELUX Skylight Lineup"
+        description="Every residential VELUX skylight we install — VSS solar, VSE electric, VS manual, FS & FCM fixed, and SUN TUNNEL tubular. Real specs, sizes, and glass technology."
+        url="https://starkroofingrenovation.com/skylights/velux-lineup"
+        brand="VELUX"
+        variants={MODELS.map((m) => ({
+          name: m.fullName,
+          sku: m.modelCode,
+          description: m.description,
+          url: `https://starkroofingrenovation.com/skylights/velux-lineup#${m.id}`,
+          specs: m.specs,
+        }))}
+      />
       <Navbar />
 
       <ServicePageHero

@@ -7,6 +7,7 @@ import ServiceHero from '@/components/services/ServiceHero';
 import GAFHighlight from '@/components/services/GAFHighlight';
 import ServiceGrid from '@/components/services/ServiceGrid';
 import ContactForm from '@/components/services/ContactForm';
+import ItemListSchema from '@/components/shared/ItemListSchema';
 import { roofingServices, exteriorServices } from '@/data/serviceData';
 
 const Services = () => {
@@ -26,6 +27,16 @@ const Services = () => {
 
   return (
     <div className="min-h-screen">
+      <ItemListSchema
+        name="Stark Roofing & Renovation Services"
+        description="Complete roofing & renovation services. Roof replacement, repair, gutters, siding, windows. GAF certified. Free estimates. Seattle to Tacoma."
+        url="https://starkroofingrenovation.com/services"
+        items={[...roofingServices, ...exteriorServices].map((service) => ({
+          name: service.title,
+          url: `https://starkroofingrenovation.com${service.link}`,
+          description: service.description,
+        }))}
+      />
       <Navbar />
       <ServiceHero />
       <GAFHighlight />
