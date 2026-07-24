@@ -122,20 +122,20 @@ jobs:
             roof-cleaning)    POSITIVE="Roof Cleaning";     FALLBACK_H1="Roof Cleaning for Seattle, Bellevue & the Eastside" ;;
           esac
           REASON=$(POSITIVE="$POSITIVE" FALLBACK_H1="$FALLBACK_H1" python3 -c "
-import os, re, sys
-content = open('$file', encoding='utf-8').read()
-positive = os.environ['POSITIVE']
-fallback_h1 = os.environ['FALLBACK_H1']
-generic_phrase = 'Licensed & Insured Experts in Residential & Commercial Roofing'
-if re.search(r'<div id=\"root\">\s*</div>', content):
-    print('empty #root — Puppeteer never rendered into it')
-elif fallback_h1 in content:
-    print(f'contains the fallback template h1 \"{fallback_h1}\"')
-elif generic_phrase in content:
-    print(f'contains generic boilerplate copy \"{generic_phrase}\"')
-elif positive not in content:
-    print(f'missing expected page-specific keyword \"{positive}\"')
-")
+        import os, re, sys
+        content = open('$file', encoding='utf-8').read()
+        positive = os.environ['POSITIVE']
+        fallback_h1 = os.environ['FALLBACK_H1']
+        generic_phrase = 'Licensed & Insured Experts in Residential & Commercial Roofing'
+        if re.search(r'<div id=\"root\">\s*</div>', content):
+            print('empty #root — Puppeteer never rendered into it')
+        elif fallback_h1 in content:
+            print(f'contains the fallback template h1 \"{fallback_h1}\"')
+        elif generic_phrase in content:
+            print(f'contains generic boilerplate copy \"{generic_phrase}\"')
+        elif positive not in content:
+            print(f'missing expected page-specific keyword \"{positive}\"')
+          ")
           if [ -n "$REASON" ]; then
             echo "::warning::dist/$page/index.html is GENERIC FALLBACK content ($REASON). Puppeteer prerender failed for this route — check the 'Prerender static HTML' step log above for the real ✗ error and stack trace."
             GENERIC=$((GENERIC + 1))
