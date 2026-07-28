@@ -194,7 +194,7 @@ const CommercialRoofing = () => {
     title: 'Commercial Roofing Seattle | TPO · PVC · EPDM · GAF Certified | Stark Roofing',
     description:
       'Commercial flat roofing across Greater Seattle. TPO, PVC, EPDM, and modified bitumen — installed by GAF Certified crews with NDL warranties. King, Snohomish, Pierce counties. (206) 739-8232.',
-    canonical: 'https://starkroofingrenovation.com/commercial-roofing',
+    canonical: 'https://starkroofingrenovation.com/commercial-roofing/',
     keywords:
       'commercial roofing seattle, TPO roofing seattle, PVC commercial roof, EPDM rubber roof, flat roof contractor puget sound, GAF certified commercial',
     ogTitle: 'Commercial Roofing — TPO, PVC, EPDM, Mod Bit | Stark Roofing',
@@ -208,7 +208,7 @@ const CommercialRoofing = () => {
       <ServiceSchema
         name="Commercial Roofing"
         description="Commercial flat roofing across Greater Seattle. TPO, PVC, EPDM, and modified bitumen — installed by GAF Certified crews with NDL warranties. King, Snohomish, Pierce counties. (206) 739-8232."
-        url="https://starkroofingrenovation.com/commercial-roofing"
+        url="https://starkroofingrenovation.com/commercial-roofing/"
       />
       <Navbar />
 

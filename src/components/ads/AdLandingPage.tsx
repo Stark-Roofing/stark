@@ -104,7 +104,7 @@ const AdLandingPage: React.FC<AdLandingPageProps> = ({
   useSEOMeta({
     title: `${service} in ${city} | Stark Roofing & Renovation`,
     description: sub,
-    canonical: `https://starkroofingrenovation.com/ads/${serviceSlug}`,
+    canonical: `https://starkroofingrenovation.com/ads/${serviceSlug}/`,
     // Paid-ad landing pages must not be indexed (duplicate/thin vs. the real
     // service pages, and they'd compete with them in organic results).
     robots: 'noindex, nofollow',

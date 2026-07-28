@@ -15,7 +15,7 @@ const TermsOfService = () => {
     title: 'Terms of Service | Stark Roofing & Renovation',
     description:
       'The terms that govern your use of the Stark Roofing & Renovation website, our communications, and the estimates and services we provide.',
-    canonical: 'https://starkroofingrenovation.com/terms-of-service',
+    canonical: 'https://starkroofingrenovation.com/terms-of-service/',
     keywords: 'terms of service, Stark Roofing, terms and conditions',
     ogTitle: 'Terms of Service | Stark Roofing & Renovation',
     ogDescription:

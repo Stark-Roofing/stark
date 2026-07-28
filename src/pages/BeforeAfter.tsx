@@ -61,7 +61,7 @@ const BeforeAfter = () => {
   useSEOMeta({
     title: 'Our Recent Projects | Roof Replacements & Renovations | Stark Roofing',
     description: 'See real roofing projects completed by Stark Roofing across Seattle & Puget Sound. GAF Certified contractor — full tear-offs, shingle replacements, and more. Call (206) 739-8232.',
-    canonical: 'https://starkroofingrenovation.com/our-projects',
+    canonical: 'https://starkroofingrenovation.com/our-projects/',
 
     keywords: 'roofing projects Seattle, roof replacement photos, GAF certified roofer, Stark Roofing projects',
     ogTitle: 'Our Recent Projects | Stark Roofing & Renovation',

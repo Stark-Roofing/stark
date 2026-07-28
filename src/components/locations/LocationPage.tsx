@@ -35,7 +35,7 @@ const LocationPage: React.FC<LocationPageProps> = ({
     window.scrollTo(0, 0);
   }, []);
 
-  const canonicalUrl = `https://starkroofingrenovation.com/service-area/${city.toLowerCase().replace(/\s+/g, '-')}`;
+  const canonicalUrl = `https://starkroofingrenovation.com/service-area/${city.toLowerCase().replace(/\s+/g, '-')}/`;
   const pageTitle = metaTitle || `Roofing Services in ${city}, ${state} | Stark Roofing`;
   const pageDescription = metaDescription || `Professional roofing, gutter & renovation services in ${city}, ${state}. ${description} Serving the ${region}. GAF Certified. Call 206-739-8232 for a free estimate.`;
 

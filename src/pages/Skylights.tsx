@@ -26,7 +26,7 @@ const Skylights = () => {
   useSEOMeta({
     title: 'Skylight Installation Seattle | Stark Roofing & Renovation',
     description: 'Velux skylight installation across the Seattle area. We handle the flashing so it never leaks. Free estimate on new or replacement: (206) 739-8232.',
-    canonical: 'https://starkroofingrenovation.com/skylights',
+    canonical: 'https://starkroofingrenovation.com/skylights/',
     keywords: 'skylight installation Seattle, Velux skylights, skylight repair, natural light windows, roof windows',
     ogTitle: 'Skylight Installation | Stark Roofing & Renovation',
     ogDescription: 'Velux skylight installation with leak-proof flashing across the Seattle area.',
@@ -38,7 +38,7 @@ const Skylights = () => {
       <ServiceSchema
         name="Skylight Installation"
         description="Professional skylight installation in Seattle & Puget Sound. Velux certified. Bring natural light safely. Expert flashing. Free estimates. 206-739-8232."
-        url="https://starkroofingrenovation.com/skylights"
+        url="https://starkroofingrenovation.com/skylights/"
       />
       <Navbar />
       <ServicePageHero

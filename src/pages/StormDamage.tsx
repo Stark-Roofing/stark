@@ -31,7 +31,7 @@ const StormDamage = () => {
     title: 'Storm Damage Roof Repair Seattle | 24/7 Emergency | Stark Roofing',
     description:
       'Tree down on your roof? Wind damage? We tarp fast, handle your insurance claim, and rebuild it right. 24/7 emergency response across Greater Seattle. (206) 739-8232.',
-    canonical: 'https://starkroofingrenovation.com/storm-damage',
+    canonical: 'https://starkroofingrenovation.com/storm-damage/',
     keywords:
       'storm damage roof repair seattle, tree fell on roof seattle, wind damage roof, emergency roof tarp, insurance claim roof seattle',
     ogTitle: 'Storm Damage Roof Repair — 24/7 Emergency Service | Stark Roofing',
@@ -46,7 +46,7 @@ const StormDamage = () => {
         name="Storm Damage Roof Repair"
         serviceType="Emergency Roofing Service"
         description="Tree down on your roof? Wind damage? We tarp fast, handle your insurance claim, and rebuild it right. 24/7 emergency response across Greater Seattle. (206) 739-8232."
-        url="https://starkroofingrenovation.com/storm-damage"
+        url="https://starkroofingrenovation.com/storm-damage/"
       />
       <Navbar />
       <StormHero />

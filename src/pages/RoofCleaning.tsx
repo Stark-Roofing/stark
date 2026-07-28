@@ -25,7 +25,7 @@ const RoofCleaning = () => {
   useSEOMeta({
     title: 'Professional Roof Cleaning Services | Seattle & Puget Sound',
     description: 'Professional roof cleaning to remove moss, algae, and debris. Extends roof life. Improves curb appeal. Free estimates. Sammamish to Seattle. 206-739-8232.',
-    canonical: 'https://starkroofingrenovation.com/roof-cleaning',
+    canonical: 'https://starkroofingrenovation.com/roof-cleaning/',
     keywords: 'roof cleaning Seattle, moss removal, roof algae cleaning, professional roof cleaning, roof maintenance',
     ogTitle: 'Roof Cleaning - Extend Your Roof Life | Stark Roofing',
     ogDescription: 'Professional roof cleaning removes moss and algae. Extends roof lifespan and improves curb appeal.',
@@ -37,7 +37,7 @@ const RoofCleaning = () => {
       <ServiceSchema
         name="Roof Cleaning"
         description="Professional roof cleaning to remove moss, algae, and debris. Extends roof life. Improves curb appeal. Free estimates. Sammamish to Seattle. 206-739-8232."
-        url="https://starkroofingrenovation.com/roof-cleaning"
+        url="https://starkroofingrenovation.com/roof-cleaning/"
       />
       <div className="min-h-screen">
         <Navbar />

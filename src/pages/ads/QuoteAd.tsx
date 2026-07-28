@@ -252,7 +252,7 @@ const QuoteAd: React.FC = () => {
     title: 'Free Roof Inspection · Same-Day Quote | Stark Roofing',
     description:
       "Sammamish's family-owned roofer. 30+ years, 2,000+ roofs. Bilingual team (EN/PT/ES). Free drone inspection. No high-pressure pitch — we text you back in minutes.",
-    canonical: 'https://starkroofingrenovation.com/ads',
+    canonical: 'https://starkroofingrenovation.com/ads/',
     // Paid-ad landing page — keep out of the organic index.
     robots: 'noindex, nofollow',
   });

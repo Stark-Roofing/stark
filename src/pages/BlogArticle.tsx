@@ -75,7 +75,7 @@ const BlogArticle = () => {
   useSEOMeta({
     title: post ? `${post.title} | Stark Roofing Blog` : 'Blog | Stark Roofing',
     description: post?.excerpt || '',
-    canonical: post ? `https://starkroofingrenovation.com/blog/${post.slug}` : '',
+    canonical: post ? `https://starkroofingrenovation.com/blog/${post.slug}/` : '',
     keywords: post?.keywords || '',
     ogTitle: post?.title || '',
     ogDescription: post?.excerpt || '',
@@ -90,7 +90,7 @@ const BlogArticle = () => {
           image: `https://starkroofingrenovation.com${post.image}`,
           datePublished: post.date,
           dateModified: post.dateModified || post.date,
-          mainEntityOfPage: `https://starkroofingrenovation.com/blog/${post.slug}`,
+          mainEntityOfPage: `https://starkroofingrenovation.com/blog/${post.slug}/`,
           author: {
             '@type': 'Organization',
             name: 'Stark Roofing & Renovation',
@@ -247,8 +247,8 @@ const BlogArticle = () => {
     <div className="min-h-screen">
       <BreadcrumbSchema items={[
         { name: 'Home', url: 'https://starkroofingrenovation.com/' },
-        { name: 'Blog', url: 'https://starkroofingrenovation.com/blog' },
-        { name: post.title, url: `https://starkroofingrenovation.com/blog/${post.slug}` },
+        { name: 'Blog', url: 'https://starkroofingrenovation.com/blog/' },
+        { name: post.title, url: `https://starkroofingrenovation.com/blog/${post.slug}/` },
       ]} />
       <Navbar />
 

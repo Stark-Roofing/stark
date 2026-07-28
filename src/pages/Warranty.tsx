@@ -18,7 +18,7 @@ const Warranty = () => {
   useSEOMeta({
     title: 'Warranty Coverage | GAF Certified | Stark Roofing',
     description: 'Comprehensive warranty coverage on all roofing work. GAF certification + manufacturer warranty. Peace of mind guaranteed. Contact us at 206-739-8232.',
-    canonical: 'https://starkroofingrenovation.com/warranty',
+    canonical: 'https://starkroofingrenovation.com/warranty/',
     keywords: 'roofing warranty, GAF warranty, manufacturer warranty, warranty coverage, roof protection',
     ogTitle: 'Warranty Coverage - Complete Protection | Stark Roofing',
     ogDescription: 'Comprehensive warranty coverage backed by GAF certification and manufacturer guarantees.',

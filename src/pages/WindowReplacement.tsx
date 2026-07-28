@@ -24,7 +24,7 @@ const WindowReplacement = () => {
     title: 'Andersen Window Replacement Seattle | Energy Star | Stark Roofing',
     description:
       'Andersen window replacement across Greater Seattle. We replace 1960s aluminum and single-pane with Energy Star Most Efficient units. Save up to $583/yr + $600 federal tax credit. (206) 739-8232.',
-    canonical: 'https://starkroofingrenovation.com/window-replacement',
+    canonical: 'https://starkroofingrenovation.com/window-replacement/',
     keywords:
       'andersen window replacement seattle, energy star windows bellevue, replace single pane windows, andersen 100 series, andersen 400 series, washington bedroom egress code',
     ogTitle: 'Andersen Window Replacement — Built for Seattle Winters | Stark Roofing',
@@ -43,7 +43,7 @@ const WindowReplacement = () => {
       <ServiceSchema
         name="Window Replacement"
         description="Andersen window replacement across Greater Seattle. We replace 1960s aluminum and single-pane with Energy Star Most Efficient units. Save up to $583/yr + $600 federal tax credit. (206) 739-8232."
-        url="https://starkroofingrenovation.com/window-replacement"
+        url="https://starkroofingrenovation.com/window-replacement/"
       />
       <Navbar />
       <WindowHeroSection />

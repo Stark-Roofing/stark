@@ -19,7 +19,7 @@ const About = () => {
   useSEOMeta({
     title: 'About Us | Stark Roofing & Renovation Seattle WA',
     description: 'Family-owned roofing company based in Sammamish, serving Seattle and the Eastside. GAF Master Elite certified. We show up when we say and finish on time.',
-    canonical: 'https://starkroofingrenovation.com/about',
+    canonical: 'https://starkroofingrenovation.com/about/',
     keywords: 'about Stark Roofing, GAF certified roofer, family business, roofing contractor Seattle',
     ogTitle: 'About Stark Roofing & Renovation',
     ogDescription: 'Family-owned, GAF Master Elite certified roofing contractor based in Sammamish, serving Seattle and the Eastside.',

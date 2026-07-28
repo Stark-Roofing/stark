@@ -275,7 +275,7 @@ const VeluxLineup = () => {
     title: 'VELUX Skylight Models | Complete Lineup | Stark Roofing Seattle',
     description:
       'Every VELUX residential skylight we install — VSS solar, VSE electric, VS manual, FS & FCM fixed, and SUN TUNNEL tubular. Real specs, sizes, glass technology, and warranty info.',
-    canonical: 'https://starkroofingrenovation.com/skylights/velux-lineup',
+    canonical: 'https://starkroofingrenovation.com/skylights/velux-lineup/',
     keywords:
       'VELUX skylights Seattle, VSS solar skylight, VSE electric skylight, SUN TUNNEL, VELUX VS, VELUX FS, VELUX FCM, VELUX certified installer',
     ogTitle: 'The Complete VELUX Skylight Lineup We Install',
@@ -289,13 +289,13 @@ const VeluxLineup = () => {
       <ProductGroupSchema
         name="VELUX Skylight Lineup"
         description="Every residential VELUX skylight we install — VSS solar, VSE electric, VS manual, FS & FCM fixed, and SUN TUNNEL tubular. Real specs, sizes, and glass technology."
-        url="https://starkroofingrenovation.com/skylights/velux-lineup"
+        url="https://starkroofingrenovation.com/skylights/velux-lineup/"
         brand="VELUX"
         variants={MODELS.map((m) => ({
           name: m.fullName,
           sku: m.modelCode,
           description: m.description,
-          url: `https://starkroofingrenovation.com/skylights/velux-lineup#${m.id}`,
+          url: `https://starkroofingrenovation.com/skylights/velux-lineup/#${m.id}`,
           specs: m.specs,
         }))}
       />

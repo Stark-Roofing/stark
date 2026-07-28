@@ -28,7 +28,7 @@ const GutterRepair = () => {
   useSEOMeta({
     title: 'Gutter Repair Services | Fix Leaking Gutters | Seattle',
     description: 'Professional gutter repair in Seattle & Puget Sound. Fix leaks, clogs, sagging gutters. Same-week service. Free estimates. Call 206-739-8232.',
-    canonical: 'https://starkroofingrenovation.com/gutter-repair',
+    canonical: 'https://starkroofingrenovation.com/gutter-repair/',
     keywords: 'gutter repair Seattle, fix leaking gutter, gutter cleaning, gutter maintenance, gutter services',
     ogTitle: 'Gutter Repair - Fast & Professional | Stark Roofing',
     ogDescription: 'Expert gutter repair and cleaning. Fix leaks and protect your foundation.',
@@ -40,7 +40,7 @@ const GutterRepair = () => {
       <ServiceSchema
         name="Gutter Repair"
         description="Professional gutter repair in Seattle & Puget Sound. Fix leaks, clogs, sagging gutters. Same-week service. Free estimates. Call 206-739-8232."
-        url="https://starkroofingrenovation.com/gutter-repair"
+        url="https://starkroofingrenovation.com/gutter-repair/"
       />
       <div className="min-h-screen">
         <Navbar />

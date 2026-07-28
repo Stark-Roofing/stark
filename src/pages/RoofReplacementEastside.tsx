@@ -16,7 +16,7 @@ const RoofReplacementEastside = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const canonical = 'https://starkroofingrenovation.com/roof-replacement-eastside';
+  const canonical = 'https://starkroofingrenovation.com/roof-replacement-eastside/';
   const heroImage = '/hero-custom-3.webp';
 
   useSEOMeta({

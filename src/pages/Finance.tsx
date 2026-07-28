@@ -22,7 +22,7 @@ const Finance = () => {
     title: 'Roofing Financing Seattle WA | Stark Roofing & Renovation',
     description:
       'Finance your new roof through O Bee Credit Union. Rates from 8.24% APR, terms to 120 months, loans to $75k. Apply through Stark Roofing today.',
-    canonical: 'https://starkroofingrenovation.com/finance',
+    canonical: 'https://starkroofingrenovation.com/finance/',
     keywords:
       'roofing financing seattle, obee credit union home improvement loan, roof financing washington, stark roofing financing, home improvement loan puget sound',
     ogTitle: 'Roofing Financing | Stark Roofing & Renovation',

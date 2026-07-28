@@ -17,7 +17,7 @@ const Blog = () => {
   useSEOMeta({
     title: 'Roofing Blog | Tips, Guides & News | Stark Roofing Seattle',
     description: 'Expert roofing tips, maintenance guides, and news for Seattle & Puget Sound homeowners. Learn about roof replacement, repair, storm damage, gutters, and more from our GAF certified team.',
-    canonical: 'https://starkroofingrenovation.com/blog',
+    canonical: 'https://starkroofingrenovation.com/blog/',
     keywords: 'roofing blog Seattle, roof maintenance tips, roofing guide Pacific Northwest, Seattle roofing advice, homeowner roofing tips',
     ogTitle: 'Roofing Blog | Stark Roofing & Renovation',
     ogDescription: 'Expert roofing tips and guides for Seattle & Puget Sound homeowners.',

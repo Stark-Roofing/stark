@@ -33,7 +33,7 @@ const RoofReplacement = () => {
     title: 'Roof Replacement Seattle WA | Stark Roofing & Renovation',
     description:
       'Full roof replacement across the Seattle area. GAF Timberline HDZ shingles, 20-year labor warranty, 2,000+ roofs done. (206) 739-8232 for a quote.',
-    canonical: 'https://starkroofingrenovation.com/roof-replacement',
+    canonical: 'https://starkroofingrenovation.com/roof-replacement/',
     keywords:
       'roof replacement seattle, GAF certified installer, new roof bellevue, gaf timberline HDZ, residential roof replacement puget sound',
     ogTitle: 'Roof Replacement | Stark Roofing & Renovation',
@@ -50,7 +50,7 @@ const RoofReplacement = () => {
       <ServiceSchema
         name="Roof Replacement"
         description="GAF Timberline HDZ roof replacement across Greater Seattle & Puget Sound. 30+ years, 2,000+ roofs, lifetime limited warranty. Free in-home estimate. (206) 739-8232."
-        url="https://starkroofingrenovation.com/roof-replacement"
+        url="https://starkroofingrenovation.com/roof-replacement/"
       />
       <div id="stark-master-header">
         <Navbar />

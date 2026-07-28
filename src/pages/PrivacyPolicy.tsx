@@ -15,7 +15,7 @@ const PrivacyPolicy = () => {
     title: 'Privacy Policy | Stark Roofing & Renovation',
     description:
       'How Stark Roofing & Renovation collects, uses, and protects the information you share through our website and lead forms.',
-    canonical: 'https://starkroofingrenovation.com/privacy-policy',
+    canonical: 'https://starkroofingrenovation.com/privacy-policy/',
     keywords: 'privacy policy, Stark Roofing, data protection',
     ogTitle: 'Privacy Policy | Stark Roofing & Renovation',
     ogDescription:

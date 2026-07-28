@@ -17,7 +17,7 @@ const SidingInstallation = () => {
   useSEOMeta({
     title: 'Siding Installation Seattle WA | Stark Roofing & Renovation',
     description: 'James Hardie and fiber cement siding installation for Seattle area homes. Built for PNW rain and moisture. Free estimate today: (206) 739-8232.',
-    canonical: 'https://starkroofingrenovation.com/siding-installation',
+    canonical: 'https://starkroofingrenovation.com/siding-installation/',
     keywords: 'siding installation Seattle, siding replacement, James Hardie siding, fiber cement siding, home exterior',
     ogTitle: 'Siding Installation | Stark Roofing & Renovation',
     ogDescription: 'James Hardie fiber cement siding for Seattle area homes. Built for PNW rain and moisture.',
@@ -29,7 +29,7 @@ const SidingInstallation = () => {
       <ServiceSchema
         name="Siding Installation"
         description="Professional siding installation in Seattle & Puget Sound. James Hardie & premium materials. Transform your home. Free estimates. Call 206-739-8232."
-        url="https://starkroofingrenovation.com/siding-installation"
+        url="https://starkroofingrenovation.com/siding-installation/"
       />
       <Navbar />
 

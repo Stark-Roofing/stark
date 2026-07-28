@@ -22,7 +22,7 @@ const AsphaltShingles = () => {
   useSEOMeta({
     title: 'Asphalt Shingle Roofing | GAF Timberline | Seattle',
     description: 'Professional asphalt shingle roofing. GAF Timberline HDZ and premium materials. Reliable & affordable. Free estimates. Seattle & Puget Sound. 206-739-8232.',
-    canonical: 'https://starkroofingrenovation.com/asphalt-shingles',
+    canonical: 'https://starkroofingrenovation.com/asphalt-shingles/',
     keywords: 'asphalt shingle roofing, GAF shingles, roof replacement asphalt, new roof installation, roofing materials',
     ogTitle: 'Asphalt Shingle Roofing - GAF Certified | Stark Roofing',
     ogDescription: 'Premium asphalt shingles with GAF certification. Reliable, affordable roofing solutions.',
@@ -34,7 +34,7 @@ const AsphaltShingles = () => {
       <ServiceSchema
         name="Asphalt Shingle Roofing"
         description="Professional asphalt shingle roofing. GAF Timberline HDZ and premium materials. Reliable & affordable. Free estimates. Seattle & Puget Sound. 206-739-8232."
-        url="https://starkroofingrenovation.com/asphalt-shingles"
+        url="https://starkroofingrenovation.com/asphalt-shingles/"
       />
       <Navbar />
 

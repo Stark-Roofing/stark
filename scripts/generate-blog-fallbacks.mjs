@@ -130,7 +130,7 @@ function esc(s) {
 }
 
 function generatePage(post, assets) {
-  const canonical = `${ORIGIN}/blog/${post.slug}`;
+  const canonical = `${ORIGIN}/blog/${post.slug}/`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>

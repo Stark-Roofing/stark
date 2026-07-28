@@ -20,7 +20,7 @@ const TPORoofing = () => {
   useSEOMeta({
     title: 'TPO Flat Roof Systems | Commercial & Residential | Seattle',
     description: 'Professional TPO roofing for flat roofs. Durable, energy-efficient solutions. Commercial & residential. Free estimates. Sammamish to Seattle. 206-739-8232.',
-    canonical: 'https://starkroofingrenovation.com/tpo-roofing',
+    canonical: 'https://starkroofingrenovation.com/tpo-roofing/',
     keywords: 'TPO roofing, flat roof installation, TPO membranes, commercial roofing, energy efficient roofing',
     ogTitle: 'TPO Roofing Systems - Flat Roof Solutions | Stark Roofing',
     ogDescription: 'Durable and energy-efficient TPO roofing for commercial and residential properties.',
@@ -32,7 +32,7 @@ const TPORoofing = () => {
       <ServiceSchema
         name="TPO Roofing"
         description="Professional TPO roofing for flat roofs. Durable, energy-efficient solutions. Commercial & residential. Free estimates. Sammamish to Seattle. 206-739-8232."
-        url="https://starkroofingrenovation.com/tpo-roofing"
+        url="https://starkroofingrenovation.com/tpo-roofing/"
       />
       <Navbar />
 

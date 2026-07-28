@@ -23,7 +23,7 @@ const GutterReplacement = () => {
     title: 'Gutter Replacement Seattle WA | Stark Roofing & Renovation',
     description:
       'Seamless gutter replacement built for Seattle rain and pine needles. Custom aluminum, lifetime no-clog warranty. Free quote: (206) 739-8232.',
-    canonical: 'https://starkroofingrenovation.com/gutter-replacement',
+    canonical: 'https://starkroofingrenovation.com/gutter-replacement/',
     keywords:
       'gutter replacement seattle, seamless gutters bellevue, leaf protection seattle, gutter installation snohomish, ice dam prevention',
     ogTitle: 'Gutter Replacement | Stark Roofing & Renovation',
@@ -37,7 +37,7 @@ const GutterReplacement = () => {
       <ServiceSchema
         name="Gutter Replacement"
         description="Custom seamless aluminum gutters built for Western Washington — pine needles, atmospheric river rain, ice dams. Lifetime no-clog warranty. Free quote. (206) 739-8232."
-        url="https://starkroofingrenovation.com/gutter-replacement"
+        url="https://starkroofingrenovation.com/gutter-replacement/"
       />
       <Navbar />
       <GutterHero />

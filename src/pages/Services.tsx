@@ -18,7 +18,7 @@ const Services = () => {
   useSEOMeta({
     title: 'Roofing & Renovation Services | Stark Roofing | Seattle',
     description: 'Complete roofing & renovation services. Roof replacement, repair, gutters, siding, windows. GAF certified. Free estimates. Seattle to Tacoma. 206-739-8232.',
-    canonical: 'https://starkroofingrenovation.com/services',
+    canonical: 'https://starkroofingrenovation.com/services/',
     keywords: 'roofing services Seattle, home renovation, gutter services, siding installation, window replacement',
     ogTitle: 'Our Services - Roofing & Renovation | Stark Roofing',
     ogDescription: 'Complete roofing and renovation services. GAF certified professionals.',
@@ -33,7 +33,7 @@ const Services = () => {
         url="https://starkroofingrenovation.com/services"
         items={[...roofingServices, ...exteriorServices].map((service) => ({
           name: service.title,
-          url: `https://starkroofingrenovation.com${service.link}`,
+          url: `https://starkroofingrenovation.com${service.link}/`,
           description: service.description,
         }))}
       />
