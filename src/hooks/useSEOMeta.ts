@@ -84,6 +84,10 @@ export const useSEOMeta = ({
     }
 
     // Update Open Graph tags
+    // og:url must always match this page's own canonical URL — reuse the same
+    // `canonical` value the link[rel=canonical] tag above is set from, rather
+    // than leaving it at whatever homepage URL index.html hardcoded it to.
+    if (canonical) setMetaTag('og:url', canonical, true);
     if (ogTitle) setMetaTag('og:title', ogTitle, true);
     if (ogDescription) setMetaTag('og:description', ogDescription, true);
     if (ogImage) setMetaTag('og:image', ogImage, true);
