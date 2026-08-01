@@ -53,8 +53,12 @@ jobs:
     - name: Install Puppeteer browser
       run: npx puppeteer browsers install chrome
 
+    # NOTE: no continue-on-error here on purpose. A Puppeteer failure on any
+    # single page must stop the deploy immediately and loudly — see the
+    # "Verify all pages were really prerendered" step below for why silently
+    # continuing here is exactly how generic fallback content shipped to
+    # production undetected in the past.
     - name: Prerender static HTML
-      continue-on-error: true
       run: node scripts/prerender.mjs
 
     # ── Step 4: Fill gaps for any pages prerender missed ──
@@ -64,90 +68,15 @@ jobs:
     - name: Generate fallback HTML for all remaining pages
       run: node scripts/generate-all-fallbacks.mjs
 
-    # ── Step 5: Verify critical pages exist ──
-    - name: Verify critical pages exist
-      run: |
-        MISSING=0
-        for page in contact finance roof-replacement storm-damage about warranty; do
-          if [ ! -f "dist/$page/index.html" ]; then
-            echo "MISSING: dist/$page/index.html"
-            MISSING=$((MISSING + 1))
-          else
-            echo "OK: dist/$page/index.html"
-          fi
-        done
-        if [ "$MISSING" -gt 0 ]; then
-          echo "::error::$MISSING critical pages missing. Deployment blocked."
-          exit 1
-        fi
-        echo "All critical pages verified."
-
-        # Existence is not enough: "Prerender static HTML" above runs with
-        # continue-on-error, so a Puppeteer failure on any single route does
-        # NOT fail this job — it silently drops that route, and
-        # generate-all-fallbacks.mjs then fills the gap with generic
-        # boilerplate (real title/meta, but NOT the actual page content).
-        # Every dist/<route>/index.html therefore always exists, so a plain
-        # file-existence check can never catch this failure mode — this is
-        # exactly how the roof-replacement/skylights/tpo-roofing/roof-cleaning
-        # pages shipped generic content undetected.
-        #
-        # For each page below, fail if ANY of:
-        #  - <div id="root"></div> is empty (Puppeteer never rendered into it —
-        #    the same signal generate-all-fallbacks.mjs itself uses to decide
-        #    whether a file needs replacing)
-        #  - the page contains that OTHER pages' fallback template sentence,
-        #    i.e. "<Service> for Seattle, Bellevue & the Eastside" — the exact,
-        #    verified string generate-all-fallbacks.mjs's own
-        #    makeServicePageMeta()/URL_METADATA produce for this route when
-        #    Puppeteer fails on it
-        #  - the page is missing its own distinctive title keyword (sanity
-        #    check that real content, if present, is actually about this page)
-        #  - the page contains generic boilerplate copy reported live in
-        #    production ("Licensed & Insured Experts in Residential &
-        #    Commercial Roofing") — not currently reproducible from this
-        #    repo's templates, kept as a defense-in-depth string match
-        #
-        # python3 (not grep -P) so this behaves identically on macOS dev
-        # machines and this Ubuntu runner.
-        echo ""
-        echo "Checking for generic-fallback content on known-flaky routes..."
-        GENERIC=0
-        for page in roof-replacement skylights tpo-roofing roof-cleaning; do
-          file="dist/$page/index.html"
-          case "$page" in
-            roof-replacement) POSITIVE="Roof Replacement"; FALLBACK_H1="Roof Replacement for Seattle, Bellevue & the Eastside" ;;
-            skylights)        POSITIVE="Skylight";         FALLBACK_H1="Skylight Installation for Seattle, Bellevue & the Eastside" ;;
-            tpo-roofing)      POSITIVE="TPO";               FALLBACK_H1="TPO Commercial Roofing for Seattle, Bellevue & the Eastside" ;;
-            roof-cleaning)    POSITIVE="Roof Cleaning";     FALLBACK_H1="Roof Cleaning for Seattle, Bellevue & the Eastside" ;;
-          esac
-          REASON=$(POSITIVE="$POSITIVE" FALLBACK_H1="$FALLBACK_H1" python3 -c "
-        import os, re, sys
-        content = open('$file', encoding='utf-8').read()
-        positive = os.environ['POSITIVE']
-        fallback_h1 = os.environ['FALLBACK_H1']
-        generic_phrase = 'Licensed & Insured Experts in Residential & Commercial Roofing'
-        if re.search(r'<div id=\"root\">\s*</div>', content):
-            print('empty #root — Puppeteer never rendered into it')
-        elif fallback_h1 in content:
-            print(f'contains the fallback template h1 \"{fallback_h1}\"')
-        elif generic_phrase in content:
-            print(f'contains generic boilerplate copy \"{generic_phrase}\"')
-        elif positive not in content:
-            print(f'missing expected page-specific keyword \"{positive}\"')
-          ")
-          if [ -n "$REASON" ]; then
-            echo "::warning::dist/$page/index.html is GENERIC FALLBACK content ($REASON). Puppeteer prerender failed for this route — check the 'Prerender static HTML' step log above for the real ✗ error and stack trace."
-            GENERIC=$((GENERIC + 1))
-          else
-            echo "OK (real, page-specific content): dist/$page/index.html"
-          fi
-        done
-        if [ "$GENERIC" -gt 0 ]; then
-          echo "::error::$GENERIC page(s) shipped generic fallback content instead of real prerendered HTML. Deployment blocked — fix the prerender failure logged above before merging."
-          exit 1
-        fi
-        echo "All 4 tracked pages verified as real, page-specific prerendered content."
+    # ── Step 5: Verify every sitemap page was really prerendered ──
+    # Checks every URL in sitemap.xml (not just a hardcoded handful) against
+    # dist/, using the same "is #root empty" signal the fallback generator
+    # scripts themselves use to decide whether a page needs a fallback — a
+    # deterministic, page-agnostic way to detect fallback/boilerplate content
+    # that requires no maintenance as pages are added. See
+    # scripts/verify-prerendered-content.mjs for the full explanation.
+    - name: Verify all pages were really prerendered
+      run: node scripts/verify-prerendered-content.mjs
 
     # ── Deploy ──
     - name: Create 404.html fallback for unknown URLs

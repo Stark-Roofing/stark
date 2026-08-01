@@ -234,7 +234,10 @@ try {
       log(`✓ ${pathname}`);
     } catch (err) {
       failed++;
-      console.error(`[prerender] ✗ ${pathname}: ${err.message}`);
+      // ::error:: is a GitHub Actions workflow command — it surfaces as a
+      // prominent annotation on the run/PR/commit, not just a line buried in
+      // the log, so a failed page is impossible to miss.
+      console.error(`::error::[prerender] ✗ ${pathname}: ${err.message}`);
       console.error(`[prerender]   stack: ${err.stack?.split('\n').slice(1, 3).join(' | ')}`);
     }
   }
