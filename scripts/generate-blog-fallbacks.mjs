@@ -84,7 +84,7 @@ function syncSitemap(posts) {
   const present = new Set([...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim()));
   const additions = [];
   for (const p of posts) {
-    const loc = `${ORIGIN}/blog/${p.slug}`;
+    const loc = `${ORIGIN}/blog/${p.slug}/`;
     if (present.has(loc)) continue;
     const lastmod = p.date || new Date().toISOString().slice(0, 10);
     additions.push(`  <url><loc>${loc}</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`);
