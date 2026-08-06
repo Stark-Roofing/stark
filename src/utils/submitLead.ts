@@ -1,18 +1,19 @@
 /**
  * submitLead — single lead sink for every site form.
  *
- * GHL is the reliable source of truth (the CRM that creates the contact, routes
- * it, and notifies Brenda). The legacy EmailJS alert runs on an account we do
- * NOT control and has gone down before, so it must never block a submission or
- * surface an error — if EmailJS is down the lead is already safe in GHL.
+ * Zapier is the source of truth: one Catch Hook webhook that fans out, inside
+ * the Zap itself, to (a) Leap CRM and (b) an email notification to Brenda. This
+ * replaced a dead GoHighLevel webhook (that CRM is no longer in use) and a
+ * legacy EmailJS integration nobody had login access to — both were silently
+ * failing with no way to diagnose or fix them from this codebase.
  *
- * Before this helper, 6 of the site's 8 forms posted ONLY to EmailJS, so an
- * EmailJS outage silently dropped those leads (and showed the visitor an error).
- * Routing every form through here guarantees the GHL webhook always receives the
- * lead and decouples the UX from EmailJS.
+ * Before the original version of this helper, 6 of the site's 8 forms posted
+ * ONLY to EmailJS, so an EmailJS outage silently dropped those leads (and
+ * showed the visitor an error). Routing every form through here guarantees
+ * the Zapier webhook always receives the lead.
  */
-import { sendLeadEmailAndSms } from './emailjs';
 import { getAttributionPayload } from './attribution';
+import { trackLeadSubmission } from './tracking';
 
 /** Human-readable lead source from a page path: "/" -> "Home Page", else the path. */
 export function readableSource(path: string = window.location.pathname): string {
@@ -21,52 +22,46 @@ export function readableSource(path: string = window.location.pathname): string 
   return p;
 }
 
-// Stark GHL inbound webhook — same trigger used by AdsLeadForm / QuickQuoteForm.
-// Public endpoint; dedup + routing live in the GHL workflow.
-const GHL_WEBHOOK_URL =
-  'https://services.leadconnectorhq.com/hooks/Rc0vimjpYEKR7LCj48Qb/webhook-trigger/0b5885e6-4734-4d2b-8484-4f0e6ff3d4ff';
+// Zapier Catch Hook — same trigger used by AdsLeadForm / QuickQuoteForm. The
+// Zap itself fans this out to Leap CRM and an email notification to Brenda.
+const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/28190331/46f6oyc/';
 
 /**
- * POST the lead to the GHL workflow webhook. Returns true when the request was
+ * POST the lead to the Zapier Catch Hook. Returns true when the request was
  * delivered (no network error), false otherwise. Never throws.
- *
- * GHL responds with CORS (Access-Control-Allow-Origin: *), so we use the default
- * 'cors' mode — under 'no-cors' the browser downgrades Content-Type to
- * text/plain and GHL fails to parse the JSON, so the contact is never created.
  */
-export async function postLeadToGhl(payload: Record<string, string>): Promise<boolean> {
+export async function postLeadToZapier(payload: Record<string, string>): Promise<boolean> {
   try {
-    await fetch(GHL_WEBHOOK_URL, {
+    await fetch(ZAPIER_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
     return true;
   } catch (err) {
-    console.warn('GHL webhook post failed:', err);
+    console.warn('Zapier webhook post failed:', err);
     return false;
   }
 }
 
 /**
  * Submit a lead from any form. Normalizes the common field-name variants
- * (fullName / zipCode / phoneNumber) so the GHL workflow always receives
- * consistent name/email/phone/zip.
+ * (fullName / zipCode / phoneNumber) so the Zap always receives consistent
+ * name/email/phone/zip fields to map into Leap CRM and Brenda's email.
  *
- * Throws ONLY if the GHL webhook itself could not be reached — i.e. the lead
- * truly did not land — so a caller's catch should show the "please call us"
- * fallback only in that genuine case. EmailJS failures are swallowed.
+ * Throws ONLY if the Zapier webhook itself could not be reached — i.e. the
+ * lead truly did not land — so a caller's catch should show the "please call
+ * us" fallback only in that genuine case.
  */
 export async function submitLead(raw: Record<string, unknown>): Promise<void> {
   const s = (v: unknown) => (v == null ? '' : String(v));
 
   const payload: Record<string, string> = {
-    // origin snapshot (SEO vs Ads vs GBP) — the GHL workflow maps attr_source
-    // to the contact's "Origem do Lead" field
+    // origin snapshot (SEO vs Ads vs GBP)
     ...getAttributionPayload(),
     // pass through anything the form already provided (stringified)
     ...Object.fromEntries(Object.entries(raw).map(([k, v]) => [k, s(v)])),
-    // normalize the canonical fields the GHL workflow maps on
+    // normalize the canonical fields the Zap maps on
     name: s(raw.name ?? raw.fullName),
     email: s(raw.email),
     phone: s(raw.phone ?? raw.phoneNumber),
@@ -76,17 +71,14 @@ export async function submitLead(raw: Record<string, unknown>): Promise<void> {
     submitted_at: s(raw.submitted_at) || new Date().toISOString(),
   };
 
-  // Primary sink — the lead must land here.
-  const ghlOk = await postLeadToGhl(payload);
+  const ok = await postLeadToZapier(payload);
 
-  // Best-effort notification on a legacy account we don't control. Never blocks.
-  try {
-    await sendLeadEmailAndSms(payload);
-  } catch (err) {
-    console.warn('EmailJS lead alert failed (lead already in GHL):', err);
-  }
+  // GA4 funnel-analytics event (NOT an ad conversion — those fire on
+  // /thank-you). Fires regardless of the Zapier post's outcome so this
+  // signal no longer depends on a third-party email service being up.
+  trackLeadSubmission(payload.service);
 
-  if (!ghlOk) {
-    throw new Error('Lead submission failed: GHL webhook unreachable');
+  if (!ok) {
+    throw new Error('Lead submission failed: Zapier webhook unreachable');
   }
 }

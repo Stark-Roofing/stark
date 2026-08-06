@@ -6,8 +6,9 @@
  * Brenda follows up by phone to schedule.
  *
  * Submit flow:
- *   1. POST to GHL webhook (Vant CRM) for routing/automation (best-effort).
- *   2. sendLeadEmailAndSms — instant email + SMS to Brenda.
+ *   1. POST to Zapier webhook (best-effort) — the Zap fans this out to Leap
+ *      CRM and an email notification to Brenda.
+ *   2. sendCustomerConfirmation — best-effort "we got your request" email.
  *   3. navigate('/thank-you') — fires all pixels (Lead, Phone Click, UET).
  */
 import React, { useState } from 'react';
@@ -34,9 +35,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { sendLeadEmailAndSms, sendCustomerConfirmation } from '@/utils/emailjs';
+import { sendCustomerConfirmation } from '@/utils/emailjs';
 import { readableSource } from '@/utils/submitLead';
 import { getAttributionPayload } from '@/utils/attribution';
+import { trackLeadSubmission } from '@/utils/tracking';
 import {
   getOrCreateExternalId,
   getFbp,
@@ -72,31 +74,24 @@ interface AdsLeadFormProps {
   defaultService?: string;
 }
 
-// Vant GHL webhook — receives leads, fires workflow (create contact + WhatsApp to Brenda).
-// Public endpoint (anyone can POST) — dedup + spam mitigation lives in the GHL workflow.
-const GHL_WEBHOOK_URL =
-  'https://services.leadconnectorhq.com/hooks/Rc0vimjpYEKR7LCj48Qb/webhook-trigger/0b5885e6-4734-4d2b-8484-4f0e6ff3d4ff';
+// Zapier Catch Hook — the Zap fans this out to Leap CRM + an email
+// notification to Brenda. Same webhook used by submitLead.ts / QuickQuoteForm.
+const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/28190331/46f6oyc/';
 
 // CAPI helpers + cookie/external_id utilities moved to @/utils/metaTracking
 // so they're reusable by ThankYou.tsx (central Lead trigger for all forms)
 // and phoneTracking.ts (CAPI Contact for tel: clicks).
 
-async function postToGhlWebhook(payload: Record<string, string>) {
+async function postToZapierWebhook(payload: Record<string, string>) {
   try {
-    // GHL inbound webhook responds with CORS (Access-Control-Allow-Origin: *),
-    // so we use the default 'cors' mode — NOT 'no-cors'. Under no-cors the
-    // browser silently downgrades Content-Type to text/plain, and GHL then
-    // fails to parse the JSON body, so the contact is never created. That was
-    // the root cause of browser-submitted leads never landing in GHL while
-    // server-side (curl) tests with real application/json worked fine.
-    await fetch(GHL_WEBHOOK_URL, {
+    await fetch(ZAPIER_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       // attr_* first so an explicit form field can never be overwritten by it
       body: JSON.stringify({ ...getAttributionPayload(), ...payload }),
     });
   } catch (err) {
-    console.warn('GHL webhook post failed (non-blocking):', err);
+    console.warn('Zapier webhook post failed (non-blocking):', err);
   }
 }
 
@@ -208,17 +203,11 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
         fbc: getFbc(),
       });
 
-      // Best-effort GHL routing (Vant CRM + WhatsApp automation).
-      postToGhlWebhook(payload);
+      // Best-effort Zapier routing — fans out to Leap CRM + Brenda's email.
+      postToZapierWebhook(payload);
 
-      // Email + SMS to Brenda — best-effort only. The lead already reached GHL
-      // (source of truth) via postToGhlWebhook above, so a legacy-EmailJS outage
-      // must NOT surface an error to the visitor.
-      try {
-        await sendLeadEmailAndSms(payload);
-      } catch (emailErr) {
-        console.warn('EmailJS lead alert failed (lead already in GHL):', emailErr);
-      }
+      // GA4 funnel-analytics event (NOT an ad conversion — those fire on /thank-you).
+      trackLeadSubmission(serviceLabel);
 
       // Best-effort customer confirmation email.
       try {
