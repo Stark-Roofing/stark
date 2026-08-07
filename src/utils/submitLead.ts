@@ -29,12 +29,23 @@ const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/28190331/46f6oy
 /**
  * POST the lead to the Zapier Catch Hook. Returns true when the request was
  * delivered (no network error), false otherwise. Never throws.
+ *
+ * Content-Type is deliberately 'text/plain', NOT 'application/json': a real
+ * application/json header forces the browser to send a CORS preflight
+ * (OPTIONS) request first, and Zapier's Catch Hook doesn't allow the
+ * Content-Type header in its preflight response — the browser blocks the
+ * whole request before it's ever sent (confirmed live: leads silently never
+ * reached Zapier despite this returning "success" client-side). text/plain
+ * is a CORS-safelisted header, so the browser sends the POST directly with
+ * no preflight, and Zapier parses the JSON body fine regardless of the
+ * declared Content-Type. Same workaround already used in bookingBackend.ts
+ * for the same reason against a different endpoint.
  */
 export async function postLeadToZapier(payload: Record<string, string>): Promise<boolean> {
   try {
     await fetch(ZAPIER_WEBHOOK_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(payload),
     });
     return true;

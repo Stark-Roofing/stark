@@ -85,9 +85,12 @@ const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/28190331/46f6oy
 
 async function postToZapierWebhook(payload: Record<string, string>) {
   try {
+    // text/plain (not application/json) avoids a CORS preflight that Zapier's
+    // Catch Hook doesn't allow — see the comment on postLeadToZapier in
+    // submitLead.ts. Zapier parses the JSON body fine either way.
     await fetch(ZAPIER_WEBHOOK_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       // attr_* first so an explicit form field can never be overwritten by it
       body: JSON.stringify({ ...getAttributionPayload(), ...payload }),
     });
