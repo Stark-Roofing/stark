@@ -45,6 +45,7 @@ import {
   getFbc,
   savePIIForReuse,
   postLeadToCapiWorker,
+  updateAdvancedMatching,
 } from '@/utils/metaTracking';
 
 const SERVICES = [
@@ -141,6 +142,17 @@ const AdsLeadForm: React.FC<AdsLeadFormProps> = ({ defaultService }) => {
       // Persist PII so later tel: clicks from same visitor can attach it to the
       // Contact CAPI event (lifts EMQ on otherwise-anonymous phone clicks).
       savePIIForReuse({
+        email: values.email,
+        phone: values.phone,
+        first_name: firstName,
+        last_name: lastName,
+        zip: values.zip,
+      });
+
+      // Manual Advanced Matching on the browser Pixel — now that we actually
+      // know who this visitor is, merge it into the Pixel session so the
+      // GTM-driven Lead event fires with matching data attached.
+      updateAdvancedMatching({
         email: values.email,
         phone: values.phone,
         first_name: firstName,

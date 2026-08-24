@@ -16,6 +16,17 @@
 const CAPI_BASE = 'https://vant-dash-tracking-edge.agencia-vant-ads.workers.dev/capi/stark';
 const CAPI_SHARED_SECRET = 'ff6ccf9f26d4319b2369058a1536d854';
 
+// Must match the fbq('init', ...) pixel ID hardcoded in index.html — if that
+// ID ever changes, update it here too, or Advanced Matching data below will
+// be sent to a pixel session GTM/Meta isn't actually reporting against.
+const META_PIXEL_ID = '3442436895938346';
+
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
 const EXT_ID_LS_KEY = 'stark_ext_id';
 const FBP_LS_KEY = 'stark_fbp';
 const FBC_LS_KEY = 'stark_fbc';
@@ -143,6 +154,32 @@ export function savePIIForReuse(pii: StoredPII): void {
   if (pii.last_name) clean.last_name = pii.last_name.trim().toLowerCase();
   if (pii.zip) clean.zip = pii.zip.trim();
   lsSet(PII_LS_KEY, JSON.stringify(clean));
+}
+
+/**
+ * Set up Manual Advanced Matching on the browser Pixel using real,
+ * just-collected lead data — fixes the "Set up Manual Advanced Matching"
+ * diagnostic in Meta Events Manager for META_PIXEL_ID.
+ *
+ * Values are passed RAW (not pre-hashed): the Pixel hashes em/ph/fn/ln/zp
+ * with SHA-256 itself before sending. We deliberately do NOT hardcode this
+ * data into the static fbq('init', ...) call in index.html — no visitor is
+ * known at page load on an anonymous marketing site, so there's nothing
+ * real to put there. Instead, call this the moment a form actually collects
+ * PII; per Meta's docs, calling fbq('init', ...) again merges in the new
+ * Advanced Matching data for the rest of the session, so every subsequent
+ * event (including the GTM-driven Lead event) benefits from it.
+ */
+export function updateAdvancedMatching(pii: StoredPII): void {
+  if (typeof window === 'undefined' || !window.fbq) return;
+  const data: Record<string, string> = {};
+  if (pii.email) data.em = pii.email.trim().toLowerCase();
+  if (pii.phone) data.ph = pii.phone.replace(/\D/g, '');
+  if (pii.first_name) data.fn = pii.first_name.trim().toLowerCase();
+  if (pii.last_name) data.ln = pii.last_name.trim().toLowerCase();
+  if (pii.zip) data.zp = pii.zip.trim();
+  if (Object.keys(data).length === 0) return;
+  window.fbq('init', META_PIXEL_ID, data);
 }
 
 export function getStoredPII(): StoredPII {
