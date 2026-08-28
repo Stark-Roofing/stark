@@ -120,27 +120,22 @@ const ThankYou: React.FC = () => {
         value,
       });
 
-      // 4) dataLayer push for GTM Custom HTML tag → fires Meta Pixel Lead with
-      // event_id + Advanced Matching params. AdsLeadForm may have pushed this
-      // already pre-navigate; pushing again is harmless (GTM Custom Event
-      // fires once per dataLayer push).
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: 'lead_form_submit',
-        event_id: eventId,
-        lead_value: value,
-        currency: 'USD',
-        service: state.service,
-        am_em: state.email?.trim().toLowerCase(),
-        am_ph: state.phone?.replace(/\D/g, ''),
-        am_fn: firstName?.toLowerCase(),
-        am_ln: lastName?.toLowerCase(),
-        am_zp: state.zip,
-        am_country: 'us',
-        am_external_id: externalId,
-      });
+      // NOTE: Do NOT push a second 'lead_form_submit' dataLayer event here.
+      // AdsLeadForm.tsx and QuickQuoteForm.tsx — the only two forms that ever
+      // navigate to /thank-you — already push this event pre-navigate, which
+      // is what fires GTM's Meta Pixel Lead tag. A previous version of this
+      // file pushed it again "for safety," reasoning it was harmless because
+      // "GTM Custom Event fires once per dataLayer push" — true per push, but
+      // that's exactly the bug: two pushes of the same event, sharing one
+      // event_id, fired the GTM Lead tag twice per real lead (confirmed live
+      // via direct fbq() call interception — reused event_id does NOT dedupe
+      // two browser-side Pixel track() calls; Meta's eventID dedup is for
+      // Pixel-vs-CAPI matching, not Pixel-vs-Pixel). This inflated Lead
+      // counts in Ads Manager. If a future form navigates here WITHOUT
+      // having pushed 'lead_form_submit' itself, add the push back in THAT
+      // form's submit handler instead of here, so it only ever fires once.
 
-      // 5) CAPI server-side via Vant Worker — best-effort, non-blocking.
+      // 4) CAPI server-side via Vant Worker — best-effort, non-blocking.
       // Persist PII so later tel: clicks from same visitor can attach it to
       // Contact CAPI (lifts EMQ on otherwise-anonymous phone clicks).
       savePIIForReuse({
