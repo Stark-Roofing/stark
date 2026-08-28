@@ -71,6 +71,26 @@
     }
     </script>
 
+    <!-- Google tag (gtag.js) stub — defines window.gtag globally.
+         GTM's own "Google tag" configuration loads the gtag.js libraries
+         (gtag/js?id=G-... and id=AW-...) and manages them internally, but
+         does NOT expose window.gtag for custom site code to call — it's
+         only defined this way when you use Google's classic direct-install
+         snippet. Without this stub, every window.gtag?.(...) call elsewhere
+         in this codebase (Enhanced Conversions user_data, the Google Ads
+         conversion event on /thank-you, the GA4 generate_lead event)
+         silently no-ops forever via optional chaining, with zero error.
+         Confirmed live: window.gtag was still undefined 15+ seconds after
+         both gtag.js library scripts had already loaded through GTM.
+         This just pushes to the same dataLayer those libraries already
+         read from, so it works regardless of GTM's deferred load timing —
+         safe to define before window.dataLayer even exists yet. -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+    </script>
+
     <!-- Google Tag Manager — DEFERRED.
          The GTM container chain (GTM + gtag + fbevents + ads conversion) is
          ~200KB of JS, and PSI flagged 950ms of TBT on mobile from it executing
