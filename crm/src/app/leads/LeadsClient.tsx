@@ -1,297 +1,260 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { LEAD_STAGES, LEAD_SOURCES, JOB_TYPES, LOST_REASONS, formatMoney, timeAgo, telHref } from "@/lib/utils";
 import { StatusBadge } from "@/components/StatusBadge";
-import { LEAD_SOURCES, LEAD_STATUSES, JOB_TYPES, formatDate } from "@/lib/utils";
+import { Modal, api } from "@/components/Modal";
 
-type Lead = {
+export type LeadRow = {
   id: string;
   name: string;
   phone: string | null;
   email: string | null;
-  address: string | null;
-  city: string | null;
+  address: string;
   serviceType: string | null;
   leadSource: string | null;
-  status: string;
-  notes: string | null;
+  stage: string;
+  estValue: number | null;
+  assignedTo: string | null;
   createdAt: string;
-  isCustomer: boolean;
+  nextDue: string | null;
 };
 
-const EMPTY: Partial<Lead> = {
-  name: "",
-  phone: "",
-  email: "",
-  address: "",
-  city: "",
-  serviceType: "",
-  leadSource: "",
-  status: "New",
-  notes: "",
-};
+const EMPTY = { name: "", phone: "", email: "", address: "", city: "", zip: "", serviceType: "Roofing", leadSource: "Website", notes: "", estValue: "", assignedToId: "" };
 
-export function LeadsClient({ initialLeads }: { initialLeads: Lead[] }) {
+export function LeadsClient({ initialLeads, users }: { initialLeads: LeadRow[]; users: { id: string; name: string }[] }) {
   const router = useRouter();
-  const [leads] = useState(initialLeads);
-  const [editing, setEditing] = useState<Partial<Lead> | null>(null);
-  const [statusFilter, setStatusFilter] = useState<string>("All");
-  const [search, setSearch] = useState("");
+  const params = useSearchParams();
+  const [leads, setLeads] = useState(initialLeads);
+  const [view, setView] = useState<"board" | "list">("board");
+  const [q, setQ] = useState("");
+  const [form, setForm] = useState<typeof EMPTY | null>(null);
   const [busy, setBusy] = useState(false);
+  const [dragId, setDragId] = useState<string | null>(null);
+  const [lostFor, setLostFor] = useState<string | null>(null);
+
+  useEffect(() => setLeads(initialLeads), [initialLeads]);
+  useEffect(() => {
+    if (params.get("new")) setForm({ ...EMPTY });
+  }, [params]);
+  useEffect(() => {
+    if (window.innerWidth < 768) setView("list");
+  }, []);
 
   const filtered = useMemo(() => {
-    return leads.filter((l) => {
-      if (statusFilter !== "All" && l.status !== statusFilter) return false;
-      if (search) {
-        const s = search.toLowerCase();
-        return (
-          l.name.toLowerCase().includes(s) ||
-          (l.phone || "").toLowerCase().includes(s) ||
-          (l.email || "").toLowerCase().includes(s) ||
-          (l.city || "").toLowerCase().includes(s)
-        );
-      }
-      return true;
-    });
-  }, [leads, statusFilter, search]);
+    const s = q.toLowerCase().trim();
+    if (!s) return leads;
+    return leads.filter((l) => [l.name, l.phone, l.email, l.address, l.serviceType].some((v) => v?.toLowerCase().includes(s)));
+  }, [leads, q]);
 
-  async function save(e: React.FormEvent) {
+  async function create(e: React.FormEvent) {
     e.preventDefault();
-    if (!editing) return;
+    if (!form) return;
     setBusy(true);
-    const isEdit = !!editing.id;
-    const url = isEdit ? `/api/leads/${editing.id}` : "/api/leads";
-    const method = isEdit ? "PATCH" : "POST";
-    await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(editing),
-    });
+    try {
+      const lead = await api("/api/leads", "POST", form);
+      setForm(null);
+      if (lead.duplicate) alert(`${lead.name} is already in your pipeline. Added a call-back task to the existing lead.`);
+      router.push(`/leads/${lead.id}`);
+    } catch (err: any) {
+      alert(err.message);
+    }
     setBusy(false);
-    setEditing(null);
+  }
+
+  async function move(id: string, stage: string, lostReason?: string) {
+    if (stage === "Lost" && !lostReason) return setLostFor(id);
+    setLeads((prev) => prev.map((l) => (l.id === id ? { ...l, stage } : l)));
+    await api(`/api/leads/${id}`, "PATCH", { stage, lostReason });
     router.refresh();
   }
 
-  async function remove(id: string) {
-    if (!confirm("Delete this lead?")) return;
-    await fetch(`/api/leads/${id}`, { method: "DELETE" });
-    router.refresh();
-  }
-
-  async function convert(id: string) {
-    if (!confirm("Convert this lead into a customer?")) return;
-    const res = await fetch(`/api/leads/${id}/convert`, { method: "POST" });
-    if (res.ok) router.push("/customers");
-    else alert((await res.json()).error || "Failed to convert");
-  }
+  const totals = (stage: string) => filtered.filter((l) => l.stage === stage).reduce((s, l) => s + (l.estValue || 0), 0);
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap gap-3 items-center justify-between">
-        <div className="flex flex-wrap gap-2">
-          <button
-            className={`btn ${statusFilter === "All" ? "bg-gold text-ink-900" : "btn-ghost"}`}
-            onClick={() => setStatusFilter("All")}
-          >
-            All ({leads.length})
-          </button>
-          {LEAD_STATUSES.map((s) => {
-            const count = leads.filter((l) => l.status === s).length;
-            return (
-              <button
-                key={s}
-                className={`btn ${statusFilter === s ? "bg-gold text-ink-900" : "btn-ghost"}`}
-                onClick={() => setStatusFilter(s)}
-              >
-                {s} ({count})
+    <div className="space-y-4">
+      <div className="flex flex-col sm:flex-row gap-3 sm:items-center justify-between">
+        <input className="input sm:max-w-xs !py-2.5" placeholder="Search name, phone, address…" value={q} onChange={(e) => setQ(e.target.value)} />
+        <div className="flex gap-2">
+          <div className="flex rounded-lg border border-ink-500 overflow-hidden">
+            {(["board", "list"] as const).map((v) => (
+              <button key={v} onClick={() => setView(v)} className={`px-4 py-2 text-sm capitalize ${view === v ? "bg-gold text-ink-900 font-semibold" : "bg-ink-700 text-gray-300"}`}>
+                {v}
               </button>
+            ))}
+          </div>
+          <button className="btn-primary" onClick={() => setForm({ ...EMPTY })}>
+            + New lead
+          </button>
+        </div>
+      </div>
+
+      {view === "board" ? (
+        <div className="flex gap-3 overflow-x-auto pb-4 -mx-4 px-4 md:mx-0 md:px-0 snap-x">
+          {LEAD_STAGES.map((stage) => {
+            const items = filtered.filter((l) => l.stage === stage);
+            return (
+              <div
+                key={stage}
+                className={`kanban-col w-72 shrink-0 snap-start ${dragId ? "border-dashed" : ""}`}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={() => {
+                  if (dragId) move(dragId, stage);
+                  setDragId(null);
+                }}
+              >
+                <div className="flex items-center justify-between mb-3 px-1">
+                  <div className="font-semibold text-sm text-gray-200">
+                    {stage} <span className="text-gray-500">({items.length})</span>
+                  </div>
+                  {totals(stage) > 0 && <div className="text-xs text-gold">{formatMoney(totals(stage)).replace(".00", "")}</div>}
+                </div>
+                {items.map((l) => (
+                  <Link
+                    key={l.id}
+                    href={`/leads/${l.id}`}
+                    draggable
+                    onDragStart={() => setDragId(l.id)}
+                    onDragEnd={() => setDragId(null)}
+                    className="kanban-card block"
+                  >
+                    <div className="font-medium text-gray-100">{l.name}</div>
+                    <div className="text-xs text-gray-400 mt-0.5 truncate">{l.address || l.phone || l.email}</div>
+                    <div className="flex items-center justify-between mt-2 text-xs">
+                      <span className="text-gray-400">{l.serviceType || "—"}</span>
+                      <span className="text-gray-500">{timeAgo(l.createdAt)}</span>
+                    </div>
+                    {l.nextDue && new Date(l.nextDue) < new Date() && stage !== "Won" && stage !== "Lost" && (
+                      <div className="mt-2 text-[11px] text-rose-300 font-semibold">Follow-up overdue</div>
+                    )}
+                  </Link>
+                ))}
+                {items.length === 0 && <div className="text-xs text-gray-600 text-center py-6">Drop here</div>}
+              </div>
             );
           })}
         </div>
-        <div className="flex gap-2">
-          <input
-            placeholder="Search name, phone, email..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="input w-64"
-          />
-          <button className="btn-primary" onClick={() => setEditing({ ...EMPTY })}>
-            + New Lead
-          </button>
-        </div>
-      </div>
-
-      <div className="card overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr>
-              <th className="th">Name</th>
-              <th className="th">Contact</th>
-              <th className="th">Address</th>
-              <th className="th">Service</th>
-              <th className="th">Source</th>
-              <th className="th">Status</th>
-              <th className="th">Added</th>
-              <th className="th text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map((l) => (
-              <tr key={l.id} className="hover:bg-ink-700/50">
-                <td className="td font-medium text-gray-100">{l.name}</td>
-                <td className="td">
-                  <div>{l.phone || "-"}</div>
-                  <div className="text-xs text-gray-500">{l.email || ""}</div>
-                </td>
-                <td className="td">
-                  <div>{l.address || "-"}</div>
-                  <div className="text-xs text-gray-500">{l.city || ""}</div>
-                </td>
-                <td className="td">{l.serviceType || "-"}</td>
-                <td className="td">{l.leadSource || "-"}</td>
-                <td className="td"><StatusBadge status={l.status} /></td>
-                <td className="td">{formatDate(l.createdAt)}</td>
-                <td className="td text-right space-x-2 whitespace-nowrap">
-                  {!l.isCustomer && (
-                    <button className="text-xs text-gold hover:underline" onClick={() => convert(l.id)}>
-                      Convert
-                    </button>
-                  )}
-                  <button className="text-xs text-gray-300 hover:text-gold" onClick={() => setEditing(l)}>
-                    Edit
-                  </button>
-                  <button className="text-xs text-rose-400 hover:text-rose-300" onClick={() => remove(l.id)}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {filtered.length === 0 && (
-              <tr>
-                <td className="td text-center text-gray-500" colSpan={8}>
-                  No leads match filter.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      {editing && (
-        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4" onClick={() => setEditing(null)}>
-          <form
-            onClick={(e) => e.stopPropagation()}
-            onSubmit={save}
-            className="card-padded w-full max-w-2xl space-y-4 max-h-[90vh] overflow-y-auto"
-          >
-            <div className="flex items-center justify-between">
-              <h2 className="font-display text-3xl text-gold">
-                {editing.id ? "Edit Lead" : "New Lead"}
-              </h2>
-              <button type="button" className="text-gray-400" onClick={() => setEditing(null)}>✕</button>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="label">Name *</label>
-                <input
-                  className="input"
-                  required
-                  value={editing.name || ""}
-                  onChange={(e) => setEditing({ ...editing, name: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="label">Phone</label>
-                <input
-                  className="input"
-                  value={editing.phone || ""}
-                  onChange={(e) => setEditing({ ...editing, phone: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="label">Email</label>
-                <input
-                  className="input"
-                  type="email"
-                  value={editing.email || ""}
-                  onChange={(e) => setEditing({ ...editing, email: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="label">City</label>
-                <input
-                  className="input"
-                  value={editing.city || ""}
-                  onChange={(e) => setEditing({ ...editing, city: e.target.value })}
-                />
-              </div>
-              <div className="md:col-span-2">
-                <label className="label">Address</label>
-                <input
-                  className="input"
-                  value={editing.address || ""}
-                  onChange={(e) => setEditing({ ...editing, address: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="label">Service Type</label>
-                <select
-                  className="input"
-                  value={editing.serviceType || ""}
-                  onChange={(e) => setEditing({ ...editing, serviceType: e.target.value })}
-                >
-                  <option value="">Select service</option>
-                  {JOB_TYPES.map((j) => <option key={j} value={j}>{j}</option>)}
-                </select>
-              </div>
-              <div>
-                <label className="label">Lead Source</label>
-                <select
-                  className="input"
-                  value={editing.leadSource || ""}
-                  onChange={(e) => setEditing({ ...editing, leadSource: e.target.value })}
-                >
-                  <option value="">Select source</option>
-                  {LEAD_SOURCES.map((s) => <option key={s} value={s}>{s}</option>)}
-                </select>
-              </div>
-              <div className="md:col-span-2">
-                <label className="label">Status</label>
-                <div className="flex gap-2 flex-wrap">
-                  {LEAD_STATUSES.map((s) => (
-                    <button
-                      key={s}
-                      type="button"
-                      onClick={() => setEditing({ ...editing, status: s })}
-                      className={`btn ${editing.status === s ? "bg-gold text-ink-900" : "btn-ghost"}`}
-                    >
-                      {s}
-                    </button>
-                  ))}
+      ) : (
+        <div className="space-y-2">
+          {filtered.map((l) => (
+            <div key={l.id} className="card p-4 flex items-center gap-3">
+              <Link href={`/leads/${l.id}`} className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="font-medium text-gray-100">{l.name}</span>
+                  <StatusBadge status={l.stage} />
                 </div>
-              </div>
-              <div className="md:col-span-2">
-                <label className="label">Notes</label>
-                <textarea
-                  className="input min-h-[100px]"
-                  value={editing.notes || ""}
-                  onChange={(e) => setEditing({ ...editing, notes: e.target.value })}
-                />
-              </div>
+                <div className="text-xs text-gray-400 mt-1 truncate">
+                  {[l.serviceType, l.address || l.email, l.leadSource].filter(Boolean).join(" · ")}
+                </div>
+                <div className="text-xs text-gray-500 mt-0.5">
+                  {timeAgo(l.createdAt)}
+                  {l.estValue ? ` · ${formatMoney(l.estValue)}` : ""}
+                  {l.assignedTo ? ` · ${l.assignedTo}` : ""}
+                </div>
+              </Link>
+              {l.phone && (
+                <a href={telHref(l.phone)} className="btn-ghost !px-3 !py-3 text-lg" aria-label={`Call ${l.name}`}>
+                  ☎
+                </a>
+              )}
             </div>
-
-            <div className="flex justify-end gap-2 pt-2 border-t border-ink-600">
-              <button type="button" className="btn-ghost" onClick={() => setEditing(null)}>
-                Cancel
-              </button>
-              <button type="submit" disabled={busy} className="btn-primary">
-                {busy ? "Saving..." : editing.id ? "Save Changes" : "Create Lead"}
-              </button>
-            </div>
-          </form>
+          ))}
+          {filtered.length === 0 && (
+            <div className="card-padded text-center text-gray-500 text-sm py-12">No leads yet. New website leads will show up here automatically.</div>
+          )}
         </div>
+      )}
+
+      {form && (
+        <Modal title="New lead" onClose={() => setForm(null)}>
+          <form onSubmit={create} className="grid grid-cols-2 gap-3">
+            <div className="col-span-2">
+              <label className="label">Name *</label>
+              <input className="input !py-2.5" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} autoFocus />
+            </div>
+            <div>
+              <label className="label">Phone</label>
+              <input className="input !py-2.5" type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+            </div>
+            <div>
+              <label className="label">Email</label>
+              <input className="input !py-2.5" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+            </div>
+            <div className="col-span-2">
+              <label className="label">Address</label>
+              <input className="input !py-2.5" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} />
+            </div>
+            <div>
+              <label className="label">City</label>
+              <input className="input !py-2.5" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} />
+            </div>
+            <div>
+              <label className="label">Zip</label>
+              <input className="input !py-2.5" value={form.zip} onChange={(e) => setForm({ ...form, zip: e.target.value })} />
+            </div>
+            <div>
+              <label className="label">Service</label>
+              <select className="input !py-2.5" value={form.serviceType} onChange={(e) => setForm({ ...form, serviceType: e.target.value })}>
+                {JOB_TYPES.map((t) => (
+                  <option key={t}>{t}</option>
+                ))}
+                <option>Roof Repair</option>
+                <option>Gutters</option>
+              </select>
+            </div>
+            <div>
+              <label className="label">Source</label>
+              <select className="input !py-2.5" value={form.leadSource} onChange={(e) => setForm({ ...form, leadSource: e.target.value })}>
+                {LEAD_SOURCES.map((t) => (
+                  <option key={t}>{t}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="label">Est. value</label>
+              <input className="input !py-2.5" inputMode="decimal" value={form.estValue} onChange={(e) => setForm({ ...form, estValue: e.target.value })} />
+            </div>
+            <div>
+              <label className="label">Assigned to</label>
+              <select className="input !py-2.5" value={form.assignedToId} onChange={(e) => setForm({ ...form, assignedToId: e.target.value })}>
+                <option value="">Me</option>
+                {users.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {u.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="col-span-2">
+              <label className="label">Notes</label>
+              <textarea className="input" value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
+            </div>
+            <button className="btn-primary col-span-2 justify-center !py-3" disabled={busy}>
+              {busy ? "Saving…" : "Create lead"}
+            </button>
+          </form>
+        </Modal>
+      )}
+
+      {lostFor && (
+        <Modal title="Why was it lost?" onClose={() => setLostFor(null)}>
+          <div className="grid grid-cols-1 gap-2">
+            {LOST_REASONS.map((r) => (
+              <button
+                key={r}
+                className="btn-ghost justify-center !py-3"
+                onClick={() => {
+                  move(lostFor, "Lost", r);
+                  setLostFor(null);
+                }}
+              >
+                {r}
+              </button>
+            ))}
+          </div>
+        </Modal>
       )}
     </div>
   );

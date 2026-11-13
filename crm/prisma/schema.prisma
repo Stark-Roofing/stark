@@ -3,68 +3,260 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
+// ─── Users & auth ──────────────────────────────────────────────
+model User {
+  id           String       @id @default(cuid())
+  email        String       @unique
+  name         String
+  phone        String?
+  passwordHash String
+  role         String       @default("SALES") // ADMIN | OFFICE | SALES | FIELD
+  active       Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  leads        Lead[]       @relation("LeadAssignee")
+  tasks        Task[]       @relation("TaskAssignee")
+  activities   Activity[]
+  attachments  Attachment[]
+  proposals    Proposal[]
+}
+
+// ─── Sales pipeline ────────────────────────────────────────────
 model Lead {
-  id          String    @id @default(cuid())
-  name        String
-  phone       String?
-  email       String?
-  address     String?
-  city        String?
-  serviceType String?
-  leadSource  String?
-  status      String    @default("New")
-  notes       String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  customer    Customer?
+  id             String       @id @default(cuid())
+  name           String
+  phone          String?
+  email          String?
+  address        String?
+  city           String?
+  zip            String?
+  serviceType    String?
+  leadSource     String?
+  stage          String       @default("New") // New | Contacted | Inspection Set | Proposal Sent | Won | Lost
+  lostReason     String?
+  estValue       Float?
+  notes          String?
+  utmSource      String?
+  utmCampaign    String?
+  landingPage    String?
+  assignedToId   String?
+  assignedTo     User?        @relation("LeadAssignee", fields: [assignedToId], references: [id])
+  nextFollowUpAt DateTime?
+  lastContactAt  DateTime?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  customer       Customer?
+  tasks          Task[]
+  activities     Activity[]
+  attachments    Attachment[]
+  proposals      Proposal[]
+
+  @@index([stage])
+  @@index([phone])
+  @@index([email])
 }
 
 model Customer {
-  id           String     @id @default(cuid())
+  id           String       @id @default(cuid())
   name         String
   phone        String?
   email        String?
   address      String?
   city         String?
-  totalRevenue Float      @default(0)
+  zip          String?
+  totalRevenue Float        @default(0)
   notes        String?
-  leadId       String?    @unique
-  lead         Lead?      @relation(fields: [leadId], references: [id])
+  externalId   String?      // id from Leap import
+  leadId       String?      @unique
+  lead         Lead?        @relation(fields: [leadId], references: [id], onDelete: SetNull)
   jobs         Job[]
   estimates    Estimate[]
   invoices     Invoice[]
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  proposals    Proposal[]
+  tasks        Task[]
+  activities   Activity[]
+  attachments  Attachment[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@index([phone])
+  @@index([email])
 }
 
 model Job {
-  id           String     @id @default(cuid())
+  id           String       @id @default(cuid())
   customerId   String
-  customer     Customer   @relation(fields: [customerId], references: [id])
+  customer     Customer     @relation(fields: [customerId], references: [id], onDelete: Cascade)
   jobType      String
-  status       String     @default("Scheduled")
+  status       String       @default("Scheduled")
+  contractValue Float?
   startDate    DateTime?
   endDate      DateTime?
+  completedAt  DateTime?
   address      String?
   assignedCrew String?
   notes        String?
   estimates    Estimate[]
   invoices     Invoice[]
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  proposals    Proposal[]
+  tasks        Task[]
+  activities   Activity[]
+  attachments  Attachment[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
 }
 
+model Task {
+  id           String    @id @default(cuid())
+  title        String
+  notes        String?
+  dueAt        DateTime?
+  done         Boolean   @default(false)
+  doneAt       DateTime?
+  kind         String    @default("todo") // todo | call | inspection | followup
+  leadId       String?
+  lead         Lead?     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  customerId   String?
+  customer     Customer? @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  jobId        String?
+  job          Job?      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  assignedToId String?
+  assignedTo   User?     @relation("TaskAssignee", fields: [assignedToId], references: [id])
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([done, dueAt])
+}
+
+// Timeline entry: note, call, sms, email, stage_change, system, ...
+model Activity {
+  id         String    @id @default(cuid())
+  type       String
+  message    String
+  leadId     String?
+  lead       Lead?     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  customerId String?
+  customer   Customer? @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  jobId      String?
+  job        Job?      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  proposalId String?
+  proposal   Proposal? @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+  userId     String?
+  user       User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt  DateTime  @default(now())
+
+  @@index([createdAt])
+}
+
+model MessageTemplate {
+  id        String   @id @default(cuid())
+  name      String
+  channel   String   @default("sms") // sms | email
+  subject   String?
+  body      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Proposals (in-home sales + e-sign) ────────────────────────
+model PriceBookItem {
+  id        String   @id @default(cuid())
+  name      String
+  category  String   // shingle | underlayment | flashing | ventilation | labor | tearoff | decking | disposal | permit | addon
+  unit      String   @default("SQ") // SQ | LF | EA | JOB
+  cost      Float    @default(0)
+  price     Float    @default(0)
+  tier      String?  // Good | Better | Best (for shingle systems), null = shared
+  qtyBasis  String?  // squares | ridge | eave | valley | rake | flat | layers  (how to auto-calc qty)
+  qtyFactor Float    @default(1)
+  isAddOn   Boolean  @default(false)
+  active    Boolean  @default(true)
+  sortOrder Int      @default(0)
+  description String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Proposal {
+  id               String       @id @default(cuid())
+  number           String       @unique
+  title            String       @default("Roof Replacement Proposal")
+  status           String       @default("Draft") // Draft | Sent | Viewed | Signed | Declined
+  leadId           String?
+  lead             Lead?        @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  customerId       String?
+  customer         Customer?    @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  jobId            String?
+  job              Job?         @relation(fields: [jobId], references: [id], onDelete: SetNull)
+  createdById      String?
+  createdBy        User?        @relation(fields: [createdById], references: [id], onDelete: SetNull)
+  clientName       String
+  clientEmail      String?
+  clientPhone      String?
+  siteAddress      String?
+  measurements     String       @default("{}") // JSON
+  options          String       @default("[]") // JSON: [{tier,name,description,items:[{name,qty,unit,price,total}],subtotal}]
+  addOns           String       @default("[]") // JSON: [{id,name,price,selected}]
+  photoIds         String       @default("[]") // JSON array of Attachment ids
+  notes            String?
+  terms            String?
+  taxRate          Float        @default(10.1)
+  selectedTier     String?
+  selectedAddOns   String       @default("[]")
+  subtotal         Float        @default(0)
+  tax              Float        @default(0)
+  total            Float        @default(0)
+  depositPct       Float        @default(0)
+  publicToken      String       @unique @default(cuid())
+  sentAt           DateTime?
+  viewedAt         DateTime?
+  reminderSentAt   DateTime?
+  signedAt         DateTime?
+  signedName       String?
+  signatureDataUrl String?
+  signerIp         String?
+  signerAgent      String?
+  pdfUrl           String?
+  expiresAt        DateTime?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  activities       Activity[]
+}
+
+// ─── Photos & documents ────────────────────────────────────────
+model Attachment {
+  id           String    @id @default(cuid())
+  url          String
+  filename     String
+  mimeType     String?
+  size         Int?
+  kind         String    @default("photo") // photo | document
+  tag          String?   // before | during | after | damage | contract | permit | proposal | other
+  caption      String?
+  leadId       String?
+  lead         Lead?     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  customerId   String?
+  customer     Customer? @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  jobId        String?
+  job          Job?      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  uploadedById String?
+  uploadedBy   User?     @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+  createdAt    DateTime  @default(now())
+}
+
+// ─── Legacy v1 modules (estimates/invoices/crew) ───────────────
 model Estimate {
   id         String     @id @default(cuid())
   number     String     @unique
   customerId String
-  customer   Customer   @relation(fields: [customerId], references: [id])
+  customer   Customer   @relation(fields: [customerId], references: [id], onDelete: Cascade)
   jobId      String?
-  job        Job?       @relation(fields: [jobId], references: [id])
+  job        Job?       @relation(fields: [jobId], references: [id], onDelete: SetNull)
   status     String     @default("Draft")
   subtotal   Float      @default(0)
   taxRate    Float      @default(10.1)
@@ -92,11 +284,11 @@ model Invoice {
   id            String    @id @default(cuid())
   number        String    @unique
   customerId    String
-  customer      Customer  @relation(fields: [customerId], references: [id])
+  customer      Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
   jobId         String?
-  job           Job?      @relation(fields: [jobId], references: [id])
+  job           Job?      @relation(fields: [jobId], references: [id], onDelete: SetNull)
   estimateId    String?   @unique
-  estimate      Estimate? @relation(fields: [estimateId], references: [id])
+  estimate      Estimate? @relation(fields: [estimateId], references: [id], onDelete: SetNull)
   amount        Float     @default(0)
   amountPaid    Float     @default(0)
   status        String    @default("Unpaid")
@@ -117,9 +309,29 @@ model CrewMember {
   updatedAt DateTime @updatedAt
 }
 
-model Activity {
-  id        String   @id @default(cuid())
-  type      String
+// ─── Automations & settings ────────────────────────────────────
+model AutomationRule {
+  key       String          @id
+  name      String
+  description String
+  enabled   Boolean         @default(true)
+  config    String          @default("{}")
+  lastRunAt DateTime?
+  logs      AutomationLog[]
+}
+
+model AutomationLog {
+  id        String         @id @default(cuid())
+  ruleKey   String
+  rule      AutomationRule @relation(fields: [ruleKey], references: [key], onDelete: Cascade)
   message   String
-  createdAt DateTime @default(now())
+  refId     String?
+  createdAt DateTime       @default(now())
+
+  @@index([ruleKey, refId])
+}
+
+model Setting {
+  key   String @id
+  value String
 }
