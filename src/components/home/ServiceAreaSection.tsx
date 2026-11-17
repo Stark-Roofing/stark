@@ -36,12 +36,15 @@ const ServiceAreaSection: React.FC = () => {
             viewport={{ once: true }}
           >
             <div className="rounded-xl overflow-hidden shadow-lg border border-gray-100">
+              {/* loading/decoding before src: React sets attributes in prop
+                  order and Chrome fetches as soon as src is set, which made
+                  loading="lazy" a no-op here. */}
               <img 
+                loading="lazy"
+                decoding="async"
                 src="/lovable-uploads/1fdb5c0c-5cfa-4535-9e2b-5cdadff4d44a.webp" 
                 alt="Stark Roofing Service Area Map - Greater Seattle Area"
                 className="w-full h-auto object-contain"
-                loading="lazy"
-                decoding="async"
               />
             </div>
           </motion.div>

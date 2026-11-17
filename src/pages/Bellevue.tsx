@@ -109,12 +109,12 @@ const BellevueLocation = () => {
       city="Bellevue"
       state="WA"
       region="Greater Seattle"
-      description="Bellevue GAF Master Elite roofer with real 2026 cost ranges. Architectural asphalt $14-21K, premium $17-25K, metal $32-52K. Free drone inspections, 20-year warranty."
+      description="Bellevue GAF Master Elite roofer with real 2026 cost ranges. Architectural asphalt $14-21K, premium $17-25K, metal $32-52K. Free drone inspections, 25-year warranty."
       content={content}
       heroImage="/hero-custom-3.webp"
       keywords="roofing contractor Bellevue, roof repair Bellevue WA, roofer Bellevue, roof replacement cost Bellevue, Bellevue roofing company, GAF Master Elite Bellevue"
       metaTitle="Roof Replacement Bellevue WA 2026 Cost | Stark Roofing"
-      metaDescription="Bellevue's GAF Master Elite roofer with real 2026 cost numbers. Architectural asphalt $14-21K, metal $32-52K. Free drone inspections, line-item quotes, 20-year warranty."
+      metaDescription="Bellevue's GAF Master Elite roofer with real 2026 cost numbers. Architectural asphalt $14-21K, metal $32-52K. Free drone inspections, line-item quotes, 25-year warranty."
     />
   );
 };

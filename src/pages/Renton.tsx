@@ -84,7 +84,7 @@ const RentonLocation = () => {
       heroImage="/hero-custom-6.webp"
       keywords="roofing contractor Renton, roof repair Renton WA, roofer Renton, roof replacement Renton, Renton roofing company"
       metaTitle="Roofing in Renton, WA | Stark Roofing & Renovation"
-      metaDescription="Renton roofing from Kennydale to Benson Hill. GAF Master Elite certified, 20-year labor warranty. Free roof inspection and estimate, no sales pitch."
+      metaDescription="Renton roofing from Kennydale to Benson Hill. GAF Master Elite certified, 25-year labor warranty. Free roof inspection and estimate, no sales pitch."
     />
   );
 };
