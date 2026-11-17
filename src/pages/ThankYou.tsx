@@ -70,6 +70,10 @@ const ThankYou: React.FC = () => {
     description:
       "Thanks for booking your free roof inspection with Stark Roofing & Renovation. We'll text you to confirm shortly.",
     canonical: 'https://starkroofingrenovation.com/thank-you/',
+    // Post-conversion confirmation page — keep it out of search results
+    // (it is also excluded from public/sitemap.xml). "follow" keeps link
+    // equity flowing to the pages it links to.
+    robots: 'noindex, follow',
   });
 
   useEffect(() => {

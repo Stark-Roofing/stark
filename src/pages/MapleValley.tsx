@@ -85,12 +85,12 @@ const MapleValleyLocation = () => {
       city="Maple Valley"
       state="WA"
       region="Greater Seattle"
-      description="Roofing contractor serving Maple Valley with GAF Master Elite certification, moss-aware specs, and 20-year labor warranty. Free drone inspections."
+      description="Roofing contractor serving Maple Valley with GAF Master Elite certification, moss-aware specs, and 25-year labor warranty. Free drone inspections."
       content={content}
       heroImage="/hero-custom-maple-valley.webp"
       keywords="roofing contractor Maple Valley, roof repair Maple Valley WA, roofer Maple Valley, roof replacement Maple Valley, Maple Valley roofing company"
       metaTitle="Roofing in Maple Valley, WA | Stark Roofing & Renovation"
-      metaDescription="Maple Valley roofer with moss-aware specs and zinc strips standard. GAF Master Elite, 20-year labor warranty. Free drone inspections with written estimates."
+      metaDescription="Maple Valley roofer with moss-aware specs and zinc strips standard. GAF Master Elite, 25-year labor warranty. Free drone inspections with written estimates."
     />
   );
 };

@@ -46,8 +46,13 @@ function getPathsFromSitemap() {
   // which silently froze the live deploy on an old CSR shell.
   const renderable = paths.filter((p) => !p.toLowerCase().endsWith('.html'));
   // Deduplicate while preserving order
-  return [...new Set(renderable)];
+  return [...new Set([...renderable, ...EXTRA_NON_SITEMAP_PATHS])];
 }
+
+// Routes that must still ship as a static file (HTTP 200 on GitHub Pages, not
+// the SPA 404.html fallback) but are deliberately kept OUT of sitemap.xml
+// because they are noindex. /thank-you/ is the post-form confirmation page.
+const EXTRA_NON_SITEMAP_PATHS = ['/thank-you/'];
 
 // ---------------------------------------------------------------------------
 // 2. Spawn vite preview and wait until it's accepting connections
@@ -129,6 +134,32 @@ function reinjectMissingHeadTags(html, preservationBlock) {
   }
   if (tagsToInject.length === 0) return html;
   return html.replace(/<\/head>/i, `    ${tagsToInject.join('\n    ')}\n  </head>`);
+}
+
+// Per-page LCP preload override. index.html preloads the homepage hero
+// (/hero-custom-1.webp) on EVERY page; on pages with a different above-the-fold
+// image that preload steals bandwidth from the real LCP image. For the paths
+// listed here, the homepage-hero preload in the prerendered file is swapped
+// for a preload of that page's own hero. Other pages are untouched.
+// Each entry is a list of { href, media } — media must mirror the <picture>
+// <source> media queries on that page so the browser fetches only one file.
+const LCP_PRELOAD_OVERRIDES = {
+  '/ads/': [
+    { href: '/ads-assets/ads-hero-sammamish-mobile.webp', media: '(max-width: 480px)' },
+    { href: '/ads-assets/ads-hero-sammamish.webp', media: '(min-width: 481px)' },
+  ],
+};
+
+function applyLcpPreloadOverride(pathname, html) {
+  const preloads = LCP_PRELOAD_OVERRIDES[pathname];
+  if (!preloads) return html;
+  const homeHeroPreload = /<link\b[^>]*\brel=["']preload["'][^>]*\bhref=["']\/hero-custom-1\.webp["'][^>]*>/i;
+  const replacement = preloads
+    .map(({ href, media }) => `<link rel="preload" as="image" href="${href}" type="image/webp" media="${media}" fetchpriority="high">`)
+    .join('\n    ');
+  return homeHeroPreload.test(html)
+    ? html.replace(homeHeroPreload, replacement)
+    : html.replace(/<\/head>/i, `    ${replacement}\n  </head>`);
 }
 
 // ---------------------------------------------------------------------------
@@ -260,7 +291,7 @@ if (preservationBlock) {
 for (const [pathname, html] of renders) {
   const file = pathToFile(pathname);
   mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(file, reinjectMissingHeadTags(html, preservationBlock));
+  writeFileSync(file, applyLcpPreloadOverride(pathname, reinjectMissingHeadTags(html, preservationBlock)));
 }
 
 log(`wrote ${renders.size} files; ${failed} failed`);

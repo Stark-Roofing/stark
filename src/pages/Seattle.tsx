@@ -64,7 +64,7 @@ const SeattleLocation = () => {
       heroImage="/hero-custom-7.webp"
       keywords="roofing contractor Seattle, roof repair Seattle WA, roof replacement Seattle, roofer Seattle, GAF certified Seattle"
       metaTitle="Roofing in Seattle, WA | Stark Roofing & Renovation"
-      metaDescription="GAF Master Elite roofing contractor in Seattle. 2,000+ roofs completed, 20-year labor warranty. Call for a free roof inspection and estimate today."
+      metaDescription="GAF Master Elite roofing contractor in Seattle. 2,000+ roofs completed, 25-year labor warranty. Call for a free roof inspection and estimate today."
     />
   );
 };

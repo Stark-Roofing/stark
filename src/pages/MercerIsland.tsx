@@ -82,12 +82,12 @@ const MercerIslandLocation = () => {
       city="Mercer Island"
       state="WA"
       region="Greater Seattle"
-      description="Roofing contractor serving Mercer Island with GAF Master Elite certification, marine-air-aware specs, and 20-year labor warranty. Free drone inspections."
+      description="Roofing contractor serving Mercer Island with GAF Master Elite certification, marine-air-aware specs, and 25-year labor warranty. Free drone inspections."
       content={content}
       heroImage="/hero-custom-mercer-island.webp"
       keywords="roofing contractor Mercer Island, roof repair Mercer Island WA, roofer Mercer Island, roof replacement Mercer Island, Mercer Island roofing company"
       metaTitle="Roofing on Mercer Island, WA | Stark Roofing & Renovation"
-      metaDescription="Mercer Island roofer with marine-air-aware specs and moss-prevention standard. GAF Master Elite, 20-year labor warranty. Free drone inspections with written estimates."
+      metaDescription="Mercer Island roofer with marine-air-aware specs and moss-prevention standard. GAF Master Elite, 25-year labor warranty. Free drone inspections with written estimates."
     />
   );
 };

@@ -17,6 +17,12 @@ interface ServiceCardProps {
   link: string;
   delay?: number;
   dropdownItems?: { to: string; label: string; icon?: React.ReactNode }[];
+  /** Optional native lazy-loading for the card image. Omit to keep the
+   *  browser default (existing callers are unchanged). */
+  imageLoading?: 'lazy' | 'eager';
+  /** Optional intrinsic size of the card image (CSS still sizes it). */
+  imageWidth?: number;
+  imageHeight?: number;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -25,7 +31,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   imageUrl,
   link,
   delay = 0,
-  dropdownItems
+  dropdownItems,
+  imageLoading,
+  imageWidth,
+  imageHeight
 }) => {
   const isInternalLink = link.startsWith('/');
 
@@ -44,7 +53,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   const cardMedia = (
     <>
       <div className="relative h-56 flex-shrink-0 overflow-hidden">
+        {/* `loading` must come before `src` (React sets attributes in prop
+            order; Chrome starts the fetch as soon as src is set). */}
         <img
+          loading={imageLoading}
+          decoding={imageLoading === 'lazy' ? 'async' : undefined}
+          width={imageWidth}
+          height={imageHeight}
           src={imageUrl}
           alt={title}
           className="w-full h-full object-cover"

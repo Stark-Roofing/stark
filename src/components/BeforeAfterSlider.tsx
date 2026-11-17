@@ -8,6 +8,16 @@ interface BeforeAfterSliderProps {
   afterLabel?: string;
   reversed?: boolean;
   hideCaption?: boolean;
+  /** Optional native lazy-loading for both images (e.g. "lazy" when the
+   *  slider sits below the fold). Omit to keep the browser default.
+   *  NOTE: `loading` is passed BEFORE `src` on the <img> on purpose — React
+   *  sets attributes in prop order, and Chrome starts fetching as soon as
+   *  `src` is set, so `loading="lazy"` after `src` is silently ignored. */
+  loading?: 'lazy' | 'eager';
+  /** Optional intrinsic size of both images, so the browser can reserve
+   *  space before they load. CSS still controls the rendered size. */
+  imageWidth?: number;
+  imageHeight?: number;
 }
 
 const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
@@ -16,7 +26,10 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
   beforeLabel = "Before",
   afterLabel = "After",
   reversed = false,
-  hideCaption = false
+  hideCaption = false,
+  loading,
+  imageWidth,
+  imageHeight
 }) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -71,14 +84,14 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
     >
       {/* After image (full width) */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <img src={actualAfterImage} alt="After" className="object-contain w-[95%] h-[95%]" />
+        <img loading={loading} decoding={loading === 'lazy' ? 'async' : undefined} width={imageWidth} height={imageHeight} src={actualAfterImage} alt="After" className="object-contain w-[95%] h-[95%]" />
       </div>
 
       {/* Before image (clipped) */}
       <div className="absolute inset-0 overflow-hidden flex items-center justify-center" style={{
         width: `${sliderPosition}%`
       }}>
-        <img src={actualBeforeImage} alt="Before" className="object-contain w-[95%] h-[95%]" />
+        <img loading={loading} decoding={loading === 'lazy' ? 'async' : undefined} width={imageWidth} height={imageHeight} src={actualBeforeImage} alt="Before" className="object-contain w-[95%] h-[95%]" />
       </div>
 
       {/* Vertical division line */}

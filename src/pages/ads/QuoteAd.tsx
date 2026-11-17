@@ -41,7 +41,7 @@ import { useSEOMeta } from '@/hooks/useSEOMeta';
  *
  * - No GAF mentions (client policy 2026-05).
  * - Defensible differentiators: 30+ yrs, 2,000+ roofs, bilingual EN/PT/ES,
- *   local Sammamish (not call center), same-day response, 20-yr labor warranty.
+ *   local Sammamish (not call center), same-day response, 25-yr labor warranty.
  * - Conversion target: QuickQuoteForm above the fold → /thank-you.
  */
 
@@ -60,39 +60,42 @@ const reviewsData = googleReviewsData as ReviewsJson;
 const REVIEW_COUNT = reviewsData.userRatingCount ?? 33;
 const GOOGLE_RATING = reviewsData.rating ?? 5;
 
-// Real before/after pairs supplied by Stark — vertical drone photos
+// Real before/after pairs supplied by Stark — vertical drone photos.
+// Served as 900×900 WebP (converted from the ~2 MB 1080×1080 PNG originals,
+// which stay in public/gallery/ untouched) — the slider renders them at
+// ≤ ~430 CSS px, so 900 px covers 2× displays.
 const BEFORE_AFTER_PROJECTS = [
   {
     title: 'Full Roof Replacement',
     location: 'Eastside, WA',
     description:
       'Complete tear-off and replacement with premium architectural shingles. Aged, weathered roof transformed into a clean, watertight finish — built for Pacific Northwest weather.',
-    beforeImage: '/gallery/ad-before-1.png',
-    afterImage: '/gallery/ad-after-1.png',
+    beforeImage: '/gallery/ad-before-1.webp',
+    afterImage: '/gallery/ad-after-1.webp',
   },
   {
     title: 'Architectural Shingle Re-Roof',
     location: 'Greater Seattle, WA',
     description:
       'Old shingles removed and new architectural shingles installed with proper flashing and underlayment. Restored curb appeal and decades of protection.',
-    beforeImage: '/gallery/ad-before-2.png',
-    afterImage: '/gallery/ad-after-2.png',
+    beforeImage: '/gallery/ad-before-2.webp',
+    afterImage: '/gallery/ad-after-2.webp',
   },
   {
     title: 'Residential Roof Refresh',
     location: 'Puget Sound, WA',
     description:
       'Aging, moss-stained shingles replaced across a complex multi-hip roof. Sealed and ready for the wettest Eastside winters.',
-    beforeImage: '/gallery/ad-before-3.png',
-    afterImage: '/gallery/ad-after-3.png',
+    beforeImage: '/gallery/ad-before-3.webp',
+    afterImage: '/gallery/ad-after-3.webp',
   },
   {
     title: 'Complete Tear-Off & Re-Roof',
     location: 'King County, WA',
     description:
       'Full tear-off down to the deck, new ice & water shield, and architectural shingles installed with proper ventilation. A dramatic before-and-after transformation.',
-    beforeImage: '/gallery/ad-before-4.png',
-    afterImage: '/gallery/ad-after-4.png',
+    beforeImage: '/gallery/ad-before-4.webp',
+    afterImage: '/gallery/ad-after-4.webp',
   },
 ];
 
@@ -120,7 +123,7 @@ const FAQS = [
   },
   {
     q: 'What warranty do you offer?',
-    a: 'Every roof replacement includes our 20-year labor warranty — far exceeding the Washington average of 1–5 years — plus the manufacturer warranty on the shingles themselves. The warranty is fully transferable if you sell your home.',
+    a: 'Every roof replacement includes our 25-year labor warranty — far exceeding the Washington average of 1–5 years — plus the manufacturer warranty on the shingles themselves. The warranty is fully transferable if you sell your home.',
   },
   {
     q: 'Do you help with insurance claims for storm damage?',
@@ -192,6 +195,9 @@ const BeforeAfterGallery: React.FC = () => {
             <BeforeAfterSlider
               beforeImage={project.beforeImage}
               afterImage={project.afterImage}
+              loading="lazy"
+              imageWidth={900}
+              imageHeight={900}
             />
           </div>
 
@@ -281,12 +287,31 @@ const QuoteAd: React.FC = () => {
       <section className="relative overflow-hidden pt-0 pb-20 md:pb-28 lg:pb-32">
         {/* Background image + overlay */}
         <div className="absolute inset-0 z-0">
-          <img
-            src="/hero-custom-sammamish.webp"
-            alt="Pacific Northwest home with quality shingle roof"
-            className="w-full h-full object-cover object-center"
-            loading="eager"
-          />
+          {/* Above-the-fold hero: eager + high fetch priority (LCP candidate).
+              Re-encoded copies of /hero-custom-sammamish.webp (same pixels,
+              lighter compression — it sits under a 70–90% navy overlay).
+              Phones get a 400×1140 centre crop: with object-cover in the tall
+              mobile hero only that centre strip is ever visible, so it is the
+              same pixels at ~1/4 of the bytes. Preloaded per-media in
+              scripts/prerender.mjs (LCP_PRELOAD_OVERRIDES). */}
+          <picture className="block w-full h-full">
+            <source
+              media="(max-width: 480px)"
+              srcSet="/ads-assets/ads-hero-sammamish-mobile.webp"
+              type="image/webp"
+              width={400}
+              height={1140}
+            />
+            <img
+              loading="eager"
+              width={1920}
+              height={1140}
+              {...{ fetchpriority: 'high' }}
+              src="/ads-assets/ads-hero-sammamish.webp"
+              alt="Pacific Northwest home with quality shingle roof"
+              className="w-full h-full object-cover object-center"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/80 to-navy/70" />
         </div>
 
@@ -316,7 +341,7 @@ const QuoteAd: React.FC = () => {
                 </span>
                 <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs md:text-sm font-semibold px-3 py-1.5 rounded-full">
                   <CheckCircle2 className="text-stark-red" size={14} />
-                  20-Year Warranty
+                  25-Year Warranty
                 </span>
                 <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs md:text-sm font-semibold px-3 py-1.5 rounded-full">
                   <CheckCircle2 className="text-stark-red" size={14} />
@@ -369,7 +394,7 @@ const QuoteAd: React.FC = () => {
             </div>
             <div className="flex items-center gap-2">
               <Shield size={18} className="text-stark-red" />
-              <span className="font-semibold text-sm">20-Year Labor Warranty</span>
+              <span className="font-semibold text-sm">25-Year Labor Warranty</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 size={18} className="text-stark-red" />
@@ -401,11 +426,16 @@ const QuoteAd: React.FC = () => {
 
             <div className="w-full">
               <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100 bg-gray-100">
+                {/* loading/decoding before src: React sets attributes in prop
+                    order and Chrome fetches as soon as src is set. */}
                 <img
-                  src="/lovable-uploads/brenda-scarllet-owner.jpg"
+                  loading="lazy"
+                  decoding="async"
+                  width={844}
+                  height={1500}
+                  src="/ads-assets/brenda-scarllet-owner.webp"
                   alt="Brenda Scarllet — Owner, Stark Roofing &amp; Renovation"
                   className="w-full h-full object-cover"
-                  loading="lazy"
                 />
               </div>
             </div>
@@ -427,19 +457,28 @@ const QuoteAd: React.FC = () => {
             <ServiceCard
               title="Roofing"
               description="Architectural shingles installed by trained pros. Lifetime warranty available, financing in minutes, built for Seattle weather."
-              imageUrl="/lovable-uploads/home-premium-roofing.jpg"
+              imageUrl="/ads-assets/home-premium-roofing-800.webp"
+              imageLoading="lazy"
+              imageWidth={800}
+              imageHeight={536}
               link="/roof-replacement"
             />
             <ServiceCard
               title="Gutter Systems"
               description={'Seamless 5" gutters with leaf-guard protection and our exclusive lifetime clog-free guarantee. Never climb a ladder again.'}
-              imageUrl="/lovable-uploads/home-premium-gutters.jpg"
+              imageUrl="/ads-assets/home-premium-gutters-800.webp"
+              imageLoading="lazy"
+              imageWidth={800}
+              imageHeight={536}
               link="/gutter-replacement"
             />
             <ServiceCard
               title="Storm Damage Repair"
               description="Wind, hail, or fallen tree? Same-week inspections, full insurance claim support, and emergency tarp service across King, Snohomish & Pierce counties."
-              imageUrl="/lovable-uploads/home-storm-damage.jpg"
+              imageUrl="/ads-assets/home-storm-damage-800.webp"
+              imageLoading="lazy"
+              imageWidth={800}
+              imageHeight={536}
               link="/storm-damage"
             />
           </div>
@@ -465,7 +504,11 @@ const QuoteAd: React.FC = () => {
       <section className="py-20 md:py-28 bg-navy relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-30">
           <img
-            src="/lovable-uploads/ea006abb-9eda-4581-bc18-f64c4bf9d2c0.webp"
+            loading="lazy"
+            decoding="async"
+            width={1000}
+            height={750}
+            src="/ads-assets/ads-cta-bg-1000.webp"
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -532,10 +575,10 @@ const QuoteAd: React.FC = () => {
                   <div className="flex items-center gap-3 mt-auto">
                     {review.authorPhoto && (
                       <img
+                        loading="lazy"
                         src={review.authorPhoto}
                         alt={review.author}
                         className="w-9 h-9 rounded-full object-cover"
-                        loading="lazy"
                       />
                     )}
                     <div>
@@ -584,7 +627,7 @@ const QuoteAd: React.FC = () => {
                   <ShieldCheck size={26} />
                 </div>
                 <h3 className="font-heading font-bold text-navy text-lg mb-1">
-                  20-Year Labor Warranty
+                  25-Year Labor Warranty
                 </h3>
                 <p className="text-sm text-charcoal/70 leading-relaxed">
                   Far exceeds the Washington average of 1–5 years. Fully transferable.

@@ -85,12 +85,12 @@ const SnoqualmieLocation = () => {
       city="Snoqualmie"
       state="WA"
       region="Greater Seattle"
-      description="Roofing contractor serving Snoqualmie with GAF Master Elite certification, snow-ready specs, and 20-year labor warranty. Free drone inspections."
+      description="Roofing contractor serving Snoqualmie with GAF Master Elite certification, snow-ready specs, and 25-year labor warranty. Free drone inspections."
       content={content}
       heroImage="/hero-custom-snoqualmie.webp"
       keywords="roofing contractor Snoqualmie, roof repair Snoqualmie WA, roofer Snoqualmie, roof replacement Snoqualmie Ridge, Snoqualmie roofing company"
       metaTitle="Roofing in Snoqualmie, WA | Stark Roofing & Renovation"
-      metaDescription="Snoqualmie roofer with snow-ready specs and high-wind nailing standard. GAF Master Elite, 20-year labor warranty. Free drone inspections with written estimates."
+      metaDescription="Snoqualmie roofer with snow-ready specs and high-wind nailing standard. GAF Master Elite, 25-year labor warranty. Free drone inspections with written estimates."
     />
   );
 };
