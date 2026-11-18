@@ -11,8 +11,10 @@
  *      CRM and an email notification to Brenda.
  *   2. CAPI Lead to Vant worker — best-effort, pre-navigate.
  *   3. Customer confirmation email — best-effort.
- *   4. navigate('/thank-you') — fires Google Ads conversion + Meta Pixel
- *      Lead + UET form goal + GA4 generate_lead with the SAME event_id.
+ *   4. navigate('/thank-you') — thank-you is gated on email and phone, sets
+ *      gtag user_data, and reuses the same event_id for CAPI. Google Ads
+ *      QUAICKOS9 and (after Part C) GA4 generate_lead fire from GTM on the
+ *      lead_form_submit push above, not from a thank-you gtag conversion.
  */
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
