@@ -2,8 +2,35 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { roofingServices, exteriorServices } from '@/data/serviceData';
+import { getLeadValue } from '@/utils/tracking';
+import { getOrCreateExternalId, savePIIForReuse, updateAdvancedMatching } from '@/utils/metaTracking';
+
+// Human labels for the <option> values below. Used on the dataLayer push and
+// /thank-you state only. The Zapier/Leap payload still receives the slug.
+const SERVICE_LABELS: Record<string, string> = {
+  'roof-replacement': 'Roof Replacement',
+  'roof-repair': 'Roof Repair',
+  'roof-cleaning': 'Roof Cleaning',
+  'roof-inspection': 'Roof Inspection',
+  'commercial-roofing': 'Commercial Roofing',
+  'metal-roofing': 'Metal Roofing',
+  'flat-roofing': 'Flat Roofing',
+  'tpo-roofing': 'TPO Roofing',
+  'gutter-installation': 'Gutter Installation',
+  'gutter-repair': 'Gutter Repair',
+  'gutter-cleaning': 'Gutter Cleaning',
+  'gutter-guards': 'Gutter Guards',
+  'seamless-gutters': '5" Seamless Gutters',
+  'skylight-installation': 'Skylight Installation',
+  'siding-installation': 'Siding Installation',
+  'window-replacement': 'Window Replacement',
+  'storm-damage': 'Storm Damage Repair',
+  'emergency-services': 'Emergency Services',
+  'maintenance': 'Preventive Maintenance',
+};
 
 interface GetStartedFormProps {
   title?: string;
@@ -20,15 +47,26 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({
   formPosition = 'hero',
   enhanced = true
 }) => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
   } = useForm();
 
+  // After Zapier accepts the lead, push lead_form_submit so GTM's TechSol
+  // (tag 36) and GA4 generate_lead (tag 42) tags fire, then go to /thank-you
+  // like the other quote forms. The Zapier payload is unchanged (service
+  // stays the slug). A failed Zapier post throws and skips the conversion.
   const onSubmit = async (data: any) => {
     try {
+      const serviceLabel = SERVICE_LABELS[data.service] || data.service;
+      const leadValue = getLeadValue(serviceLabel);
+      const eventId = (crypto as Crypto).randomUUID();
+      const externalId = getOrCreateExternalId();
+      const [firstName, ...rest] = String(data.name || '').trim().split(/\s+/);
+      const lastName = rest.join(' ');
+
       const { submitLead } = await import('@/utils/submitLead');
       await submitLead({
         name: data.name,
@@ -38,8 +76,50 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({
         service: data.service,
         source: window.location.pathname,
       });
-      toast.success("Got it! Brenda or someone from her team will reach out within 2 business hours.", { duration: 6000 });
-      reset();
+
+      savePIIForReuse({
+        email: data.email,
+        phone: data.phone,
+        first_name: firstName,
+        last_name: lastName,
+        zip: data.zipCode,
+      });
+      updateAdvancedMatching({
+        email: data.email,
+        phone: data.phone,
+        first_name: firstName,
+        last_name: lastName,
+        zip: data.zipCode,
+      });
+
+      (window as unknown as { dataLayer?: unknown[] }).dataLayer =
+        (window as unknown as { dataLayer?: unknown[] }).dataLayer || [];
+      (window as unknown as { dataLayer: unknown[] }).dataLayer.push({
+        event: 'lead_form_submit',
+        event_id: eventId,
+        lead_value: leadValue,
+        currency: 'USD',
+        service: serviceLabel,
+        form_name: `get_started_${formPosition}`,
+        am_em: String(data.email).trim().toLowerCase(),
+        am_ph: String(data.phone).replace(/\D/g, ''),
+        am_fn: firstName?.toLowerCase(),
+        am_ln: lastName?.toLowerCase(),
+        am_zp: data.zipCode,
+        am_country: 'us',
+        am_external_id: externalId,
+      });
+
+      navigate('/thank-you', {
+        state: {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          service: serviceLabel,
+          zip: data.zipCode,
+          event_id: eventId,
+        },
+      });
     } catch (error) {
       console.error('Form submission error:', error);
       toast.error("Something went wrong — please call (206) 739-8232 and we'll take your info by phone.");
