@@ -178,7 +178,7 @@ const RoofReplacementEastside = () => {
                 <li><strong>Golden Pledge Warranty</strong> — 50-year materials, 25-year workmanship, transferable to next owner</li>
                 <li><strong>Free Drone Inspection</strong> — documented photo report on every Eastside quote</li>
                 <li><strong>Line-Item Pricing</strong> — every quote breaks out the 7 cost categories, no lump sums</li>
-                <li><strong>20-Year Labor Warranty</strong> — backed by Stark, not just the manufacturer</li>
+                <li><strong>25-Year Labor Warranty</strong> — backed by Stark, not just the manufacturer</li>
                 <li><strong>Family-Owned in Sammamish</strong> — same crew installs and answers warranty calls</li>
                 <li><strong>Bilingual EN / PT / ES</strong> — communication that fits every Eastside family</li>
                 <li><strong>2,000+ Eastside Roofs</strong> — 30+ years operating in King County</li>

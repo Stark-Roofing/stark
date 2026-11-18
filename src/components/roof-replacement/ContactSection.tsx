@@ -1,7 +1,16 @@
 
 import React from 'react';
-import ContactForm from '@/components/services/ContactForm';
+import QuickQuoteForm from '@/components/shared/QuickQuoteForm';
+import { FIRST_SCREEN_COPY as COPY } from './firstScreenCopy';
 
+/**
+ * Bottom-of-page form on /roof-replacement. Uses the SAME short QuickQuoteForm
+ * as the hero (name, phone, email, ZIP, optional service) so the page never
+ * shows two different forms. Previously rendered the shared
+ * services/ContactForm (QuickQuoteSection, full form incl. street address,
+ * "Pick a service and a time" subtitle); that shared component is untouched
+ * and still used by the other pages that import it.
+ */
 const ContactSection = () => {
   return (
     <section id="contact" className="py-16 md:py-24 bg-navy">
@@ -14,8 +23,13 @@ const ContactSection = () => {
             Fill out the form below and one of our roofing experts will contact you to schedule your free inspection and estimate.
           </p>
 
-          <div className="w-full">
-            <ContactForm />
+          <div className="w-full max-w-2xl bg-white rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-gray-100">
+            <QuickQuoteForm
+              variant="short"
+              defaultService="roof-replacement"
+              subtitle={COPY.formSubtitle}
+              footnote={COPY.formFootnote}
+            />
           </div>
         </div>
       </div>

@@ -23,11 +23,11 @@ const FAQSection = () => {
     },
     {
       question: "Is roof replacement covered by insurance?",
-      answer: "If your roof needs replacement due to storm damage, hail, falling trees, or other covered events, your homeowner's insurance will typically cover the cost minus your deductible. We work directly with insurance companies and handle the entire claims process for you."
+      answer: "If your roof was damaged by a storm, hail, falling trees, or another event your policy covers, insurance may help with the cost, depending on your policy and deductible. We work directly with insurance companies and handle the entire claims process for you."
     },
     {
       question: "What financing options do you offer for a new roof?",
-      answer: "We offer flexible financing options with competitive rates and programs for all credit profiles. Most homeowners get approved within minutes. No money down options are available. Visit our financing page or call (206) 739-8232 to learn more."
+      answer: "We offer financing through our O Bee Credit Union partnership: loans up to $75,000 with terms up to 120 months and rates starting at 8.24% APR. Most applications get a same-day decision. Visit our financing page or call (206) 739-8232 to learn more."
     },
     {
       question: "How do I know if I need a full replacement vs. repair?",

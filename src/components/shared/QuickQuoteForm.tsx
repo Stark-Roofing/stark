@@ -74,10 +74,29 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
+// variant="short" (paid-traffic LPs, e.g. /roof-replacement-estimate): street
+// address is not asked for, so it is allowed to be empty. Every other rule is
+// identical to `schema` — ZIP, phone and email validation are unchanged, and
+// email + phone stay required (the /thank-you conversion gate needs both).
+const shortSchema = schema.extend({
+  address: z.string(),
+});
+
 interface QuickQuoteFormProps {
   defaultService?: string;
   /** Called right before /thank-you navigation. Used by QuickQuoteDialog to close the modal. */
   onSuccess?: () => void;
+  /**
+   * 'default' (omitted) = the full form every existing page uses, unchanged.
+   * 'short' = name, phone, email, ZIP, then an optional service picker; no
+   * street address (sent to Zapier / thank-you state as ''). Same submit
+   * pipeline, same dataLayer event and payload keys.
+   */
+  variant?: 'default' | 'short';
+  /** Line under the "Get Your Free Quote" heading. Omit for the site default. */
+  subtitle?: string;
+  /** Small print under the submit button. Omit for the site default. */
+  footnote?: string;
 }
 
 // Zapier Catch Hook — the Zap fans this out to Leap CRM + an email
@@ -110,12 +129,19 @@ function getLeadValue(service: string): number {
   return 100;
 }
 
-const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSuccess }) => {
+const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({
+  defaultService,
+  onSuccess,
+  variant = 'default',
+  subtitle = 'Same-day reply. No pressure, no obligation.',
+  footnote = "We'll call you within 24 hours. No spam, ever.",
+}) => {
   const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
+  const isShort = variant === 'short';
 
   const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(isShort ? shortSchema : schema),
     mode: 'onTouched',
     defaultValues: {
       service: defaultService || '',
@@ -239,6 +265,37 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
     }
   };
 
+  // Service picker. Default form: first field. Short variant: last field, with
+  // the page's defaultService preselected (so it can be left untouched).
+  const serviceField = (
+    <FormField
+      control={form.control}
+      name="service"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel className="text-charcoal text-sm">
+            {isShort ? 'What do you need? (optional)' : 'What do you need?'}
+          </FormLabel>
+          <Select onValueChange={field.onChange} value={field.value}>
+            <FormControl>
+              <SelectTrigger className="h-11">
+                <SelectValue placeholder="Select a service" />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent>
+              {SERVICES.map((s) => (
+                <SelectItem key={s.value} value={s.value}>
+                  {s.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  );
+
   return (
     <div className="p-6 md:p-7">
       <div className="mb-5">
@@ -246,36 +303,13 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
           Get Your Free Quote
         </h3>
         <p className="text-sm text-charcoal/70">
-          Same-day reply. No pressure, no obligation.
+          {subtitle}
         </p>
       </div>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3.5">
-          <FormField
-            control={form.control}
-            name="service"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-charcoal text-sm">What do you need?</FormLabel>
-                <Select onValueChange={field.onChange} value={field.value}>
-                  <FormControl>
-                    <SelectTrigger className="h-11">
-                      <SelectValue placeholder="Select a service" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {SERVICES.map((s) => (
-                      <SelectItem key={s.value} value={s.value}>
-                        {s.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {!isShort && serviceField}
 
           <FormField
             control={form.control}
@@ -334,24 +368,26 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="address"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-charcoal text-sm">Street Address</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    autoComplete="street-address"
-                    placeholder="123 Alder St"
-                    className="h-11"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {!isShort && (
+            <FormField
+              control={form.control}
+              name="address"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-charcoal text-sm">Street Address</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      autoComplete="street-address"
+                      placeholder="123 Alder St"
+                      className="h-11"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
 
           <FormField
             control={form.control}
@@ -375,6 +411,8 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
             )}
           />
 
+          {isShort && serviceField}
+
           <Button
             type="submit"
             disabled={submitting}
@@ -384,7 +422,7 @@ const QuickQuoteForm: React.FC<QuickQuoteFormProps> = ({ defaultService, onSucce
           </Button>
 
           <p className="text-[11px] text-charcoal/60 text-center pt-1">
-            We'll call you within 24 hours. No spam, ever.
+            {footnote}
           </p>
         </form>
       </Form>

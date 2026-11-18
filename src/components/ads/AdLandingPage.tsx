@@ -24,7 +24,7 @@ interface AdLandingPageProps {
 const SERVICE_DEFAULTS: Record<string, { headline: string; sub: string }> = {
   'Roof Replacement': {
     headline: 'Roof Replacement in {city}',
-    sub: 'GAF Certified. 20-year labor warranty. Free drone inspection and written estimate.',
+    sub: 'GAF Certified. 25-year labor warranty. Free drone inspection and written estimate.',
   },
   'Roof Repair': {
     headline: 'Roof Repair in {city}',
@@ -155,7 +155,7 @@ const AdLandingPage: React.FC<AdLandingPageProps> = ({
                 </div>
                 <div className="flex items-center gap-2 bg-white rounded-lg border border-gray-100 p-3">
                   <Award size={20} className="text-stark-red flex-shrink-0" />
-                  <span className="text-sm font-semibold text-navy">20-Year Warranty</span>
+                  <span className="text-sm font-semibold text-navy">25-Year Warranty</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white rounded-lg border border-gray-100 p-3">
                   <CheckCircle2 size={20} className="text-stark-red flex-shrink-0" />

@@ -32,13 +32,13 @@ const RoofReplacement = () => {
   useSEOMeta({
     title: 'Roof Replacement Seattle WA | Stark Roofing & Renovation',
     description:
-      'Full roof replacement across the Seattle area. GAF Timberline HDZ shingles, 20-year labor warranty, 2,000+ roofs done. (206) 739-8232 for a quote.',
+      'Full roof replacement across the Seattle area. GAF Timberline HDZ shingles, 25-year labor warranty, 2,000+ roofs done. (206) 739-8232 for a quote.',
     canonical: 'https://starkroofingrenovation.com/roof-replacement/',
     keywords:
       'roof replacement seattle, GAF certified installer, new roof bellevue, gaf timberline HDZ, residential roof replacement puget sound',
     ogTitle: 'Roof Replacement | Stark Roofing & Renovation',
     ogDescription:
-      'GAF Timberline HDZ shingles, 20-year labor warranty, 2,000+ roofs across the Seattle area and Eastside.',
+      'GAF Timberline HDZ shingles, 25-year labor warranty, 2,000+ roofs across the Seattle area and Eastside.',
     ogImage: 'https://starkroofingrenovation.com/roof-replacement-hero.webp',
   });
   

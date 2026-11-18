@@ -148,6 +148,10 @@ const LCP_PRELOAD_OVERRIDES = {
     { href: '/ads-assets/ads-hero-sammamish-mobile.webp', media: '(max-width: 480px)' },
     { href: '/ads-assets/ads-hero-sammamish.webp', media: '(min-width: 481px)' },
   ],
+  '/roof-replacement/': [
+    { href: '/roof-replacement-hero-mobile.webp', media: '(max-width: 480px)' },
+    { href: '/roof-replacement-hero-1440.webp', media: '(min-width: 481px)' },
+  ],
 };
 
 function applyLcpPreloadOverride(pathname, html) {

@@ -37,7 +37,7 @@ const OverviewSection = () => {
           </div>
           <div className="rounded-xl overflow-hidden shadow-lg">
             <img 
-              src="/lovable-uploads/e2f4fef0-a179-4f5e-98e4-e19e7c678191.webp" 
+              loading="lazy" decoding="async" src="/lovable-uploads/e2f4fef0-a179-4f5e-98e4-e19e7c678191.webp" 
               alt="Gray architectural shingle roof with multiple peaks" 
               className="w-full h-full object-cover"
             />

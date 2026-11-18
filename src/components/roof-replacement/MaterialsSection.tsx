@@ -35,7 +35,7 @@ const MaterialsSection = () => {
         }} transition={{
           duration: 0.7
         }} className="rounded-xl overflow-hidden shadow-lg">
-            <img src="/lovable-uploads/76a0726c-7d0d-46bf-9197-61dd7784b64b.webp" alt="Complete GAF roofing system components" className="w-full h-auto object-cover" />
+            <img loading="lazy" decoding="async" src="/lovable-uploads/76a0726c-7d0d-46bf-9197-61dd7784b64b.webp" alt="Complete GAF roofing system components" className="w-full h-auto object-cover" />
           </motion.div>
           <motion.div initial={{
           opacity: 0,
