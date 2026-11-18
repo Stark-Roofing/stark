@@ -18,6 +18,7 @@ const ContactSection = () => {
             title="Schedule Roof Cleaning"
             buttonText="Get Free Quote"
             formColor="red"
+            formPosition="section"
           />
         </div>
       </div>
