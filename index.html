@@ -77,8 +77,8 @@
          does NOT expose window.gtag for custom site code to call — it's
          only defined this way when you use Google's classic direct-install
          snippet. Without this stub, every window.gtag?.(...) call elsewhere
-         in this codebase (Enhanced Conversions user_data, the Google Ads
-         conversion event on /thank-you, the GA4 generate_lead event)
+         in this codebase (Enhanced Conversions user_data on /thank-you,
+         and lead_form_submitted in src/utils/tracking.ts)
          silently no-ops forever via optional chaining, with zero error.
          Confirmed live: window.gtag was still undefined 15+ seconds after
          both gtag.js library scripts had already loaded through GTM.

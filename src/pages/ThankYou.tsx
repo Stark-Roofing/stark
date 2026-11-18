@@ -101,7 +101,13 @@ const ThankYou: React.FC = () => {
       const [firstName, ...rest] = (state.name || '').trim().split(/\s+/);
       const lastName = rest.join(' ');
 
-      // 1) Enhanced Conversions: SET user_data BEFORE the conversion event.
+      // Enhanced Conversions: set user_data only. Kept so the primary form
+      // action QUAICKOS9 (AW-17475363009/QUAICKOS9-wcEMHB84xB) can use it if
+      // enhanced conversions are turned on later (currently off).
+      // Timing: lead_form_submit / QUAICKOS9 already fired on the form page
+      // before navigate, so this set lands after that conversion hit. Part E
+      // (GTM User-Provided Data on lead_form_submit) is the on-submit path
+      // and is not part of this change.
       if (state.email || state.phone) {
         window.gtag?.('set', 'user_data', {
           email: state.email || undefined,
@@ -109,20 +115,11 @@ const ThankYou: React.FC = () => {
         });
       }
 
-      // 2) Google Ads conversion (Submit lead form)
-      window.gtag?.('event', 'conversion', {
-        send_to: 'AW-17475363009/I9C_CKq9jpscEMHB84xB',
-        value,
-        currency: 'USD',
-      });
-
-      // 3) GA4 generate_lead event
-      window.gtag?.('event', 'generate_lead', {
-        event_category: 'conversion',
-        event_label: state.service || 'thank_you_page',
-        form_type: 'thank_you',
-        value,
-      });
+      // Removed in Part C:
+      // - Google Ads gtag conversion AW-17475363009/I9C_CKq9jpscEMHB84xB
+      //   (matches no active Ads action; likely a removed action, not confirmed)
+      // - Code-side gtag generate_lead, replaced by a GTM GA4 Event tag on
+      //   lead_form_submit so GA4 does not double-count
 
       // NOTE: Do NOT push a second 'lead_form_submit' dataLayer event here.
       // AdsLeadForm.tsx and QuickQuoteForm.tsx — the only two forms that ever
