@@ -109,9 +109,14 @@ const ThankYou: React.FC = () => {
       // (GTM User-Provided Data on lead_form_submit) is the on-submit path
       // and is not part of this change.
       if (state.email || state.phone) {
+        // Google hashes phone_number as E.164. A 10-digit US number must
+        // include the +1 country code; otherwise it is hashed incorrectly.
+        const d = String(state.phone || '').replace(/\D/g, '');
+        const phoneNumber =
+          d.length === 10 ? `+1${d}` : d.length === 11 && d.startsWith('1') ? `+${d}` : undefined;
         window.gtag?.('set', 'user_data', {
           email: state.email || undefined,
-          phone_number: state.phone || undefined,
+          ...(phoneNumber ? { phone_number: phoneNumber } : {}),
         });
       }
 
